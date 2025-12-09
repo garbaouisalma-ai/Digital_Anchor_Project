@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-key="page-title-thankyou">شكراً لحجزك المسبق!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 'anchor-blue': '#1a202c', 'anchor-gold': '#ffd700' }
+                }
+            }
+        }
+    </script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body { background-color: #f3f4f6; font-family: sans-serif; color: #1f2937; }
+        .thank-you-section { border-top: 5px solid #10b981; } /* Tailwind green-500 */
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState, useEffect, createContext, useContext } = React;
+
+        // --- قاموس الترجمة الموحد ---
+        const translations = {
+            'site-logo': { ar: 'المرساة الرقمية', en: 'Digital Anchor', fr: 'Ancre Numérique' },
+            'footer-copy': { ar: '© 2025 جميع الحقوق محفوظة.', en: '© 2025 All Rights Reserved.', fr: '© 2025 Tous droits réservées.' },
+            'page-title-thankyou': { ar: 'شكراً لحجزك المسبق!', en: 'Thank You For Your Pre-order!', fr: 'Merci pour Votre Précommande!' },
+            'thankyou-heading': { ar: '✅ شكراً جزيلاً لحجزك المسبق!', en: '✅ Thank You Very Much For Your Pre-order!', fr: '✅ Merci Beaucoup pour Votre Précommande!' },
+            'thankyou-message1': { ar: 'تم تسجيل طلبك بنجاح. سيقوم فريقنا بالتواصل معك عبر البريد الإلكتروني خلال 24 ساعة لتأكيد الحجز وتزويدك بالتفاصيل الخاصة بالدفع ومزايا الحزمة التي اخترتها.', en: 'Your order has been successfully recorded. Our team will contact you via email within 24 hours to confirm your booking and provide you with payment details and the benefits of the package you selected.', fr: 'Votre commande a été enregistrée. Notre équipe vous contactera par e-mail dans les 24 heures pour confirmer le paiement.' },
+            'thankyou-message2': { ar: 'تابعنا على وسائل التواصل الاجتماعي لمعرفة آخر مستجدات الإطلاق.', en: 'Follow us on social media for the latest launch updates.', fr: 'Suivez-nous sur les réseaux sociaux pour les dernières mises à jour du lancement.' },
+            'back-to-home': { ar: 'العودة إلى الرئيسية', en: 'Back to Homepage', fr: 'Retour à l\'Accueil' },
+        };
+
+        // --- نظام اللغة (Language Context) ---
+        const LanguageContext = createContext();
+        const LanguageProvider = ({ children }) => {
+            const [lang, setLang] = useState(localStorage.getItem('lang') || 'ar');
+            useEffect(() => {
+                localStorage.setItem('lang', lang);
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            }, [lang]);
+            const t = (key) => translations[key]?.[lang] || key;
+            return <LanguageContext.Provider value={{ lang, setLang, t }}>{children}</LanguageContext.Provider>;
+        };
+
+        // --- مكون محتوى الصفحة (Thank You Content) ---
+        const ThankYouContent = () => {
+            const { t } = useContext(LanguageContext);
+            return (
+                <main className="min-h-screen flex items-center justify-center p-6">
+                    <section className="thank-you-section text-center p-12 max-w-xl bg-white rounded-xl shadow-2xl">
+                        <h1 className="text-3xl font-bold text-green-600 mb-6">{t('thankyou-heading')}</h1>
+                        <p className="text-gray-700 text-lg mb-4">{t('thankyou-message1')}</p>
+                        <p className="text-gray-600 mb-8">{t('thankyou-message2')}</p>
+                        <a href="index.html" className="bg-anchor-blue text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-700 transition">
+                            {t('back-to-home')}
+                        </a>
+                    </section>
+                </main>
+            );
+        };
+
+        const App = () => (
+            <LanguageProvider>
+                <ThankYouContent />
+                <footer className="bg-anchor-blue text-gray-500 text-center py-6 text-sm w-full absolute bottom-0">
+                    {translations['footer-copy'].ar}
+                </footer>
+            </LanguageProvider>
+        );
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>
+</html>

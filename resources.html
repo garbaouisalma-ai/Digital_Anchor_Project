@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-key="page-title-resources">مكتبة الموارد والأدوات المجانية</title>
+    <meta name="description" content="أدوات تفاعلية، فيديوهات قصيرة، ومحتوى تكميلي مجاني لتعزيز الاستفادة من الحزمة المتكاملة." data-key="meta-description">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 'anchor-blue': '#1a202c', 'anchor-gold': '#ffd700' }
+                }
+            }
+        }
+    </script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>body { background-color: #f3f4f6; font-family: sans-serif; color: #1f2937; }</style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState, useEffect, createContext, useContext } = React;
+
+        // --- قاموس الترجمة الموحد ---
+        const translations = {
+            'site-logo': { ar: 'المرساة الرقمية', en: 'Digital Anchor', fr: 'Ancre Numérique' },
+            'nav-home': { ar: 'الرئيسية', en: 'Home', fr: 'Accueil' },
+            'nav-pledge': { ar: 'عهد التحرر', en: 'Pledge', fr: 'Engagement' },
+            'nav-buy': { ar: 'شراء الحزمة', en: 'Buy Package', fr: 'Acheter le Pack' },
+            'nav-guide': { ar: 'الدليل', en: 'Guide', fr: 'Guide' },
+            'nav-resources': { ar: 'الموارد', en: 'Resources', fr: 'Ressources' },
+            'footer-copy': { ar: '© 2025 جميع الحقوق محفوظة.', en: '© 2025 All Rights Reserved.', fr: '© 2025 Tous droits réservées.' },
+
+            'page-title-resources': { ar: 'مكتبة الموارد والأدوات المجانية', en: 'Free Resources & Tools Library', fr: 'Bibliothèque de Ressources Gratuites' }, 
+            'resources-main-title': { ar: 'مكتبة الموارد والأدوات التفاعلية المجانية', en: 'Library of Free Interactive Resources and Tools', fr: 'Bibliothèque d\'Outils Interactifs Gratuits' },
+            'resources-subtitle': { ar: 'استفد من أدوات التخطيط، والمحتوى التكميلي، ونصائح المجتمع لتحقيق التحول العملي.', en: 'Benefit from planning tools, supplementary content, and community tips to achieve practical transformation.', fr: 'Profitez d\'outils de planification et de conseils communautارية.' },
+            'tools-section-title': { ar: 'الأدوات التفاعلية ونظام التحديات', en: 'Interactive Tools and Challenge System', fr: 'Outils Interactifs et Système de Défis' },
+            'tool-value-title': { ar: 'أداة تحديد القيمة الجوهرية', en: 'Core Value Finder Tool', fr: 'Outil de Recherche de Valeur' },
+            'tool-planner-title': { ar: 'مخطط الإنتاجية العميقة', en: 'Deep Work Planner', fr: 'Planificateur de Travail Profond' },
+            'tool-planner-cta': { ar: 'تحميل مجاني', en: 'Free Download', fr: 'Téléchargement Gratuit' },
+            'article-focus-title': { ar: 'مقالة: 5 استراتيجيات للتركيز العميق', en: 'Article: 5 Deep Focus Strategies', fr: 'Article: 5 Stratégies de Concentration Profonde' },
+            'article-cta': { ar: 'اقرأ المزيد', en: 'Read More', fr: 'Lire la Suite' },
+            'community-section-title': { ar: 'المجتمع التفاعلي', en: 'Interactive Community', fr: 'Communauté Interactive' },
+            'community-cta': { ar: 'انضم إلى المجموعة الآن', en: 'Join the Group Now', fr: 'Rejoindre le Groupe Maintenant' },
+
+            // ... (يجب إضافة جميع المفاتيح من ملفاتك هنا ليعمل الموقع بشكل كامل) ...
+        };
+
+        // --- نظام اللغة (Language Context) ---
+        const LanguageContext = createContext();
+        const LanguageProvider = ({ children }) => {
+            const [lang, setLang] = useState(localStorage.getItem('lang') || 'ar');
+            useEffect(() => {
+                localStorage.setItem('lang', lang);
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            }, [lang]);
+            const t = (key) => translations[key]?.[lang] || key;
+            return <LanguageContext.Provider value={{ lang, setLang, t }}>{children}</LanguageContext.Provider>;
+        };
+
+        // --- مكونات واجهة المستخدم (الـ Navbar & LangSwitcher مشابهة للملفات الأخرى) ---
+        const Navbar = () => {
+            const { t, lang, setLang } = useContext(LanguageContext);
+            return (
+                <nav className="p-6 flex justify-between items-center text-white bg-anchor-blue fixed w-full z-50">
+                    <div className="text-2xl font-bold text-anchor-gold">{t('site-logo')}</div>
+                    <div className="flex gap-4 items-center">
+                        <a href="index.html" className="hover:text-anchor-gold text-gray-300">{t('nav-home')}</a>
+                        <a href="guide.html" className="hover:text-anchor-gold text-gray-300">{t('nav-guide')}</a>
+                        <a href="resources.html" className="font-bold text-anchor-gold">{t('nav-resources')}</a>
+                        <a href="buy.html" className="bg-anchor-gold text-anchor-blue px-4 py-2 rounded-lg font-bold hover:bg-yellow-400">{t('nav-buy')}</a>
+                        <select value={lang} onChange={(e) => setLang(e.target.value)} className="bg-gray-800 text-white border border-gray-600 rounded p-1 text-sm">
+                            <option value="ar">العربية</option><option value="en">English</option><option value="fr">Français</option>
+                        </select>
+                    </div>
+                </nav>
+            );
+        };
+
+        // --- مكون محتوى الصفحة (ResourcesContent) ---
+        const ResourcesContent = () => {
+            const { t } = useContext(LanguageContext);
+            return (
+                <main className="resources-page-content p-8 pt-24 max-w-4xl mx-auto min-h-screen">
+                    <header className="resources-header mb-8 text-center">
+                        <h1 className="text-3xl font-bold text-anchor-blue mb-2">{t('resources-main-title')}</h1>
+                        <p className="text-gray-500">{t('resources-subtitle')}</p>
+                    </header>
+
+                    <section className="interactive-tools-section bg-white p-6 rounded-lg shadow mb-8">
+                        <h2 className="text-2xl font-semibold mb-4">{t('tools-section-title')}</h2>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            {/* أداة تحديد القيمة */}
+                            <article className="tool-card p-4 border rounded-lg">
+                                <h3 className="font-bold mb-2">{t('tool-value-title')}</h3>
+                                <a href="tool-value.html" className="text-blue-600 hover:underline">{t('tool-value-cta')}</a>
+                            </article>
+                            {/* مخطط الإنتاجية */}
+                            <article className="tool-card p-4 border rounded-lg">
+                                <h3 className="font-bold mb-2">{t('tool-planner-title')}</h3>
+                                <a href="#" className="text-green-600 hover:underline font-bold">{t('tool-planner-cta')}</a>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section className="blog-and-community bg-gray-100 p-8 rounded-lg shadow">
+                        <h2 className="text-2xl font-semibold mb-4 text-anchor-blue">
+                           {t('community-section-title')} / {t('article-focus-title')} 
+                        </h2>
+                        <div className="grid md:grid-cols-2 gap-4">
+                            {/* مقالة التركيز */}
+                            <article className="content-card p-4 border rounded-lg bg-white">
+                                <h3 className="font-bold mb-2">{t('article-focus-title')}</h3>
+                                <a href="blog-article-1.html" className="text-blue-600 hover:underline">{t('article-cta')}</a>
+                            </article>
+                            {/* زر المجتمع */}
+                            <div className="flex items-center justify-center">
+                                <a href="https://t.me/example-group" target="_blank" className="inline-block px-8 py-3 bg-anchor-gold text-anchor-blue font-bold rounded-lg hover:bg-yellow-400 transition">
+                                    {t('community-cta')}
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+            );
+        };
+
+        const App = () => (
+            <LanguageProvider>
+                <div className="min-h-screen bg-gray-50">
+                    <Navbar />
+                    <ResourcesContent />
+                </div>
+                <footer className="bg-anchor-blue text-gray-500 text-center py-6 text-sm w-full">
+                    {translations['footer-copy'].ar}
+                </footer>
+            </LanguageProvider>
+        );
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>
+</html>

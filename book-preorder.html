@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>احجز كتاب "من أنت حين تنطفئ الشاشة؟"</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { 'anchor-blue': '#0f172a', 'anchor-gold': '#d4af37' }, fontFamily: { sans: ['Tajawal', 'sans-serif'], serif: ['Amiri', 'serif'] } } } }</script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>body { background-color: #f8fafc; } .dropdown:hover .dropdown-menu { display: block; }</style>
+</head>
+<body class="text-slate-900 font-sans">
+    <div id="root"></div>
+    <script type="text/babel">
+        // Navbar الموحد (نفس الموجود في index.html)
+        const Navbar = () => (
+            <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-md backdrop-blur-md bg-opacity-95">
+                <div className="max-w-7xl mx-auto flex justify-between items-center">
+                    <a href="index.html" className="flex items-center gap-3 group">
+                        <img src="images/logo.png" alt="Logo" className="h-10 w-auto transition-transform group-hover:scale-110" />
+                        <span className="font-bold text-lg hidden md:block">المرساة الرقمية</span>
+                    </a>
+                    <div className="flex gap-4 md:gap-6 text-sm font-medium items-center">
+                        <a href="index.html" className="hover:text-anchor-gold transition">الرئيسية</a>
+                        <a href="guide.html" className="hover:text-anchor-gold transition hidden sm:block">الدليل</a>
+                        <a href="members.html" className="hover:text-anchor-gold transition hidden sm:block">الأعضاء</a>
+                        <a href="book-preorder.html" className="bg-anchor-gold text-anchor-blue px-4 py-2 rounded-full font-bold hover:bg-yellow-400 transition transform hover:scale-105 text-xs md:text-sm">احجز نسختك</a>
+                    </div>
+                </div>
+            </nav>
+        );
+
+        const PreorderPage = () => {
+            return (
+                <div className="min-h-screen flex flex-col">
+                    <Navbar />
+                    <header className="bg-white py-16 px-6 border-b border-gray-100">
+                        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12">
+                            <div className="md:w-1/3 flex justify-center">
+                                <img src="images/main_book.jpg" alt="Book Cover" className="relative w-64 md:w-80 rounded-lg shadow-2xl transform transition duration-500 hover:scale-105" />
+                            </div>
+                            <div className="md:w-2/3 text-center md:text-right">
+                                <span className="inline-block px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-bold mb-4">الكمية محدودة</span>
+                                <h1 className="text-4xl md:text-5xl font-bold font-serif text-anchor-blue mb-6">من أنت حين <span className="text-anchor-gold">تنطفئ الشاشة؟</span></h1>
+                                <p className="text-lg text-gray-600 mb-8">دليلك العملي لاستعادة السيطرة على انتباهك. احصل على النسخة الورقية الفاخرة الآن.</p>
+                                <div className="grid sm:grid-cols-2 gap-4">
+                                    <div className="border border-gray-200 p-6 rounded-xl bg-gray-50 text-center"><h3 className="font-bold text-lg mb-2">📘 النسخة المطبوعة</h3><p className="text-sm text-gray-500 mb-4">65 ر.س</p></div>
+                                    <div className="border-2 border-anchor-gold p-6 rounded-xl bg-white shadow-lg text-center"><div className="bg-anchor-gold text-anchor-blue text-xs font-bold px-3 py-1 rounded inline-block mb-2">الأكثر مبيعاً</div><h3 className="font-bold text-lg mb-2 text-anchor-blue">🎁 الحزمة الكاملة</h3><p className="text-sm text-gray-500 mb-4">99 ر.س</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+                    <section id="form" className="py-16 px-6 bg-gray-50 flex-grow">
+                        <div className="max-w-xl mx-auto bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
+                            <h2 className="text-2xl font-bold text-center mb-8 text-anchor-blue">بيانات الشحن</h2>
+                            <form action="https://formspree.io/f/mwpgnnrg" method="POST" className="space-y-5">
+                                <div><label className="block text-sm font-bold text-gray-700 mb-2">الاسم الكامل</label><input type="text" name="name" required className="w-full px-4 py-3 rounded-lg bg-gray-50 border focus:border-anchor-gold outline-none" /></div>
+                                <div><label className="block text-sm font-bold text-gray-700 mb-2">البريد الإلكتروني</label><input type="email" name="email" required className="w-full px-4 py-3 rounded-lg bg-gray-50 border focus:border-anchor-gold outline-none" /></div>
+                                <div><label className="block text-sm font-bold text-gray-700 mb-2">الباقة</label><select name="package" className="w-full px-4 py-3 rounded-lg bg-gray-50 border focus:border-anchor-gold outline-none"><option value="full">الحزمة الكاملة (99 ر.س)</option><option value="book">النسخة المطبوعة فقط (65 ر.س)</option></select></div>
+                                <button type="submit" className="w-full bg-anchor-blue text-white font-bold py-4 rounded-lg hover:bg-gray-800 transition">تأكيد الطلب</button>
+                            </form>
+                        </div>
+                    </section>
+                    <footer className="bg-anchor-blue text-slate-400 py-8 text-center text-sm">© 2025 المرساة الرقمية</footer>
+                </div>
+            );
+        };
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<PreorderPage />);
+    </script>
+</body>
+</html>

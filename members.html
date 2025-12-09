@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>منطقة الأعضاء | المرساة الرقمية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { 'anchor-blue': '#0f172a', 'anchor-gold': '#d4af37' }, fontFamily: { sans: ['Tajawal', 'sans-serif'] } } } }</script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>body { background-color: #f8fafc; }</style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+    <div id="root"></div>
+    <script type="text/babel">
+        const MembersPage = () => {
+            return (
+                <div className="min-h-screen flex flex-col">
+                    <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-md">
+                        <div className="max-w-7xl mx-auto flex justify-between items-center">
+                            <a href="index.html" className="flex items-center gap-3"><img src="images/logo.png" alt="Logo" className="h-10 w-auto" /><span className="font-bold text-lg hidden md:block">المرساة الرقمية</span></a>
+                            <a href="index.html" className="text-sm hover:text-anchor-gold transition">العودة للرئيسية</a>
+                        </div>
+                    </nav>
+                    <main className="max-w-4xl mx-auto px-6 py-12 flex-grow">
+                        <header className="text-center bg-anchor-blue text-white p-8 rounded-2xl mb-8 shadow-lg">
+                            <h1 className="text-3xl font-bold mb-2">مرحباً بك في منطقة الأعضاء الخاصة!</h1>
+                            <p className="text-gray-300">هنا تجد المحتوى الحصري وورش العمل.</p>
+                        </header>
+                        <div className="grid md:grid-cols-3 gap-6">
+                            <div className="bg-white p-6 rounded-xl shadow border-2 border-gray-100 opacity-75">
+                                <h3 className="font-bold mb-2">أدوات التخطيط</h3>
+                                <p className="text-sm text-gray-500 mb-4">قوالب Excel مالية وشخصية.</p>
+                                <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded text-xs font-bold">🔒 للمشتركين</span>
+                            </div>
+                            <div className="bg-white p-6 rounded-xl shadow border-2 border-gray-100 opacity-75">
+                                <h3 className="font-bold mb-2">ورش عمل مسجلة</h3>
+                                <p className="text-sm text-gray-500 mb-4">فيديوهات تطبيقية للفصول.</p>
+                                <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded text-xs font-bold">🔒 للمشتركين</span>
+                            </div>
+                            <div className="bg-white p-6 rounded-xl shadow border-2 border-gray-100 opacity-75">
+                                <h3 className="font-bold mb-2">فصل إضافي سري</h3>
+                                <p className="text-sm text-gray-500 mb-4">استراتيجيات صيانة الالتزام.</p>
+                                <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded text-xs font-bold">🔒 للمشتركين</span>
+                            </div>
+                        </div>
+                        <div className="mt-8 text-center p-8 bg-gray-100 rounded-xl">
+                            <h2 className="text-xl font-bold mb-2">كيف أصل لهذا المحتوى؟</h2>
+                            <p className="text-gray-600 mb-4">هذا المحتوى متاح حصرياً لملاك الحزمة الكاملة.</p>
+                            <a href="book-preorder.html" className="inline-block bg-anchor-gold text-anchor-blue px-8 py-3 rounded-lg font-bold hover:bg-yellow-400 transition">ترقية اشتراكي الآن</a>
+                        </div>
+                    </main>
+                    <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm">© 2025 المرساة الرقمية</footer>
+                </div>
+            );
+        };
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<MembersPage />);
+    </script>
+</body>
+</html>

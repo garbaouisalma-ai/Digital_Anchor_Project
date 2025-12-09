@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>3 قصص تحول ملهمة | المدونة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { 'anchor-blue': '#0f172a', 'anchor-gold': '#d4af37' }, fontFamily: { sans: ['Tajawal', 'sans-serif'], serif: ['Amiri', 'serif'] } } } }</script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>body { background-color: #f8fafc; }</style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+    <div id="root"></div>
+    <script type="text/babel">
+        const BlogPage2 = () => {
+            return (
+                <div className="min-h-screen flex flex-col">
+                    <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-md">
+                        <div className="max-w-7xl mx-auto flex justify-between items-center">
+                            <a href="index.html" className="flex items-center gap-3"><img src="images/logo.png" alt="Logo" className="h-10 w-auto" /><span className="font-bold text-lg hidden md:block">المرساة الرقمية</span></a>
+                            <a href="index.html" className="text-sm hover:text-anchor-gold transition">العودة للرئيسية</a>
+                        </div>
+                    </nav>
+                    <main className="max-w-5xl mx-auto px-6 py-12 grid lg:grid-cols-3 gap-12 flex-grow">
+                        <article className="lg:col-span-2 bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                            <header className="mb-8 border-b border-gray-100 pb-8">
+                                <div className="text-anchor-gold font-bold text-sm mb-2">قصص نجاح</div>
+                                <h1 className="text-3xl font-bold text-anchor-blue font-serif mb-4">3 قصص ملهمة من مستخدمي الحزمة</h1>
+                                <div className="text-gray-500 text-sm">نُشر بتاريخ: 2025/01/20</div>
+                            </header>
+                            <div className="prose text-gray-700 leading-relaxed space-y-6">
+                                <p>المعرفة وحدها لا تكفي. التطبيق هو السر. إليك قصص حقيقية:</p>
+                                <div className="bg-gray-50 p-6 rounded-xl border-r-4 border-anchor-gold"><h3 className="text-xl font-bold text-anchor-blue mb-2">1. خالد: من التشتت إلى العمل العميق</h3><p>قلص وقته من 8 ساعات إلى ساعة واحدة يومياً.</p></div>
+                                <div className="bg-gray-50 p-6 rounded-xl border-r-4 border-anchor-gold"><h3 className="text-xl font-bold text-anchor-blue mb-2">2. سارة: استعادة التواصل العائلي</h3><p>طبقت "ميثاق العائلة" واستعادت وقت العشاء.</p></div>
+                            </div>
+                            <div className="mt-10 p-6 bg-anchor-blue text-white rounded-xl text-center">
+                                <a href="book-preorder.html" className="inline-block bg-anchor-gold text-anchor-blue px-8 py-3 rounded-lg font-bold hover:bg-yellow-400 transition">ابدأ قصتك الآن</a>
+                            </div>
+                        </article>
+                        <aside className="space-y-6">
+                            <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 sticky top-24">
+                                <h3 className="font-bold text-anchor-blue mb-4">اقرأ أيضاً</h3>
+                                <a href="blog-article-1.html" className="block text-gray-600 hover:text-anchor-gold">5 استراتيجيات للتركيز ←</a>
+                            </div>
+                        </aside>
+                    </main>
+                    <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm">© 2025 المرساة الرقمية</footer>
+                </div>
+            );
+        };
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<BlogPage2 />);
+    </script>
+</body>
+</html>

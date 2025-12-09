@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>شراء الحزمة | المرساة الرقمية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { 'anchor-blue': '#0f172a', 'anchor-gold': '#d4af37' }, fontFamily: { sans: ['Tajawal', 'sans-serif'] } } } }</script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>body { background-color: #f8fafc; }</style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+    <div id="root"></div>
+    <script type="text/babel">
+        // Navbar الموحد
+        const Navbar = () => (
+            <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-md backdrop-blur-md bg-opacity-95">
+                <div className="max-w-7xl mx-auto flex justify-between items-center">
+                    <a href="index.html" className="flex items-center gap-3 group">
+                        <img src="images/logo.png" alt="Logo" className="h-10 w-auto" />
+                        <span className="font-bold text-lg hidden md:block">المرساة الرقمية</span>
+                    </a>
+                    <div className="flex gap-4 md:gap-6 text-sm font-medium items-center">
+                        <a href="index.html" className="hover:text-anchor-gold transition">الرئيسية</a>
+                        <a href="book-preorder.html" className="bg-anchor-gold text-anchor-blue px-4 py-2 rounded-full font-bold hover:bg-yellow-400 text-xs md:text-sm">احجز نسختك</a>
+                    </div>
+                </div>
+            </nav>
+        );
+
+        const BuyPage = () => {
+            return (
+                <div className="min-h-screen flex flex-col">
+                    <Navbar />
+                    <main className="max-w-4xl mx-auto p-6 grid md:grid-cols-2 gap-8 mt-10 flex-grow">
+                        <div className="bg-white p-8 rounded-xl shadow-lg h-fit">
+                            <h2 className="text-2xl font-bold text-anchor-blue mb-2">إتمام الطلب</h2>
+                            <p className="text-gray-500 mb-6">أدخل بياناتك لاستلام الحزمة الرقمية فوراً.</p>
+                            <form className="space-y-4">
+                                <div><label className="block text-sm font-bold mb-2">الاسم الكامل</label><input type="text" className="w-full p-3 border rounded-lg bg-gray-50 outline-none focus:border-anchor-gold" required /></div>
+                                <div><label className="block text-sm font-bold mb-2">البريد الإلكتروني</label><input type="email" className="w-full p-3 border rounded-lg bg-gray-50 outline-none focus:border-anchor-gold" required /></div>
+                                <button className="w-full bg-green-600 text-white font-bold py-4 rounded-lg hover:bg-green-700 transition mt-4">دفع آمن 🔒</button>
+                            </form>
+                        </div>
+                        <div className="bg-gray-100 p-8 rounded-xl h-fit border border-gray-200">
+                            <h3 className="text-xl font-bold mb-6 text-gray-700">ملخص الطلب</h3>
+                            <div className="flex justify-between items-center mb-4"><span>الحزمة المتكاملة (PDFs)</span><span className="font-bold">375 ر.س</span></div>
+                            <hr className="border-gray-300 my-4"/>
+                            <div className="flex justify-between items-center text-xl font-bold text-anchor-blue"><span>المجموع</span><span>375 ر.س</span></div>
+                        </div>
+                    </main>
+                    <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm">© 2025 المرساة الرقمية</footer>
+                </div>
+            );
+        };
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<BuyPage />);
+    </script>
+</body>
+</html>

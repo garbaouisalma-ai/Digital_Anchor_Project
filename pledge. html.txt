@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المرساة الرقمية | التعهد</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { 'anchor-blue': '#1a202c', 'anchor-gold': '#ffd700' } } } }
+    </script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>body { background-color: #1a202c; font-family: sans-serif; }</style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState, useEffect, createContext, useContext } = React;
+
+        // --- نفس القاموس لضمان التوافق ---
+        const translations = {
+            'site-logo': { ar: 'المرساة الرقمية', en: 'Digital Anchor', fr: 'Ancre Numérique' },
+            'nav-home': { ar: 'الرئيسية', en: 'Home', fr: 'Accueil' },
+            'nav-buy': { ar: 'شراء الحزمة', en: 'Buy Package', fr: 'Acheter le Pack' },
+            'pledge-title': { ar: 'وثيقة عهد السيادة الرقمية', en: 'Digital Sovereignty Pledge', fr: 'Pacte de Souveraineté Numérique' },
+            'pledge-text': { ar: 'أتعهد بأن أكون سيد أجهزتي، لا عبداً لها. سأحمي وقتي وانتباهي.', en: 'I pledge to be the master of my devices, not their slave. I will protect my time and attention.', fr: 'Je m\'engage à être le maître de mes appareils. Je protégerai mon temps.' },
+            'input-placeholder': { ar: 'اكتب اسمك الكامل...', en: 'Enter your full name...', fr: 'Entrez votre nom complet...' },
+            'sign-btn': { ar: 'توقيع الوثيقة', en: 'Sign Document', fr: 'Signer le Document' },
+            'signed-msg': { ar: 'تم التوقيع بنجاح! أنت الآن في القيادة.', en: 'Signed successfully! You are now in charge.', fr: 'Signé avec succès! Vous êtes aux commandes.' },
+            'next-step': { ar: 'الخطوة التالية: احصل على الأدوات', en: 'Next Step: Get the Tools', fr: 'Étape Suivante: Obtenez les Outils' }
+        };
+
+        const LanguageContext = createContext();
+        const LanguageProvider = ({ children }) => {
+            const [lang, setLang] = useState(localStorage.getItem('lang') || 'ar');
+            useEffect(() => {
+                localStorage.setItem('lang', lang);
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            }, [lang]);
+            const t = (key) => translations[key]?.[lang] || key;
+            return <LanguageContext.Provider value={{ lang, setLang, t }}>{children}</LanguageContext.Provider>;
+        };
+
+        const Navbar = () => {
+            const { t, lang, setLang } = useContext(LanguageContext);
+            return (
+                <nav className="p-6 flex justify-between items-center text-white bg-anchor-blue fixed w-full z-50">
+                    <a href="index.html" className="text-xl font-bold text-anchor-gold">{t('site-logo')}</a>
+                    <div className="flex gap-4">
+                        <a href="index.html" className="hover:text-white text-gray-300">{t('nav-home')}</a>
+                        <select value={lang} onChange={(e) => setLang(e.target.value)} className="bg-gray-800 text-white border border-gray-600 rounded p-1 text-sm">
+                            <option value="ar">العربية</option>
+                            <option value="en">English</option>
+                            <option value="fr">Français</option>
+                        </select>
+                    </div>
+                </nav>
+            );
+        };
+
+        const PledgeForm = () => {
+            const { t } = useContext(LanguageContext);
+            const [name, setName] = useState('');
+            const [signed, setSigned] = useState(false);
+
+            return (
+                <div className="min-h-screen flex flex-col justify-center items-center px-4 bg-gray-900 text-white pt-20">
+                    <div className="bg-gray-800 p-8 md:p-12 rounded-2xl shadow-2xl max-w-2xl w-full border border-gray-700 text-center">
+                        <h1 className="text-3xl md:text-4xl font-serif text-anchor-gold mb-6">{t('pledge-title')}</h1>
+                        <p className="text-lg leading-relaxed mb-8 text-gray-300 font-serif">"{t('pledge-text')}"</p>
+                        
+                        {!signed ? (
+                            <form onSubmit={(e) => { e.preventDefault(); if(name) setSigned(true); }} className="space-y-6">
+                                <input 
+                                    type="text" 
+                                    placeholder={t('input-placeholder')} 
+                                    className="w-full p-4 rounded-lg bg-gray-700 border border-gray-600 text-white text-center text-lg focus:outline-none focus:border-anchor-gold"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                />
+                                <button type="submit" className="w-full py-4 bg-anchor-gold text-anchor-blue font-bold rounded-lg hover:bg-yellow-400 transition text-xl">
+                                    {t('sign-btn')} ✍️
+                                </button>
+                            </form>
+                        ) : (
+                            <div className="animate-pulse">
+                                <div className="text-green-400 text-2xl font-bold mb-4">✓ {t('signed-msg')}</div>
+                                <div className="text-3xl font-serif text-white mb-8 border-b border-gray-600 pb-4 inline-block">{name}</div>
+                                <br/>
+                                <a href="buy.html" className="inline-block px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition">
+                                    {t('next-step')} ➡️
+                                </a>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            );
+        };
+
+        const App = () => (
+            <LanguageProvider>
+                <Navbar />
+                <PledgeForm />
+            </LanguageProvider>
+        );
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>
+</html>
