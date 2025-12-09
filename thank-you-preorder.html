@@ -5,109 +5,371 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>شكراً لطلبك | المرساة الرقمية</title>
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { 'anchor-blue': '#1a202c', 'anchor-gold': '#ffd700' },
-                    fontFamily: { sans: ['Tajawal', 'sans-serif'], serif: ['Amiri', 'serif'] }
+                    colors: { 
+                        'anchor-blue': '#1a202c', 
+                        'anchor-gold': '#ffd700',
+                        'anchor-green': '#059669'
+                    },
+                    fontFamily: { 
+                        sans: ['Tajawal', 'sans-serif'], 
+                        serif: ['Amiri', 'serif'] 
+                    },
+                    animation: {
+                        'confetti': 'confetti 5s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                        'float': 'float 6s ease-in-out infinite'
+                    },
+                    keyframes: {
+                        confetti: {
+                            '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+                            '25%': { transform: 'translateY(-20px) rotate(90deg)' },
+                            '50%': { transform: 'translateY(0) rotate(180deg)' },
+                            '75%': { transform: 'translateY(20px) rotate(270deg)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        }
+                    }
                 }
             }
         }
     </script>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <!-- React 17 (المتوافق مع Babel Standalone) -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <style>body { background-color: #f8fafc; }</style>
+    
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        body { 
+            background-color: #f8fafc;
+            overflow-x: hidden;
+        }
+        
+        .success-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .success-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, rgba(255, 215, 0, 0) 70%);
+            z-index: 0;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            opacity: 0.7;
+            z-index: 1;
+        }
+        
+        .confetti:nth-child(1) { top: 10%; left: 10%; background-color: #ff6b6b; animation-delay: 0s; }
+        .confetti:nth-child(2) { top: 20%; right: 15%; background-color: #4ecdc4; animation-delay: 0.5s; }
+        .confetti:nth-child(3) { bottom: 30%; left: 20%; background-color: #ffe66d; animation-delay: 1s; }
+        .confetti:nth-child(4) { bottom: 20%; right: 25%; background-color: #1a936f; animation-delay: 1.5s; }
+        .confetti:nth-child(5) { top: 40%; left: 50%; background-color: #c44569; animation-delay: 2s; }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes checkmark {
+            0% {
+                stroke-dashoffset: 100;
+            }
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .checkmark-path {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: checkmark 1s ease-in-out 0.5s forwards;
+        }
+    </style>
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans">
+<body class="bg-slate-50 text-slate-900 font-sans min-h-screen">
     <div id="root"></div>
+    
     <script type="text/babel">
-        const { useState, useEffect, createContext, useContext } = React;
-
-        // --- قاموس الترجمة ---
-        const translations = {
-            'site-logo': { ar: 'المرساة الرقمية', en: 'Digital Anchor', fr: 'Ancre Numérique' },
-            'nav-home': { ar: 'الرئيسية', en: 'Home', fr: 'Accueil' },
-            'nav-guide': { ar: 'الدليل', en: 'Guide', fr: 'Guide' },
-            'nav-buy': { ar: 'احجز نسختك', en: 'Pre-order', fr: 'Précommander' },
-            
-            'thank-title': { ar: 'شكراً لطلبك!', en: 'Thank You for Your Order!', fr: 'Merci pour Votre Commande !' },
-            'thank-msg-1': { ar: 'تم استلام طلب الحجز المسبق بنجاح.', en: 'Your pre-order has been received successfully.', fr: 'Votre précommande a été reçue avec succès.' },
-            'thank-msg-2': { ar: 'سيقوم فريقنا بالتواصل معك قريباً لتأكيد التفاصيل.', en: 'Our team will contact you shortly to confirm details.', fr: 'Notre équipe vous contactera bientôt pour confirmer les détails.' },
-            
-            'btn-home': { ar: 'العودة للصفحة الرئيسية', en: 'Back to Home', fr: 'Retour à l\'Accueil' },
-            'btn-gift': { ar: 'تحميل هدية (دليل الطوارئ)', en: 'Download Gift (Emergency Guide)', fr: 'Télécharger le Cadeau (Guide d\'Urgence)' },
-            
-            'footer-copy': { ar: '© 2025 المرساة الرقمية - جميع الحقوق محفوظة', en: '© 2025 Digital Anchor - All Rights Reserved', fr: '© 2025 Digital Anchor - Tous droits réservés' }
-        };
-
-        const LanguageContext = createContext();
-        const LanguageProvider = ({ children }) => {
-            const [lang, setLang] = useState(localStorage.getItem('lang') || 'ar');
-            useEffect(() => {
-                localStorage.setItem('lang', lang);
-                document.documentElement.lang = lang;
-                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-            }, [lang]);
-            const t = (key) => translations[key]?.[lang] || key;
-            return <LanguageContext.Provider value={{ lang, setLang, t }}>{children}</LanguageContext.Provider>;
-        };
-
-        const Navbar = () => {
-            const { t, lang, setLang } = useContext(LanguageContext);
-            return (
-                <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-md backdrop-blur-md bg-opacity-95">
-                    <div className="max-w-7xl mx-auto flex justify-between items-center">
-                        <a href="index.html" className="flex items-center gap-3 group">
-                            <img src="Digital Anchor.png" alt="Logo" className="h-10 w-auto transition-transform group-hover:scale-110" />
-                            <span className="font-bold text-lg hidden md:block">{t('site-logo')}</span>
-                        </a>
-                        <div className="flex gap-4 md:gap-6 text-sm font-medium items-center">
-                            <a href="index.html" className="hover:text-anchor-gold transition">{t('nav-home')}</a>
-                            <a href="guide.html" className="hover:text-anchor-gold transition hidden sm:block">{t('nav-guide')}</a>
-                            <select value={lang} onChange={(e) => setLang(e.target.value)} className="bg-gray-700 text-white border border-gray-600 rounded p-1 text-xs">
-                                <option value="ar">العربية</option>
-                                <option value="en">English</option>
-                                <option value="fr">Français</option>
-                            </select>
-                            <a href="book-preorder.html" className="bg-anchor-gold text-anchor-blue px-4 py-2 rounded-full font-bold hover:bg-yellow-400 transition transform hover:scale-105 text-xs md:text-sm">
-                                {t('nav-buy')}
-                            </a>
+        const { useState, useEffect } = React;
+        
+        // Navbar مبسطة
+        const Navbar = () => (
+            <nav className="bg-anchor-blue text-white py-4 px-6 shadow-lg">
+                <div className="max-w-7xl mx-auto flex justify-between items-center">
+                    <a href="index.html" className="flex items-center gap-3 group">
+                        <div className="w-10 h-10 bg-gradient-to-r from-anchor-gold to-yellow-500 rounded-lg flex items-center justify-center transition-transform group-hover:scale-110">
+                            <i className="fas fa-anchor text-white text-lg"></i>
                         </div>
+                        <div>
+                            <span className="font-bold text-lg hidden md:block">المرساة الرقمية</span>
+                            <span className="text-xs text-slate-300 block">من أنت حين تنطفئ الشاشة؟</span>
+                        </div>
+                    </a>
+                    <div className="flex gap-4 md:gap-6 text-sm font-medium items-center">
+                        <a href="index.html" className="hover:text-anchor-gold transition flex items-center gap-2">
+                            <i className="fas fa-home"></i>
+                            <span className="hidden md:inline">الرئيسية</span>
+                        </a>
+                        <a href="book-preorder.html" className="bg-anchor-gold text-anchor-blue px-5 py-2.5 rounded-full font-bold hover:bg-yellow-400 transition shadow-lg flex items-center gap-2">
+                            <i className="fas fa-shopping-cart"></i>
+                            <span>الشراء</span>
+                        </a>
                     </div>
-                </nav>
-            );
-        };
+                </div>
+            </nav>
+        );
 
         const ThankYouPage = () => {
-            const { t } = useContext(LanguageContext);
+            const [orderNumber, setOrderNumber] = useState('');
+            const [countdown, setCountdown] = useState(10);
+            const [showConfetti, setShowConfetti] = useState(true);
+            
+            // توليد رقم طلب عشوائي عند تحميل الصفحة
+            useEffect(() => {
+                // توليد رقم طلب
+                const randomOrder = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
+                setOrderNumber(randomOrder);
+                
+                // إخفاء الكونفيتي بعد 5 ثوان
+                const confettiTimer = setTimeout(() => {
+                    setShowConfetti(false);
+                }, 5000);
+                
+                // عداد التوجيه
+                const countdownInterval = setInterval(() => {
+                    setCountdown(prev => {
+                        if (prev <= 1) {
+                            clearInterval(countdownInterval);
+                            // window.location.href = 'index.html'; // إلغاء التعليق للتوجيه الفعلي
+                            return 0;
+                        }
+                        return prev - 1;
+                    });
+                }, 1000);
+                
+                return () => {
+                    clearTimeout(confettiTimer);
+                    clearInterval(countdownInterval);
+                };
+            }, []);
+            
+            const handleDownloadGift = () => {
+                alert('🎁 سيبدأ تحميل دليل الطوارئ الآن!\n\nفي النسخة التجريبية، هذا محاكاة للتحميل.');
+                // window.open('downloads/Emergency_Guide.pdf', '_blank'); // إلغاء التعليق للتحميل الفعلي
+            };
+            
             return (
-                <div className="min-h-screen flex flex-col">
+                <div className="min-h-screen flex flex-col bg-gradient-to-b from-slate-50 to-blue-50">
                     <Navbar />
-                    <main className="flex-grow flex items-center justify-center p-6">
-                        <div className="bg-white p-12 rounded-2xl shadow-xl text-center max-w-xl w-full border-t-8 border-green-500 animate-fade-in-up">
-                            <div className="w-24 h-24 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6 text-5xl shadow-inner">✓</div>
-                            <h1 className="text-3xl font-bold font-serif text-anchor-blue mb-4">{t('thank-title')}</h1>
-                            <p className="text-lg text-gray-700 mb-2 font-medium">{t('thank-msg-1')}</p>
-                            <p className="text-gray-500 text-sm mb-8">{t('thank-msg-2')}</p>
-                            <div className="space-y-3">
-                                <a href="index.html" className="block w-full bg-anchor-blue text-white py-3 rounded-lg font-bold hover:bg-slate-800 transition shadow-md">{t('btn-home')}</a>
-                                <a href="downloads/Emergency_Guide.pdf" target="_blank" className="block w-full bg-gray-100 text-gray-700 py-3 rounded-lg font-bold hover:bg-gray-200 transition border border-gray-300">{t('btn-gift')}</a>
+                    
+                    {/* الكونفيتي المتحرك */}
+                    {showConfetti && (
+                        <div className="fixed inset-0 pointer-events-none z-10">
+                            {[...Array(5)].map((_, i) => (
+                                <div key={i} className="confetti animate-confetti"></div>
+                            ))}
+                        </div>
+                    )}
+                    
+                    <main className="flex-grow flex items-center justify-center p-4 md:p-6">
+                        <div className="success-card bg-white p-8 md:p-12 rounded-2xl shadow-2xl text-center max-w-lg w-full border-t-8 border-green-500 animate-fadeInUp relative overflow-hidden">
+                            {/* خلفية دائرية */}
+                            <div className="absolute -top-24 -right-24 w-48 h-48 bg-yellow-100 rounded-full opacity-30"></div>
+                            <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-blue-100 rounded-full opacity-30"></div>
+                            
+                            <div className="relative z-10">
+                                {/* علامة النجاح المتحركة */}
+                                <div className="w-32 h-32 mx-auto mb-8 relative">
+                                    <div className="w-full h-full bg-gradient-to-r from-green-100 to-emerald-100 rounded-full flex items-center justify-center shadow-inner">
+                                        <svg className="w-20 h-20" viewBox="0 0 100 100">
+                                            <circle cx="50" cy="50" r="45" fill="none" stroke="#d1fae5" strokeWidth="8"/>
+                                            <path 
+                                                className="checkmark-path"
+                                                d="M30,50 L45,65 L70,35" 
+                                                fill="none" 
+                                                stroke="#059669" 
+                                                strokeWidth="8" 
+                                                strokeLinecap="round" 
+                                                strokeLinejoin="round"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <div className="absolute -top-2 -right-2 animate-pulse-slow">
+                                        <div className="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center">
+                                            <i className="fas fa-gift text-white"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <h1 className="text-3xl md:text-4xl font-bold font-serif text-anchor-blue mb-4">
+                                    تم تأكيد طلبك بنجاح! 🎉
+                                </h1>
+                                
+                                <div className="bg-blue-50 border border-blue-200 rounded-xl p-5 mb-6 text-right">
+                                    <div className="font-bold text-blue-800 mb-2 flex items-center justify-between">
+                                        <span>رقم الطلب:</span>
+                                        <span className="text-lg">{orderNumber}</span>
+                                    </div>
+                                    <div className="text-blue-700 text-sm">
+                                        <i className="fas fa-clock ml-2"></i>
+                                        تم الاستلام في: {new Date().toLocaleString('ar-SA')}
+                                    </div>
+                                </div>
+                                
+                                <div className="space-y-6 mb-8">
+                                    <div className="text-right">
+                                        <h3 className="font-bold text-gray-800 mb-2 text-lg">📦 ما يحدث الآن:</h3>
+                                        <ul className="text-gray-600 space-y-2 text-right">
+                                            <li className="flex items-center justify-end">
+                                                <span className="mr-3">سيصلك تأكيد الطلب على بريدك الإلكتروني خلال دقائق</span>
+                                                <i className="fas fa-envelope text-green-600"></i>
+                                            </li>
+                                            <li className="flex items-center justify-end">
+                                                <span className="mr-3">فريقنا سيتواصل معك خلال 24 ساعة لتأكيد تفاصيل الشحن</span>
+                                                <i className="fas fa-headset text-blue-600"></i>
+                                            </li>
+                                            <li className="flex items-center justify-end">
+                                                <span className="mr-3">مدة التوصيل: 3-5 أيام عمل داخل السعودية</span>
+                                                <i className="fas fa-truck text-orange-600"></i>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border border-yellow-200 rounded-xl p-4 animate-float">
+                                        <h4 className="font-bold text-gray-800 mb-2 flex items-center">
+                                            <i className="fas fa-star text-yellow-500 ml-3"></i>
+                                            هديتك الفورية!
+                                        </h4>
+                                        <p className="text-gray-700 text-sm">
+                                            كهدية شكر لثقتك، حمل <strong>"دليل الطوارئ الرقمي"</strong> مجاناً الآن.
+                                            دليل عملي لإنقاذ يومك عندما تغرق في المشتتات.
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <div className="space-y-4">
+                                    <a 
+                                        href="index.html" 
+                                        className="block w-full bg-gradient-to-r from-anchor-blue to-gray-900 text-white py-4 rounded-xl font-bold hover:from-gray-900 hover:to-anchor-blue transition shadow-lg flex items-center justify-center gap-3 text-lg"
+                                    >
+                                        <i className="fas fa-home"></i>
+                                        العودة إلى الصفحة الرئيسية
+                                        <span className="text-xs bg-white text-anchor-blue px-2 py-1 rounded">
+                                            ({countdown})
+                                        </span>
+                                    </a>
+                                    
+                                    <button
+                                        onClick={handleDownloadGift}
+                                        className="block w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white py-4 rounded-xl font-bold hover:from-green-600 hover:to-emerald-700 transition shadow-lg flex items-center justify-center gap-3 text-lg"
+                                    >
+                                        <i className="fas fa-download"></i>
+                                        تحميل هدية الدليل (PDF)
+                                    </button>
+                                    
+                                    <a 
+                                        href="resources.html"
+                                        className="block w-full bg-gray-100 text-gray-700 py-3 rounded-lg font-bold hover:bg-gray-200 transition border border-gray-300 flex items-center justify-center gap-3"
+                                    >
+                                        <i className="fas fa-box-open"></i>
+                                        تصفح كل الموارد المجانية
+                                    </a>
+                                </div>
+                                
+                                <div className="mt-8 pt-6 border-t border-gray-200">
+                                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-gray-500">
+                                        <div className="flex items-center gap-2">
+                                            <i className="fas fa-question-circle"></i>
+                                            أسئلة؟ <a href="mailto:garbaouisalma@gmail.com" className="text-anchor-blue hover:underline font-medium">اتصل بنا</a>
+                                        </div>
+                                        <div className="hidden sm:block text-gray-400">•</div>
+                                        <div className="flex items-center gap-2">
+                                            <i className="fas fa-shield-alt"></i>
+                                            طلبك آمن ومحمي 100%
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </main>
-                    <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm">
-                        {t('footer-copy')}
+                    
+                    <footer className="bg-anchor-blue text-white py-8">
+                        <div className="max-w-6xl mx-auto px-4">
+                            <div className="flex flex-col md:flex-row justify-between items-center">
+                                <div className="mb-6 md:mb-0 text-center md:text-right">
+                                    <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
+                                        <div className="w-10 h-10 bg-gradient-to-r from-anchor-gold to-yellow-500 rounded-lg flex items-center justify-center">
+                                            <i className="fas fa-anchor text-white"></i>
+                                        </div>
+                                        <div>
+                                            <h3 className="font-bold text-lg">المرساة الرقمية</h3>
+                                            <p className="text-slate-300 text-sm">شكراً لثقتك بنا</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div className="text-center">
+                                    <h4 className="font-bold mb-3">تواصل معنا</h4>
+                                    <div className="flex flex-col gap-2 text-slate-300">
+                                        <a href="mailto:garbaouisalma@gmail.com" className="hover:text-anchor-gold transition">
+                                            <i className="fas fa-envelope mr-2"></i>
+                                            garbaouisalma@gmail.com
+                                        </a>
+                                        <p className="text-sm">الدعم متاح يومياً 9 صباحاً - 5 مساءً</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <hr className="border-slate-700 my-6" />
+                            
+                            <div className="text-center text-slate-400 text-sm">
+                                <p>© 2025 المرساة الرقمية - "من أنت حين تنطفئ الشاشة؟". جميع الحقوق محفوظة.</p>
+                                <p className="mt-2">تم تصميم هذه الصفحة بعناية لضمان تجربة مستخدم استثنائية.</p>
+                            </div>
+                        </div>
                     </footer>
                 </div>
             );
         };
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<LanguageProvider><ThankYouPage /></LanguageProvider>);
+        // ✅ التصيير الصحيح
+        ReactDOM.render(<ThankYouPage />, document.getElementById('root'));
     </script>
 </body>
 </html>

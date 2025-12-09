@@ -5,40 +5,767 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>من أنت حين تنطفئ الشاشة؟ | المرساة الرقمية</title>
     
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
     
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Tajawal', 'sans-serif'], serif: ['Amiri', 'serif'] },
-                    colors: { 'anchor-blue': '#1a202c', 'anchor-gold': '#ffd700' },
-                    animation: { 'float': 'float 6s ease-in-out infinite' },
-                    keyframes: { float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-20px)' } } }
-                }
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --primary: #1a365d;
+            --secondary: #2d3748;
+            --accent: #d69e2e;
+            --light: #f7fafc;
+        }
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--light);
+            color: var(--secondary);
+            scroll-behavior: smooth;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Amiri', serif;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(26, 54, 93, 0.2);
+        }
+        
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #1a365d 0%, #d69e2e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a1a1a1;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem !important;
             }
         }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-    <style>body { scroll-behavior: smooth; background-color: #f8fafc; }</style>
+    </style>
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans">
-    <div id="root"></div>
+<body class="bg-gray-50">
     
-    <script type="text/babel">
-        const { useState, useEffect, createContext, useContext } = React;
-
-        // --- 1. قاموس الترجمة (شامل للنصوص الجديدة) ---
-        const translations = {
-            'site-logo': { ar: 'المرساة الرقمية', en: 'Digital Anchor', fr: 'Ancre Numérique' },
-            'nav-home': { ar: 'الرئيسية', en: 'Home', fr: 'Accueil' },
-            'nav-guide': { ar: 'الدليل', en: 'Guide', fr: 'Guide' },
-            'nav-resources': { ar: 'الموارد المجانية', en: 'Free Resources', fr: 'Ressources' },
-            'nav-members': { ar: 'الأعضاء', en: 'Members', fr: 'Membres' },
-            'nav-buy': { ar: 'احجز نسختك', en: 'Pre-order', fr: 'Précommander' },
+    <!-- ===== Navigation Bar ===== -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-r from-blue-900 to-yellow-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-anchor text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-gray-800">المرساة الرقمية</h1>
+                        <p class="text-xs text-gray-500">من أنت حين تنطفئ الشاشة؟</p>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#home" class="text-gray-700 hover:text-blue-700 font-medium transition">الرئيسية</a>
+                    <a href="#about" class="text-gray-700 hover:text-blue-700 font-medium transition">عن الكتاب</a>
+                    <a href="#features" class="text-gray-700 hover:text-blue-700 font-medium transition">المميزات</a>
+                    <a href="#resources" class="text-gray-700 hover:text-blue-700 font-medium transition">الموارد</a>
+                    <a href="#author" class="text-gray-700 hover:text-blue-700 font-medium transition">المؤلفة</a>
+                    <button class="btn-primary">
+                        <i class="fas fa-shopping-cart ml-2"></i>
+                        احجز نسختك
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
             
-            'hero-badge': { ar: '✨ الإصدار الجديد 2025', en: '✨ New Edition 2025', fr: '✨ Nouvelle Édition 2025'
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-3">
+                <a href="#home" class="block text-gray-700 hover:text-blue-700 font-medium py-2">الرئيسية</a>
+                <a href="#about" class="block text-gray-700 hover:text-blue-700 font-medium py-2">عن الكتاب</a>
+                <a href="#features" class="block text-gray-700 hover:text-blue-700 font-medium py-2">المميزات</a>
+                <a href="#resources" class="block text-gray-700 hover:text-blue-700 font-medium py-2">الموارد</a>
+                <a href="#author" class="block text-gray-700 hover:text-blue-700 font-medium py-2">المؤلفة</a>
+                <button class="btn-primary w-full">احجز نسختك</button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- ===== Hero Section ===== -->
+    <section id="home" class="relative overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white py-16 md:py-24">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 w-72 h-72 bg-yellow-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+            <div class="absolute bottom-10 right-10 w-72 h-72 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-1000"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center">
+                <!-- Hero Text -->
+                <div class="lg:w-1/2 text-center lg:text-right mb-12 lg:mb-0">
+                    <span class="inline-block bg-yellow-400 text-blue-900 px-4 py-2 rounded-full text-sm font-bold mb-6 shadow-lg">
+                        ✨ الإصدار الجديد 2025
+                    </span>
+                    
+                    <h1 class="hero-title text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                        من أنت حين <span class="gradient-text">تنطفئ الشاشة</span>؟
+                    </h1>
+                    
+                    <p class="text-xl md:text-2xl opacity-90 mb-8 leading-relaxed">
+                        دليل الشباب للقيم والتركيز والهدف<br>
+                        في <span class="font-bold text-yellow-300">اقتصاد الانتباه</span>
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-end">
+                        <button class="btn-primary text-lg py-4 px-8 flex items-center justify-center">
+                            <i class="fas fa-play-circle ml-2"></i>
+                            ابدأ الرحلة الآن
+                        </button>
+                        <button class="bg-white text-blue-900 hover:bg-gray-100 font-bold py-4 px-8 rounded-lg text-lg transition flex items-center justify-center">
+                            <i class="fas fa-download ml-2"></i>
+                            عينات مجانية
+                        </button>
+                    </div>
+                    
+                    <!-- Stats -->
+                    <div class="mt-12 grid grid-cols-2 md:grid-cols-3 gap-6 text-center">
+                        <div>
+                            <div class="text-3xl font-bold">٥٠٠+</div>
+                            <div class="text-gray-300">قارئ نشط</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold">٨</div>
+                            <div class="text-gray-300">أسابيع تحول</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold">١٠٠٪</div>
+                            <div class="text-gray-300">رضا القارئ</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hero Image/Book -->
+                <div class="lg:w-1/2 flex justify-center">
+                    <div class="relative float-animation">
+                        <div class="bg-gradient-to-br from-yellow-100 to-yellow-300 rounded-2xl shadow-2xl p-8 w-80 transform rotate-3">
+                            <div class="bg-white rounded-xl shadow-inner p-6">
+                                <div class="text-center">
+                                    <i class="fas fa-book-open text-6xl text-blue-900 mb-4"></i>
+                                    <h3 class="text-2xl font-bold text-blue-900 mb-2">المرساة الرقمية</h3>
+                                    <p class="text-gray-600">إصدار 2025</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 bg-blue-800 text-white p-4 rounded-xl shadow-lg">
+                            <i class="fas fa-award text-2xl"></i>
+                            <div class="text-sm mt-2">شهادة<br>السيادة الرقمية</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ===== About the Book ===== -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    <span class="border-b-4 border-yellow-400 pb-2">لماذا هذا الكتاب؟</span>
+                </h2>
+                <p class="text-gray-600 text-lg max-w-3xl mx-auto">
+                    في عالم صُمم لسرقة انتباهك، أنت بحاجة إلى مرساة تثبت قيمك وأهدافك.<br>
+                    هذا الكتاب هو خريطة طريق للتحول من مستهلك رقمي إلى قائد رقمي واعٍ.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Video/Media Placeholder -->
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 flex items-center justify-center card-hover">
+                    <div class="text-center">
+                        <div class="w-24 h-24 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-play text-3xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">جولة داخل الكتاب</h3>
+                        <p class="text-gray-600">شاهد مقطع تعريفي عن محتوى الكتاب ورحلته</p>
+                    </div>
+                </div>
+                
+                <!-- Book Parts -->
+                <div class="space-y-6">
+                    <div class="bg-gray-50 rounded-xl p-6 card-hover">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 text-blue-800 p-3 rounded-lg ml-4">
+                                <i class="fas fa-compass text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">الجزء الأول: مرساة القيم</h3>
+                                <p class="text-gray-600">اكتشف قيمك الحقيقية وابني قانونك الداخلي في عالم افتراضي.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-xl p-6 card-hover">
+                        <div class="flex items-start">
+                            <div class="bg-green-100 text-green-800 p-3 rounded-lg ml-4">
+                                <i class="fas fa-bullseye text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">الجزء الثاني: سهم الأهداف</h3>
+                                <p class="text-gray-600">حول أحلامك إلى أهداف ذكية واجعل الفشل حليفك.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-xl p-6 card-hover">
+                        <div class="flex items-start">
+                            <div class="bg-yellow-100 text-yellow-800 p-3 rounded-lg ml-4">
+                                <i class="fas fa-balance-scale text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">الجزء الثالث: التوازن الرقمي</h3>
+                                <p class="text-gray-600">تعلم كيف تسيطر على انتباهك وتتغلب على إلهاءات العصر.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ===== Features ===== -->
+    <section id="features" class="py-16 bg-gradient-to-b from-white to-blue-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    <span class="border-b-4 border-yellow-400 pb-2">ماذا تحصل عليه؟</span>
+                </h2>
+                <p class="text-gray-600 text-lg">حزمة متكاملة للتحول الرقمي الشامل</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 card-hover text-center">
+                    <div class="text-blue-600 text-5xl mb-6">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">الكتاب الرئيسي</h3>
+                    <ul class="text-gray-600 text-right space-y-3 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 ml-2"></i>
+                            <span>٣٤ فصلًا متكاملاً</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 ml-2"></i>
+                            <span>تمارين عملية بعد كل فصل</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 ml-2"></i>
+                            <span>قصص واقعية ونماذج</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 card-hover text-center border-2 border-yellow-400 relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <span class="bg-yellow-400 text-gray-900 px-4 py-1 rounded-full text-sm font-bold">
+                            الأكثر طلبًا
+                        </span>
+                    </div>
+                    <div class="text-yellow-600 text-5xl mb-6">
+                        <i class="fas fa-toolbox"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">الأدوات العملية</h3>
+                    <ul class="text-gray-600 text-right space-y-3 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 ml-2"></i>
+                            <span>دفتر التمارين (٨ أسابيع)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 ml-2"></i>
+                            <span>جداول التتبع الأسبوعية</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 ml-2"></i>
+                            <span>ميثاق الأسرة الرقمية</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 card-hover text-center">
+                    <div class="text-green-600 text-5xl mb-6">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">المزايا الإضافية</h3>
+                    <ul class="text-gray-600 text-right space-y-3 mb-6">
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 ml-2"></i>
+                            <span>شهادة السيادة الرقمية</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 ml-2"></i>
+                            <span>دليل المنهجية المتوازنة</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 ml-2"></i>
+                            <span>وصول لمجتمع الداعمين</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ===== Resources ===== -->
+    <section id="resources" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    <span class="border-b-4 border-yellow-400 pb-2">الموارد المجانية</span>
+                </h2>
+                <p class="text-gray-600 text-lg">ابدأ رحلتك مجانًا مع هذه الأدوات</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Resource 1 -->
+                <a href="#" class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 card-hover text-center block">
+                    <div class="text-blue-700 text-4xl mb-4">
+                        <i class="fas fa-table"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mb-2">جدول التعلم الأسبوعي</h3>
+                    <p class="text-gray-600 text-sm">نموذج ٤٠/٤٠/٢٠ للتعلم الفعال</p>
+                </a>
+                
+                <!-- Resource 2 -->
+                <a href="#" class="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 card-hover text-center block">
+                    <div class="text-green-700 text-4xl mb-4">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mb-2">مقياس الصحة الرقمية</h3>
+                    <p class="text-gray-600 text-sm">تتبع نومك، نشاطك، وشاشتك</p>
+                </a>
+                
+                <!-- Resource 3 -->
+                <a href="#" class="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl p-6 card-hover text-center block">
+                    <div class="text-yellow-700 text-4xl mb-4">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mb-2">ميثاق العائلة الرقمية</h3>
+                    <p class="text-gray-600 text-sm">اتفاقية للاستخدام الصحي للأجهزة</p>
+                </a>
+                
+                <!-- Resource 4 -->
+                <a href="#" class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 card-hover text-center block">
+                    <div class="text-purple-700 text-4xl mb-4">
+                        <i class="fas fa-road"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mb-2">خريطة المستقبل</h3>
+                    <p class="text-gray-600 text-sm">تخطيط ٥ سنوات لتحقيق أهدافك</p>
+                </a>
+            </div>
+            
+            <!-- CTA -->
+            <div class="text-center mt-12">
+                <button class="btn-primary text-lg py-4 px-10">
+                    <i class="fas fa-download ml-2"></i>
+                    حمل كل الموارد المجانية
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ===== Author ===== -->
+    <section id="author" class="py-16 bg-gradient-to-r from-gray-900 to-blue-900 text-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <!-- Author Image/Info -->
+                <div class="lg:w-2/5 mb-10 lg:mb-0">
+                    <div class="bg-white rounded-2xl p-2 inline-block">
+                        <div class="bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-xl p-1">
+                            <div class="w-64 h-64 bg-gradient-to-br from-blue-900 to-gray-900 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-user-circle text-8xl text-yellow-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Author Bio -->
+                <div class="lg:w-3/5 lg:pr-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">
+                        <span class="border-b-4 border-yellow-400 pb-2">عن المؤلفة</span>
+                    </h2>
+                    
+                    <h3 class="text-2xl font-bold text-yellow-300 mb-4">نوال غرباوي</h3>
+                    
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                        رائدة في رحلة التحول الرقمي الواعي، وخبيرة في مواجهة تحديات التشتت الرقمي في عصرنا.
+                        لم يأتِ هذا الكتاب من مقاعد الدراسة، بل من قلب تجربة شخصية عميقة لاستعادة السيطرة
+                        على الوقت والقيم والأهداف.
+                    </p>
+                    
+                    <p class="text-gray-300 text-lg leading-relaxed mb-8">
+                        بعد سنوات من الشعور بالإرهاق والانغماس في دوامات وسائل التواصل الاجتماعي، قررت نوال
+                        أن تبدأ ثورتها الهادئة. هذه الرحلة دفعتها إلى البحث والتعمّق في آليات عمل الإدمان الرقمي،
+                        والتوصل إلى أدوات ومنهجيات عملية ليست مجرد نظرية، بل نظام حياة مُجرَّب وفعّال.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#" class="bg-white text-gray-900 hover:bg-gray-100 font-bold py-3 px-6 rounded-lg transition">
+                            <i class="fab fa-twitter ml-2"></i>
+                            تويتر
+                        </a>
+                        <a href="#" class="bg-blue-600 text-white hover:bg-blue-700 font-bold py-3 px-6 rounded-lg transition">
+                            <i class="fab fa-linkedin ml-2"></i>
+                            لينكدإن
+                        </a>
+                        <a href="#" class="bg-pink-600 text-white hover:bg-pink-700 font-bold py-3 px-6 rounded-lg transition">
+                            <i class="fas fa-envelope ml-2"></i>
+                            تواصل معي
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ===== Testimonials ===== -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+                    <span class="border-b-4 border-yellow-400 pb-2">ماذا يقول القراء؟</span>
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full flex items-center justify-center text-white font-bold text-xl ml-3">
+                            أ
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">أحمد س.</h4>
+                            <p class="text-gray-500 text-sm">طالب هندسة</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "الكتاب غيّر نظرتي للتقنية تماماً. استعدت ساعتين يوميًا من وقتي بعد تطبيق منهجية ٤٠/٤٠/٢٠!"
+                    </p>
+                    <div class="mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-green-700 rounded-full flex items-center justify-center text-white font-bold text-xl ml-3">
+                            س
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">سارة م.</h4>
+                            <p class="text-gray-500 text-sm">مهندسة برمجيات</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "ميثاق الأسرة الرقمية كان نقطة تحول في بيتنا. علاقاتنا أصبحت أكثر قوة بعيداً عن الشاشات."
+                    </p>
+                    <div class="mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-700 rounded-full flex items-center justify-center text-white font-bold text-xl ml-3">
+                            خ
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">خالد ر.</h4>
+                            <p class="text-gray-500 text-sm">رائد أعمال</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "شهادة السيادة الرقمية كانت فخراً لي. الآن أستطيع قيادة فريقي بتركيز أكبر وإنتاجية أعلى."
+                    </p>
+                    <div class="mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ===== Final CTA ===== -->
+    <section class="py-20 bg-gradient-to-r from-blue-800 to-indigo-900 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-5xl font-bold mb-6">
+                هل أنت مستعد لاستعادة <span class="text-yellow-300">انتباهك</span>؟
+            </h2>
+            
+            <p class="text-xl opacity-90 max-w-3xl mx-auto mb-10">
+                انضم إلى آلاف الشباب الذين تحولوا من مستهلكين سلبيين إلى قادة رقميين واعين
+                يسيطرون على وقتهم ويبنون مستقبلهم بعيداً عن إلهاءات الشاشات.
+            </p>
+            
+            <div class="max-w-2xl mx-auto bg-white rounded-2xl p-8 shadow-2xl">
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">الحزمة الكاملة</h3>
+                <div class="text-gray-600 mb-6">كل ما تحتاجه للتحول الرقمي الناجح</div>
+                
+                <div class="text-center mb-8">
+                    <span class="text-5xl font-bold text-blue-900">١٩٩ <span class="text-3xl">ر.س</span></span>
+                    <span class="text-gray-500 line-through mr-4">٢٩٩ ر.س</span>
+                    <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-bold">وفر ٣٣٪</span>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-4 text-right mb-8">
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 text-xl ml-3"></i>
+                        <span class="text-gray-800">الكتاب الإلكتروني الكامل</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 text-xl ml-3"></i>
+                        <span class="text-gray-800">دفتر التمارين التفاعلي</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 text-xl ml-3"></i>
+                        <span class="text-gray-800">الأدوات العملية القابلة للطباعة</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 text-xl ml-3"></i>
+                        <span class="text-gray-800">شهادة السيادة الرقمية</span>
+                    </div>
+                </div>
+                
+                <button class="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-gray-900 font-bold py-4 px-8 rounded-xl text-xl transition transform hover:-translate-y-1 shadow-lg">
+                    <i class="fas fa-shopping-cart ml-2"></i>
+                    احجز نسختي الآن
+                </button>
+                
+                <div class="mt-6 text-gray-500 text-sm">
+                    <i class="fas fa-lock ml-2"></i>
+                    دفع آمن • ضمان استرداد ٣٠ يومًا • تحديثات مجانية مدى الحياة
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ===== Footer ===== -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-yellow-500 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-anchor text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mr-3">المرساة الرقمية</h3>
+                    </div>
+                    <p class="text-gray-400 max-w-md">
+                        نرشدك لتصبح قبطان حياتك الرقمية.<br>
+                        "أنت الآن القبطان، والشاشة مجرد أداة"
+                    </p>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <h4 class="font-bold text-lg mb-4">روابط سريعة</h4>
+                    <div class="space-y-2">
+                        <a href="#home" class="block text-gray-400 hover:text-white transition">الرئيسية</a>
+                        <a href="#about" class="block text-gray-400 hover:text-white transition">عن الكتاب</a>
+                        <a href="#resources" class="block text-gray-400 hover:text-white transition">الموارد المجانية</a>
+                        <a href="#author" class="block text-gray-400 hover:text-white transition">المؤلفة</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
+                <p>
+                    © ٢٠٢٥ المرساة الرقمية - من أنت حين تنطفئ الشاشة؟<br>
+                    جميع الحقوق محفوظة • تصميم وتطوير بخبرة وإخلاص
+                </p>
+                <p class="mt-4">
+                    <a href="mailto:garbaouisalma@gmail.com" class="text-yellow-400 hover:text-yellow-300">
+                        <i class="fas fa-envelope ml-2"></i>
+                        garbaouisalma@gmail.com
+                    </a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- ===== JavaScript ===== -->
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-xl');
+            } else {
+                nav.classList.remove('shadow-xl');
+            }
+        });
+        
+        // Simple counter animation for stats
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 20);
+        }
+        
+        // Initialize counters when in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = document.querySelectorAll('.counter');
+                    counters.forEach(counter => {
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        animateCounter(counter, target);
+                    });
+                    observer.disconnect();
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        // Observe stats section
+        const statsSection = document.querySelector('#home .grid');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+        
+        // Form submission simulation
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.includes('احجز') || button.textContent.includes('ابدأ')) {
+                button.addEventListener('click', function() {
+                    // Simulate loading
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin ml-2"></i> جاري التوجيه...';
+                    this.disabled = true;
+                    
+                    // Reset after 2 seconds (simulation)
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.disabled = false;
+                        alert('ستتم إعادة توجيهك لصفحة الشراء قريباً! في هذه النسخة التجريبية، يمكنك التواصل عبر البريد الإلكتروني.');
+                    }, 2000);
+                });
+            }
+        });
+        
+        // Console welcome message
+        console.log('مرحباً بك في موقع "من أنت حين تنطفئ الشاشة؟"');
+        console.log('تم التطوير بعناية لخدمة رسالة التحول الرقمي الواعي');
+    </script>
+</body>
+</html>

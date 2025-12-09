@@ -2,79 +2,427 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مكتبة الموارد | المرساة الرقمية</title>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = { theme: { extend: { colors: { 'anchor-blue': '#0f172a', 'anchor-gold': '#d4af37' }, fontFamily: { sans: ['Tajawal', 'sans-serif'] } } } }
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'anchor-blue': '#0f172a',
+                        'anchor-gold': '#d4af37',
+                        'anchor-green': '#059669',
+                        'anchor-purple': '#7c3aed'
+                    },
+                    fontFamily: {
+                        sans: ['Tajawal', 'sans-serif']
+                    }
+                }
+            }
+        }
     </script>
+    
+    <!-- React 17 (المتوافق مع Babel Standalone) -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <style>body { background-color: #f8fafc; }</style>
+    
+    <!-- Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #f8fafc;
+        }
+        
+        .resource-card {
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            border-color: #d4af37;
+        }
+        
+        .category-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        /* Animation for resource items */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.5s ease-out;
+        }
+    </style>
 </head>
 <body class="text-slate-900 font-sans">
     <div id="root"></div>
+    
     <script type="text/babel">
+        const { useState } = React;
+        
         // Navbar الموحد
         const Navbar = () => (
-            <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-md">
+            <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-lg">
                 <div className="max-w-7xl mx-auto flex justify-between items-center">
-                    <a href="index.html" className="flex items-center gap-3">
-                        <img src="images/logo.png" alt="Logo" className="h-10 w-auto" />
-                        <span className="font-bold text-lg hidden md:block">المرساة الرقمية</span>
+                    <a href="index.html" className="flex items-center gap-3 group">
+                        <div className="w-10 h-10 bg-gradient-to-r from-anchor-gold to-yellow-500 rounded-lg flex items-center justify-center transition-transform group-hover:scale-110">
+                            <i className="fas fa-anchor text-white text-lg"></i>
+                        </div>
+                        <div>
+                            <span className="font-bold text-lg hidden md:block">المرساة الرقمية</span>
+                            <span className="text-xs text-slate-300 block">من أنت حين تنطفئ الشاشة؟</span>
+                        </div>
                     </a>
-                    <div className="flex gap-4 text-sm font-medium items-center">
-                        <a href="index.html" className="hover:text-anchor-gold">الرئيسية</a>
-                        <a href="book-preorder.html" className="bg-anchor-gold text-anchor-blue px-4 py-2 rounded-full font-bold">احجز نسختك</a>
+                    <div className="flex gap-4 md:gap-6 text-sm font-medium items-center">
+                        <a href="index.html" className="hover:text-anchor-gold transition flex items-center gap-2">
+                            <i className="fas fa-home"></i>
+                            <span className="hidden md:inline">الرئيسية</span>
+                        </a>
+                        <a href="guide.html" className="hover:text-anchor-gold transition hidden sm:flex items-center gap-2">
+                            <i className="fas fa-book-open"></i>
+                            <span>الدليل</span>
+                        </a>
+                        <a href="book-preorder.html" className="hover:text-anchor-gold transition hidden sm:flex items-center gap-2">
+                            <i className="fas fa-shopping-cart"></i>
+                            <span>الشراء</span>
+                        </a>
+                        <a href="resources.html" className="bg-anchor-gold text-anchor-blue px-5 py-2.5 rounded-full font-bold hover:bg-yellow-400 transition shadow-lg flex items-center gap-2">
+                            <i className="fas fa-download"></i>
+                            <span>الموارد</span>
+                        </a>
                     </div>
                 </div>
             </nav>
         );
 
         const ResourcesPage = () => {
+            const [selectedCategory, setSelectedCategory] = useState('all');
+            
+            const resources = [
+                {
+                    id: 1,
+                    title: "دليل المنهجية المتوازنة",
+                    description: "كيف تحول المعلومات العابرة إلى مهارات راسخة؟ (40/40/20)",
+                    category: "guides",
+                    icon: "📊",
+                    color: "blue",
+                    file: "downloads/Methodology_Guide.pdf",
+                    pages: 12
+                },
+                {
+                    id: 2,
+                    title: "جدول التعلم الأسبوعي المتوازن",
+                    description: "نموذج أسبوعي لتنظيم التعلم (نظرية - تطبيق - مراجعة)",
+                    category: "tools",
+                    icon: "📅",
+                    color: "green",
+                    file: "downloads/Weekly_Learning_Table.pdf",
+                    interactive: true
+                },
+                {
+                    id: 3,
+                    title: "وثيقة العهد للطباعة",
+                    description: "اتفاقية شخصية مع نفسك للسيادة الرقمية",
+                    category: "commitments",
+                    icon: "✍️",
+                    color: "purple",
+                    file: "downloads/Digital_Pledge.pdf",
+                    pages: 2
+                },
+                {
+                    id: 4,
+                    title: "دليل الطوارئ الرقمي (SOS)",
+                    description: "خطوات سريعة لإنقاذ يومك عندما تغرق في المشتتات",
+                    category: "guides",
+                    icon: "🆘",
+                    color: "red",
+                    file: "downloads/Digital_SOS_Guide.pdf",
+                    pages: 6
+                },
+                {
+                    id: 5,
+                    title: "ميثاق العائلة الرقمية",
+                    description: "اتفاقية عائلية لاستخدام صحي للأجهزة",
+                    category: "family",
+                    icon: "👨‍👩‍👧‍👦",
+                    color: "indigo",
+                    file: "downloads/Family_Digital_Charter.pdf",
+                    pages: 4
+                },
+                {
+                    id: 6,
+                    title: "خريطة المستقبل (5 سنوات)",
+                    description: "تخطيط استراتيجي للرؤية المستقبلية",
+                    category: "planning",
+                    icon: "🗺️",
+                    color: "yellow",
+                    file: "downloads/Future_Map.pdf",
+                    interactive: true
+                },
+                {
+                    id: 7,
+                    title: "ميزانية الانتباه الأسبوعية",
+                    description: "تتبع إنفاق 112 ساعة يقظة أسبوعيًا",
+                    category: "tools",
+                    icon: "💰",
+                    color: "emerald",
+                    file: "downloads/Attention_Budget.pdf",
+                    pages: 3
+                },
+                {
+                    id: 8,
+                    title: "دفتر التمارين العملي (8 أسابيع)",
+                    description: "رحلة التحول الكاملة مع تمارين أسبوعية",
+                    category: "workbooks",
+                    icon: "📓",
+                    color: "orange",
+                    file: "downloads/Practical_Workbook.pdf",
+                    pages: 48
+                }
+            ];
+            
+            const categories = [
+                { id: 'all', name: 'الكل', icon: '📚', count: resources.length },
+                { id: 'guides', name: 'دلائل', icon: '📖', count: resources.filter(r => r.category === 'guides').length },
+                { id: 'tools', name: 'أدوات', icon: '🛠️', count: resources.filter(r => r.category === 'tools').length },
+                { id: 'workbooks', name: 'دفاتر', icon: '📓', count: resources.filter(r => r.category === 'workbooks').length },
+                { id: 'planning', name: 'تخطيط', icon: '🗓️', count: resources.filter(r => r.category === 'planning').length }
+            ];
+            
+            const filteredResources = selectedCategory === 'all' 
+                ? resources 
+                : resources.filter(resource => resource.category === selectedCategory);
+            
+            const handleDownload = (fileName, title) => {
+                // محاكاة عملية التحميل
+                alert(`🎉 سيبدأ تحميل "${title}"\n\nملاحظة: في النسخة التجريبية، هذا رابط محاكاة.`);
+                
+                // في الإصدار الحقيقي، سيتم تنزيل الملف
+                // window.location.href = fileName;
+                
+                // تسجيل التحميل (محاكاة)
+                console.log(`Download initiated: ${title}`);
+            };
+            
             return (
                 <div className="min-h-screen flex flex-col">
                     <Navbar />
-                    <main className="max-w-5xl mx-auto px-6 py-12 flex-grow w-full">
+                    
+                    <main className="max-w-6xl mx-auto px-4 py-8 md:py-12 flex-grow w-full">
                         <header className="text-center mb-12">
-                            <h1 className="text-3xl font-bold text-anchor-blue mb-4">📚 مكتبة الموارد الشاملة</h1>
-                            <p className="text-gray-600 max-w-2xl mx-auto">جميع الأدوات والملفات التي تحتاجها في رحلتك، متاحة للتحميل المجاني.</p>
+                            <div className="inline-block bg-gradient-to-r from-anchor-blue to-gray-900 text-white px-6 py-3 rounded-full mb-6">
+                                <i className="fas fa-gift ml-3"></i>
+                                مكتبة الموارد المجانية
+                            </div>
+                            <h1 className="text-3xl md:text-4xl font-bold text-anchor-blue mb-4">
+                                كنزك المعرفي للتحول الرقمي
+                            </h1>
+                            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+                                جميع الأدوات، الدلائل، والملفات التي تحتاجها في رحلتك نحو السيادة الرقمية.
+                                متاحة للتحميل المجاني والفوري.
+                            </p>
                         </header>
-
-                        <div className="grid md:grid-cols-2 gap-8">
-                            {/* قسم الأدوات */}
-                            <section className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                                <h2 className="text-xl font-bold text-anchor-blue mb-6 border-b pb-2">أدوات تفاعلية</h2>
-                                <div className="space-y-4">
-                                    <div className="flex items-start gap-4">
-                                        <div className="bg-blue-50 p-3 rounded-lg text-2xl">🎯</div>
-                                        <div>
-                                            <h3 className="font-bold">أداة القيم الجوهرية</h3>
-                                            <p className="text-sm text-gray-500 mb-2">اكتشف قيمك الثلاث الأهم في دقيقة.</p>
-                                            <a href="tool-value.html" className="text-anchor-blue text-sm font-bold hover:underline">جرب الأداة ←</a>
+                        
+                        {/* فئات الموارد */}
+                        <div className="mb-12">
+                            <h2 className="text-xl font-bold text-gray-700 mb-6">تصفية حسب النوع:</h2>
+                            <div className="flex flex-wrap gap-3">
+                                {categories.map(cat => (
+                                    <button
+                                        key={cat.id}
+                                        onClick={() => setSelectedCategory(cat.id)}
+                                        className={`flex items-center gap-2 px-4 py-3 rounded-xl transition-all ${selectedCategory === cat.id 
+                                            ? 'bg-anchor-blue text-white shadow-lg' 
+                                            : 'bg-white text-gray-700 hover:bg-gray-50 shadow-sm border border-gray-200'
+                                        }`}
+                                    >
+                                        <span className="text-lg">{cat.icon}</span>
+                                        <span className="font-medium">{cat.name}</span>
+                                        <span className={`text-xs px-2 py-1 rounded-full ${selectedCategory === cat.id ? 'bg-white text-anchor-blue' : 'bg-gray-100 text-gray-600'}`}>
+                                            {cat.count}
+                                        </span>
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                        
+                        {/* عرض الموارد */}
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {filteredResources.map(resource => (
+                                <div 
+                                    key={resource.id} 
+                                    className="resource-card bg-white p-6 rounded-2xl shadow-sm animate-fadeInUp"
+                                >
+                                    <div className="flex items-start justify-between mb-4">
+                                        <div className={`text-3xl p-3 rounded-xl bg-${resource.color}-50 text-${resource.color}-600`}>
+                                            {resource.icon}
                                         </div>
+                                        <span className={`category-badge bg-${resource.color}-100 text-${resource.color}-800`}>
+                                            {categories.find(c => c.id === resource.category)?.name}
+                                        </span>
                                     </div>
+                                    
+                                    <h3 className="text-xl font-bold text-gray-800 mb-3">{resource.title}</h3>
+                                    <p className="text-gray-600 text-sm mb-6">{resource.description}</p>
+                                    
+                                    <div className="flex items-center justify-between text-sm text-gray-500 mb-6">
+                                        <div className="flex items-center gap-4">
+                                            {resource.pages && (
+                                                <span className="flex items-center gap-1">
+                                                    <i className="fas fa-file"></i>
+                                                    {resource.pages} صفحة
+                                                </span>
+                                            )}
+                                            {resource.interactive && (
+                                                <span className="flex items-center gap-1">
+                                                    <i className="fas fa-mouse-pointer"></i>
+                                                    تفاعلي
+                                                </span>
+                                            )}
+                                        </div>
+                                        <span className="text-green-600 font-bold">
+                                            <i className="fas fa-download ml-1"></i>
+                                            مجاني
+                                        </span>
+                                    </div>
+                                    
+                                    <button
+                                        onClick={() => handleDownload(resource.file, resource.title)}
+                                        className="w-full bg-gradient-to-r from-anchor-blue to-gray-800 text-white py-3 rounded-lg font-bold hover:from-gray-800 hover:to-anchor-blue transition flex items-center justify-center gap-2 shadow-md"
+                                    >
+                                        <i className="fas fa-download"></i>
+                                        تحميل المورد
+                                    </button>
                                 </div>
-                            </section>
-
-                            {/* قسم الملفات */}
-                            <section className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                                <h2 className="text-xl font-bold text-anchor-blue mb-6 border-b pb-2">ملفات PDF</h2>
-                                <ul className="space-y-3">
-                                    <li><a href="downloads/Emergency_Guide.pdf" className="flex items-center gap-2 text-gray-700 hover:text-anchor-blue"><span className="text-red-500">📄</span> دليل الطوارئ (SOS)</a></li>
-                                    <li><a href="downloads/Methodology_Guide.pdf" className="flex items-center gap-2 text-gray-700 hover:text-anchor-blue"><span className="text-blue-500">📄</span> دليل المنهجية التفاعلي</a></li>
-                                    <li><a href="downloads/Pledge_Paper.pdf" className="flex items-center gap-2 text-gray-700 hover:text-anchor-blue"><span className="text-green-500">📄</span> وثيقة العهد للطباعة</a></li>
-                                </ul>
-                            </section>
+                            ))}
+                        </div>
+                        
+                        {/* إحصائيات المكتبة */}
+                        <div className="mt-16 bg-gradient-to-r from-blue-50 to-gray-100 rounded-2xl p-8">
+                            <h2 className="text-2xl font-bold text-center text-anchor-blue mb-8">
+                                <i className="fas fa-chart-bar ml-3"></i>
+                                إحصائيات المكتبة
+                            </h2>
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                                <div>
+                                    <div className="text-3xl font-bold text-anchor-blue mb-2">{resources.length}</div>
+                                    <div className="text-gray-600">مورد متاح</div>
+                                </div>
+                                <div>
+                                    <div className="text-3xl font-bold text-green-600 mb-2">48+</div>
+                                    <div className="text-gray-600">صفحة إجمالية</div>
+                                </div>
+                                <div>
+                                    <div className="text-3xl font-bold text-purple-600 mb-2">100%</div>
+                                    <div className="text-gray-600">مجاني دائمًا</div>
+                                </div>
+                                <div>
+                                    <div className="text-3xl font-bold text-orange-600 mb-2">∞</div>
+                                    <div className="text-gray-600">عدد مرات التحميل</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        {/* تثبيت مهم */}
+                        <div className="mt-16 bg-gradient-to-r from-anchor-blue to-gray-900 text-white rounded-2xl p-8">
+                            <div className="flex flex-col md:flex-row items-center justify-between">
+                                <div className="mb-6 md:mb-0">
+                                    <h2 className="text-2xl font-bold mb-4">هل وجدت هذه الموارد مفيدة؟</h2>
+                                    <p className="text-blue-100">
+                                        دعمك يساعدنا على إنتاج المزيد من المحتوى المجاني والعالي الجودة.
+                                    </p>
+                                </div>
+                                <div className="flex gap-4">
+                                    <a 
+                                        href="book-preorder.html"
+                                        className="bg-white text-anchor-blue px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition shadow-lg"
+                                    >
+                                        <i className="fas fa-book ml-2"></i>
+                                        اشترِ الكتاب الكامل
+                                    </a>
+                                    <a 
+                                        href="mailto:garbaouisalma@gmail.com"
+                                        className="bg-anchor-gold text-anchor-blue px-6 py-3 rounded-lg font-bold hover:bg-yellow-400 transition shadow-lg"
+                                    >
+                                        <i className="fas fa-envelope ml-2"></i>
+                                        اقترح موردًا
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </main>
-                    <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm mt-auto">© 2025 المرساة الرقمية</footer>
+                    
+                    <footer className="bg-anchor-blue text-white py-12">
+                        <div className="max-w-6xl mx-auto px-4">
+                            <div className="flex flex-col md:flex-row justify-between items-center mb-8">
+                                <div className="mb-6 md:mb-0">
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <div className="w-10 h-10 bg-gradient-to-r from-anchor-gold to-yellow-500 rounded-lg flex items-center justify-center">
+                                            <i className="fas fa-anchor text-white"></i>
+                                        </div>
+                                        <div>
+                                            <h3 className="font-bold text-lg">المرساة الرقمية</h3>
+                                            <p className="text-slate-300 text-sm">مكتبة الموارد المجانية</p>
+                                        </div>
+                                    </div>
+                                    <p className="text-slate-300 text-sm max-w-md">
+                                        "أنت الآن القبطان، والشاشة مجرد أداة"<br/>
+                                        جميع الموارد مجانية للاستخدام الشخصي والتعليمي.
+                                    </p>
+                                </div>
+                                
+                                <div className="text-center md:text-right">
+                                    <h4 className="font-bold mb-4">روابط مهمة</h4>
+                                    <div className="space-y-2">
+                                        <a href="index.html" className="block text-slate-300 hover:text-anchor-gold transition">الرئيسية</a>
+                                        <a href="guide.html" className="block text-slate-300 hover:text-anchor-gold transition">دليل المنهجية</a>
+                                        <a href="book-preorder.html" className="block text-slate-300 hover:text-anchor-gold transition">طلب الكتاب</a>
+                                        <a href="mailto:garbaouisalma@gmail.com" className="block text-slate-300 hover:text-anchor-gold transition">الدعم الفني</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <hr className="border-slate-700 my-8" />
+                            
+                            <div className="text-center text-slate-400 text-sm">
+                                <p>© 2025 مكتبة موارد المرساة الرقمية. جميع الحقوق محفوظة.</p>
+                                <p className="mt-2">تصميم وتطوير بخبرة وإخلاص - "من أنت حين تنطفئ الشاشة؟"</p>
+                                <p className="mt-4">
+                                    <i className="fas fa-envelope ml-2"></i>
+                                    للتواصل: <a href="mailto:garbaouisalma@gmail.com" className="text-anchor-gold hover:underline">garbaouisalma@gmail.com</a>
+                                </p>
+                            </div>
+                        </div>
+                    </footer>
                 </div>
             );
         };
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<ResourcesPage />);
+
+        // ✅ التصيير الصحيح
+        ReactDOM.render(<ResourcesPage />, document.getElementById('root'));
     </script>
 </body>
 </html>
