@@ -2,55 +2,127 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>أداة تحديد القيم | المرساة الرقمية</title>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أداة تحديد القيمة الجوهرية | المرساة الرقمية</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
-                extend: { colors: { 'anchor-blue': '#0f172a', 'anchor-gold': '#d4af37' }, fontFamily: { sans: ['Tajawal', 'sans-serif'] } }
+                extend: {
+                    colors: { 'anchor-blue': '#1a202c', 'anchor-gold': '#ffd700' },
+                    fontFamily: { sans: ['Tajawal', 'sans-serif'] },
+                    animation: { 'fade-in-up': 'fadeInUp 0.5s ease-out' },
+                    keyframes: { fadeInUp: { '0%': { opacity: '0', transform: 'translateY(10px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } } }
+                }
             }
         }
     </script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>body { background-color: #f8fafc; }</style>
 </head>
-<body class="text-slate-900 font-sans">
+<body class="bg-slate-50 text-slate-900 font-sans">
     <div id="root"></div>
     <script type="text/babel">
-        // Navbar الموحد
-        const Navbar = () => (
-            <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-md">
-                <div className="max-w-7xl mx-auto flex justify-between items-center">
-                    <a href="index.html" className="flex items-center gap-3">
-                        <img src="images/logo.png" alt="Logo" className="h-10 w-auto" />
-                        <span className="font-bold text-lg hidden md:block">المرساة الرقمية</span>
-                    </a>
-                    <div className="flex gap-4 text-sm font-medium items-center">
-                        <a href="index.html" className="hover:text-anchor-gold">الرئيسية</a>
-                        <a href="book-preorder.html" className="bg-anchor-gold text-anchor-blue px-4 py-2 rounded-full font-bold">احجز نسختك</a>
+        const { useState, useEffect, createContext, useContext } = React;
+
+        // --- 1. قاموس الترجمة ---
+        const translations = {
+            'site-logo': { ar: 'المرساة الرقمية', en: 'Digital Anchor', fr: 'Ancre Numérique' },
+            'nav-home': { ar: 'الرئيسية', en: 'Home', fr: 'Accueil' },
+            'nav-guide': { ar: 'الدليل', en: 'Guide', fr: 'Guide' },
+            'nav-resources': { ar: 'الموارد', en: 'Resources', fr: 'Ressources' },
+            'nav-members': { ar: 'الأعضاء', en: 'Members', fr: 'Membres' },
+            'nav-buy': { ar: 'احجز نسختك', en: 'Pre-order', fr: 'Précommander' },
+            
+            'tool-title': { ar: '💎 بوصلة القيم الشخصية', en: '💎 Personal Values Compass', fr: '💎 Boussole des Valeurs' },
+            'tool-desc': { ar: 'اختر أهم 3 قيم تعبر عنك لتبني عليها خطتك الرقمية.', en: 'Select the top 3 values that represent you to build your digital plan.', fr: 'Sélectionnez les 3 valeurs principales.' },
+            
+            // القيم
+            'val-focus': { ar: 'التركيز والعمل العميق', en: 'Focus & Deep Work', fr: 'Concentration' },
+            'val-integrity': { ar: 'النزاهة الرقمية', en: 'Digital Integrity', fr: 'Intégrité Numérique' },
+            'val-achievement': { ar: 'الإنجاز العملي', en: 'Practical Achievement', fr: 'Réalisation Pratique' },
+            'val-awareness': { ar: 'التأمل والوعي الذاتي', en: 'Reflection & Awareness', fr: 'Réflexion & Conscience' },
+            'val-health': { ar: 'الصحة والذات', en: 'Health & Self', fr: 'Santé et Soi' },
+            'val-connection': { ar: 'التواصل الفعال', en: 'Effective Connection', fr: 'Connexion Efficace' },
+            'val-creativity': { ar: 'الإبداع', en: 'Creativity', fr: 'Créativité' },
+            'val-calm': { ar: 'الهدوء النفسي', en: 'Inner Calm', fr: 'Calme Intérieur' },
+            'val-learning': { ar: 'التعلم المستمر', en: 'Continuous Learning', fr: 'Apprentissage Continu' },
+
+            'status-selected': { ar: 'تم اختيار', en: 'Selected', fr: 'Sélectionné' },
+            'status-limit': { ar: 'من 3', en: 'of 3', fr: 'sur 3' },
+            'btn-analyze': { ar: 'تحليل قيمي', en: 'Analyze My Values', fr: 'Analyser Mes Valeurs' },
+            
+            'result-title': { ar: 'قيمك الجوهرية هي:', en: 'Your Core Values Are:', fr: 'Vos Valeurs Fondamentales :' },
+            'result-msg': { ar: 'رائع! هذه القيم هي بوصلتك. الخطوة التالية هي حماية هذه القيم في عالمك الرقمي.', en: 'Great! These values are your compass. Next step is to protect them.', fr: 'Super! Ces valeurs sont votre boussole.' },
+            'btn-covenant': { ar: 'توقيع العهد', en: 'Sign the Pledge', fr: 'Signer l\'Engagement' },
+            'btn-reset': { ar: 'إعادة الاختيار', en: 'Reset', fr: 'Réinitialiser' },
+            
+            'footer-copy': { ar: '© 2025 المرساة الرقمية - جميع الحقوق محفوظة', en: '© 2025 Digital Anchor - All Rights Reserved', fr: '© 2025 Digital Anchor - Tous droits réservés' }
+        };
+
+        // --- 2. نظام اللغة ---
+        const LanguageContext = createContext();
+        const LanguageProvider = ({ children }) => {
+            const [lang, setLang] = useState(localStorage.getItem('lang') || 'ar');
+            useEffect(() => {
+                localStorage.setItem('lang', lang);
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            }, [lang]);
+            const t = (key) => translations[key]?.[lang] || key;
+            return <LanguageContext.Provider value={{ lang, setLang, t }}>{children}</LanguageContext.Provider>;
+        };
+
+        // --- 3. المكونات ---
+        const Navbar = () => {
+            const { t, lang, setLang } = useContext(LanguageContext);
+            return (
+                <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-md backdrop-blur-md bg-opacity-95">
+                    <div className="max-w-7xl mx-auto flex justify-between items-center">
+                        <a href="index.html" className="flex items-center gap-3 group">
+                            <img src="Digital Anchor.png" alt="Logo" className="h-10 w-auto transition-transform group-hover:scale-110" />
+                            <span className="font-bold text-lg hidden md:block">{t('site-logo')}</span>
+                        </a>
+                        <div className="flex gap-4 md:gap-6 text-sm font-medium items-center">
+                            <a href="index.html" className="hover:text-anchor-gold transition">{t('nav-home')}</a>
+                            <a href="guide.html" className="hover:text-anchor-gold transition hidden sm:block">{t('nav-guide')}</a>
+                            
+                            <select value={lang} onChange={(e) => setLang(e.target.value)} className="bg-gray-700 text-white border border-gray-600 rounded p-1 text-xs">
+                                <option value="ar">العربية</option>
+                                <option value="en">English</option>
+                                <option value="fr">Français</option>
+                            </select>
+
+                            <a href="book-preorder.html" className="bg-anchor-gold text-anchor-blue px-4 py-2 rounded-full font-bold hover:bg-yellow-400 transition transform hover:scale-105 text-xs md:text-sm">
+                                {t('nav-buy')}
+                            </a>
+                        </div>
                     </div>
-                </div>
-            </nav>
-        );
+                </nav>
+            );
+        };
 
         const ValueTool = () => {
+            const { t } = useContext(LanguageContext);
             const [selectedValues, setSelectedValues] = useState([]);
             const [showResult, setShowResult] = useState(false);
 
+            // مفاتيح القيم في القاموس
             const valuesList = [
-                "التركيز والعمل العميق", "النزاهة الرقمية", "الإنجاز العملي",
-                "التأمل والوعي الذاتي", "الصحة والاهتمام بالذات", "العلاقات والتواصل الفعال",
-                "الإبداع", "الهدوء النفسي", "التعلم المستمر"
+                'val-focus', 'val-integrity', 'val-achievement',
+                'val-awareness', 'val-health', 'val-connection',
+                'val-creativity', 'val-calm', 'val-learning'
             ];
 
-            const toggleValue = (value) => {
-                if (selectedValues.includes(value)) {
-                    setSelectedValues(selectedValues.filter(v => v !== value));
+            const toggleValue = (valueKey) => {
+                if (selectedValues.includes(valueKey)) {
+                    setSelectedValues(selectedValues.filter(v => v !== valueKey));
                 } else {
-                    if (selectedValues.length < 3) setSelectedValues([...selectedValues, value]);
+                    if (selectedValues.length < 3) setSelectedValues([...selectedValues, valueKey]);
                 }
             };
 
@@ -60,49 +132,72 @@
                     <main className="max-w-3xl mx-auto px-6 py-12 flex-grow w-full">
                         <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
                             <header className="text-center mb-10">
-                                <h1 className="text-3xl font-bold text-anchor-blue mb-3">💎 بوصلة القيم الشخصية</h1>
-                                <p className="text-gray-600">اختر أهم 3 قيم تعبر عنك لتبني عليها خطتك الرقمية.</p>
+                                <h1 className="text-3xl font-bold text-anchor-blue mb-3">{t('tool-title')}</h1>
+                                <p className="text-gray-600">{t('tool-desc')}</p>
                             </header>
 
                             {!showResult ? (
-                                <div className="space-y-8">
+                                <div className="space-y-8 animate-fade-in-up">
                                     <div className="grid md:grid-cols-2 gap-4">
-                                        {valuesList.map((val, idx) => (
-                                            <button key={idx} onClick={() => toggleValue(val)} className={`p-4 rounded-xl border-2 text-right transition-all flex justify-between items-center ${selectedValues.includes(val) ? 'border-anchor-gold bg-yellow-50 text-anchor-blue font-bold shadow-md' : 'border-gray-100 hover:border-gray-300 text-gray-600'}`}>
-                                                {val}
-                                                {selectedValues.includes(val) && <span className="text-green-600">✓</span>}
+                                        {valuesList.map((valKey, idx) => (
+                                            <button 
+                                                key={idx} 
+                                                onClick={() => toggleValue(valKey)} 
+                                                className={`p-4 rounded-xl border-2 text-right transition-all flex justify-between items-center ${selectedValues.includes(valKey) ? 'border-anchor-gold bg-yellow-50 text-anchor-blue font-bold shadow-md transform scale-105' : 'border-gray-100 hover:border-gray-300 text-gray-600 hover:bg-gray-50'}`}
+                                            >
+                                                {t(valKey)}
+                                                {selectedValues.includes(valKey) && <span className="text-green-600 text-xl">✓</span>}
                                             </button>
                                         ))}
                                     </div>
                                     <div className="text-center">
-                                        <p className={`text-sm mb-4 ${selectedValues.length === 3 ? 'text-green-600 font-bold' : 'text-gray-500'}`}>تم اختيار {selectedValues.length} من 3</p>
-                                        <button onClick={() => setShowResult(true)} disabled={selectedValues.length !== 3} className={`px-10 py-3 rounded-xl font-bold text-lg transition-all ${selectedValues.length === 3 ? 'bg-anchor-blue text-white hover:bg-gray-800 shadow-lg' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}>تحليل قيمي</button>
+                                        <p className={`text-sm mb-4 ${selectedValues.length === 3 ? 'text-green-600 font-bold' : 'text-gray-500'}`}>
+                                            {t('status-selected')} {selectedValues.length} {t('status-limit')}
+                                        </p>
+                                        <button 
+                                            onClick={() => setShowResult(true)} 
+                                            disabled={selectedValues.length !== 3} 
+                                            className={`px-10 py-3 rounded-xl font-bold text-lg transition-all ${selectedValues.length === 3 ? 'bg-anchor-blue text-white hover:bg-gray-800 shadow-lg hover:shadow-xl transform hover:-translate-y-1' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
+                                        >
+                                            {t('btn-analyze')}
+                                        </button>
                                     </div>
                                 </div>
                             ) : (
-                                <div className="text-center animate-fade-in">
-                                    <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">🎯</div>
-                                    <h2 className="text-2xl font-bold text-anchor-blue mb-6">قيمك الجوهرية هي:</h2>
+                                <div className="text-center animate-fade-in-up">
+                                    <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl shadow-inner">🎯</div>
+                                    <h2 className="text-2xl font-bold text-anchor-blue mb-6">{t('result-title')}</h2>
                                     <div className="flex flex-wrap justify-center gap-3 mb-8">
-                                        {selectedValues.map((val, idx) => (<span key={idx} className="bg-anchor-gold text-anchor-blue px-6 py-2 rounded-full font-bold shadow-sm">{val}</span>))}
+                                        {selectedValues.map((valKey, idx) => (
+                                            <span key={idx} className="bg-anchor-gold text-anchor-blue px-6 py-2 rounded-full font-bold shadow-sm border border-yellow-400">
+                                                {t(valKey)}
+                                            </span>
+                                        ))}
                                     </div>
                                     <div className="bg-blue-50 p-6 rounded-xl border border-blue-100 mb-8">
-                                        <p className="text-gray-700 leading-relaxed">رائع! هذه القيم هي بوصلتك. الخطوة التالية هي حماية هذه القيم في عالمك الرقمي.</p>
+                                        <p className="text-gray-700 leading-relaxed font-medium">{t('result-msg')}</p>
                                     </div>
                                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                        <a href="covenant.html" className="bg-anchor-blue text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-800 transition">توقيع العهد</a>
-                                        <button onClick={() => setShowResult(false)} className="text-gray-500 hover:text-anchor-blue underline">إعادة الاختيار</button>
+                                        <a href="covenant.html" className="bg-anchor-blue text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-800 transition shadow-md">
+                                            {t('btn-covenant')}
+                                        </a>
+                                        <button onClick={() => { setShowResult(false); setSelectedValues([]); }} className="text-gray-500 hover:text-anchor-blue underline">
+                                            {t('btn-reset')}
+                                        </button>
                                     </div>
                                 </div>
                             )}
                         </div>
                     </main>
-                    <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm mt-auto">© 2025 المرساة الرقمية</footer>
+                    <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm mt-auto">
+                        {t('footer-copy')}
+                    </footer>
                 </div>
             );
         };
+
         const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<ValueTool />);
+        root.render(<LanguageProvider><ValueTool /></LanguageProvider>);
     </script>
 </body>
 </html>

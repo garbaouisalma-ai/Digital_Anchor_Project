@@ -2,59 +2,134 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>5 استراتيجيات للتركيز العميق | المدونة</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 استراتيجيات للتركيز العميق | المرساة الرقمية</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config = { theme: { extend: { colors: { 'anchor-blue': '#0f172a', 'anchor-gold': '#d4af37' }, fontFamily: { sans: ['Tajawal', 'sans-serif'], serif: ['Amiri', 'serif'] } } } }</script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 'anchor-blue': '#1a202c', 'anchor-gold': '#ffd700' },
+                    fontFamily: { sans: ['Tajawal', 'sans-serif'], serif: ['Amiri', 'serif'] }
+                }
+            }
+        }
+    </script>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>body { background-color: #f8fafc; }</style>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
     <div id="root"></div>
     <script type="text/babel">
+        const { useState, useEffect, createContext, useContext } = React;
+
+        const translations = {
+            'site-logo': { ar: 'المرساة الرقمية', en: 'Digital Anchor', fr: 'Ancre Numérique' },
+            'nav-home': { ar: 'الرئيسية', en: 'Home', fr: 'Accueil' },
+            'nav-guide': { ar: 'الدليل', en: 'Guide', fr: 'Guide' },
+            'nav-buy': { ar: 'احجز نسختك', en: 'Pre-order', fr: 'Précommander' },
+            
+            'article-cat': { ar: 'استراتيجيات الإنتاجية', en: 'Productivity Strategies', fr: 'Stratégies de Productivité' },
+            'article-title': { ar: '5 استراتيجيات للتركيز العميق', en: '5 Strategies for Deep Focus', fr: '5 Stratégies pour une Concentration Profonde' },
+            'article-date': { ar: 'نُشر بتاريخ: 2025/01/15', en: 'Published: 15/01/2025', fr: 'Publié le : 15/01/2025' },
+            
+            'intro': { ar: 'لطالما كان التركيز العميق هو العملة الأكثر قيمة في الاقتصاد الحديث. إليك 5 استراتيجيات عملية:', en: 'Deep focus is the most valuable currency in the modern economy. Here are 5 practical strategies:', fr: 'La concentration profonde est la monnaie la plus précieuse. Voici 5 stratégies pratiques :' },
+            
+            'point-1-title': { ar: '1. تقنية "القفل الرقمي"', en: '1. "Digital Lock" Technique', fr: '1. Technique du "Verrou Numérique"' },
+            'point-1-desc': { ar: 'حدد فترة زمنية (60-90 دقيقة) تمنع فيها الوصول لأي تطبيق.', en: 'Set a time period (60-90 mins) blocking all apps.', fr: 'Définissez une période (60-90 min) bloquant toutes les applications.' },
+            
+            'point-2-title': { ar: '2. قاعدة الـ 20 دقيقة', en: '2. The 20-Minute Rule', fr: '2. La Règle des 20 Minutes' },
+            'point-2-desc': { ar: 'قبل أن تفتح هاتفك "لتشيك سريع"، انتظر 20 دقيقة.', en: 'Before checking your phone "quickly", wait 20 minutes.', fr: 'Avant de vérifier votre téléphone "vite fait", attendez 20 minutes.' },
+            
+            'cta-text': { ar: 'احصل على الكتاب الآن لتفاصيل أكثر', en: 'Get the book now for more details', fr: 'Obtenez le livre maintenant pour plus de détails' },
+            'sidebar-title': { ar: 'أدوات مجانية', en: 'Free Tools', fr: 'Outils Gratuits' },
+            'sidebar-link-1': { ar: '🚑 دليل الطوارئ', en: '🚑 Emergency Guide', fr: '🚑 Guide d\'Urgence' },
+            
+            'footer-copy': { ar: '© 2025 المرساة الرقمية - جميع الحقوق محفوظة', en: '© 2025 Digital Anchor - All Rights Reserved', fr: '© 2025 Digital Anchor - Tous droits réservés' }
+        };
+
+        const LanguageContext = createContext();
+        const LanguageProvider = ({ children }) => {
+            const [lang, setLang] = useState(localStorage.getItem('lang') || 'ar');
+            useEffect(() => {
+                localStorage.setItem('lang', lang);
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            }, [lang]);
+            const t = (key) => translations[key]?.[lang] || key;
+            return <LanguageContext.Provider value={{ lang, setLang, t }}>{children}</LanguageContext.Provider>;
+        };
+
+        const Navbar = () => {
+            const { t, lang, setLang } = useContext(LanguageContext);
+            return (
+                <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-md backdrop-blur-md bg-opacity-95">
+                    <div className="max-w-7xl mx-auto flex justify-between items-center">
+                        <a href="index.html" className="flex items-center gap-3 group">
+                            <img src="Digital Anchor.png" alt="Logo" className="h-10 w-auto transition-transform group-hover:scale-110" />
+                            <span className="font-bold text-lg hidden md:block">{t('site-logo')}</span>
+                        </a>
+                        <div className="flex gap-4 md:gap-6 text-sm font-medium items-center">
+                            <a href="index.html" className="hover:text-anchor-gold transition">{t('nav-home')}</a>
+                            <a href="guide.html" className="hover:text-anchor-gold transition hidden sm:block">{t('nav-guide')}</a>
+                            <select value={lang} onChange={(e) => setLang(e.target.value)} className="bg-gray-700 text-white border border-gray-600 rounded p-1 text-xs">
+                                <option value="ar">العربية</option>
+                                <option value="en">English</option>
+                                <option value="fr">Français</option>
+                            </select>
+                            <a href="book-preorder.html" className="bg-anchor-gold text-anchor-blue px-4 py-2 rounded-full font-bold hover:bg-yellow-400 transition transform hover:scale-105 text-xs md:text-sm">
+                                {t('nav-buy')}
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            );
+        };
+
         const BlogPage = () => {
+            const { t } = useContext(LanguageContext);
             return (
                 <div className="min-h-screen flex flex-col">
-                    <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-md">
-                        <div className="max-w-7xl mx-auto flex justify-between items-center">
-                            <a href="index.html" className="flex items-center gap-3"><img src="images/logo.png" alt="Logo" className="h-10 w-auto" /><span className="font-bold text-lg hidden md:block">المرساة الرقمية</span></a>
-                            <a href="index.html" className="text-sm hover:text-anchor-gold transition">العودة للرئيسية</a>
-                        </div>
-                    </nav>
+                    <Navbar />
                     <main className="max-w-5xl mx-auto px-6 py-12 grid lg:grid-cols-3 gap-12 flex-grow">
                         <article className="lg:col-span-2 bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
                             <header className="mb-8 border-b border-gray-100 pb-8">
-                                <div className="text-anchor-gold font-bold text-sm mb-2">استراتيجيات الإنتاجية</div>
-                                <h1 className="text-3xl font-bold text-anchor-blue font-serif mb-4">5 استراتيجيات للتركيز العميق</h1>
-                                <div className="text-gray-500 text-sm">نُشر بتاريخ: 2025/01/15</div>
+                                <div className="text-anchor-gold font-bold text-sm mb-2">{t('article-cat')}</div>
+                                <h1 className="text-3xl font-bold text-anchor-blue font-serif mb-4">{t('article-title')}</h1>
+                                <div className="text-gray-500 text-sm">{t('article-date')}</div>
                             </header>
                             <div className="prose text-gray-700 leading-relaxed space-y-6">
-                                <p>لطالما كان التركيز العميق هو العملة الأكثر قيمة في الاقتصاد الحديث. إليك 5 استراتيجيات عملية:</p>
-                                <h3 className="text-xl font-bold text-anchor-blue">1. تقنية "القفل الرقمي"</h3>
-                                <p>حدد فترة زمنية (60-90 دقيقة) تمنع فيها الوصول لأي تطبيق.</p>
-                                <h3 className="text-xl font-bold text-anchor-blue">2. قاعدة الـ 20 دقيقة</h3>
-                                <p>قبل أن تفتح هاتفك "لتشيك سريع"، انتظر 20 دقيقة.</p>
+                                <p>{t('intro')}</p>
+                                <h3 className="text-xl font-bold text-anchor-blue">{t('point-1-title')}</h3>
+                                <p>{t('point-1-desc')}</p>
+                                <h3 className="text-xl font-bold text-anchor-blue">{t('point-2-title')}</h3>
+                                <p>{t('point-2-desc')}</p>
                             </div>
                             <div className="mt-10 p-6 bg-blue-50 rounded-xl">
-                                <a href="book-preorder.html" className="inline-block bg-anchor-blue text-white px-6 py-2 rounded-lg font-bold">احصل على الكتاب الآن</a>
+                                <a href="book-preorder.html" className="inline-block bg-anchor-blue text-white px-6 py-2 rounded-lg font-bold">{t('cta-text')}</a>
                             </div>
                         </article>
                         <aside className="space-y-6">
                             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 sticky top-24">
-                                <h3 className="font-bold text-anchor-blue mb-4">أدوات مجانية</h3>
-                                <a href="downloads/Emergency_Guide.pdf" className="block text-gray-600 hover:text-anchor-gold mb-2">🚑 دليل الطوارئ</a>
-                                <a href="book-preorder.html" className="block w-full bg-anchor-gold text-anchor-blue text-center py-3 rounded-lg font-bold mt-4">شراء الحزمة</a>
+                                <h3 className="font-bold text-anchor-blue mb-4">{t('sidebar-title')}</h3>
+                                <a href="#" className="block text-gray-600 hover:text-anchor-gold mb-2">{t('sidebar-link-1')}</a>
+                                <a href="book-preorder.html" className="block w-full bg-anchor-gold text-anchor-blue text-center py-3 rounded-lg font-bold mt-4">{t('nav-buy')}</a>
                             </div>
                         </aside>
                     </main>
-                    <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm">© 2025 المرساة الرقمية</footer>
+                    <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm">
+                        {t('footer-copy')}
+                    </footer>
                 </div>
             );
         };
+
         const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<BlogPage />);
+        root.render(<LanguageProvider><BlogPage /></LanguageProvider>);
     </script>
 </body>
 </html>

@@ -2,9 +2,20 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>منطقة الأعضاء | المرساة الرقمية</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config = { theme: { extend: { colors: { 'anchor-blue': '#0f172a', 'anchor-gold': '#d4af37' }, fontFamily: { sans: ['Tajawal', 'sans-serif'] } } } }</script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 'anchor-blue': '#1a202c', 'anchor-gold': '#ffd700' },
+                    fontFamily: { sans: ['Tajawal', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -14,49 +25,137 @@
 <body class="bg-slate-50 text-slate-900 font-sans">
     <div id="root"></div>
     <script type="text/babel">
+        const { useState, useEffect, createContext, useContext } = React;
+
+        // --- 1. قاموس الترجمة ---
+        const translations = {
+            'site-logo': { ar: 'المرساة الرقمية', en: 'Digital Anchor', fr: 'Ancre Numérique' },
+            'nav-home': { ar: 'الرئيسية', en: 'Home', fr: 'Accueil' },
+            'nav-guide': { ar: 'الدليل', en: 'Guide', fr: 'Guide' },
+            'nav-resources': { ar: 'الموارد', en: 'Resources', fr: 'Ressources' },
+            'nav-members': { ar: 'الأعضاء', en: 'Members', fr: 'Membres' },
+            'nav-buy': { ar: 'احجز نسختك', en: 'Pre-order', fr: 'Précommander' },
+            
+            'members-title': { ar: 'مرحباً بك في منطقة الأعضاء الخاصة!', en: 'Welcome to the Exclusive Members Area!', fr: 'Bienvenue dans l\'Espace Membres Exclusif!' },
+            'members-desc': { ar: 'هنا تجد المحتوى الحصري وورش العمل.', en: 'Here you find exclusive content and workshops.', fr: 'Ici vous trouvez du contenu exclusif et des ateliers.' },
+            
+            'card-tools-title': { ar: 'أدوات التخطيط', en: 'Planning Tools', fr: 'Outils de Planification' },
+            'card-tools-desc': { ar: 'قوالب Excel مالية وشخصية.', en: 'Financial and personal Excel templates.', fr: 'Modèles Excel financiers et personnels.' },
+            
+            'card-workshops-title': { ar: 'ورش عمل مسجلة', en: 'Recorded Workshops', fr: 'Ateliers Enregistrés' },
+            'card-workshops-desc': { ar: 'فيديوهات تطبيقية للفصول.', en: 'Practical videos for book chapters.', fr: 'Vidéos pratiques pour les chapitres.' },
+            
+            'card-secret-title': { ar: 'فصل إضافي سري', en: 'Secret Bonus Chapter', fr: 'Chapitre Bonus Secret' },
+            'card-secret-desc': { ar: 'استراتيجيات صيانة الالتزام.', en: 'Commitment maintenance strategies.', fr: 'Stratégies de maintien de l\'engagement.' },
+            
+            'locked-badge': { ar: '🔒 للمشتركين', en: '🔒 Subscribers Only', fr: '🔒 Abonnés Uniquement' },
+            
+            'cta-title': { ar: 'كيف أصل لهذا المحتوى؟', en: 'How to Access This Content?', fr: 'Comment Accéder à Ce Contenu?' },
+            'cta-text': { ar: 'هذا المحتوى متاح حصرياً لملاك الحزمة الكاملة.', en: 'This content is exclusive to full package owners.', fr: 'Ce contenu est exclusif aux propriétaires du pack complet.' },
+            'cta-button': { ar: 'ترقية اشتراكي الآن', en: 'Upgrade My Subscription Now', fr: 'Mettre à Niveau Mon Abonnement' },
+            
+            'footer-copy': { ar: '© 2025 المرساة الرقمية - جميع الحقوق محفوظة', en: '© 2025 Digital Anchor - All Rights Reserved', fr: '© 2025 Digital Anchor - Tous droits réservés' }
+        };
+
+        // --- 2. نظام اللغة (Language Context) ---
+        const LanguageContext = createContext();
+        const LanguageProvider = ({ children }) => {
+            const [lang, setLang] = useState(localStorage.getItem('lang') || 'ar');
+            useEffect(() => {
+                localStorage.setItem('lang', lang);
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            }, [lang]);
+            const t = (key) => translations[key]?.[lang] || key;
+            return <LanguageContext.Provider value={{ lang, setLang, t }}>{children}</LanguageContext.Provider>;
+        };
+
+        // --- 3. المكونات ---
+        const Navbar = () => {
+            const { t, lang, setLang } = useContext(LanguageContext);
+            return (
+                <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-md backdrop-blur-md bg-opacity-95">
+                    <div className="max-w-7xl mx-auto flex justify-between items-center">
+                        <a href="index.html" className="flex items-center gap-3 group">
+                            {/* استخدام صورة الشعار الصحيحة */}
+                            <img src="Digital Anchor.png" alt="Logo" className="h-10 w-auto transition-transform group-hover:scale-110" />
+                            <span className="font-bold text-lg hidden md:block">{t('site-logo')}</span>
+                        </a>
+                        <div className="flex gap-4 md:gap-6 text-sm font-medium items-center">
+                            <a href="index.html" className="hover:text-anchor-gold transition">{t('nav-home')}</a>
+                            <a href="guide.html" className="hover:text-anchor-gold transition hidden sm:block">{t('nav-guide')}</a>
+                            <a href="resources.html" className="hover:text-anchor-gold transition hidden sm:block">{t('nav-resources')}</a>
+                            <a href="members.html" className="text-anchor-gold font-bold">{t('nav-members')}</a>
+                            
+                            {/* مبدل اللغة */}
+                            <select value={lang} onChange={(e) => setLang(e.target.value)} className="bg-gray-700 text-white border border-gray-600 rounded p-1 text-xs">
+                                <option value="ar">العربية</option>
+                                <option value="en">English</option>
+                                <option value="fr">Français</option>
+                            </select>
+
+                            <a href="book-preorder.html" className="bg-anchor-gold text-anchor-blue px-4 py-2 rounded-full font-bold hover:bg-yellow-400 transition transform hover:scale-105 text-xs md:text-sm">
+                                {t('nav-buy')}
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            );
+        };
+
         const MembersPage = () => {
+            const { t } = useContext(LanguageContext);
             return (
                 <div className="min-h-screen flex flex-col">
-                    <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-md">
-                        <div className="max-w-7xl mx-auto flex justify-between items-center">
-                            <a href="index.html" className="flex items-center gap-3"><img src="images/logo.png" alt="Logo" className="h-10 w-auto" /><span className="font-bold text-lg hidden md:block">المرساة الرقمية</span></a>
-                            <a href="index.html" className="text-sm hover:text-anchor-gold transition">العودة للرئيسية</a>
-                        </div>
-                    </nav>
+                    <Navbar />
                     <main className="max-w-4xl mx-auto px-6 py-12 flex-grow">
+                        {/* Header */}
                         <header className="text-center bg-anchor-blue text-white p-8 rounded-2xl mb-8 shadow-lg">
-                            <h1 className="text-3xl font-bold mb-2">مرحباً بك في منطقة الأعضاء الخاصة!</h1>
-                            <p className="text-gray-300">هنا تجد المحتوى الحصري وورش العمل.</p>
+                            <h1 className="text-3xl font-bold mb-2">{t('members-title')}</h1>
+                            <p className="text-gray-300">{t('members-desc')}</p>
                         </header>
+                        
+                        {/* Content Grid */}
                         <div className="grid md:grid-cols-3 gap-6">
-                            <div className="bg-white p-6 rounded-xl shadow border-2 border-gray-100 opacity-75">
-                                <h3 className="font-bold mb-2">أدوات التخطيط</h3>
-                                <p className="text-sm text-gray-500 mb-4">قوالب Excel مالية وشخصية.</p>
-                                <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded text-xs font-bold">🔒 للمشتركين</span>
+                            {/* Card 1 */}
+                            <div className="bg-white p-6 rounded-xl shadow border-2 border-gray-100 opacity-75 hover:opacity-100 transition hover:-translate-y-1 duration-300">
+                                <h3 className="font-bold mb-2">{t('card-tools-title')}</h3>
+                                <p className="text-sm text-gray-500 mb-4">{t('card-tools-desc')}</p>
+                                <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded text-xs font-bold">{t('locked-badge')}</span>
                             </div>
-                            <div className="bg-white p-6 rounded-xl shadow border-2 border-gray-100 opacity-75">
-                                <h3 className="font-bold mb-2">ورش عمل مسجلة</h3>
-                                <p className="text-sm text-gray-500 mb-4">فيديوهات تطبيقية للفصول.</p>
-                                <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded text-xs font-bold">🔒 للمشتركين</span>
+                            {/* Card 2 */}
+                            <div className="bg-white p-6 rounded-xl shadow border-2 border-gray-100 opacity-75 hover:opacity-100 transition hover:-translate-y-1 duration-300">
+                                <h3 className="font-bold mb-2">{t('card-workshops-title')}</h3>
+                                <p className="text-sm text-gray-500 mb-4">{t('card-workshops-desc')}</p>
+                                <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded text-xs font-bold">{t('locked-badge')}</span>
                             </div>
-                            <div className="bg-white p-6 rounded-xl shadow border-2 border-gray-100 opacity-75">
-                                <h3 className="font-bold mb-2">فصل إضافي سري</h3>
-                                <p className="text-sm text-gray-500 mb-4">استراتيجيات صيانة الالتزام.</p>
-                                <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded text-xs font-bold">🔒 للمشتركين</span>
+                            {/* Card 3 */}
+                            <div className="bg-white p-6 rounded-xl shadow border-2 border-gray-100 opacity-75 hover:opacity-100 transition hover:-translate-y-1 duration-300">
+                                <h3 className="font-bold mb-2">{t('card-secret-title')}</h3>
+                                <p className="text-sm text-gray-500 mb-4">{t('card-secret-desc')}</p>
+                                <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded text-xs font-bold">{t('locked-badge')}</span>
                             </div>
                         </div>
-                        <div className="mt-8 text-center p-8 bg-gray-100 rounded-xl">
-                            <h2 className="text-xl font-bold mb-2">كيف أصل لهذا المحتوى؟</h2>
-                            <p className="text-gray-600 mb-4">هذا المحتوى متاح حصرياً لملاك الحزمة الكاملة.</p>
-                            <a href="book-preorder.html" className="inline-block bg-anchor-gold text-anchor-blue px-8 py-3 rounded-lg font-bold hover:bg-yellow-400 transition">ترقية اشتراكي الآن</a>
+                        
+                        {/* Call to Action Box */}
+                        <div className="mt-8 text-center p-8 bg-gray-100 rounded-xl border border-gray-200">
+                            <h2 className="text-xl font-bold mb-2">{t('cta-title')}</h2>
+                            <p className="text-gray-600 mb-4">{t('cta-text')}</p>
+                            <a href="book-preorder.html" className="inline-block bg-anchor-gold text-anchor-blue px-8 py-3 rounded-lg font-bold hover:bg-yellow-400 transition shadow-md hover:shadow-lg">
+                                {t('cta-button')}
+                            </a>
                         </div>
                     </main>
-                    <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm">© 2025 المرساة الرقمية</footer>
+                    
+                    <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm border-t border-slate-800">
+                        {t('footer-copy')}
+                    </footer>
                 </div>
             );
         };
+
         const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<MembersPage />);
+        root.render(<LanguageProvider><MembersPage /></LanguageProvider>);
     </script>
 </body>
 </html>

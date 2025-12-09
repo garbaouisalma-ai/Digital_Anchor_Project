@@ -2,56 +2,121 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>3 قصص تحول ملهمة | المدونة</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قصص نجاح ملهمة | المرساة الرقمية</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config = { theme: { extend: { colors: { 'anchor-blue': '#0f172a', 'anchor-gold': '#d4af37' }, fontFamily: { sans: ['Tajawal', 'sans-serif'], serif: ['Amiri', 'serif'] } } } }</script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 'anchor-blue': '#1a202c', 'anchor-gold': '#ffd700' },
+                    fontFamily: { sans: ['Tajawal', 'sans-serif'], serif: ['Amiri', 'serif'] }
+                }
+            }
+        }
+    </script>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>body { background-color: #f8fafc; }</style>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
     <div id="root"></div>
     <script type="text/babel">
+        const { useState, useEffect, createContext, useContext } = React;
+
+        const translations = {
+            'site-logo': { ar: 'المرساة الرقمية', en: 'Digital Anchor', fr: 'Ancre Numérique' },
+            'nav-home': { ar: 'الرئيسية', en: 'Home', fr: 'Accueil' },
+            'nav-guide': { ar: 'الدليل', en: 'Guide', fr: 'Guide' },
+            'nav-buy': { ar: 'احجز نسختك', en: 'Pre-order', fr: 'Précommander' },
+            
+            'article-cat': { ar: 'قصص المجتمع', en: 'Community Stories', fr: 'Histoires de la Communauté' },
+            'article-title': { ar: 'كيف غيرت "المرساة الرقمية" حياة 3 أشخاص؟', en: 'How "Digital Anchor" Changed 3 Lives?', fr: 'Comment "Ancre Numérique" a changé 3 vies ?' },
+            'article-date': { ar: 'نُشر بتاريخ: 2025/01/20', en: 'Published: 20/01/2025', fr: 'Publié le : 20/01/2025' },
+            
+            'intro': { ar: 'النظرية جيدة، لكن التطبيق هو الأهم. إليكم قصص حقيقية لأعضاء استخدموا أدواتنا:', en: 'Theory is good, application is key. Here are real stories:', fr: 'La théorie est bonne, la pratique est clé. Voici des histoires vraies :' },
+            
+            'story-1-title': { ar: 'قصة سارة: من التشتت إلى تأليف كتاب', en: 'Sarah\'s Story: From Distraction to Writing a Book', fr: 'L\'histoire de Sarah : De la distraction à l\'écriture' },
+            'story-1-desc': { ar: 'استخدمت سارة "مخطط الإنتاجية العميقة" لتخصيص ساعة يومياً للكتابة بعيداً عن الهاتف.', en: 'Sarah used the "Deep Productivity Planner" to dedicate an hour daily for writing.', fr: 'Sarah a utilisé le planificateur pour consacrer une heure par jour à l\'écriture.' },
+            
+            'cta-text': { ar: 'ابدأ قصتك الخاصة الآن', en: 'Start Your Own Story Now', fr: 'Commencez Votre Propre Histoire' },
+            'footer-copy': { ar: '© 2025 المرساة الرقمية - جميع الحقوق محفوظة', en: '© 2025 Digital Anchor - All Rights Reserved', fr: '© 2025 Digital Anchor - Tous droits réservés' }
+        };
+
+        const LanguageContext = createContext();
+        const LanguageProvider = ({ children }) => {
+            const [lang, setLang] = useState(localStorage.getItem('lang') || 'ar');
+            useEffect(() => {
+                localStorage.setItem('lang', lang);
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            }, [lang]);
+            const t = (key) => translations[key]?.[lang] || key;
+            return <LanguageContext.Provider value={{ lang, setLang, t }}>{children}</LanguageContext.Provider>;
+        };
+
+        const Navbar = () => {
+            const { t, lang, setLang } = useContext(LanguageContext);
+            return (
+                <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-md backdrop-blur-md bg-opacity-95">
+                    <div className="max-w-7xl mx-auto flex justify-between items-center">
+                        <a href="index.html" className="flex items-center gap-3 group">
+                            <img src="Digital Anchor.png" alt="Logo" className="h-10 w-auto transition-transform group-hover:scale-110" />
+                            <span className="font-bold text-lg hidden md:block">{t('site-logo')}</span>
+                        </a>
+                        <div className="flex gap-4 md:gap-6 text-sm font-medium items-center">
+                            <a href="index.html" className="hover:text-anchor-gold transition">{t('nav-home')}</a>
+                            <a href="guide.html" className="hover:text-anchor-gold transition hidden sm:block">{t('nav-guide')}</a>
+                            <select value={lang} onChange={(e) => setLang(e.target.value)} className="bg-gray-700 text-white border border-gray-600 rounded p-1 text-xs">
+                                <option value="ar">العربية</option>
+                                <option value="en">English</option>
+                                <option value="fr">Français</option>
+                            </select>
+                            <a href="book-preorder.html" className="bg-anchor-gold text-anchor-blue px-4 py-2 rounded-full font-bold hover:bg-yellow-400 transition transform hover:scale-105 text-xs md:text-sm">
+                                {t('nav-buy')}
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            );
+        };
+
         const BlogPage2 = () => {
+            const { t } = useContext(LanguageContext);
             return (
                 <div className="min-h-screen flex flex-col">
-                    <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-md">
-                        <div className="max-w-7xl mx-auto flex justify-between items-center">
-                            <a href="index.html" className="flex items-center gap-3"><img src="images/logo.png" alt="Logo" className="h-10 w-auto" /><span className="font-bold text-lg hidden md:block">المرساة الرقمية</span></a>
-                            <a href="index.html" className="text-sm hover:text-anchor-gold transition">العودة للرئيسية</a>
-                        </div>
-                    </nav>
-                    <main className="max-w-5xl mx-auto px-6 py-12 grid lg:grid-cols-3 gap-12 flex-grow">
-                        <article className="lg:col-span-2 bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-                            <header className="mb-8 border-b border-gray-100 pb-8">
-                                <div className="text-anchor-gold font-bold text-sm mb-2">قصص نجاح</div>
-                                <h1 className="text-3xl font-bold text-anchor-blue font-serif mb-4">3 قصص ملهمة من مستخدمي الحزمة</h1>
-                                <div className="text-gray-500 text-sm">نُشر بتاريخ: 2025/01/20</div>
+                    <Navbar />
+                    <main className="max-w-4xl mx-auto px-6 py-12 flex-grow">
+                        <article className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                            <header className="mb-8 border-b border-gray-100 pb-8 text-center">
+                                <div className="text-anchor-gold font-bold text-sm mb-2">{t('article-cat')}</div>
+                                <h1 className="text-3xl font-bold text-anchor-blue font-serif mb-4">{t('article-title')}</h1>
+                                <div className="text-gray-500 text-sm">{t('article-date')}</div>
                             </header>
-                            <div className="prose text-gray-700 leading-relaxed space-y-6">
-                                <p>المعرفة وحدها لا تكفي. التطبيق هو السر. إليك قصص حقيقية:</p>
-                                <div className="bg-gray-50 p-6 rounded-xl border-r-4 border-anchor-gold"><h3 className="text-xl font-bold text-anchor-blue mb-2">1. خالد: من التشتت إلى العمل العميق</h3><p>قلص وقته من 8 ساعات إلى ساعة واحدة يومياً.</p></div>
-                                <div className="bg-gray-50 p-6 rounded-xl border-r-4 border-anchor-gold"><h3 className="text-xl font-bold text-anchor-blue mb-2">2. سارة: استعادة التواصل العائلي</h3><p>طبقت "ميثاق العائلة" واستعادت وقت العشاء.</p></div>
+                            <div className="prose text-gray-700 leading-relaxed space-y-6 mx-auto max-w-2xl">
+                                <p className="text-lg font-medium">{t('intro')}</p>
+                                <div className="bg-yellow-50 p-6 rounded-xl border-r-4 border-anchor-gold">
+                                    <h3 className="text-xl font-bold text-anchor-blue mb-2">{t('story-1-title')}</h3>
+                                    <p>{t('story-1-desc')}</p>
+                                </div>
                             </div>
-                            <div className="mt-10 p-6 bg-anchor-blue text-white rounded-xl text-center">
-                                <a href="book-preorder.html" className="inline-block bg-anchor-gold text-anchor-blue px-8 py-3 rounded-lg font-bold hover:bg-yellow-400 transition">ابدأ قصتك الآن</a>
+                            <div className="mt-10 text-center">
+                                <a href="book-preorder.html" className="inline-block bg-anchor-blue text-white px-8 py-3 rounded-full font-bold hover:bg-slate-800 transition">{t('cta-text')}</a>
                             </div>
                         </article>
-                        <aside className="space-y-6">
-                            <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 sticky top-24">
-                                <h3 className="font-bold text-anchor-blue mb-4">اقرأ أيضاً</h3>
-                                <a href="blog-article-1.html" className="block text-gray-600 hover:text-anchor-gold">5 استراتيجيات للتركيز ←</a>
-                            </div>
-                        </aside>
                     </main>
-                    <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm">© 2025 المرساة الرقمية</footer>
+                    <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm">
+                        {t('footer-copy')}
+                    </footer>
                 </div>
             );
         };
+
         const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<BlogPage2 />);
+        root.render(<LanguageProvider><BlogPage2 /></LanguageProvider>);
     </script>
 </body>
 </html>
