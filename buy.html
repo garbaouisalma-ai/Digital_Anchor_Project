@@ -78,7 +78,9 @@
                     <li class="flex items-center"><i class="fas fa-check text-green-500 ml-3"></i> <span data-key="feat_basic_3">نسخة من عهد التحرر</span></li>
                 </ul>
 
-                <button class="w-full bg-gray-800 text-white py-3 rounded-lg font-bold hover:bg-gray-700 transition" data-key="btn_buy">اشترِ الآن</button>
+                <a href="ضع_رابط_الشراء_هنا_للحزمة_الأساسية" target="_blank" rel="noopener noreferrer" class="block text-center w-full bg-gray-800 text-white py-3 rounded-lg font-bold hover:bg-gray-700 transition no-underline" data-key="btn_buy">
+                    اشترِ الآن
+                </a>
             </div>
 
             <div class="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-yellow-500 card-hover relative overflow-hidden transform md:-translate-y-4">
@@ -99,9 +101,10 @@
                     <li class="flex items-center"><i class="fas fa-check-circle text-yellow-500 ml-3"></i> <span data-key="feat_prem_4">عضوية المجتمع الحصرية</span></li>
                 </ul>
 
-                <button class="w-full btn-primary py-4 rounded-lg font-bold shadow-lg flex justify-center items-center gap-2">
+                <a href="ضع_رابط_الشراء_هنا_للحزمة_الكاملة" target="_blank" rel="noopener noreferrer" class="w-full btn-primary py-4 rounded-lg font-bold shadow-lg flex justify-center items-center gap-2 no-underline text-white">
                     <i class="fas fa-crown"></i> <span data-key="btn_buy_premium">احصل على الحزمة الكاملة</span>
-                </button>
+                </a>
+                
                 <p class="text-center text-xs text-gray-400 mt-3" data-key="guarantee">ضمان استرداد الأموال لمدة 30 يوماً</p>
             </div>
 
@@ -163,18 +166,15 @@
             'EUR': { r: 0.25, s: '€' }
         };
 
-function setLanguage(lang) {
-            // 1. تغيير إعدادات الصفحة
+        function setLanguage(lang) {
             document.documentElement.lang = lang;
             document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
             
-            // 2. ترجمة النصوص
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.getAttribute('data-key');
                 if (translations[lang][key]) el.textContent = translations[lang][key];
             });
 
-            // 3. تعديل مكان شارة "الأكثر طلباً"
             const badge = document.querySelector('.premium-badge');
             if(badge) {
                 if(lang === 'ar') {
@@ -186,36 +186,25 @@ function setLanguage(lang) {
                 }
             }
 
-            // 4. (الجديد) الربط الذكي بالعملة 💰
-            const currencyMap = {
-                'ar': 'SAR',
-                'en': 'USD',
-                'fr': 'EUR',
-                'de': 'EUR'
-            };
-            
+            // Smart Currency Link
+            const currencyMap = {'ar': 'SAR', 'en': 'USD', 'fr': 'EUR', 'de': 'EUR'};
             const targetCurrency = currencyMap[lang] || 'USD';
-            
-            // تحديث قائمة العملات وتنفيذ التحويل
             const currSelect = document.getElementById('curr-select');
             if(currSelect) {
                 currSelect.value = targetCurrency;
                 convertCurrency(targetCurrency);
             }
 
-            // حفظ التفضيل
             localStorage.setItem('preferredLang', lang);
         }
 
         function convertCurrency(curr) {
             const rate = RATES[curr].r;
             const symbol = RATES[curr].s;
-            
             document.querySelectorAll('.price-display').forEach(el => {
                 const base = el.getAttribute('data-base-price');
                 el.textContent = Math.round(base * rate);
             });
-            
             document.querySelectorAll('.currency-symbol').forEach(el => {
                 el.textContent = symbol;
             });
