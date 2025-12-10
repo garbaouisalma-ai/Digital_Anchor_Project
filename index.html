@@ -99,40 +99,41 @@
 </head>
 <body class="bg-gray-50">
     
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
+ <nav class="bg-white shadow-lg sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-2">
-                    <div class="w-10 h-10 bg-gradient-to-r from-blue-900 to-yellow-600 rounded-lg flex items-center justify-center">
-                        <i class="fas fa-anchor text-white text-lg"></i>
-                    </div>
+                
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <img src="images/logo.png" 
+                         alt="شعار المرساة الرقمية" 
+                         class="h-14 w-auto rounded-lg shadow-sm hover:opacity-90 transition">
+                    
                     <div>
                         <h1 class="text-xl font-bold text-gray-800" data-key="site_name">المرساة الرقمية</h1>
                         <p class="text-xs text-gray-500" data-key="nav_tagline">من أنت حين تنطفئ الشاشة؟</p>
                     </div>
                 </div>
-                
-                <div class="hidden md:flex items-center space-x-6">
+                <div class="hidden md:flex items-center space-x-6 space-x-reverse">
                     <a href="#home" class="text-gray-700 hover:text-blue-700 font-medium transition" data-key="nav_home">الرئيسية</a>
                     <a href="#about" class="text-gray-700 hover:text-blue-700 font-medium transition" data-key="nav_about">عن الكتاب</a>
                     <a href="#features" class="text-gray-700 hover:text-blue-700 font-medium transition" data-key="nav_features">المميزات</a>
                     <a href="#resources" class="text-gray-700 hover:text-blue-700 font-medium transition" data-key="nav_resources">الموارد</a>
                     <a href="#author" class="text-gray-700 hover:text-blue-700 font-medium transition" data-key="nav_author">المؤلفة</a>
 
-                    <div class="flex items-center space-x-2 border border-gray-300 rounded-full p-1">
+                    <div class="flex items-center space-x-2 space-x-reverse border border-gray-300 rounded-full p-1">
                         <button id="lang-ar-btn" class="text-sm font-bold px-3 py-1 rounded-full bg-blue-700 text-white transition">ع</button>
                         <button id="lang-en-btn" class="text-sm font-medium px-3 py-1 rounded-full text-gray-700 hover:bg-gray-100 transition">En</button>
                     </div>
                     
-                    <select id="currency-select" class="text-gray-700 font-medium border border-gray-300 rounded-lg p-2 transition">
+                    <select id="currency-select" class="text-gray-700 font-medium border border-gray-300 rounded-lg p-2 transition text-sm">
                         <option value="EUR">ا.ر (EUR)</option>
                         <option value="USD">د.أ (USD)</option>
                         <option value="AED">د.إ (AED)</option>
                     </select>
 
-                    <button class="btn-primary" data-key="nav_book_now">
+                    <button class="btn-primary flex items-center" data-key="nav_book_now">
                         <i class="fas fa-shopping-cart ml-2"></i>
-                        احجز نسختك
+                        <span>احجز نسختك</span>
                     </button>
                 </div>
                 
@@ -151,7 +152,6 @@
             </div>
         </div>
     </nav>
-    
     <section id="home" class="relative overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white py-16 md:py-24">
         <div class="absolute inset-0 opacity-10">
             <div class="absolute top-10 left-10 w-72 h-72 bg-yellow-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
