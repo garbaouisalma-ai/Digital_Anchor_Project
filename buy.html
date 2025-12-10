@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شراء الحزمة | المرساة الرقمية</title>
+    <title data-key="page-title">شراء الحزمة | المرساة الرقمية</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -24,232 +23,254 @@
         }
     </script>
     
-    <!-- React & Babel (استخدم هذه الإصدارات) -->
     <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
-    <style>
-        body {
-            background-color: #f8fafc;
-            font-family: 'Tajawal', sans-serif;
-        }
-    </style>
 </head>
-<body class="bg-slate-50 text-slate-900">
-    <div id="root"></div>
-    
-    <script type="text/babel">
-        // Navbar الموحد
-        const Navbar = () => (
-            <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-lg">
-                <div className="max-w-7xl mx-auto flex justify-between items-center">
-                    <a href="index.html" className="flex items-center gap-3 group">
-                        <div className="w-10 h-10 bg-gradient-to-r from-anchor-gold to-yellow-500 rounded-lg flex items-center justify-center">
-                            <i className="fas fa-anchor text-white text-lg"></i>
-                        </div>
-                        <div>
-                            <span className="font-bold text-lg hidden md:block">المرساة الرقمية</span>
-                            <span className="text-xs text-slate-300 block">من أنت حين تنطفئ الشاشة؟</span>
-                        </div>
-                    </a>
-                    <div className="flex gap-4 md:gap-6 text-sm font-medium items-center">
-                        <a href="index.html" className="hover:text-anchor-gold transition">الرئيسية</a>
-                        <a href="book-preorder.html" className="bg-anchor-gold text-anchor-blue px-5 py-2.5 rounded-full font-bold hover:bg-yellow-400 transition shadow-lg">
-                            احجز نسختك
-                        </a>
-                    </div>
-                </div>
-            </nav>
-        );
+<body class="bg-slate-50 text-slate-900 font-sans">
+    <div id="root" class="flex flex-col min-h-screen w-full"></div>
 
-        const BuyPage = () => {
-            const [orderSent, setOrderSent] = React.useState(false);
-            const [formData, setFormData] = React.useState({
-                name: '',
-                email: ''
-            });
-            
-            const handleSubmit = (e) => {
-                e.preventDefault();
+    <script type="text/babel">
+        const { useState, useEffect, createContext, useContext, useMemo } = React;
+
+        // =====================================
+        // 1. قاموس الترجمة (AR و EN فقط)
+        // =====================================
+        // مفاتيح الترجمة الخاصة بصفحة الشراء
+        const ALL_TRANSLATIONS = {
+            'site-logo': { ar: 'المرساة الرقمية', en: 'Digital Anchor' },
+            'nav-home': { ar: 'الرئيسية', en: 'Home' },
+            'nav-guide': { ar: 'الدليل', en: 'Guide' },
+            'nav-resources': { ar: 'الموارد', en: 'Resources' },
+            'nav-members': { ar: 'الأعضاء', en: 'Members' },
+            'nav-buy': { ar: 'احجز نسختك', en: 'Pre-order' },
+            'page-title': { ar: 'شراء حزمة المرساة الرقمية', en: 'Purchase the Digital Anchor Package' },
+            'page-subtitle': { ar: 'ابدأ رحلة التحرر الرقمي الآن', en: 'Begin your journey of digital liberation now' },
+            'item-ebook': { ar: 'الكتاب الإلكتروني الكامل', en: 'The Complete E-Book' },
+            'item-ebook-desc': { ar: 'نسخة رقمية حديثة، سهلة القراءة على جميع الأجهزة.', en: 'Modern digital version, easy to read on all devices.' },
+            'item-print': { ar: 'نسخة ورقية (طلبات الحجز المسبق)', en: 'Physical Copy (Pre-order only)' },
+            'item-print-desc': { ar: 'تجربة ملموسة. سيتم شحنها بعد تاريخ الإصدار.', en: 'A tangible experience. Will be shipped after the release date.' },
+            'price-note': { ar: 'السعر لا يشمل ضريبة القيمة المضافة أو تكاليف الشحن.', en: 'Price excludes VAT or shipping costs.' },
+            'btn-checkout': { ar: 'المتابعة للدفع الآمن', en: 'Proceed to Secure Checkout' },
+            'footer-copy': { ar: '© 2025 المرساة الرقمية. جميع الحقوق محفوظة.', en: '© 2025 Digital Anchor. All Rights Reserved.' },
+            'price-original': { ar: 'السعر الأصلي', en: 'Original Price' },
+            'price-preorder': { ar: 'سعر الحجز المسبق', en: 'Pre-order Price' }
+        };
+
+        // =====================================
+        // 2. بيانات أسعار الصرف (SAR, USD, AED, EUR)
+        // =====================================
+        const EXCHANGE_RATES = {
+            'SAR': { rate: 3.75, symbol: 'ر.س', placement: 'after' },
+            'USD': { rate: 1.0, symbol: '$', placement: 'before' },    
+            'AED': { rate: 3.67, symbol: 'د.إ', placement: 'after' },
+            'EUR': { rate: 1.10, symbol: '€', placement: 'before' }   
+        };
+        const SAR_RATE = EXCHANGE_RATES['SAR'].rate; 
+        
+        // الأسعار الأساسية بالريال السعودي (SAR)
+        const BASE_PRICE_SAR = 99;
+        const ORIGINAL_PRICE_SAR = 149;
+
+        // =====================================
+        // 3. السياق والخطافات (Language Provider)
+        // =====================================
+        const LanguageContext = createContext();
+
+        function useTranslation() {
+            return useContext(LanguageContext);
+        }
+
+        function LanguageProvider({ children }) {
+            const [currentLang, setCurrentLang] = useState(localStorage.getItem('preferredLang') || 'ar');
+            const [currentCurrency, setCurrentCurrency] = useState(localStorage.getItem('preferredCurrency') || 'SAR');
+
+            useEffect(() => {
+                localStorage.setItem('preferredLang', currentLang);
+                document.documentElement.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+                document.documentElement.setAttribute('lang', currentLang);
                 
-                // محاكاة إرسال الطلب
-                setTimeout(() => {
-                    setOrderSent(true);
-                    
-                    // عرض رسالة نجاح
-                    setTimeout(() => {
-                        alert('🎉 تم إرسال طلبك بنجاح!\nسيتم التواصل معك على البريد الإلكتروني لتأكيد الدفع.');
-                    }, 100);
-                }, 500);
+                const titleKey = document.head.querySelector('title')?.getAttribute('data-key') || 'page-title';
+                document.title = ALL_TRANSLATIONS[titleKey]?.[currentLang] || ALL_TRANSLATIONS[titleKey]?.['ar'] || 'Buy Page';
+            }, [currentLang]);
+
+            const t = useMemo(() => (key) => {
+                return ALL_TRANSLATIONS[key]?.[currentLang] || ALL_TRANSLATIONS[key]?.['ar'] || `[${key}]`;
+            }, [currentLang]);
+
+            const convertPrice = (basePriceSAR) => {
+                const target = EXCHANGE_RATES[currentCurrency];
+                if (!target || isNaN(basePriceSAR)) return `${basePriceSAR} SAR`;
+
+                const priceInUSD = basePriceSAR / SAR_RATE;
+                
+                // استخدام منزلتين عشريتين لليورو والدولار، وصفر للمحلي
+                const decimalPlaces = (currentCurrency === 'SAR' || currentCurrency === 'AED') ? 0 : 2;
+                const newPrice = (priceInUSD * target.rate).toFixed(decimalPlaces); 
+                
+                const symbol = target.symbol;
+                
+                return target.placement === 'before' ? `${symbol}${newPrice}` : `${newPrice} ${symbol}`;
             };
-            
-            const handleChange = (e) => {
-                setFormData({
-                    ...formData,
-                    [e.target.name]: e.target.value
-                });
+
+            const setCurrency = (currencyCode) => {
+                setCurrentCurrency(currencyCode);
+                localStorage.setItem('preferredCurrency', currencyCode);
             };
+
+            const contextValue = {
+                t,
+                currentLang,
+                setLang: setCurrentLang,
+                currentCurrency,
+                setCurrency,
+                convertPrice,
+                EXCHANGE_RATES,
+                SAR_RATE
+            };
+
+            return (
+                <LanguageContext.Provider value={contextValue}>
+                    {children}
+                </LanguageContext.Provider>
+            );
+        }
+
+
+        // =====================================
+        // 4. مكونات الصفحة (مع تطبيق الترجمة)
+        // =====================================
+        
+        // 🚀 تم تحديث الـ NavBar ليدعم العملات واللغات
+        const NavBar = () => {
+            const { t, setLang, currentLang, currentCurrency, setCurrency, EXCHANGE_RATES } = useTranslation();
             
-            if (orderSent) {
-                return (
-                    <div className="min-h-screen flex flex-col">
-                        <Navbar />
-                        <main className="flex-grow flex items-center justify-center p-6">
-                            <div className="bg-white rounded-2xl shadow-xl p-10 max-w-md text-center">
-                                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                                    <i className="fas fa-check text-green-600 text-3xl"></i>
-                                </div>
-                                <h2 className="text-2xl font-bold text-green-700 mb-4">تم استلام طلبك!</h2>
-                                <p className="text-slate-600 mb-6">
-                                    شكراً لك <span className="font-bold">{formData.name || 'عزيزي'}</span>! 
-                                    تم إرسال تفاصيل الدفع إلى <span className="font-bold">{formData.email}</span>
-                                </p>
-                                <a 
-                                    href="index.html" 
-                                    className="inline-block bg-anchor-blue text-white px-6 py-3 rounded-lg font-bold hover:bg-slate-900 transition"
-                                >
-                                    العودة إلى الرئيسية
-                                </a>
-                            </div>
-                        </main>
-                        <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm">
-                            © 2025 المرساة الرقمية
-                        </footer>
-                    </div>
-                );
-            }
+            const availableLangs = ['ar', 'en'];
             
             return (
-                <div className="min-h-screen flex flex-col">
-                    <Navbar />
-                    <main className="max-w-4xl mx-auto p-6 grid md:grid-cols-2 gap-8 mt-10 flex-grow">
-                        <div className="bg-white p-8 rounded-xl shadow-lg h-fit">
-                            <h2 className="text-2xl font-bold text-anchor-blue mb-2">إتمام الطلب</h2>
-                            <p className="text-gray-500 mb-6">أدخل بياناتك لاستلام الحزمة الرقمية فوراً.</p>
-                            <form onSubmit={handleSubmit} className="space-y-4">
-                                <div>
-                                    <label className="block text-sm font-bold mb-2 text-slate-700">
-                                        الاسم الكامل
-                                    </label>
-                                    <input 
-                                        type="text" 
-                                        name="name"
-                                        value={formData.name}
-                                        onChange={handleChange}
-                                        className="w-full p-3 border rounded-lg bg-gray-50 outline-none focus:border-anchor-gold transition"
-                                        placeholder="أحمد محمد"
-                                        required 
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-bold mb-2 text-slate-700">
-                                        البريد الإلكتروني
-                                    </label>
-                                    <input 
-                                        type="email" 
-                                        name="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        className="w-full p-3 border rounded-lg bg-gray-50 outline-none focus:border-anchor-gold transition"
-                                        placeholder="example@email.com"
-                                        required 
-                                    />
-                                </div>
-                                <button 
-                                    type="submit"
-                                    className="w-full bg-gradient-to-r from-green-600 to-emerald-600 text-white font-bold py-4 rounded-lg hover:from-green-700 hover:to-emerald-700 transition mt-6 shadow-md"
-                                >
-                                    <i className="fas fa-lock ml-2"></i>
-                                    دفع آمن 🔒
-                                </button>
-                                <p className="text-center text-gray-500 text-sm mt-4">
-                                    ستصلك رسالة تأكيد بالدفع على بريدك الإلكتروني
-                                </p>
-                            </form>
-                        </div>
-                        <div className="bg-gradient-to-b from-gray-50 to-white p-8 rounded-xl h-fit border border-gray-200 shadow-lg">
-                            <h3 className="text-xl font-bold mb-6 text-gray-700 flex items-center gap-3">
-                                <i className="fas fa-shopping-bag text-anchor-blue"></i>
-                                ملخص الطلب
-                            </h3>
-                            <div className="space-y-4">
-                                <div className="flex justify-between items-center">
-                                    <div>
-                                        <span className="font-medium">الحزمة المتكاملة</span>
-                                        <p className="text-gray-500 text-sm">كتاب + أدوات + شهادة</p>
-                                    </div>
-                                    <span className="font-bold">375 ر.س</span>
-                                </div>
-                                <div className="flex justify-between items-center">
-                                    <div>
-                                        <span className="font-medium">الضريبة المضافة</span>
-                                        <p className="text-gray-500 text-sm">ضريبة القيمة المضافة 15%</p>
-                                    </div>
-                                    <span className="font-bold">56 ر.س</span>
-                                </div>
-                                <div className="flex justify-between items-center">
-                                    <div>
-                                        <span className="font-medium">التوصيل الرقمي</span>
-                                        <p className="text-gray-500 text-sm">فوري عبر البريد الإلكتروني</p>
-                                    </div>
-                                    <span className="font-bold text-green-600">مجاناً</span>
-                                </div>
+                <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-lg">
+                    <div className="max-w-7xl mx-auto flex justify-between items-center">
+                        <a href="index.html" className="flex items-center gap-3 group">
+                            <div className="w-10 h-10 bg-gradient-to-r from-anchor-gold to-yellow-500 rounded-lg flex items-center justify-center">
+                                <i className="fas fa-anchor text-anchor-blue text-lg"></i>
                             </div>
-                            <hr className="border-gray-300 my-6"/>
-                            <div className="flex justify-between items-center text-xl font-bold text-anchor-blue">
-                                <span>المجموع الكلي</span>
-                                <span className="text-2xl">431 ر.س</span>
+                            <div>
+                                <span className="font-bold text-lg hidden md:block">{t('site-logo')}</span>
+                            </div>
+                        </a>
+                        
+                        <div className="flex gap-4 md:gap-6 text-sm font-medium items-center">
+                            {/* 🌐 أزرار اللغة (AR/EN فقط) 🌐 */}
+                            <div className="flex items-center space-x-1 border border-gray-600 rounded-full p-1">
+                                {availableLangs.map(lang => (
+                                    <button 
+                                        key={lang}
+                                        onClick={() => setLang(lang)} 
+                                        className={`text-sm font-bold px-3 py-1 rounded-full 
+                                            ${currentLang === lang ? 'bg-white text-anchor-blue' : 'text-gray-300 hover:bg-gray-700'} transition`}
+                                    >
+                                        {lang === 'ar' ? 'ع' : 'En'}
+                                    </button>
+                                ))}
                             </div>
                             
-                            <div className="mt-8 space-y-4">
-                                <div className="flex items-start gap-3">
-                                    <i className="fas fa-bolt text-yellow-500 mt-1"></i>
-                                    <div>
-                                        <h4 className="font-bold text-sm">تسليم فوري</h4>
-                                        <p className="text-gray-500 text-xs">ستصلك الحزمة خلال دقائق</p>
+                            {/* 💵 قائمة العملة (SAR, USD, AED, EUR) 💵 */}
+                            <select 
+                                value={currentCurrency} 
+                                onChange={(e) => setCurrency(e.target.value)}
+                                className="text-anchor-blue font-medium border border-gray-300 rounded-lg p-2 transition"
+                            >
+                                {Object.keys(EXCHANGE_RATES).map(code => (
+                                    <option key={code} value={code}>
+                                        {EXCHANGE_RATES[code].symbol} ({code})
+                                    </option>
+                                ))}
+                            </select>
+
+                            <a href="index.html" className="hover:text-anchor-gold transition">{t('nav-home')}</a>
+                            <a href="book-preorder.html" className="bg-anchor-gold text-anchor-blue px-5 py-2.5 rounded-full font-bold hover:bg-yellow-400 transition shadow-lg">
+                                {t('nav-buy')}
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+            );
+        };
+
+        const BuyPage = () => {
+            const { t, convertPrice } = useTranslation();
+            const [orderSent, setOrderSent] = React.useState(false);
+            
+            // Note: The actual payment logic is handled by the form action
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                // هنا قد تضعين منطق التحقق قبل التحويل إلى صفحة الدفع
+                window.location.href = 'thank-you-preorder.html'; // تحويل مؤقت
+            };
+
+            return (
+                <div className="flex flex-col min-h-screen">
+                    <NavBar />
+
+                    <main className="flex-grow container mx-auto px-4 py-12 max-w-4xl">
+                        <header className="text-center mb-10">
+                            <h1 className="text-4xl font-extrabold text-anchor-blue mb-2">{t('page-title')}</h1>
+                            <p className="text-xl text-gray-600">{t('page-subtitle')}</p>
+                        </header>
+
+                        <div className="bg-white p-8 md:p-10 rounded-xl shadow-2xl border-t-4 border-anchor-gold">
+                            
+                            {/* Product Details */}
+                            <div className="text-center mb-8">
+                                <h2 className="text-3xl font-bold text-anchor-blue mb-4">{t('item-ebook')}</h2>
+                                <p className="text-gray-500 mb-6">{t('item-ebook-desc')}</p>
+                                
+                                {/* Pricing Section - Uses convertPrice() */}
+                                <div className="flex flex-col items-center justify-center space-y-2 mb-6">
+                                    <div className="text-sm text-gray-400 line-through">
+                                        {t('price-original')}: {convertPrice(ORIGINAL_PRICE_SAR)}
+                                    </div>
+                                    <div className="text-2xl font-semibold text-anchor-gold">
+                                        {t('price-preorder')}:
+                                    </div>
+                                    <div className="text-6xl font-extrabold text-red-600">
+                                        {convertPrice(BASE_PRICE_SAR)}
                                     </div>
                                 </div>
-                                <div className="flex items-start gap-3">
-                                    <i className="fas fa-sync-alt text-green-500 mt-1"></i>
-                                    <div>
-                                        <h4 className="font-bold text-sm">ضمان استرداد 30 يوم</h4>
-                                        <p className="text-gray-500 text-xs">استرداد كامل المبلغ إذا لم تكن راضياً</p>
-                                    </div>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                    <i className="fas fa-headset text-blue-500 mt-1"></i>
-                                    <div>
-                                        <h4 className="font-bold text-sm">دعم فني متواصل</h4>
-                                        <p className="text-gray-500 text-xs">مساعدة متاحة على مدار الساعة</p>
-                                    </div>
+                                
+                                <div className="flex flex-col gap-3 justify-center text-left text-sm text-gray-600 border-t pt-4">
+                                    <p className="flex items-start">
+                                        <i className="fas fa-check-circle text-anchor-green ml-2 mt-1"></i>
+                                        {t('item-ebook-desc')}
+                                    </p>
+                                    <p className="flex items-start">
+                                        <i className="fas fa-file-contract text-anchor-gold ml-2 mt-1"></i>
+                                        {t('item-print-desc')}
+                                    </p>
                                 </div>
                             </div>
+                            
+                            {/* Checkout Button */}
+                            <form onSubmit={handleSubmit} className="mt-8">
+                                <p className="text-center text-sm text-gray-400 mb-4">{t('price-note')}</p>
+                                <button
+                                    type="submit"
+                                    className="w-full bg-anchor-green text-white py-3 rounded-lg font-bold text-xl hover:bg-green-600 transition shadow-lg"
+                                >
+                                    {t('btn-checkout')}
+                                </button>
+                            </form>
                         </div>
                     </main>
+
                     <footer className="bg-anchor-blue text-slate-400 py-8 text-center">
                         <div className="max-w-4xl mx-auto px-6">
-                            <div className="flex flex-col md:flex-row justify-between items-center mb-6">
-                                <div className="mb-4 md:mb-0">
-                                    <h4 className="font-bold text-white mb-2">المرساة الرقمية</h4>
-                                    <p className="text-slate-300 text-sm">قيمة حقيقية في عالم رقمي</p>
-                                </div>
-                                <div>
-                                    <a href="mailto:garbaouisalma@gmail.com" className="text-anchor-gold hover:text-yellow-400 transition">
-                                        <i className="fas fa-envelope ml-2"></i>
-                                        garbaouisalma@gmail.com
-                                    </a>
-                                </div>
-                            </div>
                             <hr className="border-slate-700 mb-6"/>
                             <p className="text-sm">
-                                © 2025 المرساة الرقمية - "من أنت حين تنطفئ الشاشة؟". جميع الحقوق محفوظة.
+                                {t('footer-copy')}
                             </p>
                         </div>
                     </footer>
@@ -257,8 +278,11 @@
             );
         };
 
-        // ✅ هذا هو التصيير الصحيح مع Babel standalone
-        ReactDOM.render(<BuyPage />, document.getElementById('root'));
+        // ✅ التصيير الصحيح
+        // بما أن ملفك الأصلي استخدم ReactDOM.render، سنستخدم ReactDOM.createRoot إذا كان React 18 متاحاً
+        // (وهو متوفر حسب الروابط في رأس الملف)
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<LanguageProvider><BuyPage /></LanguageProvider>);
     </script>
 </body>
 </html>

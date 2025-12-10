@@ -30,76 +30,74 @@
         const { useState, useEffect, createContext, useContext, useMemo } = React;
 
         // =====================================
-        // 1. قاموس الترجمة والعملات (The Core Logic)
+        // 1. قاموس الترجمة (AR و EN فقط)
         // =====================================
-
-        // قاموس الترجمة (بناءً على ما أرسلتِه، مع إضافة مفاتيح الصفحة)
         const ALL_TRANSLATIONS = {
-            'site-logo': { ar: 'المرساة الرقمية', en: 'Digital Anchor', fr: 'Ancre Numérique' },
-            'nav-home': { ar: 'الرئيسية', en: 'Home', fr: 'Accueil' },
-            'nav-guide': { ar: 'الدليل', en: 'Guide', fr: 'Guide' },
-            'nav-resources': { ar: 'الموارد', en: 'Resources', fr: 'Ressources' },
-            'nav-members': { ar: 'الأعضاء', en: 'Members', fr: 'Membres' },
-            'nav-buy': { ar: 'احجز نسختك', en: 'Pre-order', fr: 'Précommander' },
-            'page-title': { ar: 'دليل البدء السريع', en: 'Quick Start Guide', fr: 'Guide de Démarrage Rapide' },
-            'page-subtitle': { ar: 'خطواتك الأولى للتحول الرقمي الواعي', en: 'Your first steps toward conscious digital transformation.', fr: 'Vos premiers pas vers la transformation numérique consciente.' },
-            'step-1-title': { ar: 'الخطوة 1: رساء القيم', en: 'Step 1: Anchor Your Values', fr: 'Étape 1: Ancrer vos Valeurs' },
-            'step-1-text-1': { ar: 'ابدأ بقراءة', en: 'Start by reading the', fr: 'Commencez par lire le' },
-            'link-emergency': { ar: 'دليل الطوارئ الرقمية', en: 'Digital Emergency Guide', fr: 'Guide d\'Urgence Numérique' },
-            'step-1-text-2': { ar: 'وتابع بوضع', en: 'and then establish your', fr: 'et puis établissez votre' },
-            'link-covenant': { ar: 'ميثاق الأسرة الرقمية', en: 'Digital Family Covenant', fr: 'Charte Familiale Numérique' },
-            'step-1-text-3': { ar: 'لضمان بيئة صحية.', en: 'to ensure a healthy environment.', fr: 'pour garantir un environnement sain.' },
-            'step-2-title': { ar: 'الخطوة 2: تتبع التقدم', en: 'Step 2: Track Progress', fr: 'Étape 2: Suivre les Progrès' },
-            'step-2-li-1': { ar: 'استخدم جداول تتبع النوم والشاشة (المتوفرة في قسم الموارد).', en: 'Use the Sleep and Screen tracking tables (available in the Resources section).', fr: 'Utilisez les tableaux de suivi du sommeil et de l\'écran (disponibles dans la section Ressources).' },
-            'step-2-li-2': { ar: 'اكتب يومياً قيمة واحدة طبقتها اليوم وكيف أثرت على تركيزك.', en: 'Daily write one value you applied and how it affected your focus.', fr: 'Écrivez quotidiennement une valeur que vous avez appliquée et comment elle a affecté votre concentration.' },
-            'footer-copy': { ar: '© 2025 المرساة الرقمية. جميع الحقوق محفوظة.', en: '© 2025 Digital Anchor. All Rights Reserved.', fr: '© 2025 Ancre Numérique. Tous droits réservés.' }
+            'site-logo': { ar: 'المرساة الرقمية', en: 'Digital Anchor' },
+            'nav-home': { ar: 'الرئيسية', en: 'Home' },
+            'nav-guide': { ar: 'الدليل', en: 'Guide' },
+            'nav-resources': { ar: 'الموارد', en: 'Resources' },
+            'nav-members': { ar: 'الأعضاء', en: 'Members' },
+            'nav-buy': { ar: 'احجز نسختك', en: 'Pre-order' },
+            'page-title': { ar: 'دليل البدء السريع', en: 'Quick Start Guide' },
+            'page-subtitle': { ar: 'خطواتك الأولى للتحول الرقمي الواعي', en: 'Your first steps toward conscious digital transformation.' },
+            'step-1-title': { ar: 'الخطوة 1: رساء القيم', en: 'Step 1: Anchor Your Values' },
+            'step-1-text-1': { ar: 'ابدأ بقراءة', en: 'Start by reading the' },
+            'link-emergency': { ar: 'دليل الطوارئ الرقمية', en: 'Digital Emergency Guide' },
+            'step-1-text-2': { ar: 'وتابع بوضع', en: 'and then establish your' },
+            'link-covenant': { ar: 'ميثاق الأسرة الرقمية', en: 'Digital Family Covenant' },
+            'step-1-text-3': { ar: 'لضمان بيئة صحية.', en: 'to ensure a healthy environment.' },
+            'step-2-title': { ar: 'الخطوة 2: تتبع التقدم', en: 'Step 2: Track Progress' },
+            'step-2-li-1': { ar: 'استخدم جداول تتبع النوم والشاشة (المتوفرة في قسم الموارد).', en: 'Use the Sleep and Screen tracking tables (available in the Resources section).'},
+            'step-2-li-2': { ar: 'اكتب يومياً قيمة واحدة طبقتها اليوم وكيف أثرت على تركيزك.', en: 'Daily write one value you applied and how it affected your focus.' },
+            'footer-copy': { ar: '© 2025 المرساة الرقمية. جميع الحقوق محفوظة.', en: '© 2025 Digital Anchor. All Rights Reserved.' }
         };
 
-        // بيانات أسعار الصرف
+        // =====================================
+        // 2. بيانات أسعار الصرف (مع اليورو EUR)
+        // =====================================
         const EXCHANGE_RATES = {
             'SAR': { rate: 3.75, symbol: 'ر.س', placement: 'after' },
             'USD': { rate: 1.0, symbol: '$', placement: 'before' },    
-            'AED': { rate: 3.67, symbol: 'د.إ', placement: 'after' }  
+            'AED': { rate: 3.67, symbol: 'د.إ', placement: 'after' },
+            'EUR': { rate: 1.10, symbol: '€', placement: 'before' }   
         };
         const SAR_RATE = EXCHANGE_RATES['SAR'].rate; 
 
-        // السياق (Context)
+        // =====================================
+        // 3. السياق والخطافات (Language Provider)
+        // =====================================
         const LanguageContext = createContext();
 
-        // Hook لاستخدام دالة الترجمة t()
         function useTranslation() {
             return useContext(LanguageContext);
         }
 
-        // مكوّن المزوّد (Provider Component)
         function LanguageProvider({ children }) {
-            // اللغة الافتراضية 'ar'
             const [currentLang, setCurrentLang] = useState(localStorage.getItem('preferredLang') || 'ar');
             const [currentCurrency, setCurrentCurrency] = useState(localStorage.getItem('preferredCurrency') || 'SAR');
 
-            // تأثير (Effect) لتغيير اتجاه الصفحة بناءً على اللغة
             useEffect(() => {
                 localStorage.setItem('preferredLang', currentLang);
                 document.documentElement.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
                 document.documentElement.setAttribute('lang', currentLang);
-                // تحديث عنوان الصفحة ديناميكياً
-                const titleKey = document.head.querySelector('title').getAttribute('data-key') || 'page-title';
-                document.title = ALL_TRANSLATIONS[titleKey]?.[currentLang] || ALL_TRANSLATIONS[titleKey]?.['ar'] || 'Guide';
+                
+                const titleKey = document.head.querySelector('title')?.getAttribute('data-key') || 'page-title';
+                document.title = ALL_TRANSLATIONS[titleKey]?.[currentLang] || ALL_TRANSLATIONS[titleKey]?.['ar'] || 'Digital Anchor';
             }, [currentLang]);
 
-            // 🖋️ دالة الترجمة t()
             const t = useMemo(() => (key) => {
-                // يعرض الترجمة للغة الحالية، أو العربية كخيار احتياطي، أو المفتاح نفسه
                 return ALL_TRANSLATIONS[key]?.[currentLang] || ALL_TRANSLATIONS[key]?.['ar'] || `[${key}]`;
             }, [currentLang]);
 
-            // 💵 دالة تحويل العملة
             const convertPrice = (basePriceSAR) => {
                 const target = EXCHANGE_RATES[currentCurrency];
                 if (!target || isNaN(basePriceSAR)) return `${basePriceSAR} SAR`;
 
                 const priceInUSD = basePriceSAR / SAR_RATE;
-                const newPrice = (priceInUSD * target.rate).toFixed(0); 
+                
+                const decimalPlaces = (currentCurrency === 'SAR' || currentCurrency === 'AED') ? 0 : 2;
+                const newPrice = (priceInUSD * target.rate).toFixed(decimalPlaces); 
                 
                 const symbol = target.symbol;
                 
@@ -129,16 +127,13 @@
             );
         }
 
-
         // =====================================
-        // 2. المكوّنات الخاصة بالصفحة
+        // 4. مكون NavBar الموحد (AR/EN + 4 Currencies)
         // =====================================
-
         const NavBar = () => {
             const { t, setLang, currentLang, currentCurrency, setCurrency, EXCHANGE_RATES } = useTranslation();
             
-            // قائمة اللغات المتاحة للزراير
-            const availableLangs = ['ar', 'en', 'fr'];
+            const availableLangs = ['ar', 'en'];
             
             return (
                 <nav className="bg-white shadow-md sticky top-0 z-50">
@@ -149,20 +144,21 @@
                         </div>
                         
                         <div className="flex items-center space-x-6">
-                            {/* 🌐 أزرار اللغة 🌐 */}
+                            {/* 🌐 أزرار اللغة (AR/EN فقط) 🌐 */}
                             <div className="flex items-center space-x-1 border border-gray-300 rounded-full p-1">
                                 {availableLangs.map(lang => (
                                     <button 
                                         key={lang}
                                         onClick={() => setLang(lang)} 
-                                        className={`text-sm font-bold px-3 py-1 rounded-full ${currentLang === lang ? 'bg-anchor-blue text-white' : 'text-gray-700 hover:bg-gray-100'} transition`}
+                                        className={`text-sm font-bold px-3 py-1 rounded-full 
+                                            ${currentLang === lang ? 'bg-anchor-blue text-white' : 'text-gray-700 hover:bg-gray-100'} transition`}
                                     >
-                                        {lang.toUpperCase()}
+                                        {lang === 'ar' ? 'ع' : 'En'}
                                     </button>
                                 ))}
                             </div>
                             
-                            {/* 💵 قائمة العملة 💵 */}
+                            {/* 💵 قائمة العملة (SAR, USD, AED, EUR) 💵 */}
                             <select 
                                 value={currentCurrency} 
                                 onChange={(e) => setCurrency(e.target.value)}
@@ -187,7 +183,6 @@
             );
         };
         
-        // المكون الرئيسي للصفحة
         const GuidePage = () => {
             const { t } = useTranslation();
 
@@ -206,7 +201,7 @@
                             {/* Step 1 */}
                             <section className="bg-white p-6 rounded-xl shadow-lg border-t-4 border-anchor-gold">
                                 <h2 className="text-2xl font-bold text-anchor-blue mb-3 flex items-center">
-                                    <span className="text-anchor-gold mr-3">1.</span> {t('step-1-title')}
+                                    <span className="text-anchor-gold ml-3">1.</span> {t('step-1-title')}
                                 </h2>
                                 <ul className="list-disc pl-5 space-y-3 text-gray-700 text-lg">
                                     <li>
@@ -220,4 +215,26 @@
                             
                             {/* Step 2 */}
                             <section className="bg-white p-6 rounded-xl shadow-lg border-t-4 border-anchor-blue">
-                                <h
+                                <h2 className="text-2xl font-bold text-anchor-blue mb-3 flex items-center">
+                                    <span className="text-anchor-blue ml-3">2.</span> {t('step-2-title')}
+                                </h2>
+                                <ul className="list-disc pl-5 space-y-3 text-gray-700 text-lg">
+                                    <li>{t('step-2-li-1')}</li>
+                                    <li>{t('step-2-li-2')}</li>
+                                </ul>
+                            </section>
+                        </div>
+                    </main>
+                    
+                    <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm border-t border-slate-800 mt-auto">
+                        {t('footer-copy')}
+                    </footer>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<LanguageProvider><GuidePage /></LanguageProvider>);
+    </script>
+</body>
+</html>
