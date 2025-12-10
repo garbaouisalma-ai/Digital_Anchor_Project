@@ -3,287 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شكراً لطلبك | المرساة الرقمية</title>
+    <title data-key="thankyou_title">شكراً لطلبك | المرساة الرقمية</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJZHN8FQQ2"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HJZHN8FQQ2');</script>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { 
-                        'anchor-blue': '#1a202c', 
-                        'anchor-gold': '#ffd700',
-                        'anchor-green': '#059669'
-                    },
-                    fontFamily: { 
-                        sans: ['Tajawal', 'sans-serif'], 
-                        serif: ['Amiri', 'serif'] 
-                    },
-                    animation: {
-                        'confetti': 'confetti 5s ease-in-out infinite',
-                        'pulse-slow': 'pulse 3s ease-in-out infinite',
-                        'float': 'float 6s ease-in-out infinite'
-                    },
-                    keyframes: {
-                        confetti: {
-                            '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
-                            '25%': { transform: 'translateY(-20px) rotate(90deg)' },
-                            '50%': { transform: 'translateY(0) rotate(180deg)' },
-                            '75%': { transform: 'translateY(20px) rotate(270deg)' }
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
-                            '50%': { transform: 'translateY(-10px) rotate(3deg)' }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; }</style>
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans">
-    <div id="root"></div>
-    <script type="text/babel">
+<body class="text-slate-900 flex flex-col min-h-screen">
 
-        // ----------------------------------------------------
-        // الكود المشترك للغة والعملة (Language/Currency Logic)
-        // ----------------------------------------------------
-        
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="logo.png" width="40" class="rounded-lg">
+                <span class="text-xl font-bold" data-key="site_name">المرساة الرقمية</span>
+            </a>
+            <select id="lang-select" onchange="setLanguage(this.value)" class="text-xs border border-gray-300 rounded p-1 bg-white">
+                <option value="ar">عربي</option>
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+            </select>
+        </div>
+    </nav>
+
+    <main class="flex-grow container mx-auto px-4 py-12 max-w-3xl">
+        <div class="bg-white p-8 md:p-12 rounded-2xl shadow-2xl border-t-8 border-green-500 text-center">
+            <i class="fas fa-check-circle text-6xl text-green-500 mb-6 animate-bounce"></i>
+            <h1 class="text-3xl font-bold text-slate-800 mb-2" data-key="thanks_header">تم تأكيد طلبك بنجاح!</h1>
+            <p class="text-slate-600 mb-8" data-key="thanks_subtitle">شكراً لكونك جزءاً من عائلة المرساة الرقمية. سنرسل لك تفاصيل الدخول عبر البريد الإلكتروني قريباً.</p>
+            
+            <div class="bg-blue-50 p-6 rounded-xl text-right mb-8 border border-blue-100">
+                <h2 class="text-lg font-bold text-slate-800 mb-4 border-b pb-2" data-key="gift_title">هدية الحجز المسبق:</h2>
+                <p class="text-slate-700 flex items-center gap-2">
+                    <i class="fas fa-gift text-yellow-500"></i>
+                    <span data-key="gift_desc">وصول فوري ومجاني لأداة تحديد القيم.</span>
+                </p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="tool-value.html" class="bg-yellow-500 text-slate-900 px-8 py-3 rounded-lg font-bold hover:bg-yellow-400 transition shadow-md">
+                    <i class="fas fa-brain ml-2"></i> <span data-key="btn_tool">جرب الأداة الآن</span>
+                </a>
+                <a href="index.html" class="bg-slate-200 text-slate-600 px-8 py-3 rounded-lg font-bold hover:bg-slate-300 transition">
+                    <span data-key="btn_home">العودة للرئيسية</span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-auto"><p class="text-sm">© 2025 Digital Anchor Project.</p></footer>
+
+    <script>
         const translations = {
-            ar: {
-                'lang_ar': 'العربية', 'lang_en': 'English', 'lang_fr': 'Français',
-                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
-                'home': 'الرئيسية',
-                'guide': 'الدليل',
-                'app_name': 'المرساة الرقمية',
-                'thankyou_title': 'شكراً لطلبك',
-                'footer-copy': '© 2025 المرساة الرقمية - "من أنت حين تنطفئ الشاشة؟". جميع الحقوق محفوظة.',
-                
-                'thanks-header': 'تم تأكيد حجزك بنجاح!',
-                'thanks-subtitle': 'شكراً لكونك جزءاً من عائلة المرساة الرقمية. سنرسل لك تفاصيل إضافية قريباً.',
-                'order-details': 'تفاصيل طلبك:',
-                'order-id': 'رقم الطلب:',
-                'order-price': 'المبلغ المدفوع:',
-                'pre-order-gift': 'هدية الحجز المسبق:',
-                'gift-desc': 'وصول فوري إلى أداة تحديد القيمة الجوهرية (لتجربة مجانية).',
-                'btn-home': 'العودة إلى الرئيسية',
-                'btn-tool': 'بدء استخدام الأداة الآن',
+            'ar': {
+                'site_name': 'المرساة الرقمية', 'thankyou_title': 'شكراً لطلبك',
+                'thanks_header': 'تم تأكيد طلبك بنجاح!', 'thanks_subtitle': 'شكراً لكونك جزءاً من عائلة المرساة الرقمية. سنرسل لك تفاصيل الدخول عبر البريد الإلكتروني قريباً.',
+                'gift_title': 'هدية الحجز المسبق:', 'gift_desc': 'وصول فوري ومجاني لأداة تحديد القيم.',
+                'btn_tool': 'جرب الأداة الآن', 'btn_home': 'العودة للرئيسية'
             },
-            en: {
-                'lang_ar': 'Arabic', 'lang_en': 'English', 'lang_fr': 'French',
-                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
-                'home': 'Home',
-                'guide': 'Guide',
-                'app_name': 'Digital Anchor',
-                'thankyou_title': 'Thank You for Your Order',
-                'footer-copy': '© 2025 Digital Anchor - "Who are you when the screen turns off?". All rights reserved.',
-
-                'thanks-header': 'Your Pre-Order is Confirmed!',
-                'thanks-subtitle': 'Thank you for being part of the Digital Anchor family. We will send you further details soon.',
-                'order-details': 'Your Order Details:',
-                'order-id': 'Order ID:',
-                'order-price': 'Amount Paid:',
-                'pre-order-gift': 'Pre-Order Gift:',
-                'gift-desc': 'Immediate access to the Core Value Identification Tool (for a free trial).',
-                'btn-home': 'Return to Home',
-                'btn-tool': 'Start Using the Tool Now',
+            'en': {
+                'site_name': 'Digital Anchor', 'thankyou_title': 'Thank You',
+                'thanks_header': 'Order Confirmed!', 'thanks_subtitle': 'Thank you for joining the Digital Anchor family. We will send you login details via email shortly.',
+                'gift_title': 'Pre-order Gift:', 'gift_desc': 'Instant free access to the Values Tool.',
+                'btn_tool': 'Try Tool Now', 'btn_home': 'Back to Home'
             },
-            fr: {
-                'lang_ar': 'Arabe', 'lang_en': 'Anglais', 'lang_fr': 'Français',
-                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
-                'home': 'Accueil',
-                'guide': 'Guide',
-                'app_name': 'Ancre Numérique',
-                'thankyou_title': 'Merci pour votre commande',
-                'footer-copy': '© 2025 Ancre Numérique - "Qui êtes-vous lorsque l\'écran s\'éteint?". Tous droits réservés.',
-
-                'thanks-header': 'Votre Précommande est Confirmée !',
-                'thanks-subtitle': 'Merci de faire partie de la famille Digital Anchor. Nous vous enverrons plus de détails prochainement.',
-                'order-details': 'Détails de votre commande :',
-                'order-id': 'Numéro de commande :',
-                'order-price': 'Montant payé :',
-                'pre-order-gift': 'Cadeau de précommande :',
-                'gift-desc': 'Accès immédiat à l\'Outil d\'Identification des Valeurs Fondamentales (pour un essai gratuit).',
-                'btn-home': 'Retour à l\'Accueil',
-                'btn-tool': 'Commencer à utiliser l\'outil maintenant',
+            'fr': {
+                'site_name': 'L\'Ancre Numérique', 'thankyou_title': 'Merci',
+                'thanks_header': 'Commande Confirmée !', 'thanks_subtitle': 'Merci de rejoindre la famille. Nous vous enverrons les détails par email bientôt.',
+                'gift_title': 'Cadeau de précommande :', 'gift_desc': 'Accès gratuit immédiat à l\'outil de valeurs.',
+                'btn_tool': 'Essayer l\'outil', 'btn_home': 'Retour Accueil'
             },
+            'de': {
+                'site_name': 'Der Digitale Anker', 'thankyou_title': 'Danke',
+                'thanks_header': 'Bestellung Bestätigt!', 'thanks_subtitle': 'Danke, dass Sie Teil der Familie sind. Wir senden Ihnen bald Details per E-Mail.',
+                'gift_title': 'Vorbestellungsgeschenk:', 'gift_desc': 'Sofortiger kostenloser Zugang zum Werte-Tool.',
+                'btn_tool': 'Tool jetzt testen', 'btn_home': 'Zurück zur Startseite'
+            }
         };
 
-        const LanguageContext = React.createContext();
-        const LanguageProvider = ({ children }) => {
-            const [language, setLanguage] = React.useState('ar');
-            const [currency, setCurrency] = React.useState('USD');
-            const t = (key) => translations[language]?.[key] || key;
-            React.useEffect(() => {
-                document.documentElement.lang = language;
-                document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
-            }, [language]);
-            return (
-                <LanguageContext.Provider value={{ language, setLanguage, currency, setCurrency, t }}>
-                    {children}
-                </LanguageContext.Provider>
-            );
-        };
-        const useTranslation = () => React.useContext(LanguageContext);
+        function setLanguage(lang) {
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[lang][key]) el.textContent = translations[lang][key];
+            });
+            localStorage.setItem('preferredLang', lang);
+        }
 
-        const LanguageCurrencySwitcher = () => {
-            const { language, setLanguage, currency, setCurrency, t } = useTranslation();
-            const handleLanguageChange = (e) => setLanguage(e.target.value);
-            const handleCurrencyChange = (e) => setCurrency(e.target.value);
-            return (
-                <div className="flex items-center gap-3">
-                    <div className="relative text-white"> 
-                        <select 
-                            value={language} 
-                            onChange={handleLanguageChange} 
-                            className="appearance-none bg-anchor-blue border border-gray-600 rounded-lg py-1 pl-6 pr-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-anchor-gold cursor-pointer"
-                        >
-                            <option value="ar">{t('lang_ar')}</option>
-                            <option value="en">{t('lang_en')}</option>
-                            <option value="fr">{t('lang_fr')}</option>
-                        </select>
-                        <i className="fas fa-caret-down absolute top-1/2 right-2 transform -translate-y-1/2 pointer-events-none text-gray-400"></i>
-                    </div>
-                    <div className="relative text-white">
-                        <select 
-                            value={currency} 
-                            onChange={handleCurrencyChange} 
-                            className="appearance-none bg-anchor-blue border border-gray-600 rounded-lg py-1 pl-6 pr-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-anchor-gold cursor-pointer"
-                        >
-                            <option value="USD">{t('curr_usd')}</option>
-                            <option value="EUR">{t('curr_eur')}</option>
-                            <option value="SAR">{t('curr_sar')}</option>
-                        </select>
-                        <i className="fas fa-caret-down absolute top-1/2 right-2 transform -translate-y-1/2 pointer-events-none text-gray-400"></i>
-                    </div>
-                </div>
-            );
-        };
-
-        const Navbar = () => {
-            const { t } = useTranslation(); 
-            return (
-                <nav className="bg-anchor-blue text-white py-4 px-6 shadow-lg">
-                    <div className="max-w-7xl mx-auto flex justify-between items-center">
-                        <a href="index.html" className="flex items-center gap-3 group">
-                            <div className="w-10 h-10 bg-gradient-to-r from-anchor-gold to-yellow-500 rounded-lg flex items-center justify-center transition-transform group-hover:scale-110">
-                                <i className="fas fa-anchor text-white text-lg"></i>
-                            </div>
-                            <div>
-                                <span className="font-bold text-lg hidden md:block">{t('app_name')}</span> 
-                                <span className="text-xs text-slate-300 block">{t('thankyou_title')}</span>
-                            </div>
-                        </a>
-                        
-                        <div className="flex gap-4 md:gap-6 text-sm font-medium items-center">
-                            <a href="index.html" className="hover:text-anchor-gold transition flex items-center gap-2">
-                                <i className="fas fa-home"></i>
-                                <span className="hidden md:inline">{t('home')}</span>
-                            </a>
-                            <a href="guide.html" className="hover:text-anchor-gold transition hidden sm:flex items-center gap-2">
-                                <i className="fas fa-book-open"></i>
-                                <span>{t('guide')}</span>
-                            </a>
-                            <LanguageCurrencySwitcher />
-                        </div>
-                    </div>
-                </nav>
-            );
-        };
-
-        const ThankYouPage = () => {
-            const { t, currency } = useTranslation();
-            return (
-                <div className="min-h-screen flex flex-col">
-                    <Navbar />
-                    <main className="flex-grow max-w-4xl mx-auto p-6 lg:p-12 w-full">
-                        <div className="bg-white p-8 md:p-12 rounded-2xl shadow-2xl border-t-8 border-anchor-green text-center">
-                            <i className="fas fa-check-circle text-6xl text-anchor-green mb-4 animate-pulse-slow"></i>
-                            <h1 className="text-3xl font-bold text-anchor-blue mb-2">{t('thanks-header')}</h1>
-                            <p className="text-gray-600 mb-8">{t('thanks-subtitle')}</p>
-                            
-                            {/* Order Details */}
-                            <div className="bg-green-50 p-6 rounded-lg text-right mb-8">
-                                <h2 className="text-xl font-bold text-anchor-green mb-4 border-b border-green-200 pb-2">{t('order-details')}</h2>
-                                <div className="space-y-3 text-gray-700">
-                                    <p className="flex justify-between items-center">
-                                        <span className="font-medium text-anchor-blue">{t('order-id')}</span>
-                                        <span>#123456789</span>
-                                    </p>
-                                    <p className="flex justify-between items-center">
-                                        <span className="font-medium text-anchor-blue">{t('order-price')}</span>
-                                        <span className="font-bold text-anchor-green">19.99 {currency}</span>
-                                    </p>
-                                </div>
-                            </div>
-
-                            {/* Pre-order Gift */}
-                            <div className="bg-anchor-blue text-white p-6 rounded-lg text-right mb-8 relative overflow-hidden">
-                                <i className="fas fa-gift text-4xl text-anchor-gold absolute left-4 top-1/2 transform -translate-y-1/2 animate-float"></i>
-                                <h2 className="text-xl font-bold text-anchor-gold mb-2 border-b border-yellow-800 pb-2">{t('pre-order-gift')}</h2>
-                                <p className="text-slate-300">{t('gift-desc')}</p>
-                            </div>
-
-                            {/* Action Buttons */}
-                            <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-                                <a href="index.html" className="bg-anchor-blue text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-800 transition shadow-md">
-                                    <i className="fas fa-home ml-2"></i>
-                                    {t('btn-home')}
-                                </a>
-                                <a href="tool-value.html" className="bg-anchor-gold text-anchor-blue px-8 py-3 rounded-lg font-bold hover:bg-yellow-400 transition shadow-md">
-                                    <i className="fas fa-brain ml-2"></i>
-                                    {t('btn-tool')}
-                                </a>
-                            </div>
-                        </div>
-                    </main>
-                    
-                    <footer className="bg-anchor-blue text-slate-400 py-8 text-center border-t border-slate-800 mt-auto">
-                        <div className="max-w-4xl mx-auto px-6">
-                            <div className="flex flex-col md:flex-row justify-between items-center mb-6">
-                                <div className="mb-4 md:mb-0">
-                                    <div className="flex items-center justify-center md:justify-start gap-3">
-                                        <div className="w-10 h-10 bg-anchor-gold rounded-full flex items-center justify-center">
-                                            <i className="fas fa-anchor text-anchor-blue text-lg"></i>
-                                        </div>
-                                        <div>
-                                            <h3 className="font-bold text-white text-lg">{t('app_name')}</h3>
-                                            <p className="text-slate-300 text-sm">قيمة حقيقية في عالم رقمي</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="text-center">
-                                    <h4 className="font-bold mb-3">تواصل معنا</h4>
-                                    <div className="flex flex-col gap-2 text-slate-300">
-                                        <a href="mailto:garbaouisalma@gmail.com" className="hover:text-anchor-gold transition">
-                                            <i className="fas fa-envelope mr-2"></i>
-                                            garbaouisalma@gmail.com
-                                        </a>
-                                        <p className="text-sm">الدعم متاح يومياً 9 صباحاً - 5 مساءً</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <hr className="border-slate-700 my-6" />
-                            
-                            <div className="text-center text-slate-400 text-sm">
-                                <p>{t('footer-copy')}</p>
-                                <p className="mt-2">تم تصميم هذه الصفحة بعناية لضمان تجربة مستخدم استثنائية.</p>
-                            </div>
-                        </div>
-                    </footer>
-                </div>
-            );
-        };
-
-        ReactDOM.render(<LanguageProvider><ThankYouPage /></LanguageProvider>, document.getElementById('root'));
+        document.addEventListener('DOMContentLoaded', () => {
+            const defaultLang = localStorage.getItem('preferredLang') || 'ar';
+            document.getElementById('lang-select').value = defaultLang;
+            setLanguage(defaultLang);
+        });
     </script>
 </body>
 </html>

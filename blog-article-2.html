@@ -3,287 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عهد التحرر والقيادة | المرساة الرقمية</title>
+    <title>قصة نجاح: سارة | المرساة الرقمية</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJZHN8FQQ2"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HJZHN8FQQ2');</script>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { 
-                        'anchor-blue': '#0f172a', 
-                        'anchor-gold': '#d4af37',
-                        'anchor-green': '#059669',
-                        'anchor-red': '#dc2626'
-                    },
-                    fontFamily: { 
-                        sans: ['Tajawal', 'sans-serif'], 
-                        serif: ['Amiri', 'serif'] 
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    
-    <style>
-        /* الأنماط هنا (إن وجدت) */
-        @media print {
-            .no-print {
-                display: none !important;
-            }
-            body {
-                background: white;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; }</style>
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans">
-    <div id="root"></div>
-    <script type="text/babel">
+<body class="text-slate-900 flex flex-col min-h-screen">
 
-        // ----------------------------------------------------
-        // الكود المشترك للغة والعملة (Language/Currency Logic)
-        // ----------------------------------------------------
-        
-        const translations = {
-            ar: {
-                'lang_ar': 'العربية', 'lang_en': 'English', 'lang_fr': 'Français',
-                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
-                'home': 'الرئيسية',
-                'stories_title': 'قصص النجاح الملهمة', 
-                'covenant_title': 'عهد التحرر والقيادة', 
-                'app_name': 'المرساة الرقمية',
-                'guide': 'الدليل',
-                'buy_book': 'الشراء',
-                'footer-copy': '© 2025 المرساة الرقمية - "من أنت حين تنطفئ الشاشة؟". جميع الحقوق محفوظة.',
-            },
-            en: {
-                'lang_ar': 'Arabic', 'lang_en': 'English', 'lang_fr': 'French',
-                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
-                'home': 'Home',
-                'stories_title': 'Inspiring Success Stories',
-                'covenant_title': 'Pledge of Liberation and Leadership',
-                'app_name': 'Digital Anchor',
-                'guide': 'Guide',
-                'buy_book': 'Purchase',
-                'footer-copy': '© 2025 Digital Anchor - "Who are you when the screen turns off?". All rights reserved.',
-            },
-            fr: {
-                'lang_ar': 'Arabe', 'lang_en': 'Anglais', 'lang_fr': 'Français',
-                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
-                'home': 'Accueil',
-                'stories_title': 'Histoires de Succès Inspirantes',
-                'covenant_title': 'Engagement de Libération et de Leadership',
-                'app_name': 'Ancre Numérique',
-                'guide': 'Guide',
-                'buy_book': 'Acheter',
-                'footer-copy': '© 2025 Ancre Numérique - "Qui êtes-vous lorsque l\'écran s\'éteint?". Tous droits réservés.',
-            },
-        };
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="logo.png" width="40" class="rounded-lg">
+                <span class="text-xl font-bold">المرساة الرقمية</span>
+            </a>
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="text-sm font-bold text-gray-500 hover:text-blue-900">الرئيسية</a>
+                <a href="buy.html" class="bg-yellow-500 text-slate-900 px-4 py-2 rounded-lg font-bold hover:bg-yellow-400 text-sm">احجز نسختك</a>
+            </div>
+        </div>
+    </nav>
 
-        const LanguageContext = React.createContext();
-
-        const LanguageProvider = ({ children }) => {
-            const [language, setLanguage] = React.useState('ar');
-            const [currency, setCurrency] = React.useState('USD');
-            const t = (key) => translations[language]?.[key] || key;
-
-            React.useEffect(() => {
-                document.documentElement.lang = language;
-                document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
-            }, [language]);
-
-            return (
-                <LanguageContext.Provider value={{ language, setLanguage, currency, setCurrency, t }}>
-                    {children}
-                </LanguageContext.Provider>
-            );
-        };
-
-        const useTranslation = () => React.useContext(LanguageContext);
-
-        const LanguageCurrencySwitcher = () => {
-            const { language, setLanguage, currency, setCurrency, t } = useTranslation();
-
-            const handleLanguageChange = (e) => setLanguage(e.target.value);
-            const handleCurrencyChange = (e) => setCurrency(e.target.value);
-
-            return (
-                <div className="flex items-center gap-3">
-                    <div className="relative text-white"> 
-                        <select 
-                            value={language} 
-                            onChange={handleLanguageChange} 
-                            className="appearance-none bg-anchor-blue border border-gray-600 rounded-lg py-1 pl-6 pr-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-anchor-gold cursor-pointer"
-                        >
-                            <option value="ar">{t('lang_ar')}</option>
-                            <option value="en">{t('lang_en')}</option>
-                            <option value="fr">{t('lang_fr')}</option>
-                        </select>
-                        <i className="fas fa-caret-down absolute top-1/2 right-2 transform -translate-y-1/2 pointer-events-none text-gray-400"></i>
-                    </div>
-                    
-                    <div className="relative text-white">
-                        <select 
-                            value={currency} 
-                            onChange={handleCurrencyChange} 
-                            className="appearance-none bg-anchor-blue border border-gray-600 rounded-lg py-1 pl-6 pr-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-anchor-gold cursor-pointer"
-                        >
-                            <option value="USD">{t('curr_usd')}</option>
-                            <option value="EUR">{t('curr_eur')}</option>
-                            <option value="SAR">{t('curr_sar')}</option>
-                        </select>
-                        <i className="fas fa-caret-down absolute top-1/2 right-2 transform -translate-y-1/2 pointer-events-none text-gray-400"></i>
-                    </div>
+    <main class="flex-grow container mx-auto px-4 py-12 max-w-3xl">
+        <article class="bg-white p-8 md:p-12 rounded-2xl shadow-xl border border-gray-100">
+            <header class="mb-8 border-b pb-4 border-yellow-500">
+                <h1 class="text-3xl font-bold text-slate-800 mb-2">قصة نجاح: كيف استعادت سارة 5 ساعات يومياً؟</h1>
+                <p class="text-gray-500 text-sm">نشر في 10 ديسمبر 2025 | قصص ملهمة</p>
+            </header>
+            
+            <div class="prose prose-lg text-slate-700 leading-relaxed">
+                <p class="mb-4">هذه قصة سارة، مهندسة برمجيات كانت ضحية لدوامة وسائل التواصل الاجتماعي. كانت تقضي 8 ساعات يومياً في تصفح تطبيقات لا تضيف أي قيمة لحياتها.</p>
+                
+                <h2 class="text-2xl font-bold text-slate-800 mt-8 mb-4">نقطة التحول: اكتشاف القيمة</h2>
+                <p class="mb-4">عندما قررت سارة تطبيق مبادئ المرساة الرقمية، بدأت بأداة تحديد القيمة الجوهرية. اكتشفت أن قيمتها الحقيقية تكمن في **التركيز** و **الإبداع**.</p>
+                
+                <blockquote class="border-r-4 border-yellow-500 pr-4 my-6 italic text-slate-600 bg-yellow-50 p-4 rounded-l-lg">
+                    "لم أكن أدرك كم كنت أُهدر من وقتي وطاقتي. عندما ربطت وقتي بقيمي، أصبح 'إطفاء الشاشة' تحريراً وليس حرماناً."
+                </blockquote>
+                
+                <h2 class="text-2xl font-bold text-slate-800 mt-8 mb-4">النتائج الملموسة</h2>
+                <p class="mb-4">في غضون شهرين، انخفض وقتها على الشاشات إلى 3 ساعات يومياً. استغلت الـ 5 ساعات الإضافية في تطوير هوايتها في الرسم الرقمي، وحققت أول دخل لها.</p>
+                
+                <div class="text-center bg-slate-50 p-6 rounded-xl border border-slate-200 mt-8">
+                    <p class="mb-4 font-bold text-slate-800">هل تريد تحقيق نفس النتائج؟</p>
+                    <a href="Pledge_Paper.pdf" target="_blank" class="inline-block bg-slate-900 text-white px-8 py-3 rounded-lg font-bold hover:bg-slate-800 transition shadow-lg">
+                        <i class="fas fa-scroll ml-2"></i> وقّع عهد التحرر الآن
+                    </a>
                 </div>
-            );
-        };
+            </div>
+        </article>
+    </main>
 
-        // ----------------------------------------------------
-        // مكونات الصفحة
-        // ----------------------------------------------------
-        
-        const { useState } = React;
-
-        const CovenantPage = () => {
-            const [name, setName] = useState('');
-            const [date, setDate] = useState('');
-            const [isSigned, setIsSigned] = useState(false);
-            const { t } = useTranslation();
-
-            const handleSign = () => {
-                if (name.trim() && date.trim()) {
-                    setIsSigned(true);
-                } else {
-                    alert("يرجى إدخال الاسم والتاريخ للتوقيع على العهد.");
-                }
-            };
-        
-            return (
-                <div className="min-h-screen flex flex-col bg-slate-100 font-sans">
-                    <header className="bg-anchor-blue text-white py-4 shadow-xl no-print">
-                        <div className="max-w-5xl mx-auto px-6 flex justify-between items-center">
-                            <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 bg-anchor-gold rounded-full flex items-center justify-center">
-                                    <i className="fas fa-scroll text-anchor-blue text-lg"></i>
-                                </div>
-                                <h1 className="text-lg font-bold">{t('covenant_title')}</h1>
-                            </div>
-                            
-                            <LanguageCurrencySwitcher />
-                        </div>
-                    </header>
-        
-                    <main className="flex-grow max-w-5xl mx-auto p-6 w-full print-area">
-                        <div className={`bg-white p-8 md:p-12 rounded-xl shadow-2xl border-t-8 ${isSigned ? 'border-anchor-green' : 'border-anchor-red'}`}>
-                            <div className="text-center mb-10">
-                                <h2 className="text-3xl md:text-4xl font-serif font-bold text-anchor-blue mb-2">{t('covenant_title')}</h2>
-                                <p className="text-gray-500">وثيقة شخصية للسيادة الرقمية</p>
-                            </div>
-                            
-                            {/* ... (بقية محتوى العهد) ... */}
-                            <div className="text-lg text-right leading-loose text-gray-700">
-                                <p className="mb-6 font-serif font-bold text-anchor-blue">أنا الموقع أدناه، أُعلن بوعي كامل التزامي بما يلي:</p>
-                                
-                                <ul className="list-decimal pr-8 space-y-3">
-                                    <li>أتعهد بوضع القيمة الجوهرية لحياتي (العائلة، الإبداع، التركيز) فوق الإغراءات الرقمية المشتتة.</li>
-                                    <li>ألتزم بتخصيص وقت محدد يومياً لـ **إطفاء الشاشة** والتواصل الحقيقي مع عالمي غير الرقمي.</li>
-                                    <li>أُقر بسيادتي على جهازي، وأقوم بتعديل الإشعارات والتطبيقات لخدمة أهدافي، لا لخدمة خوارزميات الاستهلاك.</li>
-                                    <li>أوافق على استخدام التكنولوجيا كأداة لتحقيق أهدافي، وليس كملاذ للهروب من الواقع أو الشعور بالوحدة.</li>
-                                    <li>ألتزم بدعم مجتمع التحرر الرقمي، وأتبادل المعرفة والإلهام لتعزيز الوعي والقيادة الرقمية.</li>
-                                    <li>أعمل على تحويل انشغالي إلى إنجاز، وإهمالي إلى تركيز، وإعادة توجيه طاقتي الإبداعية نحو ما يخدم الإنسانية وأستخدم صوتي للخير دائماً.</li>
-                                </ul>
-                            </div>
-                            
-                            <div className="mt-16 pt-8 border-t border-gray-200 grid grid-cols-2 gap-12">
-                                <div>
-                                    <label htmlFor="name" className="block text-sm font-bold text-gray-500 mb-2">الاسم</label>
-                                    <input 
-                                        type="text" 
-                                        id="name"
-                                        value={name}
-                                        onChange={(e) => setName(e.target.value)}
-                                        className="w-full border-b-2 border-gray-300 h-8 focus:border-anchor-blue focus:outline-none transition"
-                                        readOnly={isSigned}
-                                    />
-                                </div>
-                                <div>
-                                    <label htmlFor="date" className="block text-sm font-bold text-gray-500 mb-2">التاريخ</label>
-                                    <input 
-                                        type="date" 
-                                        id="date"
-                                        value={date}
-                                        onChange={(e) => setDate(e.target.value)}
-                                        className="w-full border-b-2 border-gray-300 h-8 focus:border-anchor-blue focus:outline-none transition"
-                                        readOnly={isSigned}
-                                    />
-                                </div>
-                            </div>
-        
-                            <div className="text-center mt-10 no-print">
-                                {!isSigned ? (
-                                    <button 
-                                        onClick={handleSign} 
-                                        className="bg-anchor-red text-white px-8 py-3 rounded-lg font-bold hover:bg-red-700 transition shadow-lg flex items-center justify-center mx-auto gap-2"
-                                    >
-                                        <i className="fas fa-signature"></i>
-                                        توقيع العهد الآن
-                                    </button>
-                                ) : (
-                                    <div className="text-anchor-green font-bold text-xl flex items-center justify-center gap-3">
-                                        <i className="fas fa-check-circle"></i>
-                                        تم التوقيع بنجاح!
-                                    </div>
-                                )}
-                            </div>
-                            
-                            <div className="text-center mt-8 no-print space-x-4 space-x-reverse">
-                                <button onClick={() => window.print()} className="bg-anchor-blue text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-800 transition shadow-lg">🖨️ طباعة العهد</button>
-                                <a href="downloads/Pledge_Paper.pdf" download className="text-anchor-blue font-bold underline hover:text-anchor-gold">تحميل كملف PDF</a>
-                            </div>
-                        </div>
-                    </main>
-        
-                    <footer className="bg-anchor-blue text-white py-8 border-t border-slate-800 mt-12 no-print">
-                        <div className="max-w-5xl mx-auto px-6">
-                            <div className="flex flex-col md:flex-row justify-between items-center mb-6">
-                                <div className="mb-4 md:mb-0">
-                                    <div className="flex items-center gap-3">
-                                        <div className="w-10 h-10 bg-anchor-gold rounded-full flex items-center justify-center">
-                                            <i className="fas fa-anchor text-white"></i>
-                                        </div>
-                                        <div>
-                                            <h3 className="font-bold text-lg">{t('app_name')}</h3>
-                                            <p className="text-slate-300 text-sm">{t('covenant_title')}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <a href="mailto:garbaouisalma@gmail.com" className="text-anchor-gold hover:text-yellow-400 transition">
-                                        <i className="fas fa-envelope ml-2"></i>
-                                        garbaouisalma@gmail.com
-                                    </a>
-                                </div>
-                            </div>
-                            <hr className="border-slate-700 my-6" />
-                            <p className="text-slate-400 text-sm">
-                                {t('footer-copy')}<br/>
-                                جميع الحقوق محفوظة. هذا العهد مخصص للاستخدام الشخصي والتوعوي.
-                            </p>
-                        </div>
-                    </footer>
-                </div>
-            );
-        };
-
-        ReactDOM.render(<LanguageProvider><CovenantPage /></LanguageProvider>, document.getElementById('root'));
-    </script>
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-auto"><p class="text-sm">© 2025 Digital Anchor Project.</p></footer>
 </body>
 </html>

@@ -4,47 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-key="guide_title">دليل المنهجية | المرساة الرقمية</title>
-    
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJZHN8FQQ2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-HJZHN8FQQ2');
-    </script>
-
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HJZHN8FQQ2');</script>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
-    <style>
-        body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; }
-        h1, h2, h3 { font-family: 'Amiri', serif; }
-        .card-hover:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: 0.3s; }
-    </style>
+    <style>body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; }</style>
 </head>
 <body class="text-slate-900 flex flex-col min-h-screen">
 
-    <nav class="bg-slate-900 text-white shadow-lg sticky top-0 z-50">
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="index.html" class="flex items-center gap-3">
                 <img src="logo.png" width="40" class="rounded-lg">
-                <div>
-                    <h1 class="text-xl font-bold" data-key="site_name">المرساة الرقمية</h1>
-                    <span class="text-xs text-slate-400 block" data-key="guide_title">دليل المنهجية</span>
-                </div>
+                <span class="text-xl font-bold" data-key="site_name">المرساة الرقمية</span>
             </a>
-            
-            <div class="hidden md:flex items-center gap-4">
-                <a href="index.html" class="text-sm font-medium hover:text-yellow-400" data-key="nav_home">الرئيسية</a>
-                <a href="buy.html" class="bg-yellow-500 text-slate-900 px-4 py-2 rounded-full font-bold hover:bg-yellow-400 text-sm" data-key="nav_book_now">احجز نسختك</a>
-                
-                <select id="lang-select" onchange="setLanguage(this.value)" class="text-xs bg-slate-800 border border-slate-700 rounded p-1 text-white">
+            <div class="flex items-center gap-4">
+                <select id="lang-select" onchange="setLanguage(this.value)" class="text-xs border border-gray-300 rounded p-1 bg-white">
                     <option value="ar">عربي</option>
                     <option value="en">English</option>
                     <option value="fr">Français</option>
                     <option value="de">Deutsch</option>
                 </select>
+                <a href="buy.html" class="bg-yellow-500 text-slate-900 px-4 py-2 rounded-lg font-bold hover:bg-yellow-400 text-sm" data-key="nav_book_now">احجز نسختك</a>
             </div>
         </div>
     </nav>
@@ -56,7 +39,7 @@
         </header>
 
         <div class="space-y-8">
-            <section class="bg-white p-8 rounded-2xl shadow-lg border-r-4 border-yellow-500 card-hover">
+            <section class="bg-white p-8 rounded-2xl shadow-lg border-r-4 border-yellow-500">
                 <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-3">
                     <span class="bg-yellow-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">1</span>
                     <span data-key="step1_title">التحرر والعهد</span>
@@ -74,7 +57,7 @@
                 </ul>
             </section>
 
-            <section class="bg-white p-8 rounded-2xl shadow-lg border-r-4 border-blue-600 card-hover">
+            <section class="bg-white p-8 rounded-2xl shadow-lg border-r-4 border-blue-600">
                 <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-3">
                     <span class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">2</span>
                     <span data-key="step2_title">القيادة والإنتاجية</span>
@@ -85,7 +68,7 @@
                 </ul>
             </section>
 
-            <section class="bg-white p-8 rounded-2xl shadow-lg border-r-4 border-green-600 card-hover">
+            <section class="bg-white p-8 rounded-2xl shadow-lg border-r-4 border-green-600">
                 <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-3">
                     <span class="bg-green-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">3</span>
                     <span data-key="step3_title">المجتمع والدعم</span>
@@ -98,35 +81,33 @@
         </div>
     </main>
 
-    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-auto">
-        <p class="text-sm">© 2025 Digital Anchor Project.</p>
-    </footer>
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-auto"><p class="text-sm">© 2025 Digital Anchor Project.</p></footer>
 
     <script>
         const translations = {
             'ar': {
-                'site_name': 'المرساة الرقمية', 'guide_title': 'دليل المنهجية', 'nav_home': 'الرئيسية', 'nav_book_now': 'احجز نسختك',
+                'site_name': 'المرساة الرقمية', 'guide_title': 'دليل المنهجية', 'nav_book_now': 'احجز نسختك',
                 'guide_header': 'منهجية المرساة الرقمية', 'guide_subtitle': 'دليل إرشادي خطوة بخطوة للتحرر واستعادة السيادة الرقمية.',
                 'step1_title': 'التحرر والعهد', 'step1_text1': 'في اللحظات التي تشعر فيها بالانجراف، استخدم', 'link_emergency': 'دليل الطوارئ', 'step1_text2': 'ابدأ بتحديد نيتك ووقع', 'link_covenant': 'عهد التحرر', 'step1_text3': 'لربط نفسك بقيمك الحقيقية.',
                 'step2_title': 'القيادة والإنتاجية', 'step2_li1': 'استخدم أدوات التتبع للتحكم في وقتك على الشاشة بشكل واعٍ.', 'step2_li2': 'خصص وقتاً غير رقمي منتظماً لتغذية قيمك الجوهرية.',
                 'step3_title': 'المجتمع والدعم', 'step3_li1': 'شارك قصص نجاحك مع مجتمع المرساة الرقمية.', 'step3_li2': 'اطلب المساعدة والدعم عندما تشعر بأنك تفقد السيطرة.'
             },
             'en': {
-                'site_name': 'Digital Anchor', 'guide_title': 'Methodology Guide', 'nav_home': 'Home', 'nav_book_now': 'Order Now',
+                'site_name': 'Digital Anchor', 'guide_title': 'Methodology Guide', 'nav_book_now': 'Order Now',
                 'guide_header': 'Digital Anchor Methodology', 'guide_subtitle': 'A step-by-step guide to reclaiming digital sovereignty.',
                 'step1_title': 'Liberation & Pledge', 'step1_text1': 'In moments of drift, use the', 'link_emergency': 'Emergency Guide', 'step1_text2': 'Start by signing the', 'link_covenant': 'Liberation Pledge', 'step1_text3': 'to anchor to your values.',
                 'step2_title': 'Leadership & Productivity', 'step2_li1': 'Use tracking tools to consciously control screen time.', 'step2_li2': 'Allocate non-digital time for core values.',
                 'step3_title': 'Community & Support', 'step3_li1': 'Share success stories with the community.', 'step3_li2': 'Seek support when losing control.'
             },
             'fr': {
-                'site_name': 'L\'Ancre Numérique', 'guide_title': 'Guide Méthodologique', 'nav_home': 'Accueil', 'nav_book_now': 'Commander',
+                'site_name': 'L\'Ancre Numérique', 'guide_title': 'Guide Méthodologique', 'nav_book_now': 'Commander',
                 'guide_header': 'Méthodologie Ancre Numérique', 'guide_subtitle': 'Un guide étape par étape pour la souveraineté numérique.',
                 'step1_title': 'Libération et Engagement', 'step1_text1': 'Utilisez le', 'link_emergency': 'Guide d\'Urgence', 'step1_text2': 'Signez l\'', 'link_covenant': 'Engagement', 'step1_text3': 'pour vous ancrer.',
                 'step2_title': 'Leadership et Productivité', 'step2_li1': 'Contrôlez consciemment votre temps d\'écran.', 'step2_li2': 'Allouez du temps hors écran.',
                 'step3_title': 'Communauté et Soutien', 'step3_li1': 'Partagez vos succès.', 'step3_li2': 'Demandez de l\'aide si nécessaire.'
             },
             'de': {
-                'site_name': 'Der Digitale Anker', 'guide_title': 'Methodenleitfaden', 'nav_home': 'Startseite', 'nav_book_now': 'Bestellen',
+                'site_name': 'Der Digitale Anker', 'guide_title': 'Methodenleitfaden', 'nav_book_now': 'Bestellen',
                 'guide_header': 'Methodik des Digitalen Ankers', 'guide_subtitle': 'Ein Schritt-für-Schritt-Leitfaden zur digitalen Souveränität.',
                 'step1_title': 'Befreiung & Verpflichtung', 'step1_text1': 'Nutzen Sie den', 'link_emergency': 'Notfallleitfaden', 'step1_text2': 'Unterzeichnen Sie die', 'link_covenant': 'Verpflichtung', 'step1_text3': 'um sich zu verankern.',
                 'step2_title': 'Führung & Produktivität', 'step2_li1': 'Kontrollieren Sie Ihre Bildschirmzeit bewusst.', 'step2_li2': 'Planen Sie offline-Zeit ein.',
