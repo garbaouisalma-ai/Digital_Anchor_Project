@@ -3,8 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-key="page_title">من أنت حين تنطفئ الشاشة؟ | المرساة الرقمية</title>
     
+    <title data-key="page_title">من أنت حين تنطفئ الشاشة؟ | المرساة الرقمية</title>
+    <meta name="description" content="اكتشف دليلك الشامل للتحكم في حياتك الرقمية، واستعادة السيطرة على وقتك وتركيزك في عصر اقتصاد الانتباه. احجز نسختك من كتاب المرساة الرقمية الآن.">
+    <meta name="keywords" content="المرساة الرقمية, التحول الرقمي, إدمان الهاتف, تطوير الذات, كتب 2025, نوال غرباوي">
+    <meta name="author" content="Naoual Guerbaoui">
+    
+    <meta property="og:title" content="من أنت حين تنطفئ الشاشة؟ | المرساة الرقمية">
+    <meta property="og:description" content="دليل الشباب للقيم والتركيز والهدف في اقتصاد الانتباه.">
+    <meta property="og:image" content="hero.png">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
@@ -29,6 +42,7 @@
             font-family: 'Amiri', serif;
         }
         
+        /* تحسين التباين للأزرار */
         .btn-primary {
             background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
             color: white;
@@ -68,59 +82,67 @@
         .float-animation {
             animation: float 6s ease-in-out infinite;
         }
+
+        /* تحسين إمكانية الوصول عند التركيز */
+        button:focus, a:focus, select:focus {
+            outline: 2px solid #d69e2e;
+            outline-offset: 2px;
+        }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-50 text-gray-800">
     
     <nav class="bg-white shadow-lg sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
                 
                 <div class="flex items-center space-x-3 space-x-reverse">
-                    <img src="logo.png" alt="Logo" class="h-14 w-auto rounded-lg shadow-sm hover:scale-105 transition duration-300">
+                    <img src="logo.png" alt="شعار المرساة الرقمية" width="56" height="56" class="h-14 w-auto rounded-lg shadow-sm hover:scale-105 transition duration-300">
                     <div>
-                        <h1 class="text-xl font-bold text-gray-800" data-key="site_name">المرساة الرقمية</h1>
-                        <p class="text-xs text-gray-500" data-key="nav_tagline">من أنت حين تنطفئ الشاشة؟</p>
+                        <h1 class="text-xl font-bold text-gray-900" data-key="site_name">المرساة الرقمية</h1>
+                        <p class="text-xs text-gray-600" data-key="nav_tagline">من أنت حين تنطفئ الشاشة؟</p>
                     </div>
                 </div>
                 
                 <div class="hidden md:flex items-center space-x-4 space-x-reverse">
-                    <a href="#home" class="text-gray-700 hover:text-blue-700 font-medium transition text-sm" data-key="nav_home">الرئيسية</a>
-                    <a href="#about" class="text-gray-700 hover:text-blue-700 font-medium transition text-sm" data-key="nav_about">عن الكتاب</a>
-                    <a href="#features" class="text-gray-700 hover:text-blue-700 font-medium transition text-sm" data-key="nav_features">المميزات</a>
+                    <a href="#home" class="text-gray-700 hover:text-blue-700 font-medium transition text-sm px-2 py-1" data-key="nav_home">الرئيسية</a>
+                    <a href="#about" class="text-gray-700 hover:text-blue-700 font-medium transition text-sm px-2 py-1" data-key="nav_about">عن الكتاب</a>
+                    <a href="#features" class="text-gray-700 hover:text-blue-700 font-medium transition text-sm px-2 py-1" data-key="nav_features">المميزات</a>
                     
-                    <select id="currency-select" onchange="convertCurrency(this.value)" class="text-xs border border-gray-300 rounded-lg p-1 text-gray-700 focus:outline-none focus:border-blue-500">
+                    <label for="currency-select" class="sr-only">اختر العملة</label>
+                    <select id="currency-select" onchange="convertCurrency(this.value)" class="text-xs border border-gray-300 rounded-lg p-1 text-gray-800 focus:outline-none focus:border-blue-500 bg-white">
                         <option value="SAR">SAR</option>
                         <option value="USD">USD</option>
                         <option value="EUR">EUR</option>
                     </select>
 
-                    <div class="flex items-center border border-gray-300 rounded-full p-1 bg-gray-50">
-                        <button onclick="setLanguage('ar')" id="btn-ar" class="text-xs font-bold px-2 py-1 rounded-full transition">ع</button>
-                        <button onclick="setLanguage('en')" id="btn-en" class="text-xs font-bold px-2 py-1 rounded-full transition">En</button>
-                        <button onclick="setLanguage('fr')" id="btn-fr" class="text-xs font-bold px-2 py-1 rounded-full transition">Fr</button>
-                        <button onclick="setLanguage('de')" id="btn-de" class="text-xs font-bold px-2 py-1 rounded-full transition">De</button>
+                    <div class="flex items-center border border-gray-300 rounded-full p-1 bg-gray-50" role="group" aria-label="Language selection">
+                        <button onclick="setLanguage('ar')" id="btn-ar" class="text-xs font-bold px-2 py-1 rounded-full transition" aria-label="اللغة العربية">ع</button>
+                        <button onclick="setLanguage('en')" id="btn-en" class="text-xs font-bold px-2 py-1 rounded-full transition" aria-label="English Language">En</button>
+                        <button onclick="setLanguage('fr')" id="btn-fr" class="text-xs font-bold px-2 py-1 rounded-full transition" aria-label="Langue Française">Fr</button>
+                        <button onclick="setLanguage('de')" id="btn-de" class="text-xs font-bold px-2 py-1 rounded-full transition" aria-label="Deutsche Sprache">De</button>
                     </div>
                     
                     <button class="btn-primary flex items-center py-2 px-4 text-sm" data-key="nav_book_now">
-                        <i class="fas fa-shopping-cart ml-2"></i>
+                        <i class="fas fa-shopping-cart ml-2" aria-hidden="true"></i>
                         <span class="mr-2">احجز</span>
                     </button>
                 </div>
                 
-                <button id="mobile-menu-button" class="md:hidden text-gray-700">
-                    <i class="fas fa-bars text-xl"></i>
+                <button id="mobile-menu-button" class="md:hidden text-gray-700 p-2" aria-label="فتح القائمة">
+                    <i class="fas fa-bars text-xl" aria-hidden="true"></i>
                 </button>
             </div>
             
-            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-3">
-                <a href="#home" class="block text-gray-700 hover:text-blue-700 font-medium py-2" data-key="nav_home">الرئيسية</a>
-                <a href="#about" class="block text-gray-700 hover:text-blue-700 font-medium py-2" data-key="nav_about">عن الكتاب</a>
-                <div class="flex justify-center space-x-4 py-2">
-                    <button onclick="setLanguage('ar')">عربي</button> |
-                    <button onclick="setLanguage('en')">English</button> |
-                    <button onclick="setLanguage('fr')">Français</button> |
-                    <button onclick="setLanguage('de')">Deutsch</button>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-3 pb-2 border-t pt-2">
+                <a href="#home" class="block text-gray-800 hover:text-blue-700 font-medium py-2" data-key="nav_home">الرئيسية</a>
+                <a href="#about" class="block text-gray-800 hover:text-blue-700 font-medium py-2" data-key="nav_about">عن الكتاب</a>
+                
+                <div class="flex justify-center space-x-4 py-2 text-sm">
+                    <button onclick="setLanguage('ar')" class="px-2">عربي</button>
+                    <button onclick="setLanguage('en')" class="px-2">English</button>
+                    <button onclick="setLanguage('fr')" class="px-2">Français</button>
+                    <button onclick="setLanguage('de')" class="px-2">Deutsch</button>
                 </div>
                 <button class="btn-primary w-full" data-key="nav_book_now">احجز نسختك</button>
             </div>
@@ -140,13 +162,13 @@
                     <h1 class="hero-title text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6" data-key="hero_title">من أنت حين <span class="gradient-text">تنطفئ الشاشة</span>؟</h1>
                     <p class="text-xl md:text-2xl opacity-90 mb-8 leading-relaxed" data-key="hero_subtitle">دليل الشباب للقيم والتركيز والهدف<br>في <span class="font-bold text-yellow-300">اقتصاد الانتباه</span></p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-end">
-                        <button class="btn-primary text-lg py-4 px-8 flex items-center justify-center" data-key="hero_btn_start"><i class="fas fa-play-circle ml-2"></i><span class="mr-2">ابدأ الرحلة الآن</span></button>
-                        <button class="bg-white text-blue-900 hover:bg-gray-100 font-bold py-4 px-8 rounded-lg text-lg transition flex items-center justify-center" data-key="hero_btn_samples"><i class="fas fa-download ml-2"></i><span class="mr-2">عينات مجانية</span></button>
+                        <button class="btn-primary text-lg py-4 px-8 flex items-center justify-center" data-key="hero_btn_start"><i class="fas fa-play-circle ml-2" aria-hidden="true"></i><span class="mr-2">ابدأ الرحلة الآن</span></button>
+                        <button class="bg-white text-blue-900 hover:bg-gray-100 font-bold py-4 px-8 rounded-lg text-lg transition flex items-center justify-center" data-key="hero_btn_samples"><i class="fas fa-download ml-2" aria-hidden="true"></i><span class="mr-2">عينات مجانية</span></button>
                     </div>
                 </div>
                 <div class="lg:w-1/2 flex justify-center mt-8 lg:mt-0">
                     <div class="relative float-animation w-full max-w-lg">
-                        <img src="hero.png" alt="Digital Anchor Mockup" class="w-full h-auto drop-shadow-2xl hover:scale-105 transition-transform duration-500 rounded-xl">
+                        <img src="hero.png" alt="Digital Anchor Mockup" width="600" height="400" loading="eager" class="w-full h-auto drop-shadow-2xl hover:scale-105 transition-transform duration-500 rounded-xl">
                     </div>
                 </div>
             </div>
@@ -156,13 +178,13 @@
     <section id="about" class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4"><span class="border-b-4 border-yellow-400 pb-2" data-key="about_title">لماذا هذا الكتاب؟</span></h2>
-                <p class="text-gray-600 text-lg max-w-3xl mx-auto" data-key="about_subtitle">في عالم صُمم لسرقة انتباهك، أنت بحاجة إلى مرساة تثبت قيمك وأهدافك.</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4"><span class="border-b-4 border-yellow-400 pb-2" data-key="about_title">لماذا هذا الكتاب؟</span></h2>
+                <p class="text-gray-700 text-lg max-w-3xl mx-auto" data-key="about_subtitle">في عالم صُمم لسرقة انتباهك، أنت بحاجة إلى مرساة تثبت قيمك وأهدافك.</p>
             </div>
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 flex items-center justify-center card-hover">
                     <div class="text-center">
-                        <div class="w-24 h-24 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6"><i class="fas fa-play text-3xl text-white"></i></div>
+                        <div class="w-24 h-24 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6"><i class="fas fa-play text-3xl text-white" aria-hidden="true"></i></div>
                         <h3 class="text-xl font-bold text-gray-800 mb-2" data-key="about_video_title">جولة داخل الكتاب</h3>
                     </div>
                 </div>
@@ -185,15 +207,15 @@
             <div class="text-center mb-12"><h2 class="text-3xl font-bold text-gray-800" data-key="features_title">ماذا تحصل عليه؟</h2></div>
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="bg-white rounded-2xl shadow-lg p-8 card-hover text-center">
-                    <div class="text-blue-600 text-5xl mb-6"><i class="fas fa-book"></i></div>
+                    <div class="text-blue-600 text-5xl mb-6"><i class="fas fa-book" aria-hidden="true"></i></div>
                     <h3 class="text-2xl font-bold text-gray-800 mb-4" data-key="feat_book_title">الكتاب الرئيسي</h3>
                 </div>
                 <div class="bg-white rounded-2xl shadow-lg p-8 card-hover text-center border-2 border-yellow-400">
-                    <div class="text-yellow-600 text-5xl mb-6"><i class="fas fa-toolbox"></i></div>
+                    <div class="text-yellow-600 text-5xl mb-6"><i class="fas fa-toolbox" aria-hidden="true"></i></div>
                     <h3 class="text-2xl font-bold text-gray-800 mb-4" data-key="feat_tools_title">الأدوات العملية</h3>
                 </div>
                 <div class="bg-white rounded-2xl shadow-lg p-8 card-hover text-center">
-                    <div class="text-green-600 text-5xl mb-6"><i class="fas fa-graduation-cap"></i></div>
+                    <div class="text-green-600 text-5xl mb-6"><i class="fas fa-graduation-cap" aria-hidden="true"></i></div>
                     <h3 class="text-2xl font-bold text-gray-800 mb-4" data-key="feat_extras_title">المزايا الإضافية</h3>
                 </div>
             </div>
@@ -216,7 +238,7 @@
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-3xl font-bold mb-6" data-key="author_title">عن المؤلفة</h2>
             <h3 class="text-2xl font-bold text-yellow-300 mb-4" data-key="author_name">Naoual Guerbaoui</h3>
-            <p class="text-gray-300 text-lg max-w-2xl mx-auto" data-key="author_bio">رائدة في رحلة التحول الرقمي الواعي.</p>
+            <p class="text-gray-200 text-lg max-w-2xl mx-auto leading-relaxed" data-key="author_bio">رائدة في رحلة التحول الرقمي الواعي.</p>
         </div>
     </section>
 
@@ -235,10 +257,13 @@
         </div>
     </section>
 
-    <footer class="bg-gray-900 text-white py-12">
+    <footer class="bg-gray-900 text-white py-12 border-t border-gray-800">
         <div class="container mx-auto px-4 text-center">
             <h3 class="text-xl font-bold mb-4" data-key="site_name_footer">المرساة الرقمية</h3>
-            <p class="text-gray-500">© 2025 Digital Anchor Project.</p>
+            <p class="text-gray-400">© 2025 Digital Anchor Project. All rights reserved.</p>
+            <div class="mt-4 text-sm text-gray-500">
+                Designed for Performance & Accessibility
+            </div>
         </div>
     </footer>
 
@@ -267,7 +292,7 @@
                 'res1_title': 'جدول التعلم', 'res2_title': 'مقياس الصحة',
                 'res3_title': 'ميثاق العائلة', 'res4_title': 'خريطة المستقبل',
                 'author_title': 'عن المؤلفة', 'author_name': 'Naoual Guerbaoui',
-                'author_bio': 'رائدة في رحلة التحول الرقمي الواعي.',
+                'author_bio': 'رائدة في رحلة التحول الرقمي الواعي. هذا الكتاب هو نتاج تجربة شخصية لاستعادة السيطرة على الوقت والقيم.',
                 'cta_title': 'هل أنت مستعد لاستعادة انتباهك؟',
                 'package_title': 'الحزمة الكاملة',
                 'cta_book_now': 'احجز نسختي الآن',
