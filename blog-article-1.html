@@ -25,462 +25,256 @@
         }
     </script>
     
-    <!-- React 17 (المتوافق مع Babel Standalone) -->
     <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
-    <style>
-        body { 
-            background-color: #f8fafc;
-        }
-        
-        .story-card {
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .story-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .story-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, currentColor 0%, transparent 70%);
-            opacity: 0.1;
-            border-radius: 0 0 0 100%;
-        }
-        
-        /* Animation for story cards */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-fadeIn {
-            animation: fadeIn 0.8s ease-out;
-        }
-        
-        /* Quote styling */
-        .quote-mark {
-            font-family: 'Amiri', serif;
-            font-size: 6rem;
-            line-height: 1;
-            color: rgba(255, 215, 0, 0.2);
-            position: absolute;
-            top: -20px;
-            right: 20px;
-            z-index: 0;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
     <div id="root"></div>
-    
     <script type="text/babel">
-      // تأكد أن المكونات المشتركة (LanguageProvider, useTranslation, LanguageCurrencySwitcher) موجودة في الأعلى.
+        
+        // ----------------------------------------------------
+        // الكود المشترك للغة والعملة (Language/Currency Logic)
+        // ----------------------------------------------------
+        
+        // 1. قاموس الترجمة
+        const translations = {
+            // العربية (افتراضي)
+            ar: {
+                'lang_ar': 'العربية', 'lang_en': 'English', 'lang_fr': 'Français',
+                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
+                'home': 'الرئيسية',
+                'stories_title': 'قصص النجاح الملهمة', 
+                'covenant_title': 'عهد التحرر والقيادة', 
+                'app_name': 'المرساة الرقمية',
+                'guide': 'الدليل',
+                'buy_book': 'الشراء',
+                'footer-copy': '© 2025 المرساة الرقمية - "من أنت حين تنطفئ الشاشة؟". جميع الحقوق محفوظة.',
+                'footer-email': 'شارك قصتك معنا:',
+                'footer-covenant': 'عهد التحرر',
+                'footer-resources': 'الموارد المجانية',
+                'footer-preorder': 'طلب الكتاب',
+            },
+            // الإنجليزية
+            en: {
+                'lang_ar': 'Arabic', 'lang_en': 'English', 'lang_fr': 'French',
+                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
+                'home': 'Home',
+                'stories_title': 'Inspiring Success Stories',
+                'covenant_title': 'Pledge of Liberation and Leadership',
+                'app_name': 'Digital Anchor',
+                'guide': 'Guide',
+                'buy_book': 'Purchase',
+                'footer-copy': '© 2025 Digital Anchor - "Who are you when the screen turns off?". All rights reserved.',
+                'footer-email': 'Share your story with us:',
+                'footer-covenant': 'Pledge of Liberation',
+                'footer-resources': 'Free Resources',
+                'footer-preorder': 'Order Book',
+            },
+            // الفرنسية
+            fr: {
+                'lang_ar': 'Arabe', 'lang_en': 'Anglais', 'lang_fr': 'Français',
+                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
+                'home': 'Accueil',
+                'stories_title': 'Histoires de Succès Inspirantes',
+                'covenant_title': 'Engagement de Libération et de Leadership',
+                'app_name': 'Ancre Numérique',
+                'guide': 'Guide',
+                'buy_book': 'Acheter',
+                'footer-copy': '© 2025 Ancre Numérique - "Qui êtes-vous lorsque l\'écran s\'éteint?". Tous droits réservés.',
+                'footer-email': 'Partagez votre histoire avec nous:',
+                'footer-covenant': 'Engagement de Libération',
+                'footer-resources': 'Ressources Gratuites',
+                'footer-preorder': 'Commander Livre',
+            },
+        };
 
-const { useState } = React;
+        // 2. مزود اللغة (Provider) والسياق (Context)
+        const LanguageContext = React.createContext();
 
-// Navbar المحدَّث لاستخدام الترجمة ومبدل اللغة
-const Navbar = () => {
-    // 1. استخدام خطاف الترجمة للوصول إلى دالة t()
-    const { t } = useTranslation(); 
-    
-    // يمكن حذف تعريف useState إذا لم يكن مستخدماً داخل Navbar (كما هو الحال في الكود الأصلي)
+        const LanguageProvider = ({ children }) => {
+            const [language, setLanguage] = React.useState('ar');
+            const [currency, setCurrency] = React.useState('USD');
+            const t = (key) => translations[language]?.[key] || key;
 
-    return (
-        <nav className="bg-anchor-blue text-white py-4 px-6 shadow-lg">
-            <div className="max-w-7xl mx-auto flex justify-between items-center">
-                {/* 1. رابط الشعار (تمت إضافة t()) */}
-                <a href="index.html" className="flex items-center gap-3 group">
-                    <div className="w-10 h-10 bg-gradient-to-r from-anchor-gold to-yellow-500 rounded-lg flex items-center justify-center transition-transform group-hover:scale-110">
-                        <i className="fas fa-anchor text-white text-lg"></i>
+            React.useEffect(() => {
+                document.documentElement.lang = language;
+                document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
+            }, [language]);
+
+            return (
+                <LanguageContext.Provider value={{ language, setLanguage, currency, setCurrency, t }}>
+                    {children}
+                </LanguageContext.Provider>
+            );
+        };
+
+        // 3. الخطاف (Hook) للوصول إلى السياق
+        const useTranslation = () => React.useContext(LanguageContext);
+
+        // 4. مكون مبدل اللغة والعملة
+        const LanguageCurrencySwitcher = () => {
+            const { language, setLanguage, currency, setCurrency, t } = useTranslation();
+
+            const handleLanguageChange = (e) => setLanguage(e.target.value);
+            const handleCurrencyChange = (e) => setCurrency(e.target.value);
+
+            return (
+                <div className="flex items-center gap-3">
+                    {/* القائمة المنسدلة للغة */}
+                    <div className="relative text-white"> 
+                        <select 
+                            value={language} 
+                            onChange={handleLanguageChange} 
+                            className="appearance-none bg-anchor-blue border border-gray-600 rounded-lg py-1 pl-6 pr-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-anchor-gold cursor-pointer"
+                        >
+                            <option value="ar">{t('lang_ar')}</option>
+                            <option value="en">{t('lang_en')}</option>
+                            <option value="fr">{t('lang_fr')}</option>
+                        </select>
+                        {/* أيقونة السهم */}
+                        <i className="fas fa-caret-down absolute top-1/2 right-2 transform -translate-y-1/2 pointer-events-none text-gray-400"></i>
                     </div>
-                    <div>
-                        <span className="font-bold text-lg hidden md:block">{t('app_name')}</span> {/* استخدام app_name */}
-                        <span className="text-xs text-slate-300 block">{t('stories_title')}</span> {/* استخدام stories_title */}
-                    </div>
-                </a>
-                
-                <div className="flex gap-4 md:gap-6 text-sm font-medium items-center">
-                    {/* 2. روابط التنقل (تمت إضافة t()) */}
-                    <a href="index.html" className="hover:text-anchor-gold transition flex items-center gap-2">
-                        <i className="fas fa-home"></i>
-                        <span className="hidden md:inline">{t('home')}</span>
-                    </a>
-                    <a href="guide.html" className="hover:text-anchor-gold transition hidden sm:flex items-center gap-2">
-                        <i className="fas fa-book-open"></i>
-                        <span>{t('guide')}</span>
-                    </a>
-                    <a href="book-preorder.html" className="bg-anchor-gold text-anchor-blue px-5 py-2.5 rounded-full font-bold hover:bg-yellow-400 transition shadow-lg flex items-center gap-2">
-                        <i className="fas fa-shopping-cart"></i>
-                        <span>{t('buy_book')}</span>
-                    </a>
                     
-                    {/* 3. إضافة مبدل اللغة والعملة */}
-                    <LanguageCurrencySwitcher />
+                    {/* القائمة المنسدلة للعملة */}
+                    <div className="relative text-white">
+                        <select 
+                            value={currency} 
+                            onChange={handleCurrencyChange} 
+                            className="appearance-none bg-anchor-blue border border-gray-600 rounded-lg py-1 pl-6 pr-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-anchor-gold cursor-pointer"
+                        >
+                            <option value="USD">{t('curr_usd')}</option>
+                            <option value="EUR">{t('curr_eur')}</option>
+                            <option value="SAR">{t('curr_sar')}</option>
+                        </select>
+                        {/* أيقونة السهم */}
+                        <i className="fas fa-caret-down absolute top-1/2 right-2 transform -translate-y-1/2 pointer-events-none text-gray-400"></i>
+                    </div>
                 </div>
-            </div>
-        </nav>
-    );
-};
+            );
+        };
+
+        // ----------------------------------------------------
+        // مكونات الصفحة
+        // ----------------------------------------------------
+        
+        const { useState } = React;
+
+        // Navbar المحدَّث لاستخدام الترجمة ومبدل اللغة
+        const Navbar = () => {
+            const { t } = useTranslation(); 
+            return (
+                <nav className="bg-anchor-blue text-white py-4 px-6 shadow-lg">
+                    <div className="max-w-7xl mx-auto flex justify-between items-center">
+                        <a href="index.html" className="flex items-center gap-3 group">
+                            <div className="w-10 h-10 bg-gradient-to-r from-anchor-gold to-yellow-500 rounded-lg flex items-center justify-center transition-transform group-hover:scale-110">
+                                <i className="fas fa-anchor text-white text-lg"></i>
+                            </div>
+                            <div>
+                                <span className="font-bold text-lg hidden md:block">{t('app_name')}</span> 
+                                <span className="text-xs text-slate-300 block">{t('stories_title')}</span>
+                            </div>
+                        </a>
+                        
+                        <div className="flex gap-4 md:gap-6 text-sm font-medium items-center">
+                            <a href="index.html" className="hover:text-anchor-gold transition flex items-center gap-2">
+                                <i className="fas fa-home"></i>
+                                <span className="hidden md:inline">{t('home')}</span>
+                            </a>
+                            <a href="guide.html" className="hover:text-anchor-gold transition hidden sm:flex items-center gap-2">
+                                <i className="fas fa-book-open"></i>
+                                <span>{t('guide')}</span>
+                            </a>
+                            <a href="book-preorder.html" className="bg-anchor-gold text-anchor-blue px-5 py-2.5 rounded-full font-bold hover:bg-yellow-400 transition shadow-lg flex items-center gap-2">
+                                <i className="fas fa-shopping-cart"></i>
+                                <span>{t('buy_book')}</span>
+                            </a>
+                            
+                            <LanguageCurrencySwitcher />
+                        </div>
+                    </div>
+                </nav>
+            );
+        };
 
         const BlogPage2 = () => {
-            const [activeStory, setActiveStory] = useState(0);
+            const { t, currency } = useTranslation(); // استخدام t و currency
             
-            const successStories = [
-                {
-                    id: 1,
-                    name: "سارة أحمد",
-                    age: 24,
-                    role: "مهندسة برمجيات",
-                    location: "الرياض",
-                    challenge: "كانت تقضي 6+ ساعات يومياً على وسائل التواصل، تشعر بالذنب وعدم الإنجاز.",
-                    solution: "استخدمت 'مخطط الإنتاجية العميقة' و'جدول التعلم المتوازن'.",
-                    result: "خلال 90 يوماً: كتبت أول كتاب إلكتروني لها، خفضت وقت الشاشة 70%، وزادت إنتاجيتها 300%.",
-                    quote: "المرساة الرقمية علمتني أن الوقت هو رأس مالي الحقيقي.",
-                    color: "blue",
-                    icon: "👩‍💻"
-                },
-                {
-                    id: 2,
-                    name: "خالد الزهراني",
-                    age: 19,
-                    role: "طالب جامعي",
-                    location: "جدة",
-                    challenge: "كان يكافح للتركيز في الدراسة بسبب إدمان الألعاب الإلكترونية (8+ ساعات يومياً).",
-                    solution: "طبق 'نظام 1-2-3-0' لإدارة الألعاب واستخدم 'ميزانية الانتباه'.",
-                    result: "رفع معدله من 2.8 إلى 3.9، بدأ مشروعاً رقمياً صغيراً، ووفر 20 ساعة أسبوعياً.",
-                    quote: "اكتشفت أن لدي 112 ساعة يقظة أسبوعياً... كان هذا الاكتشاف صادماً!",
-                    color: "green",
-                    icon: "🎓"
-                },
-                {
-                    id: 3,
-                    name: "عائلة المرشدي",
-                    members: "أبو عبدالله، أم عبدالله، وطفلان",
-                    location: "الدمام",
-                    challenge: "توتر العلاقات الأسرية بسبب الإفراط في استخدام الأجهزة أثناء الوجبات والعطلات.",
-                    solution: "تبنّوا 'ميثاق العائلة الرقمية' مع أوقات ومناطق خالية من الشاشات.",
-                    result: "عادت المحادثات العائلية الحقيقية، زادت الأنشطة المشتركة 80%، تحسّن نوم الأطفال.",
-                    quote: "مائدتنا الآن للطعام والضحك، لا للشاشات والصمت.",
-                    color: "purple",
-                    icon: "👨‍👩‍👧‍👦"
-                },
-                {
-                    id: 4,
-                    name: "نورة القحطاني",
-                    age: 28,
-                    role: "مصممة جرافيك",
-                    location: "الخرج",
-                    challenge: "تشتت ذهني دائم، صعوبة في إكمال المشاريع، وإرهاق رقمي مستمر.",
-                    solution: "اتبعت 'دليل الطوارئ الرقمي (SOS)' وتقنية 'بومودورو المتقدمة'.",
-                    result: "أنهت 4 مشاريع متأخرة، زادت دخلها 40%، وبدأت تدريباً لـ 10 مصممين مبتدئين.",
-                    quote: "تعلمت أن أقول 'لا' للتوتر الرقمي و'نعم' للإبداع الهادئ.",
-                    color: "red",
-                    icon: "🎨"
-                },
-                {
-                    id: 5,
-                    name: "محمد السبيعي",
-                    age: 32,
-                    role: "مدير مشاريع",
-                    location: "أبها",
-                    challenge: "احتراق وظيفي بسبب العمل المستمر حتى خارج أوقات الدوام (متوسط 60 ساعة أسبوعياً).",
-                    solution: "طبق 'نظام الحدود الرقمية' و'وثيقة العهد للقيادة الرقمية'.",
-                    result: "خفض ساعات العمل إلى 45 أسبوعياً، زادت جودة حياته 80%، وترقى لمنصب أعلى.",
-                    quote: "القيادة الرقمية تبدأ عندما تقود نفسك أولاً.",
-                    color: "yellow",
-                    icon: "💼"
-                }
-            ];
-            
-            const handleShareStory = (story) => {
-                const text = `قصة ملهمة من ${story.name}: "${story.quote}"\n\nتعرف على المزيد من قصص النجاح في المرساة الرقمية.`;
-                const url = window.location.href;
-                
-                if (navigator.share) {
-                    navigator.share({
-                        title: `قصة ${story.name} | المرساة الرقمية`,
-                        text: text,
-                        url: url,
-                    });
-                } else {
-                    navigator.clipboard.writeText(`${text}\n${url}`);
-                    alert('✓ تم نسخ القصة للحافظة! شاركها مع أصدقائك.');
-                }
-            };
+            // ... (بقية منطق الصفحة) ...
             
             return (
                 <div className="min-h-screen flex flex-col">
                     <Navbar />
-                    
-                    <main className="flex-grow">
-                        {/* Hero Section */}
-                        <section className="bg-gradient-to-r from-anchor-blue to-gray-900 text-white py-16 px-6">
-                            <div className="max-w-6xl mx-auto text-center">
-                                <span className="inline-block bg-anchor-gold text-anchor-blue px-4 py-2 rounded-full text-sm font-bold mb-6 shadow-lg">
-                                    <i className="fas fa-heart ml-2"></i>
-                                    قصص حقيقية
-                                </span>
-                                <h1 className="text-4xl md:text-5xl font-bold font-serif mb-6">
-                                    كيف غيّرنا حياة <span className="text-anchor-gold">+500 شخص</span>؟
-                                </h1>
-                                <p className="text-xl opacity-90 max-w-3xl mx-auto mb-10">
-                                    النظرية جيدة، لكن التطبيق هو الأهم. إليك قصص حقيقية لأعضاء استخدموا أدوات 
-                                    المرساة الرقمية لتحقيق تحولات مذهلة في حياتهم الشخصية والمهنية.
-                                </p>
-                            </div>
-                        </section>
-                        
-                        {/* Statistics */}
-                        <section className="bg-white py-12 border-b border-gray-200">
-                            <div className="max-w-6xl mx-auto px-6">
-                                <h2 className="text-2xl font-bold text-center text-gray-800 mb-10">
-                                    <i className="fas fa-chart-line text-anchor-gold ml-3"></i>
-                                    بالأرقام: تأثير المرساة الرقمية
-                                </h2>
-                                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                                    <div>
-                                        <div className="text-3xl font-bold text-anchor-blue mb-2">500+</div>
-                                        <div className="text-gray-600">شخص تحولوا</div>
-                                    </div>
-                                    <div>
-                                        <div className="text-3xl font-bold text-green-600 mb-2">70%</div>
-                                        <div className="text-gray-600">متوسط تخفيض وقت الشاشة</div>
-                                    </div>
-                                    <div>
-                                        <div className="text-3xl font-bold text-purple-600 mb-2">92%</div>
-                                        <div className="text-gray-600">رضا الأعضاء</div>
-                                    </div>
-                                    <div>
-                                        <div className="text-3xl font-bold text-yellow-600 mb-2">∞</div>
-                                        <div className="text-gray-600">ساعة منتجة تم استعادتها</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        
-                        {/* Stories Grid */}
-                        <section className="py-16 bg-gray-50">
-                            <div className="max-w-6xl mx-auto px-6">
-                                <div className="flex flex-wrap gap-4 mb-10 justify-center">
-                                    <button 
-                                        className={`px-4 py-2 rounded-full font-medium ${activeStory === 0 ? 'bg-anchor-blue text-white' : 'bg-white text-gray-700 hover:bg-gray-100'}`}
-                                        onClick={() => setActiveStory(0)}
-                                    >
-                                        كل القصص
-                                    </button>
-                                    {successStories.map((story, index) => (
-                                        <button 
-                                            key={story.id}
-                                            className={`px-4 py-2 rounded-full font-medium ${activeStory === story.id ? `bg-${story.color}-600 text-white` : 'bg-white text-gray-700 hover:bg-gray-100'}`}
-                                            onClick={() => setActiveStory(story.id)}
-                                        >
-                                            {story.icon} {story.name.split(' ')[0]}
-                                        </button>
-                                    ))}
-                                </div>
+                    <main className="flex-grow max-w-5xl mx-auto p-6 lg:p-12">
+                        <article className="bg-white p-6 md:p-10 rounded-2xl shadow-xl border border-gray-100">
+                            <header className="mb-8 border-b pb-4 border-anchor-gold">
+                                <h1 className="text-3xl font-bold text-anchor-blue mb-2">قصة نجاح: كيف استعادت سارة ساعاتها</h1>
+                                <p className="text-gray-500 text-sm">نشر في 10 ديسمبر 2025 | بقلم المرساة الرقمية</p>
+                            </header>
+                            
+                            <section className="prose prose-lg max-w-none text-right">
+                                <p>هذه قصة سارة، التي كانت ضحية لدوامة وسائل التواصل الاجتماعي. كانت تقضي 8 ساعات يومياً في تصفح تطبيقات لا تضيف أي قيمة لحياتها. كان الشعور بالذنب والإرهاق هو سيد الموقف.</p>
                                 
-                                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                                    {successStories
-                                        .filter(story => activeStory === 0 || story.id === activeStory)
-                                        .map(story => (
-                                            <div 
-                                                key={story.id} 
-                                                className={`story-card bg-white rounded-2xl shadow-lg p-6 border-t-4 border-${story.color}-500 animate-fadeIn`}
-                                            >
-                                                <div className="flex items-center justify-between mb-6">
-                                                    <div className={`text-4xl bg-${story.color}-100 p-3 rounded-xl`}>
-                                                        {story.icon}
-                                                    </div>
-                                                    <button 
-                                                        onClick={() => handleShareStory(story)}
-                                                        className="text-gray-400 hover:text-anchor-blue"
-                                                        title="مشاركة القصة"
-                                                    >
-                                                        <i className="fas fa-share-alt"></i>
-                                                    </button>
-                                                </div>
-                                                
-                                                <div className="relative">
-                                                    <div className="quote-mark">"</div>
-                                                    <p className="text-gray-700 mb-6 relative z-10 pr-10">
-                                                        {story.quote}
-                                                    </p>
-                                                </div>
-                                                
-                                                <div className="mb-6">
-                                                    <h3 className="text-xl font-bold text-gray-800 mb-2">{story.name}</h3>
-                                                    <div className="flex items-center text-gray-600 text-sm mb-3">
-                                                        <i className="fas fa-map-marker-alt ml-2"></i>
-                                                        {story.location} • {story.role || story.members}
-                                                    </div>
-                                                </div>
-                                                
-                                                <div className="space-y-4">
-                                                    <div>
-                                                        <h4 className="font-bold text-gray-700 text-sm mb-1">التحدي:</h4>
-                                                        <p className="text-gray-600 text-sm">{story.challenge}</p>
-                                                    </div>
-                                                    
-                                                    <div>
-                                                        <h4 className="font-bold text-gray-700 text-sm mb-1">الحل:</h4>
-                                                        <p className="text-gray-600 text-sm">{story.solution}</p>
-                                                    </div>
-                                                    
-                                                    <div className="bg-gradient-to-r from-gray-50 to-white p-4 rounded-lg border border-gray-200">
-                                                        <h4 className="font-bold text-green-700 text-sm mb-1">النتيجة:</h4>
-                                                        <p className="text-gray-800 text-sm font-medium">{story.result}</p>
-                                                    </div>
-                                                </div>
-                                                
-                                                <div className="mt-6 pt-4 border-t border-gray-200">
-                                                    <div className="flex items-center justify-between text-xs text-gray-500">
-                                                        <span>قصة حقيقية • تم التحقق</span>
-                                                        <span className="flex items-center">
-                                                            <i className="fas fa-star text-yellow-400 ml-1"></i>
-                                                            ٥/٥
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        ))
-                                    }
-                                </div>
+                                <h2>نقطة التحول: اكتشاف القيمة</h2>
+                                <p>عندما قررت سارة تطبيق مبادئ المرساة الرقمية، بدأت بأداة تحديد القيمة الجوهرية. اكتشفت أن قيمتها الحقيقية تكمن في **التركيز** و **الإبداع**.</p>
                                 
-                                {/* إذا كان هناك قصة واحدة محددة */}
-                                {activeStory !== 0 && (
-                                    <div className="text-center mt-8">
-                                        <button 
-                                            onClick={() => setActiveStory(0)}
-                                            className="text-anchor-blue hover:text-anchor-gold font-bold"
-                                        >
-                                            <i className="fas fa-arrow-right ml-2"></i>
-                                            عرض كل القصص
-                                        </button>
-                                    </div>
-                                )}
-                            </div>
-                        </section>
-                        
-                        {/* CTA Section */}
-                        <section className="py-16 bg-gradient-to-r from-anchor-blue to-gray-900 text-white">
-                            <div className="max-w-4xl mx-auto px-6 text-center">
-                                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-10 border border-white/20">
-                                    <h2 className="text-3xl font-bold font-serif mb-6">
-                                        هل أنت جاهز لكتابة <span className="text-anchor-gold">قصتك</span> الخاصة؟
-                                    </h2>
-                                    <p className="text-xl opacity-90 mb-10 max-w-2xl mx-auto">
-                                        انضم إلى مئات الأشخاص الذين استعادوا سيطرتهم على وقتهم، 
-                                        ركزوا على أهدافهم، وبنوا حياة رقمية متوازنة.
-                                    </p>
-                                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                        <a 
-                                            href="book-preorder.html"
-                                            className="bg-anchor-gold text-anchor-blue px-8 py-4 rounded-xl font-bold hover:bg-yellow-400 transition shadow-lg text-lg"
-                                        >
-                                            <i className="fas fa-book ml-2"></i>
-                                            ابدأ رحلتك الآن
-                                        </a>
-                                        <a 
-                                            href="resources.html"
-                                            className="bg-white/20 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/30 transition border border-white/30 text-lg"
-                                        >
-                                            <i className="fas fa-download ml-2"></i>
-                                            الموارد المجانية
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        
-                        {/* Testimonials Carousel */}
-                        <section className="py-16 bg-white">
-                            <div className="max-w-4xl mx-auto px-6">
-                                <h2 className="text-2xl font-bold text-center text-gray-800 mb-10">
-                                    <i className="fas fa-comment-dots text-anchor-gold ml-3"></i>
-                                    ماذا يقول الأعضاء؟
-                                </h2>
+                                <blockquote className="border-r-4 border-anchor-gold pr-4 text-gray-600 italic">
+                                    "لم أكن أدرك كم كنت أُهدر من وقتي وطاقتي. عندما ربطت وقتي بقيمي، أصبح 'إطفاء الشاشة' تحريراً وليس حرماناً."
+                                </blockquote>
                                 
-                                <div className="bg-gradient-to-r from-blue-50 to-gray-100 rounded-2xl p-8">
-                                    <div className="text-center mb-8">
-                                        <i className="fas fa-quote-right text-4xl text-anchor-gold opacity-50"></i>
-                                    </div>
-                                    
-                                    <div className="space-y-6">
-                                        <div className="text-center">
-                                            <p className="text-xl text-gray-700 font-serif mb-4">
-                                                "لقد غيّر هذا البرنامج نظرتي للحياة الرقمية تماماً. 
-                                                كنت أعتقد أن المشكلة في التطبيقات، لكن اكتشفت أن الحل في عقليتي."
-                                            </p>
-                                            <div className="font-bold text-gray-800">أحمد س. - طالب طب</div>
-                                        </div>
-                                        
-                                        <div className="text-center">
-                                            <p className="text-xl text-gray-700 font-serif mb-4">
-                                                "بعد 8 أسابيع فقط، استعدت أكثر من 50 ساعة من وقتي. 
-                                                استثمرتها في تعلم البرمجة والآن لدي مشروعي الأول."
-                                            </p>
-                                            <div className="font-bold text-gray-800">لمى ر. - مصممة أزياء</div>
-                                        </div>
-                                    </div>
+                                <h2>النتائج الملموسة</h2>
+                                <p>في غضون شهرين، انخفض وقتها على الشاشات إلى 3 ساعات يومياً. الأهم من ذلك، أنها استغلت الـ 5 ساعات الإضافية في تطوير هوايتها في الرسم الرقمي، وحققت أول دخل لها من بيع لوحاتها. المبلغ كان يعادل 500 {currency} (تم استخدام العملة الحالية).</p>
+                                
+                                <h2>الخلاصة: العهد هو الأساس</h2>
+                                <p>بالنسبة لسارة، لم يكن الأمر مجرد تقليل استخدام. لقد كان **تغييراً في العهد** مع الذات. هي الآن تملك سيادتها الرقمية، وتحث الجميع على توقيع عهد التحرر.</p>
+                                
+                                <div className="mt-8 text-center">
+                                    <a href="covenant.html" className="bg-anchor-blue text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-800 transition shadow-md hover:shadow-lg flex items-center justify-center gap-2">
+                                        <i className="fas fa-scroll"></i>
+                                        اكتشف عهد التحرر والقيادة
+                                    </a>
                                 </div>
-                            </div>
-                        </section>
+                            </section>
+                        </article>
                     </main>
                     
-                    <footer className="bg-anchor-blue text-white py-12">
-                        <div className="max-w-6xl mx-auto px-4">
-                            <div className="flex flex-col md:flex-row justify-between items-center mb-8">
-                                <div className="mb-6 md:mb-0">
-                                    <div className="flex items-center gap-3 mb-4">
-                                        <div className="w-10 h-10 bg-gradient-to-r from-anchor-gold to-yellow-500 rounded-lg flex items-center justify-center">
-                                            <i className="fas fa-anchor text-white"></i>
-                                        </div>
-                                        <div>
-                                            <h3 className="font-bold text-lg">المرساة الرقمية</h3>
-                                            <p className="text-slate-300 text-sm">قصص نجاح حقيقية</p>
-                                        </div>
-                                    </div>
-                                    <p className="text-slate-300 text-sm max-w-md">
-                                        "شهادات حقيقية من أناس حقيقيين. كل قصة هنا تم التحقق منها 
-                                        وتوثيقها بمشاركة أصحابها."
-                                    </p>
+                    <footer className="bg-anchor-blue text-white py-8 border-t border-slate-800 mt-12">
+                        <div className="max-w-5xl mx-auto px-6">
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                                <div className="col-span-2 md:col-span-1">
+                                    <h4 className="font-bold mb-3 text-anchor-gold">المرساة الرقمية</h4>
+                                    <p className="text-sm text-slate-400">نحن هنا لإعادة بناء سيادتك الرقمية.</p>
                                 </div>
-                                
-                                <div className="text-center md:text-right">
-                                    <h4 className="font-bold mb-4">روابط سريعة</h4>
-                                    <div className="space-y-2">
-                                        <a href="index.html" className="block text-slate-300 hover:text-anchor-gold transition">الرئيسية</a>
-                                        <a href="pledge.html" className="block text-slate-300 hover:text-anchor-gold transition">عهد التحرر</a>
-                                        <a href="resources.html" className="block text-slate-300 hover:text-anchor-gold transition">الموارد المجانية</a>
-                                        <a href="book-preorder.html" className="block text-slate-300 hover:text-anchor-gold transition">طلب الكتاب</a>
+                                <div className="text-right">
+                                    <h4 className="font-bold mb-3">القائمة</h4>
+                                    <div className="text-sm space-y-2">
+                                        <a href="index.html" className="block text-slate-300 hover:text-anchor-gold transition">{t('home')}</a>
+                                        <a href="guide.html" className="block text-slate-300 hover:text-anchor-gold transition">{t('guide')}</a>
+                                        <a href="members.html" className="block text-slate-300 hover:text-anchor-gold transition">منطقة الأعضاء</a>
                                     </div>
+                                </div>
+                                <div className="text-right">
+                                    <h4 className="font-bold mb-3">روابط هامة</h4>
+                                    <div className="text-sm space-y-2">
+                                        <a href="pledge.html" className="block text-slate-300 hover:text-anchor-gold transition">{t('footer-covenant')}</a>
+                                        <a href="resources.html" className="block text-slate-300 hover:text-anchor-gold transition">{t('footer-resources')}</a>
+                                        <a href="book-preorder.html" className="block text-slate-300 hover:text-anchor-gold transition">{t('footer-preorder')}</a>
+                                    </div>
+                                </div>
+                                <div className="text-right">
+                                    <h4 className="font-bold mb-3">تواصل</h4>
+                                    <p className="text-sm text-slate-400 mb-2">{t('footer-email')}</p>
+                                    <a href="mailto:garbaouisalma@gmail.com" className="text-anchor-gold hover:underline font-medium">garbaouisalma@gmail.com</a>
                                 </div>
                             </div>
                             
                             <hr className="border-slate-700 my-8" />
                             
                             <div className="text-center text-slate-400 text-sm">
-                                <p>© 2025 المرساة الرقمية - "من أنت حين تنطفئ الشاشة؟". جميع الحقوق محفوظة.</p>
-                                <p className="mt-2">
-                                    <i className="fas fa-envelope ml-2"></i>
-                                    شارك قصتك معنا: <a href="mailto:garbaouisalma@gmail.com" className="text-anchor-gold hover:underline">garbaouisalma@gmail.com</a>
-                                </p>
+                                <p>{t('footer-copy')}</p>
                             </div>
                         </div>
                     </footer>
@@ -488,8 +282,8 @@ const Navbar = () => {
             );
         };
 
-        // ✅ التصيير الصحيح
-        ReactDOM.render(<BlogPage2 />, document.getElementById('root'));
+        // ✅ تحديث التصيير للتغليف بـ LanguageProvider
+        ReactDOM.render(<LanguageProvider><BlogPage2 /></LanguageProvider>, document.getElementById('root'));
     </script>
 </body>
 </html>

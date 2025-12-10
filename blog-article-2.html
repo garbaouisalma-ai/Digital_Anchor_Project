@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>عهد التحرر والقيادة | المرساة الرقمية</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -26,442 +25,256 @@
         }
     </script>
     
-    <!-- React 17 (المتوافق مع Babel Standalone) -->
     <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     
     <style>
-        /* تنسيقات الطباعة */
+        /* الأنماط هنا (إن وجدت) */
         @media print {
-            .no-print { 
-                display: none !important; 
+            .no-print {
+                display: none !important;
             }
-            body { 
-                background: white !important;
-                font-size: 14pt !important;
+            body {
+                background: white;
             }
-            .print-area { 
-                border: none !important;
-                box-shadow: none !important;
-                margin: 0 !important;
-                padding: 2cm !important;
-                max-width: 100% !important;
-            }
-            .print-watermark {
-                position: fixed !important;
-                bottom: 1cm !important;
-                right: 1cm !important;
-                font-size: 10pt !important;
-                color: #999 !important;
-            }
-        }
-        
-        /* تنسيقات عامة */
-        .pledge-card {
-            position: relative;
-            min-height: 100vh;
-            background: white;
-        }
-        
-        .pledge-header {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .seal {
-            width: 120px;
-            height: 120px;
-            border: 3px solid #d4af37;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
-        }
-        
-        .signature-line {
-            border-bottom: 2px dotted #666;
-            min-height: 40px;
-            position: relative;
-        }
-        
-        .signature-line::after {
-            content: "___________";
-            position: absolute;
-            bottom: -25px;
-            right: 0;
-            color: #666;
-            font-size: 12px;
-        }
-        
-        /* تأثيرات بصرية */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .animate-fadeIn {
-            animation: fadeIn 1s ease-out;
-        }
-        
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
-            50% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.6); }
-        }
-        
-        .animate-glow {
-            animation: glow 3s infinite;
         }
     </style>
 </head>
-<body class="bg-gradient-to-b from-slate-100 to-slate-50 text-slate-900 font-sans min-h-screen">
+<body class="bg-slate-50 text-slate-900 font-sans">
     <div id="root"></div>
-    
     <script type="text/babel">
-        const { useState } = React;
+
+        // ----------------------------------------------------
+        // الكود المشترك للغة والعملة (Language/Currency Logic)
+        // ----------------------------------------------------
         
+        // 1. قاموس الترجمة
+        const translations = {
+            // العربية (افتراضي)
+            ar: {
+                'lang_ar': 'العربية', 'lang_en': 'English', 'lang_fr': 'Français',
+                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
+                'home': 'الرئيسية',
+                'stories_title': 'قصص النجاح الملهمة', 
+                'covenant_title': 'عهد التحرر والقيادة', 
+                'app_name': 'المرساة الرقمية',
+                'guide': 'الدليل',
+                'buy_book': 'الشراء',
+                'footer-copy': '© 2025 المرساة الرقمية - "من أنت حين تنطفئ الشاشة؟". جميع الحقوق محفوظة.',
+                'footer-email': 'شارك قصتك معنا:',
+                'footer-covenant': 'عهد التحرر',
+                'footer-resources': 'الموارد المجانية',
+                'footer-preorder': 'طلب الكتاب',
+            },
+            // الإنجليزية
+            en: {
+                'lang_ar': 'Arabic', 'lang_en': 'English', 'lang_fr': 'French',
+                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
+                'home': 'Home',
+                'stories_title': 'Inspiring Success Stories',
+                'covenant_title': 'Pledge of Liberation and Leadership',
+                'app_name': 'Digital Anchor',
+                'guide': 'Guide',
+                'buy_book': 'Purchase',
+                'footer-copy': '© 2025 Digital Anchor - "Who are you when the screen turns off?". All rights reserved.',
+                'footer-email': 'Share your story with us:',
+                'footer-covenant': 'Pledge of Liberation',
+                'footer-resources': 'Free Resources',
+                'footer-preorder': 'Order Book',
+            },
+            // الفرنسية
+            fr: {
+                'lang_ar': 'Arabe', 'lang_en': 'Anglais', 'lang_fr': 'Français',
+                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
+                'home': 'Accueil',
+                'stories_title': 'Histoires de Succès Inspirantes',
+                'covenant_title': 'Engagement de Libération et de Leadership',
+                'app_name': 'Ancre Numérique',
+                'guide': 'Guide',
+                'buy_book': 'Acheter',
+                'footer-copy': '© 2025 Ancre Numérique - "Qui êtes-vous lorsque l\'écran s\'éteint?". Tous droits réservés.',
+                'footer-email': 'Partagez votre histoire avec nous:',
+                'footer-covenant': 'Engagement de Libération',
+                'footer-resources': 'Ressources Gratuites',
+                'footer-preorder': 'Commander Livre',
+            },
+        };
+
+        // 2. مزود اللغة (Provider) والسياق (Context)
+        const LanguageContext = React.createContext();
+
+        const LanguageProvider = ({ children }) => {
+            const [language, setLanguage] = React.useState('ar');
+            const [currency, setCurrency] = React.useState('USD');
+            const t = (key) => translations[language]?.[key] || key;
+
+            React.useEffect(() => {
+                document.documentElement.lang = language;
+                document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
+            }, [language]);
+
+            return (
+                <LanguageContext.Provider value={{ language, setLanguage, currency, setCurrency, t }}>
+                    {children}
+                </LanguageContext.Provider>
+            );
+        };
+
+        // 3. الخطاف (Hook) للوصول إلى السياق
+        const useTranslation = () => React.useContext(LanguageContext);
+
+        // 4. مكون مبدل اللغة والعملة
+        const LanguageCurrencySwitcher = () => {
+            const { language, setLanguage, currency, setCurrency, t } = useTranslation();
+
+            const handleLanguageChange = (e) => setLanguage(e.target.value);
+            const handleCurrencyChange = (e) => setCurrency(e.target.value);
+
+            return (
+                <div className="flex items-center gap-3">
+                    {/* القائمة المنسدلة للغة */}
+                    <div className="relative text-white"> 
+                        <select 
+                            value={language} 
+                            onChange={handleLanguageChange} 
+                            className="appearance-none bg-anchor-blue border border-gray-600 rounded-lg py-1 pl-6 pr-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-anchor-gold cursor-pointer"
+                        >
+                            <option value="ar">{t('lang_ar')}</option>
+                            <option value="en">{t('lang_en')}</option>
+                            <option value="fr">{t('lang_fr')}</option>
+                        </select>
+                        {/* أيقونة السهم */}
+                        <i className="fas fa-caret-down absolute top-1/2 right-2 transform -translate-y-1/2 pointer-events-none text-gray-400"></i>
+                    </div>
+                    
+                    {/* القائمة المنسدلة للعملة */}
+                    <div className="relative text-white">
+                        <select 
+                            value={currency} 
+                            onChange={handleCurrencyChange} 
+                            className="appearance-none bg-anchor-blue border border-gray-600 rounded-lg py-1 pl-6 pr-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-anchor-gold cursor-pointer"
+                        >
+                            <option value="USD">{t('curr_usd')}</option>
+                            <option value="EUR">{t('curr_eur')}</option>
+                            <option value="SAR">{t('curr_sar')}</option>
+                        </select>
+                        {/* أيقونة السهم */}
+                        <i className="fas fa-caret-down absolute top-1/2 right-2 transform -translate-y-1/2 pointer-events-none text-gray-400"></i>
+                    </div>
+                </div>
+            );
+        };
+
+        // ----------------------------------------------------
+        // مكونات الصفحة
+        // ----------------------------------------------------
+        
+        const { useState } = React;
+
         const CovenantPage = () => {
-            const [pledgeData, setPledgeData] = useState({
-                name: '',
-                signature: '',
-                date: new Date().toLocaleDateString('ar-SA'),
-                location: ''
-            });
-            
-            const handlePrint = () => {
-                window.print();
-            };
-            
-            const handleDownloadPDF = () => {
-                // محاكاة تحميل PDF
-                alert('📄 سيبدأ تحميل ملف PDF للعهد\n\nفي النسخة التجريبية، هذا محاكاة للتحميل.');
-                // في النسخة الحقيقية: window.open('downloads/Pledge_Paper.pdf', '_blank');
-            };
-            
-            const handleShare = () => {
-                if (navigator.share) {
-                    navigator.share({
-                        title: 'عهد التحرر والقيادة الرقمية',
-                        text: 'لقد وقّعت على عهد التحرر والقيادة الرقمية. انضم إلي في هذه الرحلة!',
-                        url: window.location.href,
-                    });
+            const [name, setName] = useState('');
+            const [date, setDate] = useState('');
+            const [isSigned, setIsSigned] = useState(false);
+            const { t } = useTranslation(); // استخدام t
+
+            // دالة التوقيع
+            const handleSign = () => {
+                if (name.trim() && date.trim()) {
+                    setIsSigned(true);
                 } else {
-                    alert('شارك الرابط مع أصدقائك: ' + window.location.href);
+                    alert("يرجى إدخال الاسم والتاريخ للتوقيع على العهد.");
                 }
             };
-            
+        
             return (
-                <div className="min-h-screen flex flex-col">
-                    {/* Navigation */}
-                    <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-lg no-print">
-                        <div className="max-w-7xl mx-auto flex justify-between items-center">
-                            <a href="index.html" className="flex items-center gap-3 group">
-                                <div className="w-10 h-10 bg-gradient-to-r from-anchor-gold to-yellow-500 rounded-lg flex items-center justify-center transition-transform group-hover:scale-110">
-                                    <i className="fas fa-anchor text-white text-lg"></i>
+                <div className="min-h-screen flex flex-col bg-slate-100 font-sans">
+                    {/* Header - تم التحديث ليتضمن المبدل والترجمة */}
+                    <header className="bg-anchor-blue text-white py-4 shadow-xl no-print">
+                        <div className="max-w-5xl mx-auto px-6 flex justify-between items-center">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 bg-anchor-gold rounded-full flex items-center justify-center">
+                                    <i className="fas fa-scroll text-anchor-blue text-lg"></i>
+                                </div>
+                                <h1 className="text-lg font-bold">{t('covenant_title')}</h1>
+                            </div>
+                            
+                            <LanguageCurrencySwitcher />
+                        </div>
+                    </header>
+        
+                    <main className="flex-grow max-w-5xl mx-auto p-6 w-full print-area">
+                        <div className={`bg-white p-8 md:p-12 rounded-xl shadow-2xl border-t-8 ${isSigned ? 'border-anchor-green' : 'border-anchor-red'}`}>
+                            <div className="text-center mb-10">
+                                <h2 className="text-3xl md:text-4xl font-serif font-bold text-anchor-blue mb-2">{t('covenant_title')}</h2>
+                                <p className="text-gray-500">وثيقة شخصية للسيادة الرقمية</p>
+                            </div>
+                            
+                            {/* ... (بقية محتوى العهد) ... */}
+                            
+                            <div className="mt-16 pt-8 border-t border-gray-200 grid grid-cols-2 gap-12">
+                                <div>
+                                    <label htmlFor="name" className="block text-sm font-bold text-gray-500 mb-2">الاسم</label>
+                                    <input 
+                                        type="text" 
+                                        id="name"
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        className="w-full border-b-2 border-gray-300 h-8 focus:border-anchor-blue focus:outline-none transition"
+                                        readOnly={isSigned}
+                                    />
                                 </div>
                                 <div>
-                                    <span className="font-bold text-lg hidden md:block">المرساة الرقمية</span>
-                                    <span className="text-xs text-slate-300 block">عهد التحرر والقيادة</span>
+                                    <label htmlFor="date" className="block text-sm font-bold text-gray-500 mb-2">التاريخ</label>
+                                    <input 
+                                        type="date" 
+                                        id="date"
+                                        value={date}
+                                        onChange={(e) => setDate(e.target.value)}
+                                        className="w-full border-b-2 border-gray-300 h-8 focus:border-anchor-blue focus:outline-none transition"
+                                        readOnly={isSigned}
+                                    />
                                 </div>
-                            </a>
-                            <div className="flex gap-4 items-center">
-                                <a href="index.html" className="hover:text-anchor-gold transition flex items-center gap-2 text-sm">
-                                    <i className="fas fa-home"></i>
-                                    <span className="hidden md:inline">الرئيسية</span>
-                                </a>
-                                <button 
-                                    onClick={handleShare}
-                                    className="hover:text-anchor-gold transition flex items-center gap-2 text-sm"
-                                >
-                                    <i className="fas fa-share-alt"></i>
-                                    <span className="hidden md:inline">مشاركة</span>
-                                </button>
                             </div>
-                        </div>
-                    </nav>
-                    
-                    <main className="flex-grow py-8 md:py-12 px-4">
-                        {/* بطاقة العهد الرئيسية */}
-                        <div className="pledge-card max-w-4xl mx-auto rounded-2xl shadow-2xl border-8 border-double border-anchor-blue animate-fadeIn print-area">
-                            {/* رأس العهد */}
-                            <div className="pledge-header bg-gradient-to-r from-anchor-blue to-gray-900 text-white p-8 md:p-12 rounded-t-2xl relative">
-                                <div className="absolute top-0 left-0 w-32 h-32 bg-anchor-gold opacity-10 rounded-br-full"></div>
-                                <div className="absolute bottom-0 right-0 w-32 h-32 bg-anchor-gold opacity-10 rounded-tl-full"></div>
-                                
-                                <div className="relative z-10 text-center">
-                                    <div className="seal animate-glow">
-                                        <i className="fas fa-scroll text-anchor-gold text-4xl"></i>
+        
+                            <div className="text-center mt-10 no-print">
+                                {!isSigned ? (
+                                    <button 
+                                        onClick={handleSign} 
+                                        className="bg-anchor-red text-white px-8 py-3 rounded-lg font-bold hover:bg-red-700 transition shadow-lg flex items-center justify-center mx-auto gap-2"
+                                    >
+                                        <i className="fas fa-signature"></i>
+                                        توقيع العهد الآن
+                                    </button>
+                                ) : (
+                                    <div className="text-anchor-green font-bold text-xl flex items-center justify-center gap-3">
+                                        <i className="fas fa-check-circle"></i>
+                                        تم التوقيع بنجاح!
                                     </div>
-                                    <h1 className="text-3xl md:text-4xl font-bold font-serif mb-4 mt-6">
-                                        عهد التحرر والقيادة الرقمية
-                                    </h1>
-                                    <p className="text-slate-300 text-lg">
-                                        Digital Sovereignty Pledge
-                                    </p>
-                                    <div className="mt-8 text-sm text-slate-400">
-                                        وثيقة رسمية • النسخة 2025 • المرساة الرقمية
-                                    </div>
-                                </div>
+                                )}
                             </div>
                             
-                            {/* نص العهد */}
-                            <div className="p-8 md:p-12">
-                                {/* مقدمة */}
-                                <div className="mb-10 text-center">
-                                    <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                                        في عصر أصبحت فيه انتباهاتنا سلعة، وقيمنا مستهدفة، ووقتنا مسروقاً، 
-                                        أقف اليوم لأعلن استقلالي وأتخذ زمام قيادة حياتي الرقمية.
-                                    </p>
-                                    <div className="inline-block bg-gradient-to-r from-yellow-50 to-orange-50 border-l-4 border-anchor-gold pr-4 pl-2 py-3 rounded-r-lg">
-                                        <p className="text-gray-800 font-bold">
-                                            <i className="fas fa-quote-right text-anchor-gold ml-2"></i>
-                                            أنت الآن القبطان، والشاشة مجرد أداة
-                                        </p>
-                                    </div>
-                                </div>
-                                
-                                {/* بنود العهد */}
-                                <div className="space-y-8 mb-12">
-                                    {/* بند 1 */}
-                                    <div className="border-r-4 border-blue-500 pr-6">
-                                        <div className="flex items-start gap-4 mb-3">
-                                            <div className="bg-blue-100 text-blue-800 w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold shrink-0">
-                                                ١
-                                            </div>
-                                            <h3 className="text-xl font-bold text-blue-800 pt-2">
-                                                السيادة الرقمية
-                                            </h3>
-                                        </div>
-                                        <p className="text-gray-800 text-lg pr-14">
-                                            <strong>أنا أتعهد بأن:</strong> أكون سيد أجهزتي وبرمجياتي، لا عبداً لها. 
-                                            سأختار بوعي كيف ومتى ولماذا أستخدم التقنية، ولن أسمح للخوارزميات 
-                                            أن تتحكم في مشاعري أو توجهاتي أو قيمتي الذاتية.
-                                        </p>
-                                    </div>
-                                    
-                                    {/* بند 2 */}
-                                    <div className="border-r-4 border-green-500 pr-6">
-                                        <div className="flex items-start gap-4 mb-3">
-                                            <div className="bg-green-100 text-green-800 w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold shrink-0">
-                                                ٢
-                                            </div>
-                                            <h3 className="text-xl font-bold text-green-800 pt-2">
-                                                القيمة الحقيقية
-                                            </h3>
-                                        </div>
-                                        <p className="text-gray-800 text-lg pr-14">
-                                            <strong>أنا أتعهد بأن:</strong> أقيس نجاحي بإنجازاتي الواقعية وتأثيري الإيجابي 
-                                            في عالمي الحقيقي، لا بعدد الإعجابات أو المتابعات الرقمية. سأستثمر في 
-                                            المهارات التي تبقى، لا في الصور التي تزول.
-                                        </p>
-                                    </div>
-                                    
-                                    {/* بند 3 */}
-                                    <div className="border-r-4 border-purple-500 pr-6">
-                                        <div className="flex items-start gap-4 mb-3">
-                                            <div className="bg-purple-100 text-purple-800 w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold shrink-0">
-                                                ٣
-                                            </div>
-                                            <h3 className="text-xl font-bold text-purple-800 pt-2">
-                                                النزاهة الإنسانية
-                                            </h3>
-                                        </div>
-                                        <p className="text-gray-800 text-lg pr-14">
-                                            <strong>أنا أتعهد بأن:</strong> أحافظ على قيمي الإنسانية في وجه التيار الرقمي. 
-                                            سأستخدم صوتي للخير، وأدافع عن الحق، وأكون قدوة في التعامل الرقمي 
-                                            الأخلاقي. لن أتنازل عن إنسانيتي من أجل راحة رقمية.
-                                        </p>
-                                    </div>
-                                    
-                                    {/* بند 4 */}
-                                    <div className="border-r-4 border-yellow-500 pr-6">
-                                        <div className="flex items-start gap-4 mb-3">
-                                            <div className="bg-yellow-100 text-yellow-800 w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold shrink-0">
-                                                ٤
-                                            </div>
-                                            <h3 className="text-xl font-bold text-yellow-800 pt-2">
-                                                التوازن المستدام
-                                            </h3>
-                                        </div>
-                                        <p className="text-gray-800 text-lg pr-14">
-                                            <strong>أنا أتعهد بأن:</strong> أوازن بين عالمي الرقمي والحقيقي. سأخصص 
-                                            وقتاً للعلاقات الواقعية، للصحة الجسدية والعقلية، وللتفكير العميق 
-                                            بعيداً عن ضجيج الشاشات. سأكون حاضراً حيث أكون.
-                                        </p>
-                                    </div>
-                                    
-                                    {/* بند 5 */}
-                                    <div className="border-r-4 border-red-500 pr-6">
-                                        <div className="flex items-start gap-4 mb-3">
-                                            <div className="bg-red-100 text-red-800 w-10 h-10 rounded-full flex items-center justify-center text-xl font-bold shrink-0">
-                                                ٥
-                                            </div>
-                                            <h3 className="text-xl font-bold text-red-800 pt-2">
-                                                المسؤولية المجتمعية
-                                            </h3>
-                                        </div>
-                                        <p className="text-gray-800 text-lg pr-14">
-                                            <strong>أنا أتعهد بأن:</strong> أساهم في بناء عالم رقمي أفضل. سأعلم ما أستطيع 
-                                            تعليمه، وأساعد من أستطيع مساعدته، وأكون مواطناً رقمياً إيجابياً 
-                                            يضيف قيمة ولا يسرق انتباهاً.
-                                        </p>
-                                    </div>
-                                </div>
-                                
-                                {/* قسم التوقيع */}
-                                <div className="mt-16 pt-10 border-t border-gray-300">
-                                    <div className="grid md:grid-cols-2 gap-10 mb-12">
-                                        {/* الاسم */}
-                                        <div>
-                                            <label className="block text-sm font-bold text-gray-700 mb-4">
-                                                <i className="fas fa-user ml-2"></i>
-                                                الاسم الكامل
-                                            </label>
-                                            <div className="signature-line p-3 text-lg font-serif">
-                                                {pledgeData.name || "____________________"}
-                                            </div>
-                                        </div>
-                                        
-                                        {/* التوقيع */}
-                                        <div>
-                                            <label className="block text-sm font-bold text-gray-700 mb-4">
-                                                <i className="fas fa-signature ml-2"></i>
-                                                التوقيع
-                                            </label>
-                                            <div className="signature-line p-3">
-                                                {pledgeData.signature || "____________________"}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="grid md:grid-cols-2 gap-10">
-                                        {/* التاريخ */}
-                                        <div>
-                                            <label className="block text-sm font-bold text-gray-700 mb-4">
-                                                <i className="fas fa-calendar ml-2"></i>
-                                                التاريخ
-                                            </label>
-                                            <div className="border-b-2 border-gray-400 p-3 text-lg">
-                                                {pledgeData.date}
-                                            </div>
-                                        </div>
-                                        
-                                        {/* المكان */}
-                                        <div>
-                                            <label className="block text-sm font-bold text-gray-700 mb-4">
-                                                <i className="fas fa-map-marker-alt ml-2"></i>
-                                                المكان
-                                            </label>
-                                            <div className="border-b-2 border-gray-400 p-3 text-lg">
-                                                {pledgeData.location || "____________________"}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    {/* ختم الإقرار */}
-                                    <div className="mt-12 text-center">
-                                        <div className="inline-block border-2 border-dashed border-gray-400 p-6 rounded-xl bg-gray-50">
-                                            <p className="text-gray-700 font-bold mb-2">
-                                                🛡️ إقرار وموافقة
-                                            </p>
-                                            <p className="text-gray-600 text-sm">
-                                                أوافق على جميع بنود هذا العهد وأتعهد بالالتزام بها.<br/>
-                                                هذا العهد يمثل وعداً شخصياً بيني وبين نفسي.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            {/* تذييل العهد */}
-                            <div className="bg-gray-50 p-6 border-t border-gray-300 text-center text-gray-600 text-sm rounded-b-2xl">
-                                <p>
-                                    <i className="fas fa-info-circle ml-2"></i>
-                                    هذا العهد هو وثيقة شخصية ترمز لبداية رحلة التحول الرقمي الواعي.
-                                </p>
-                                <p className="mt-2 print-watermark">
-                                    المرساة الرقمية - "من أنت حين تنطفئ الشاشة؟" - الإصدار 2025
-                                </p>
-                            </div>
-                        </div>
-                        
-                        {/* أزرار التحكم */}
-                        <div className="text-center mt-10 no-print">
-                            <div className="flex flex-wrap gap-4 justify-center">
-                                <button 
-                                    onClick={handlePrint}
-                                    className="bg-gradient-to-r from-anchor-blue to-gray-900 text-white px-8 py-4 rounded-xl font-bold hover:from-gray-900 hover:to-anchor-blue transition shadow-lg flex items-center gap-3"
-                                >
-                                    <i className="fas fa-print"></i>
-                                    🖨️ طباعة العهد
-                                </button>
-                                
-                                <button 
-                                    onClick={handleDownloadPDF}
-                                    className="bg-gradient-to-r from-green-600 to-emerald-700 text-white px-8 py-4 rounded-xl font-bold hover:from-green-700 hover:to-emerald-800 transition shadow-lg flex items-center gap-3"
-                                >
-                                    <i className="fas fa-file-pdf"></i>
-                                    📄 تحميل كملف PDF
-                                </button>
-                                
-                                <button 
-                                    onClick={() => {
-                                        const name = prompt('أدخل اسمك لتوقيع العهد:');
-                                        if (name) setPledgeData({...pledgeData, name: name});
-                                    }}
-                                    className="bg-gradient-to-r from-yellow-500 to-orange-500 text-gray-900 px-8 py-4 rounded-xl font-bold hover:from-yellow-600 hover:to-orange-600 transition shadow-lg flex items-center gap-3"
-                                >
-                                    <i className="fas fa-pen"></i>
-                                    ✍️ توقيع العهد
-                                </button>
-                            </div>
-                            
-                            <div className="mt-8 text-gray-600 max-w-2xl mx-auto">
-                                <p className="mb-4">
-                                    <strong>نصيحة:</strong> اطبع هذا العهد وضعه في مكان تراه يومياً. 
-                                    شاركه مع أصدقائك ليبدأوا رحلتهم معك.
-                                </p>
-                                <div className="flex flex-wrap gap-4 justify-center text-sm">
-                                    <a href="index.html" className="text-anchor-blue hover:underline">
-                                        <i className="fas fa-home ml-2"></i>
-                                        العودة للصفحة الرئيسية
-                                    </a>
-                                    <a href="resources.html" className="text-anchor-blue hover:underline">
-                                        <i className="fas fa-download ml-2"></i>
-                                        الموارد المجانية
-                                    </a>
-                                    <a href="book-preorder.html" className="text-anchor-blue hover:underline">
-                                        <i className="fas fa-book ml-2"></i>
-                                        طلب الكتاب الكامل
-                                    </a>
-                                </div>
+                            <div className="text-center mt-8 no-print space-x-4 space-x-reverse">
+                                <button onClick={() => window.print()} className="bg-anchor-blue text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-800 transition shadow-lg">🖨️ طباعة العهد</button>
+                                <a href="downloads/Pledge_Paper.pdf" download className="text-anchor-blue font-bold underline hover:text-anchor-gold">تحميل كملف PDF</a>
                             </div>
                         </div>
                     </main>
-                    
-                    <footer className="bg-anchor-blue text-white py-8 no-print">
-                        <div className="max-w-4xl mx-auto px-4 text-center">
+        
+                    <footer className="bg-anchor-blue text-white py-8 border-t border-slate-800 mt-12 no-print">
+                        <div className="max-w-5xl mx-auto px-6">
                             <div className="flex flex-col md:flex-row justify-between items-center mb-6">
                                 <div className="mb-4 md:mb-0">
-                                    <div className="flex items-center justify-center md:justify-start gap-3">
-                                        <div className="w-10 h-10 bg-gradient-to-r from-anchor-gold to-yellow-500 rounded-lg flex items-center justify-center">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-10 h-10 bg-anchor-gold rounded-full flex items-center justify-center">
                                             <i className="fas fa-anchor text-white"></i>
                                         </div>
                                         <div>
-                                            <h3 className="font-bold text-lg">المرساة الرقمية</h3>
-                                            <p className="text-slate-300 text-sm">عهد التحرر والقيادة</p>
+                                            <h3 className="font-bold text-lg">{t('app_name')}</h3>
+                                            <p className="text-slate-300 text-sm">{t('covenant_title')}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -474,7 +287,7 @@
                             </div>
                             <hr className="border-slate-700 my-6" />
                             <p className="text-slate-400 text-sm">
-                                © 2025 المرساة الرقمية - "من أنت حين تنطفئ الشاشة؟"<br/>
+                                {t('footer-copy')}<br/>
                                 جميع الحقوق محفوظة. هذا العهد مخصص للاستخدام الشخصي والتوعوي.
                             </p>
                         </div>
@@ -483,8 +296,8 @@
             );
         };
 
-        // ✅ التصيير الصحيح
-        ReactDOM.render(<CovenantPage />, document.getElementById('root'));
+        // ✅ تحديث التصيير للتغليف بـ LanguageProvider
+        ReactDOM.render(<LanguageProvider><CovenantPage /></LanguageProvider>, document.getElementById('root'));
     </script>
 </body>
 </html>

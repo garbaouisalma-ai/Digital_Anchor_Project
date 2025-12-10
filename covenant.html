@@ -9,51 +9,176 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>@media print { .no-print { display: none !important; } body { background: white; } }</style>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
     <div id="root"></div>
     <script type="text/babel">
-        const CovenantPage = () => {
+
+        // ----------------------------------------------------
+        // الكود المشترك للغة والعملة (Language/Currency Logic)
+        // ----------------------------------------------------
+        
+        // 1. قاموس الترجمة
+        const translations = {
+            // العربية (افتراضي)
+            ar: {
+                'lang_ar': 'العربية', 'lang_en': 'English', 'lang_fr': 'Français',
+                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
+                'home': 'الرئيسية',
+                'stories_title': 'قصص النجاح الملهمة', 
+                'covenant_title': 'عهد التحرر والقيادة', 
+                'app_name': 'المرساة الرقمية',
+                'guide': 'الدليل',
+                'buy_book': 'الشراء',
+                'footer-copy': '© 2025 المرساة الرقمية - "من أنت حين تنطفئ الشاشة؟". جميع الحقوق محفوظة.',
+                'footer-email': 'شارك قصتك معنا:',
+                'footer-covenant': 'عهد التحرر',
+                'footer-resources': 'الموارد المجانية',
+                'footer-preorder': 'طلب الكتاب',
+            },
+            // الإنجليزية
+            en: {
+                'lang_ar': 'Arabic', 'lang_en': 'English', 'lang_fr': 'French',
+                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
+                'home': 'Home',
+                'stories_title': 'Inspiring Success Stories',
+                'covenant_title': 'Pledge of Liberation and Leadership',
+                'app_name': 'Digital Anchor',
+                'guide': 'Guide',
+                'buy_book': 'Purchase',
+                'footer-copy': '© 2025 Digital Anchor - "Who are you when the screen turns off?". All rights reserved.',
+                'footer-email': 'Share your story with us:',
+                'footer-covenant': 'Pledge of Liberation',
+                'footer-resources': 'Free Resources',
+                'footer-preorder': 'Order Book',
+            },
+            // الفرنسية
+            fr: {
+                'lang_ar': 'Arabe', 'lang_en': 'Anglais', 'lang_fr': 'Français',
+                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
+                'home': 'Accueil',
+                'stories_title': 'Histoires de Succès Inspirantes',
+                'covenant_title': 'Engagement de Libération et de Leadership',
+                'app_name': 'Ancre Numérique',
+                'guide': 'Guide',
+                'buy_book': 'Acheter',
+                'footer-copy': '© 2025 Ancre Numérique - "Qui êtes-vous lorsque l\'écran s\'éteint?". Tous droits réservés.',
+                'footer-email': 'Partagez votre histoire avec nous:',
+                'footer-covenant': 'Engagement de Libération',
+                'footer-resources': 'Ressources Gratuites',
+                'footer-preorder': 'Commander Livre',
+            },
+        };
+
+        // 2. مزود اللغة (Provider) والسياق (Context)
+        const LanguageContext = React.createContext();
+
+        const LanguageProvider = ({ children }) => {
+            const [language, setLanguage] = React.useState('ar');
+            const [currency, setCurrency] = React.useState('USD');
+            const t = (key) => translations[language]?.[key] || key;
+
+            React.useEffect(() => {
+                document.documentElement.lang = language;
+                document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
+            }, [language]);
+
             return (
-                <div className="min-h-screen flex flex-col">
-                    <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-md no-print">
-                        <div className="max-w-7xl mx-auto flex justify-between items-center">
-                            <a href="index.html" className="flex items-center gap-3"><img src="images/logo.png" alt="Logo" className="h-10 w-auto" /><span className="font-bold text-lg hidden md:block">المرساة الرقمية</span></a>
-                            <a href="index.html" className="text-sm hover:text-anchor-gold transition">العودة للرئيسية</a>
-                        </div>
-                    </nav>
-                    <main className="flex-grow py-12 px-4">
-                        <div className="max-w-3xl mx-auto bg-white p-12 rounded-xl shadow-xl border-4 border-double border-anchor-blue relative overflow-hidden">
-                            <div className="absolute top-0 right-0 w-24 h-24 bg-anchor-gold opacity-10 rounded-bl-full"></div>
-                            <header className="text-center mb-10">
-                                <h1 className="text-4xl font-bold font-serif text-anchor-blue mb-2">عهد التحرر والقيادة</h1>
-                                <p className="text-gray-500 text-sm">Digital Sovereignty Pledge</p>
-                            </header>
-                            <div className="space-y-6 text-lg leading-relaxed text-gray-800">
-                                <p className="font-bold">أنا الموقع أدناه، أقر وأتعهد أمام نفسي بالآتي:</p>
-                                <ul className="list-disc pr-6 space-y-3 marker:text-anchor-gold">
-                                    <li>سأكون سيد أجهزتي، لا عبداً لها.</li>
-                                    <li>سأقيس نجاحي بإنجازاتي الواقعية، لا بعدد الإعجابات الرقمية.</li>
-                                    <li>سأحافظ على قيمي الإنسانية وأستخدم صوتي للخير دائماً.</li>
-                                </ul>
-                            </div>
-                            <div className="mt-16 pt-8 border-t border-gray-200 grid grid-cols-2 gap-12">
-                                <div><label className="block text-sm font-bold text-gray-500 mb-8">الاسم</label><div className="border-b-2 border-gray-300 h-8"></div></div>
-                                <div><label className="block text-sm font-bold text-gray-500 mb-8">التوقيع</label><div className="border-b-2 border-gray-300 h-8"></div></div>
-                            </div>
-                        </div>
-                        <div className="text-center mt-8 no-print space-x-4 space-x-reverse">
-                            <button onClick={() => window.print()} className="bg-anchor-blue text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-800 transition shadow-lg">🖨️ طباعة العهد</button>
-                            <a href="downloads/Pledge_Paper.pdf" download className="text-anchor-blue font-bold underline hover:text-anchor-gold">تحميل كملف PDF</a>
-                        </div>
-                    </main>
-                    <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm no-print">© 2025 المرساة الرقمية</footer>
+                <LanguageContext.Provider value={{ language, setLanguage, currency, setCurrency, t }}>
+                    {children}
+                </LanguageContext.Provider>
+            );
+        };
+
+        // 3. الخطاف (Hook) للوصول إلى السياق
+        const useTranslation = () => React.useContext(LanguageContext);
+
+        // 4. مكون مبدل اللغة والعملة
+        const LanguageCurrencySwitcher = () => {
+            const { language, setLanguage, currency, setCurrency, t } = useTranslation();
+
+            const handleLanguageChange = (e) => setLanguage(e.target.value);
+            const handleCurrencyChange = (e) => setCurrency(e.target.value);
+
+            return (
+                <div className="flex items-center gap-3">
+                    {/* القائمة المنسدلة للغة */}
+                    <div className="relative text-anchor-blue"> 
+                        <select 
+                            value={language} 
+                            onChange={handleLanguageChange} 
+                            className="appearance-none bg-white border border-gray-300 rounded-lg py-1 pl-6 pr-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-anchor-gold cursor-pointer"
+                        >
+                            <option value="ar">{t('lang_ar')}</option>
+                            <option value="en">{t('lang_en')}</option>
+                            <option value="fr">{t('lang_fr')}</option>
+                        </select>
+                        {/* أيقونة السهم */}
+                        <i className="fas fa-caret-down absolute top-1/2 right-2 transform -translate-y-1/2 pointer-events-none text-gray-500"></i>
+                    </div>
+                    
+                    {/* القائمة المنسدلة للعملة */}
+                    <div className="relative text-anchor-blue">
+                        <select 
+                            value={currency} 
+                            onChange={handleCurrencyChange} 
+                            className="appearance-none bg-white border border-gray-300 rounded-lg py-1 pl-6 pr-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-anchor-gold cursor-pointer"
+                        >
+                            <option value="USD">{t('curr_usd')}</option>
+                            <option value="EUR">{t('curr_eur')}</option>
+                            <option value="SAR">{t('curr_sar')}</option>
+                        </select>
+                        {/* أيقونة السهم */}
+                        <i className="fas fa-caret-down absolute top-1/2 right-2 transform -translate-y-1/2 pointer-events-none text-gray-500"></i>
+                    </div>
                 </div>
             );
         };
+
+        // ----------------------------------------------------
+        // مكونات الصفحة
+        // ----------------------------------------------------
+        
+        const CovenantPage = () => {
+            const { t } = useTranslation(); // استخدام t
+            return (
+                <div className="min-h-screen flex flex-col items-center p-4 bg-slate-50 font-sans">
+                    {/* Header/Title Area - تم التحديث ليتضمن المبدل والترجمة */}
+                    <header className="py-8 text-center max-w-4xl w-full no-print">
+                        <div className="flex justify-between items-start mb-4">
+                            <h1 className="text-4xl font-serif font-bold text-anchor-blue text-right">{t('covenant_title')}</h1>
+                            
+                            <LanguageCurrencySwitcher />
+                        </div>
+                        <p className="text-gray-500 text-right">وثيقة شخصية للسيادة الرقمية</p>
+                    </header>
+                    
+                    <main className="flex-grow max-w-4xl w-full bg-white p-10 rounded-2xl shadow-2xl border-2 border-anchor-gold print-area">
+                        {/* ... (بقية محتوى العهد) ... */}
+                        
+                        <div className="mt-16 pt-8 border-t border-gray-200 grid grid-cols-2 gap-12">
+                            <div><label className="block text-sm font-bold text-gray-500 mb-8">الاسم</label><div className="border-b-2 border-gray-300 h-8"></div></div>
+                            <div><label className="block text-sm font-bold text-gray-500 mb-8">التوقيع</label><div className="border-b-2 border-gray-300 h-8"></div></div>
+                        </div>
+                    </main>
+                    
+                    <div className="text-center mt-8 no-print space-x-4 space-x-reverse">
+                        <button onClick={() => window.print()} className="bg-anchor-blue text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-800 transition shadow-lg">🖨️ طباعة العهد</button>
+                        <a href="downloads/Pledge_Paper.pdf" download className="text-anchor-blue font-bold underline hover:text-anchor-gold">تحميل كملف PDF</a>
+                    </div>
+
+                    <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm no-print">
+                        {t('footer-copy')}
+                    </footer>
+                </div>
+            );
+        };
+        
         const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<CovenantPage />);
+        // ✅ تحديث التصيير للتغليف بـ LanguageProvider (React 18)
+        root.render(<LanguageProvider><CovenantPage /></LanguageProvider>);
     </script>
 </body>
 </html>
