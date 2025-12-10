@@ -18,21 +18,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
     <style>
-        :root { --primary: #1a365d; --secondary: #2d3748; --accent: #d69e2e; }
-        body { font-family: 'Tajawal', sans-serif; background-color: #f7fafc; color: #2d3748; }
+        body { font-family: 'Tajawal', sans-serif; background-color: #f7fafc; }
         h1, h2, h3 { font-family: 'Amiri', serif; }
-        
         .btn-primary { background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%); color: white; transition: 0.3s; }
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
         .card-hover:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); transition: 0.3s; }
-        
-        /* Premium Badge */
-        .premium-badge {
-            position: absolute; top: 0; left: 0; /* Left for RTL */
-            background: #d69e2e; color: #fff; padding: 5px 15px;
-            font-weight: bold; font-size: 0.8rem;
-            border-bottom-right-radius: 10px;
-        }
+        .premium-badge { position: absolute; top: 0; left: 0; background: #d69e2e; color: #fff; padding: 5px 15px; font-weight: bold; font-size: 0.8rem; border-bottom-right-radius: 10px; }
         html[dir="ltr"] .premium-badge { left: auto; right: 0; border-bottom-right-radius: 0; border-bottom-left-radius: 10px; }
     </style>
 </head>
@@ -52,12 +43,13 @@
                     <option value="ar">عربي</option>
                     <option value="en">English</option>
                     <option value="fr">Français</option>
+                    <option value="de">Deutsch</option>
                 </select>
 
-                <select id="curr-select" onchange="convertCurrency(this.value)" class="text-xs border border-gray-300 rounded p-1 bg-white">
-                    <option value="SAR">SAR</option>
-                    <option value="USD">USD</option>
-                    <option value="EUR">EUR</option>
+                <select id="curr-select" onchange="convertCurrency(this.value)" class="text-xs border border-gray-300 rounded p-1 bg-white font-bold text-blue-900">
+                    <option value="SAR">SAR (ر.س)</option>
+                    <option value="USD">USD ($)</option>
+                    <option value="EUR">EUR (€)</option>
                 </select>
             </div>
         </div>
@@ -123,72 +115,50 @@
     <script>
         const translations = {
             'ar': {
-                'site_name': 'المرساة الرقمية',
-                'home': 'الرئيسية',
-                'buy_header': 'اختر حزمتك للانطلاق',
-                'buy_subtitle': 'ابدأ رحلتك للقيادة الرقمية بحزمة تلائم احتياجاتك.',
-                'plan_basic_title': 'الحزمة الأساسية',
-                'plan_basic_desc': 'الوصول إلى الأدوات الأساسية وإرشادات التحرر.',
-                'feat_basic_1': 'دليل الطوارئ (PDF)',
-                'feat_basic_2': 'أداة تحديد القيم',
-                'feat_basic_3': 'نسخة من عهد التحرر',
+                'site_name': 'المرساة الرقمية', 'home': 'الرئيسية',
+                'buy_header': 'اختر حزمتك للانطلاق', 'buy_subtitle': 'ابدأ رحلتك للقيادة الرقمية بحزمة تلائم احتياجاتك.',
+                'plan_basic_title': 'الحزمة الأساسية', 'plan_basic_desc': 'الوصول إلى الأدوات الأساسية وإرشادات التحرر.',
+                'feat_basic_1': 'دليل الطوارئ (PDF)', 'feat_basic_2': 'أداة تحديد القيم', 'feat_basic_3': 'نسخة من عهد التحرر',
                 'btn_buy': 'اشترِ الآن',
-                'plan_premium_title': 'الحزمة الكاملة',
-                'plan_premium_desc': 'الكتاب + جميع الموارد + دعم المجتمع.',
-                'feat_prem_1': 'كتاب "من أنت حين تنطفئ الشاشة؟"',
-                'feat_prem_2': 'دفتر التمارين (90 يوماً)',
-                'feat_prem_3': 'شهادة السيادة الرقمية',
-                'feat_prem_4': 'عضوية المجتمع الحصرية',
-                'btn_buy_premium': 'احصل على الحزمة الكاملة',
-                'guarantee': 'ضمان استرداد الأموال لمدة 30 يوماً',
-                'badge_popular': 'الأكثر طلباً'
+                'plan_premium_title': 'الحزمة الكاملة', 'plan_premium_desc': 'الكتاب + جميع الموارد + دعم المجتمع.',
+                'feat_prem_1': 'كتاب "من أنت حين تنطفئ الشاشة؟"', 'feat_prem_2': 'دفتر التمارين (90 يوماً)',
+                'feat_prem_3': 'شهادة السيادة الرقمية', 'feat_prem_4': 'عضوية المجتمع الحصرية',
+                'btn_buy_premium': 'احصل على الحزمة الكاملة', 'guarantee': 'ضمان استرداد الأموال لمدة 30 يوماً', 'badge_popular': 'الأكثر طلباً'
             },
             'en': {
-                'site_name': 'Digital Anchor',
-                'home': 'Home',
-                'buy_header': 'Choose Your Package',
-                'buy_subtitle': 'Start your journey to digital sovereignty.',
-                'plan_basic_title': 'Basic Package',
-                'plan_basic_desc': 'Essential tools and guidance.',
-                'feat_basic_1': 'Emergency Guide (PDF)',
-                'feat_basic_2': 'Values Tool',
-                'feat_basic_3': 'The Pledge',
+                'site_name': 'Digital Anchor', 'home': 'Home',
+                'buy_header': 'Choose Your Package', 'buy_subtitle': 'Start your journey to digital sovereignty.',
+                'plan_basic_title': 'Basic Package', 'plan_basic_desc': 'Essential tools and guidance.',
+                'feat_basic_1': 'Emergency Guide (PDF)', 'feat_basic_2': 'Values Tool', 'feat_basic_3': 'The Pledge',
                 'btn_buy': 'Buy Now',
-                'plan_premium_title': 'Full Package',
-                'plan_premium_desc': 'The Book + All Resources + Community.',
-                'feat_prem_1': 'The Book (PDF)',
-                'feat_prem_2': '90-Day Workbook',
-                'feat_prem_3': 'Sovereignty Certificate',
-                'feat_prem_4': 'Community Access',
-                'btn_buy_premium': 'Get Full Package',
-                'guarantee': '30-Day Money Back Guarantee',
-                'badge_popular': 'Best Value'
+                'plan_premium_title': 'Full Package', 'plan_premium_desc': 'The Book + All Resources + Community.',
+                'feat_prem_1': 'The Book (PDF)', 'feat_prem_2': '90-Day Workbook', 'feat_prem_3': 'Sovereignty Certificate', 'feat_prem_4': 'Community Access',
+                'btn_buy_premium': 'Get Full Package', 'guarantee': '30-Day Money Back Guarantee', 'badge_popular': 'Best Value'
             },
             'fr': {
-                'site_name': 'L\'Ancre Numérique',
-                'home': 'Accueil',
-                'buy_header': 'Choisissez votre forfait',
-                'buy_subtitle': 'Commencez votre voyage de souveraineté numérique.',
-                'plan_basic_title': 'Forfait de Base',
-                'plan_basic_desc': 'Outils essentiels.',
-                'feat_basic_1': 'Guide d\'urgence',
-                'feat_basic_2': 'Outil des valeurs',
-                'feat_basic_3': 'L\'Engagement',
+                'site_name': 'L\'Ancre Numérique', 'home': 'Accueil',
+                'buy_header': 'Choisissez votre forfait', 'buy_subtitle': 'Commencez votre voyage de souveraineté numérique.',
+                'plan_basic_title': 'Forfait de Base', 'plan_basic_desc': 'Outils essentiels.',
+                'feat_basic_1': 'Guide d\'urgence', 'feat_basic_2': 'Outil des valeurs', 'feat_basic_3': 'L\'Engagement',
                 'btn_buy': 'Acheter',
-                'plan_premium_title': 'Forfait Complet',
-                'plan_premium_desc': 'Livre + Ressources + Communauté.',
-                'feat_prem_1': 'Le Livre (PDF)',
-                'feat_prem_2': 'Cahier d\'exercices',
-                'feat_prem_3': 'Certificat',
-                'feat_prem_4': 'Accès Communauté',
-                'btn_buy_premium': 'Obtenir le pack complet',
-                'guarantee': 'Garantie de 30 jours',
-                'badge_popular': 'Populaire'
+                'plan_premium_title': 'Forfait Complet', 'plan_premium_desc': 'Livre + Ressources + Communauté.',
+                'feat_prem_1': 'Le Livre (PDF)', 'feat_prem_2': 'Cahier d\'exercices', 'feat_prem_3': 'Certificat', 'feat_prem_4': 'Accès Communauté',
+                'btn_buy_premium': 'Pack Complet', 'guarantee': 'Garantie de 30 jours', 'badge_popular': 'Populaire'
+            },
+            'de': {
+                'site_name': 'Der Digitale Anker', 'home': 'Startseite',
+                'buy_header': 'Wählen Sie Ihr Paket', 'buy_subtitle': 'Beginnen Sie Ihre Reise zur digitalen Souveränität.',
+                'plan_basic_title': 'Basispaket', 'plan_basic_desc': 'Wichtige Werkzeuge und Anleitung.',
+                'feat_basic_1': 'Notfallleitfaden', 'feat_basic_2': 'Werte-Tool', 'feat_basic_3': 'Die Verpflichtung',
+                'btn_buy': 'Kaufen',
+                'plan_premium_title': 'Komplettpaket', 'plan_premium_desc': 'Buch + Alle Ressourcen + Community.',
+                'feat_prem_1': 'Das Buch (PDF)', 'feat_prem_2': '90-Tage-Arbeitsbuch', 'feat_prem_3': 'Zertifikat', 'feat_prem_4': 'Community-Zugang',
+                'btn_buy_premium': 'Vollpaket holen', 'guarantee': '30 Tage Geld-zurück-Garantie', 'badge_popular': 'Bester Wert'
             }
         };
 
         const RATES = {
-            'SAR': { r: 1, s: 'ر.س' },
+            'SAR': { r: 1, s: 'SAR' },
             'USD': { r: 0.27, s: '$' },
             'EUR': { r: 0.25, s: '€' }
         };
@@ -202,7 +172,7 @@
                 if (translations[lang][key]) el.textContent = translations[lang][key];
             });
 
-            // Adjust badge position for RTL/LTR
+            // Adjust badge
             const badge = document.querySelector('.premium-badge');
             if(badge) {
                 if(lang === 'ar') {
@@ -213,6 +183,7 @@
                     badge.style.borderBottomLeftRadius = '10px'; badge.style.borderBottomRightRadius = '0';
                 }
             }
+            localStorage.setItem('preferredLang', lang);
         }
 
         function convertCurrency(curr) {
@@ -229,8 +200,11 @@
             });
         }
 
-        // Initialize
-        setLanguage('ar');
+        document.addEventListener('DOMContentLoaded', () => {
+            const defaultLang = localStorage.getItem('preferredLang') || 'ar';
+            document.getElementById('lang-select').value = defaultLang;
+            setLanguage(defaultLang);
+        });
     </script>
 </body>
 </html>
