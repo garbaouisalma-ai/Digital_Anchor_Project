@@ -3,250 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دليل الاستخدام | المرساة الرقمية</title>
+    <title data-key="guide_title">دليل المنهجية | المرساة الرقمية</title>
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJZHN8FQQ2"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { 'anchor-blue': '#1a202c', 'anchor-gold': '#ffd700' },
-                    fontFamily: { sans: ['Tajawal', 'sans-serif'], serif: ['Amiri', 'serif'] }
-                }
-            }
-        }
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-HJZHN8FQQ2');
     </script>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <style>body { background-color: #f8fafc; }</style>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; }
+        h1, h2, h3 { font-family: 'Amiri', serif; }
+        .card-hover:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); transition: 0.3s; }
+    </style>
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans">
-    <div id="root"></div>
-    <script type="text/babel">
+<body class="text-slate-900 flex flex-col min-h-screen">
 
-        // ----------------------------------------------------
-        // الكود المشترك للغة والعملة (Language/Currency Logic)
-        // ----------------------------------------------------
-        
+    <nav class="bg-slate-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="logo.png" width="40" class="rounded-lg">
+                <div>
+                    <h1 class="text-xl font-bold" data-key="site_name">المرساة الرقمية</h1>
+                    <span class="text-xs text-slate-400 block" data-key="guide_title">دليل المنهجية</span>
+                </div>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-4">
+                <a href="index.html" class="text-sm font-medium hover:text-yellow-400" data-key="nav_home">الرئيسية</a>
+                <a href="buy.html" class="bg-yellow-500 text-slate-900 px-4 py-2 rounded-full font-bold hover:bg-yellow-400 text-sm" data-key="nav_book_now">احجز نسختك</a>
+                
+                <select id="lang-select" onchange="setLanguage(this.value)" class="text-xs bg-slate-800 border border-slate-700 rounded p-1 text-white">
+                    <option value="ar">عربي</option>
+                    <option value="en">English</option>
+                    <option value="fr">Français</option>
+                    <option value="de">Deutsch</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow container mx-auto px-4 py-12 max-w-4xl">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-slate-800 mb-4" data-key="guide_header">منهجية المرساة الرقمية</h1>
+            <p class="text-xl text-slate-600" data-key="guide_subtitle">دليل إرشادي خطوة بخطوة للتحرر واستعادة السيادة الرقمية.</p>
+        </header>
+
+        <div class="space-y-8">
+            <section class="bg-white p-8 rounded-2xl shadow-lg border-r-4 border-yellow-500 card-hover">
+                <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-3">
+                    <span class="bg-yellow-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">1</span>
+                    <span data-key="step1_title">التحرر والعهد</span>
+                </h2>
+                <ul class="list-disc pr-6 space-y-3 text-slate-700 text-lg">
+                    <li>
+                        <span data-key="step1_text1">في اللحظات التي تشعر فيها بالانجراف، استخدم</span> 
+                        <a href="Digital_Anchor_ProjectdownloadsEmergency_Guide.pdf" class="text-blue-600 font-bold hover:underline" data-key="link_emergency">دليل الطوارئ</a>.
+                    </li>
+                    <li>
+                        <span data-key="step1_text2">ابدأ بتحديد نيتك ووقع</span> 
+                        <a href="Pledge_Paper.pdf" class="text-blue-600 font-bold hover:underline" data-key="link_covenant">عهد التحرر</a> 
+                        <span data-key="step1_text3">لربط نفسك بقيمك الحقيقية.</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="bg-white p-8 rounded-2xl shadow-lg border-r-4 border-blue-600 card-hover">
+                <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-3">
+                    <span class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">2</span>
+                    <span data-key="step2_title">القيادة والإنتاجية</span>
+                </h2>
+                <ul class="list-disc pr-6 space-y-3 text-slate-700 text-lg">
+                    <li data-key="step2_li1">استخدم أدوات التتبع للتحكم في وقتك على الشاشة بشكل واعٍ.</li>
+                    <li data-key="step2_li2">خصص وقتاً غير رقمي منتظماً لتغذية قيمك الجوهرية.</li>
+                </ul>
+            </section>
+
+            <section class="bg-white p-8 rounded-2xl shadow-lg border-r-4 border-green-600 card-hover">
+                <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-3">
+                    <span class="bg-green-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">3</span>
+                    <span data-key="step3_title">المجتمع والدعم</span>
+                </h2>
+                <ul class="list-disc pr-6 space-y-3 text-slate-700 text-lg">
+                    <li data-key="step3_li1">شارك قصص نجاحك وتحدياتك مع مجتمع المرساة الرقمية.</li>
+                    <li data-key="step3_li2">اطلب المساعدة والدعم عندما تشعر بأنك تفقد السيطرة.</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-auto">
+        <p class="text-sm">© 2025 Digital Anchor Project.</p>
+    </footer>
+
+    <script>
         const translations = {
-            ar: {
-                'lang_ar': 'العربية', 'lang_en': 'English', 'lang_fr': 'Français',
-                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
-                'home': 'الرئيسية',
-                'guide': 'الدليل',
-                'buy_book': 'الشراء',
-                'app_name': 'المرساة الرقمية',
-                'guide_title': 'دليل المنهجية',
-                'footer-copy': '© 2025 المرساة الرقمية - "من أنت حين تنطفئ الشاشة؟". جميع الحقوق محفوظة.',
-
-                'guide-header': 'منهجية المرساة الرقمية',
-                'guide-subtitle': 'دليل إرشادي خطوة بخطوة للتحرر واستعادة السيادة الرقمية.',
-                'step-1-title': 'التحرر والعهد',
-                'step-1-text-1': 'في اللحظات التي تشعر فيها بالانجراف، استخدم دليل',
-                'link-emergency': 'الطوارئ',
-                'step-1-text-2': 'ابدأ بتحديد نيتك ووقع',
-                'link-covenant': 'عهد التحرر',
-                'step-1-text-3': 'لربط نفسك بقيمك الحقيقية.',
-                'step-2-title': 'القيادة والإنتاجية',
-                'step-2-li-1': 'استخدم أدوات التتبع للتحكم في وقتك على الشاشة بشكل واعٍ.',
-                'step-2-li-2': 'خصص وقتاً غير رقمي منتظماً لتغذية قيمك الجوهرية (مثل القراءة، العائلة، الإبداع).',
-                'step-3-title': 'المجتمع والدعم',
-                'step-3-li-1': 'شارك قصص نجاحك وتحدياتك مع مجتمع المرساة الرقمية.',
-                'step-3-li-2': 'اطلب المساعدة والدعم عندما تشعر بأنك تفقد السيطرة.',
+            'ar': {
+                'site_name': 'المرساة الرقمية', 'guide_title': 'دليل المنهجية', 'nav_home': 'الرئيسية', 'nav_book_now': 'احجز نسختك',
+                'guide_header': 'منهجية المرساة الرقمية', 'guide_subtitle': 'دليل إرشادي خطوة بخطوة للتحرر واستعادة السيادة الرقمية.',
+                'step1_title': 'التحرر والعهد', 'step1_text1': 'في اللحظات التي تشعر فيها بالانجراف، استخدم', 'link_emergency': 'دليل الطوارئ', 'step1_text2': 'ابدأ بتحديد نيتك ووقع', 'link_covenant': 'عهد التحرر', 'step1_text3': 'لربط نفسك بقيمك الحقيقية.',
+                'step2_title': 'القيادة والإنتاجية', 'step2_li1': 'استخدم أدوات التتبع للتحكم في وقتك على الشاشة بشكل واعٍ.', 'step2_li2': 'خصص وقتاً غير رقمي منتظماً لتغذية قيمك الجوهرية.',
+                'step3_title': 'المجتمع والدعم', 'step3_li1': 'شارك قصص نجاحك مع مجتمع المرساة الرقمية.', 'step3_li2': 'اطلب المساعدة والدعم عندما تشعر بأنك تفقد السيطرة.'
             },
-            en: {
-                'lang_ar': 'Arabic', 'lang_en': 'English', 'lang_fr': 'French',
-                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
-                'home': 'Home',
-                'guide': 'Guide',
-                'buy_book': 'Purchase',
-                'app_name': 'Digital Anchor',
-                'guide_title': 'Methodology Guide',
-                'footer-copy': '© 2025 Digital Anchor - "Who are you when the screen turns off?". All rights reserved.',
-
-                'guide-header': 'Digital Anchor Methodology',
-                'guide-subtitle': 'A step-by-step guide to liberation and reclaiming digital sovereignty.',
-                'step-1-title': 'Liberation and Pledge',
-                'step-1-text-1': 'In moments when you feel adrift, use the',
-                'link-emergency': 'Emergency Guide',
-                'step-1-text-2': 'Start by setting your intention and signing the',
-                'link-covenant': 'Pledge of Liberation',
-                'step-1-text-3': 'to anchor yourself to your true values.',
-                'step-2-title': 'Leadership and Productivity',
-                'step-2-li-1': 'Use tracking tools to consciously control your screen time.',
-                'step-2-li-2': 'Allocate regular non-digital time to nurture your core values (e.g., reading, family, creativity).',
-                'step-3-title': 'Community and Support',
-                'step-3-li-1': 'Share your success stories and challenges with the Digital Anchor community.',
-                'step-3-li-2': 'Ask for help and support when you feel you are losing control.',
+            'en': {
+                'site_name': 'Digital Anchor', 'guide_title': 'Methodology Guide', 'nav_home': 'Home', 'nav_book_now': 'Order Now',
+                'guide_header': 'Digital Anchor Methodology', 'guide_subtitle': 'A step-by-step guide to reclaiming digital sovereignty.',
+                'step1_title': 'Liberation & Pledge', 'step1_text1': 'In moments of drift, use the', 'link_emergency': 'Emergency Guide', 'step1_text2': 'Start by signing the', 'link_covenant': 'Liberation Pledge', 'step1_text3': 'to anchor to your values.',
+                'step2_title': 'Leadership & Productivity', 'step2_li1': 'Use tracking tools to consciously control screen time.', 'step2_li2': 'Allocate non-digital time for core values.',
+                'step3_title': 'Community & Support', 'step3_li1': 'Share success stories with the community.', 'step3_li2': 'Seek support when losing control.'
             },
-            fr: {
-                'lang_ar': 'Arabe', 'lang_en': 'Anglais', 'lang_fr': 'Français',
-                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
-                'home': 'Accueil',
-                'guide': 'Guide',
-                'buy_book': 'Acheter',
-                'app_name': 'Ancre Numérique',
-                'guide_title': 'Guide de Méthodologie',
-                'footer-copy': '© 2025 Ancre Numérique - "Qui êtes-vous lorsque l\'écran s\'éteint?". Tous droits réservés.',
-
-                'guide-header': 'Méthodologie Ancre Numérique',
-                'guide-subtitle': 'Un guide étape par étape pour la libération et la récupération de la souveraineté numérique.',
-                'step-1-title': 'Libération et Engagement',
-                'step-1-text-1': 'Dans les moments où vous vous sentez emporté, utilisez le',
-                'link-emergency': 'Guide d\'Urgence',
-                'step-1-text-2': 'Commencez par fixer votre intention et signer l\'',
-                'link-covenant': 'Engagement de Libération',
-                'step-1-text-3': 'pour vous ancrer à vos vraies valeurs.',
-                'step-2-title': 'Leadership et Productivité',
-                'step-2-li-1': 'Utilisez des outils de suivi pour contrôler consciemment votre temps d\'écran.',
-                'step-2-li-2': 'Allouez du temps non-numérique régulier pour nourrir vos valeurs fondamentales (par exemple, lecture, famille, créativité).',
-                'step-3-title': 'Communauté et Soutien',
-                'step-3-li-1': 'Partagez vos réussites et vos défis avec la communauté Digital Anchor.',
-                'step-3-li-2': 'Demandez de l\'aide et du soutien lorsque vous sentez que vous perdez le contrôle.',
+            'fr': {
+                'site_name': 'L\'Ancre Numérique', 'guide_title': 'Guide Méthodologique', 'nav_home': 'Accueil', 'nav_book_now': 'Commander',
+                'guide_header': 'Méthodologie Ancre Numérique', 'guide_subtitle': 'Un guide étape par étape pour la souveraineté numérique.',
+                'step1_title': 'Libération et Engagement', 'step1_text1': 'Utilisez le', 'link_emergency': 'Guide d\'Urgence', 'step1_text2': 'Signez l\'', 'link_covenant': 'Engagement', 'step1_text3': 'pour vous ancrer.',
+                'step2_title': 'Leadership et Productivité', 'step2_li1': 'Contrôlez consciemment votre temps d\'écran.', 'step2_li2': 'Allouez du temps hors écran.',
+                'step3_title': 'Communauté et Soutien', 'step3_li1': 'Partagez vos succès.', 'step3_li2': 'Demandez de l\'aide si nécessaire.'
             },
+            'de': {
+                'site_name': 'Der Digitale Anker', 'guide_title': 'Methodenleitfaden', 'nav_home': 'Startseite', 'nav_book_now': 'Bestellen',
+                'guide_header': 'Methodik des Digitalen Ankers', 'guide_subtitle': 'Ein Schritt-für-Schritt-Leitfaden zur digitalen Souveränität.',
+                'step1_title': 'Befreiung & Verpflichtung', 'step1_text1': 'Nutzen Sie den', 'link_emergency': 'Notfallleitfaden', 'step1_text2': 'Unterzeichnen Sie die', 'link_covenant': 'Verpflichtung', 'step1_text3': 'um sich zu verankern.',
+                'step2_title': 'Führung & Produktivität', 'step2_li1': 'Kontrollieren Sie Ihre Bildschirmzeit bewusst.', 'step2_li2': 'Planen Sie offline-Zeit ein.',
+                'step3_title': 'Gemeinschaft & Unterstützung', 'step3_li1': 'Teilen Sie Erfolge.', 'step3_li2': 'Suchen Sie Unterstützung.'
+            }
         };
 
-        const LanguageContext = React.createContext();
-        const LanguageProvider = ({ children }) => {
-            const [language, setLanguage] = React.useState('ar');
-            const [currency, setCurrency] = React.useState('USD');
-            const t = (key) => translations[language]?.[key] || key;
-            React.useEffect(() => {
-                document.documentElement.lang = language;
-                document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
-            }, [language]);
-            return (
-                <LanguageContext.Provider value={{ language, setLanguage, currency, setCurrency, t }}>
-                    {children}
-                </LanguageContext.Provider>
-            );
-        };
-        const useTranslation = () => React.useContext(LanguageContext);
+        function setLanguage(lang) {
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[lang][key]) el.textContent = translations[lang][key];
+            });
+            localStorage.setItem('preferredLang', lang);
+        }
 
-        const LanguageCurrencySwitcher = () => {
-            const { language, setLanguage, currency, setCurrency, t } = useTranslation();
-            const handleLanguageChange = (e) => setLanguage(e.target.value);
-            const handleCurrencyChange = (e) => setCurrency(e.target.value);
-            return (
-                <div className="flex items-center gap-3">
-                    <div className="relative text-white"> 
-                        <select 
-                            value={language} 
-                            onChange={handleLanguageChange} 
-                            className="appearance-none bg-anchor-blue border border-gray-600 rounded-lg py-1 pl-6 pr-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-anchor-gold cursor-pointer"
-                        >
-                            <option value="ar">{t('lang_ar')}</option>
-                            <option value="en">{t('lang_en')}</option>
-                            <option value="fr">{t('lang_fr')}</option>
-                        </select>
-                        <i className="fas fa-caret-down absolute top-1/2 right-2 transform -translate-y-1/2 pointer-events-none text-gray-400"></i>
-                    </div>
-                    <div className="relative text-white">
-                        <select 
-                            value={currency} 
-                            onChange={handleCurrencyChange} 
-                            className="appearance-none bg-anchor-blue border border-gray-600 rounded-lg py-1 pl-6 pr-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-anchor-gold cursor-pointer"
-                        >
-                            <option value="USD">{t('curr_usd')}</option>
-                            <option value="EUR">{t('curr_eur')}</option>
-                            <option value="SAR">{t('curr_sar')}</option>
-                        </select>
-                        <i className="fas fa-caret-down absolute top-1/2 right-2 transform -translate-y-1/2 pointer-events-none text-gray-400"></i>
-                    </div>
-                </div>
-            );
-        };
-
-        const Navbar = () => {
-            const { t } = useTranslation(); 
-            return (
-                <nav className="bg-anchor-blue text-white py-4 px-6 shadow-lg">
-                    <div className="max-w-7xl mx-auto flex justify-between items-center">
-                        <a href="index.html" className="flex items-center gap-3 group">
-                            <div className="w-10 h-10 bg-gradient-to-r from-anchor-gold to-yellow-500 rounded-lg flex items-center justify-center transition-transform group-hover:scale-110">
-                                <i className="fas fa-anchor text-white text-lg"></i>
-                            </div>
-                            <div>
-                                <span className="font-bold text-lg hidden md:block">{t('app_name')}</span> 
-                                <span className="text-xs text-slate-300 block">{t('guide_title')}</span>
-                            </div>
-                        </a>
-                        
-                        <div className="flex gap-4 md:gap-6 text-sm font-medium items-center">
-                            <a href="index.html" className="hover:text-anchor-gold transition flex items-center gap-2">
-                                <i className="fas fa-home"></i>
-                                <span className="hidden md:inline">{t('home')}</span>
-                            </a>
-                            <a href="guide.html" className="hover:text-anchor-gold transition hidden sm:flex items-center gap-2">
-                                <i className="fas fa-book-open"></i>
-                                <span>{t('guide')}</span>
-                            </a>
-                            <a href="book-preorder.html" className="bg-anchor-gold text-anchor-blue px-5 py-2.5 rounded-full font-bold hover:bg-yellow-400 transition shadow-lg flex items-center gap-2">
-                                <i className="fas fa-shopping-cart"></i>
-                                <span>{t('buy_book')}</span>
-                            </a>
-                            
-                            <LanguageCurrencySwitcher />
-                        </div>
-                    </div>
-                </nav>
-            );
-        };
-
-        const GuidePage = () => {
-            const { t } = useTranslation();
-            return (
-                <div className="min-h-screen flex flex-col">
-                    <Navbar />
-                    <main className="flex-grow max-w-4xl mx-auto p-6 lg:p-12 w-full">
-                        <header className="text-center mb-10">
-                            <h1 className="text-3xl font-bold text-anchor-blue mb-2">{t('guide-header')}</h1>
-                            <p className="text-gray-500">{t('guide-subtitle')}</p>
-                        </header>
-                        
-                        <div className="space-y-8">
-                            {/* Step 1 */}
-                            <section className="bg-white p-6 rounded-xl shadow-lg border-l-4 border-anchor-gold">
-                                <h2 className="text-xl font-bold text-anchor-blue mb-3">1. {t('step-1-title')}</h2>
-                                <ul className="list-disc pr-5 space-y-2 text-gray-700">
-                                    <li>
-                                        {t('step-1-text-1')} <a href="downloads/Emergency_Guide.pdf" className="text-blue-600 underline font-bold">{t('link-emergency')}</a>.
-                                    </li>
-                                    <li>
-                                        {t('step-1-text-2')} <a href="covenant.html" className="text-blue-600 underline font-bold">{t('link-covenant')}</a> {t('step-1-text-3')}
-                                    </li>
-                                </ul>
-                            </section>
-                            {/* Step 2 */}
-                            <section className="bg-white p-6 rounded-xl shadow-lg border-l-4 border-anchor-gold">
-                                <h2 className="text-xl font-bold text-anchor-blue mb-3">2. {t('step-2-title')}</h2>
-                                <ul className="list-disc pr-5 space-y-2 text-gray-700">
-                                    <li>{t('step-2-li-1')}</li>
-                                    <li>{t('step-2-li-2')}</li>
-                                </ul>
-                            </section>
-                            {/* Step 3 */}
-                            <section className="bg-white p-6 rounded-xl shadow-lg border-l-4 border-anchor-gold">
-                                <h2 className="text-xl font-bold text-anchor-blue mb-3">3. {t('step-3-title')}</h2>
-                                <ul className="list-disc pr-5 space-y-2 text-gray-700">
-                                    <li>{t('step-3-li-1')}</li>
-                                    <li>{t('step-3-li-2')}</li>
-                                </ul>
-                            </section>
-                        </div>
-                    </main>
-                    <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm border-t border-slate-800">
-                        {t('footer-copy')}
-                    </footer>
-                </div>
-            );
-        };
-
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<LanguageProvider><GuidePage /></LanguageProvider>);
+        document.addEventListener('DOMContentLoaded', () => {
+            const defaultLang = localStorage.getItem('preferredLang') || 'ar';
+            document.getElementById('lang-select').value = defaultLang;
+            setLanguage(defaultLang);
+        });
     </script>
 </body>
 </html>

@@ -3,279 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>احجز كتاب "من أنت حين تنطفئ الشاشة؟"</title>
+    <title data-key="preorder_title">حجز الكتاب | المرساة الرقمية</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJZHN8FQQ2"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HJZHN8FQQ2');</script>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'anchor-blue': '#0f172a',
-                        'anchor-gold': '#d4af37',
-                        'anchor-green': '#059669'
-                    },
-                    fontFamily: {
-                        sans: ['Tajawal', 'sans-serif'],
-                        serif: ['Amiri', 'serif']
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; }</style>
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans">
-    <div id="root"></div>
-    <script type="text/babel">
+<body class="text-slate-900 flex flex-col min-h-screen">
 
-        // ----------------------------------------------------
-        // الكود المشترك للغة والعملة (Language/Currency Logic)
-        // ----------------------------------------------------
-        
+    <nav class="bg-slate-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="logo.png" width="40" class="rounded-lg">
+                <span class="text-xl font-bold" data-key="site_name">المرساة الرقمية</span>
+            </a>
+            <select id="lang-select" onchange="setLanguage(this.value)" class="text-xs bg-slate-800 border border-slate-700 rounded p-1 text-white">
+                <option value="ar">عربي</option>
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+            </select>
+        </div>
+    </nav>
+
+    <main class="flex-grow container mx-auto px-4 py-12 max-w-4xl">
+        <div class="bg-white p-10 rounded-2xl shadow-2xl border-t-8 border-yellow-500 text-center">
+            <i class="fas fa-book-open text-6xl text-yellow-500 mb-6"></i>
+            <h1 class="text-3xl font-bold text-slate-800 mb-4" data-key="book_header">الكتاب المنتظر: "من أنت حين تنطفئ الشاشة؟"</h1>
+            <p class="text-lg text-slate-600 mb-8" data-key="book_subtitle">دليلك الشامل لاستعادة التركيز والقيادة الرقمية. احجز نسختك الآن بسعر خاص.</p>
+            
+            <div class="bg-slate-900 text-white p-6 rounded-xl max-w-md mx-auto mb-8 shadow-lg">
+                <h2 class="text-xl font-bold mb-2" data-key="preorder_price">سعر الحجز المسبق:</h2>
+                <p class="text-5xl font-extrabold text-yellow-500">19.99 $</p>
+                <p class="text-sm text-slate-400 line-through mt-2" data-key="regular_price">السعر العادي: 24.99 $</p>
+            </div>
+
+            <ul class="text-right max-w-md mx-auto space-y-4 mb-10 text-lg">
+                <li class="flex items-center gap-3"><i class="fas fa-check-circle text-green-500"></i> <span data-key="benefit1">نسخة ورقية (فور صدورها)</span></li>
+                <li class="flex items-center gap-3"><i class="fas fa-check-circle text-green-500"></i> <span data-key="benefit2">نسخة رقمية (PDF) فورية</span></li>
+                <li class="flex items-center gap-3 font-bold text-slate-800"><i class="fas fa-crown text-yellow-500"></i> <span data-key="benefit3">وصول حصري لمنطقة الأعضاء</span></li>
+            </ul>
+
+            <a href="buy.html" class="inline-block bg-yellow-500 text-slate-900 px-12 py-4 rounded-full font-bold text-xl hover:bg-yellow-400 transition shadow-xl" data-key="btn_preorder">احجز نسختك الآن</a>
+            <p class="text-sm text-slate-500 mt-4" data-key="preorder_note">يشمل الكتاب شحن مجاني داخل منطقة الشرق الأوسط.</p>
+        </div>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-auto"><p class="text-sm">© 2025 Digital Anchor Project.</p></footer>
+
+    <script>
         const translations = {
-            ar: {
-                'lang_ar': 'العربية', 'lang_en': 'English', 'lang_fr': 'Français',
-                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
-                'home': 'الرئيسية',
-                'guide': 'الدليل',
-                'buy_book': 'الشراء',
-                'app_name': 'المرساة الرقمية',
-                'preorder_title': 'حجز الكتاب',
-                'footer-copy': '© 2025 المرساة الرقمية - "من أنت حين تنطفئ الشاشة؟". جميع الحقوق محفوظة.',
-
-                'book-header': 'الكتاب المنتظر: "من أنت حين تنطفئ الشاشة؟"',
-                'book-subtitle': 'دليلك الشامل لاستعادة التركيز والقيادة الرقمية. احجز نسختك الآن بسعر خاص.',
-                'preorder-price': 'سعر الحجز المسبق:',
-                'regular-price': 'السعر العادي:',
-                'price-value': '19.99',
-                'price-regular': '24.99',
-                'benefit-1': 'نسخة ورقية (فور صدورها)',
-                'benefit-2': 'نسخة رقمية (PDF) فورية',
-                'benefit-3': 'وصول حصري لمنطقة الأعضاء',
-                'btn-preorder': 'احجز نسختك الآن',
-                'preorder-note': 'يشمل الكتاب شحن مجاني داخل منطقة الشرق الأوسط.',
+            'ar': {
+                'site_name': 'المرساة الرقمية', 'preorder_title': 'حجز الكتاب', 'book_header': 'الكتاب المنتظر: "من أنت حين تنطفئ الشاشة؟"', 'book_subtitle': 'دليلك الشامل لاستعادة التركيز. احجز الآن.',
+                'preorder_price': 'سعر الحجز المسبق:', 'regular_price': 'السعر العادي: 24.99 $', 'benefit1': 'نسخة ورقية (فور صدورها)', 'benefit2': 'نسخة رقمية (PDF) فورية', 'benefit3': 'وصول حصري لمنطقة الأعضاء', 'btn_preorder': 'احجز نسختك الآن', 'preorder_note': 'شحن مجاني للشرق الأوسط.'
             },
-            en: {
-                'lang_ar': 'Arabic', 'lang_en': 'English', 'lang_fr': 'French',
-                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
-                'home': 'Home',
-                'guide': 'Guide',
-                'buy_book': 'Purchase',
-                'app_name': 'Digital Anchor',
-                'preorder_title': 'Book Pre-order',
-                'footer-copy': '© 2025 Digital Anchor - "Who are you when the screen turns off?". All rights reserved.',
-
-                'book-header': 'The Highly Anticipated Book: "Who are you when the screen turns off?"',
-                'book-subtitle': 'Your comprehensive guide to reclaiming focus and digital leadership. Pre-order your copy now at a special price.',
-                'preorder-price': 'Pre-order Price:',
-                'regular-price': 'Regular Price:',
-                'price-value': '19.99',
-                'price-regular': '24.99',
-                'benefit-1': 'Physical copy (upon release)',
-                'benefit-2': 'Instant digital copy (PDF)',
-                'benefit-3': 'Exclusive access to the Members Area',
-                'btn-preorder': 'Pre-order Your Copy Now',
-                'preorder-note': 'Includes free shipping within the Middle East.',
+            'en': {
+                'site_name': 'Digital Anchor', 'preorder_title': 'Pre-order Book', 'book_header': 'The Book: "Who are you when the screen goes off?"', 'book_subtitle': 'Your guide to focus. Pre-order now.',
+                'preorder_price': 'Pre-order Price:', 'regular_price': 'Regular Price: 24.99 $', 'benefit1': 'Physical Copy', 'benefit2': 'Instant PDF', 'benefit3': 'Exclusive Member Access', 'btn_preorder': 'Pre-order Now', 'preorder_note': 'Free shipping in Middle East.'
             },
-            fr: {
-                'lang_ar': 'Arabe', 'lang_en': 'Anglais', 'lang_fr': 'Français',
-                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
-                'home': 'Accueil',
-                'guide': 'Guide',
-                'buy_book': 'Acheter',
-                'app_name': 'Ancre Numérique',
-                'preorder_title': 'Précommande du Livre',
-                'footer-copy': '© 2025 Ancre Numérique - "Qui êtes-vous lorsque l\'écran s\'éteint?". Tous droits réservés.',
-
-                'book-header': 'Le Livre Très Attendu : "Qui êtes-vous lorsque l\'écran s\'éteint ?"',
-                'book-subtitle': 'Votre guide complet pour retrouver la concentration et le leadership numérique. Précommandez votre exemplaire maintenant à un prix spécial.',
-                'preorder-price': 'Prix de Précommande :',
-                'regular-price': 'Prix Régulier :',
-                'price-value': '19.99',
-                'price-regular': '24.99',
-                'benefit-1': 'Exemplaire physique (à la sortie)',
-                'benefit-2': 'Exemplaire numérique (PDF) instantané',
-                'benefit-3': 'Accès exclusif à l\'Espace Membres',
-                'btn-preorder': 'Précommandez votre exemplaire maintenant',
-                'preorder-note': 'Inclut la livraison gratuite au Moyen-Orient.',
+            'fr': {
+                'site_name': 'L\'Ancre Numérique', 'preorder_title': 'Précommander', 'book_header': 'Le Livre : "Qui êtes-vous hors écran ?"', 'book_subtitle': 'Votre guide de concentration.',
+                'preorder_price': 'Prix Précommande :', 'regular_price': 'Prix Normal : 24.99 $', 'benefit1': 'Copie Physique', 'benefit2': 'PDF Instantané', 'benefit3': 'Accès Membre Exclusif', 'btn_preorder': 'Précommander', 'preorder_note': 'Livraison gratuite au Moyen-Orient.'
             },
+            'de': {
+                'site_name': 'Der Digitale Anker', 'preorder_title': 'Vorbestellen', 'book_header': 'Das Buch: "Wer bist du ohne Bildschirm?"', 'book_subtitle': 'Ihr Leitfaden zum Fokus.',
+                'preorder_price': 'Vorbestellpreis:', 'regular_price': 'Normalpreis: 24.99 $', 'benefit1': 'Physische Kopie', 'benefit2': 'Sofortiges PDF', 'benefit3': 'Exklusiver Mitgliederzugang', 'btn_preorder': 'Jetzt Vorbestellen', 'preorder_note': 'Kostenloser Versand im Nahen Osten.'
+            }
         };
 
-        const LanguageContext = React.createContext();
-        const LanguageProvider = ({ children }) => {
-            const [language, setLanguage] = React.useState('ar');
-            const [currency, setCurrency] = React.useState('USD');
-            const t = (key) => translations[language]?.[key] || key;
-            React.useEffect(() => {
-                document.documentElement.lang = language;
-                document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
-            }, [language]);
-            return (
-                <LanguageContext.Provider value={{ language, setLanguage, currency, setCurrency, t }}>
-                    {children}
-                </LanguageContext.Provider>
-            );
-        };
-        const useTranslation = () => React.useContext(LanguageContext);
+        function setLanguage(lang) {
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[lang][key]) el.textContent = translations[lang][key];
+            });
+            localStorage.setItem('preferredLang', lang);
+        }
 
-        const LanguageCurrencySwitcher = () => {
-            const { language, setLanguage, currency, setCurrency, t } = useTranslation();
-            const handleLanguageChange = (e) => setLanguage(e.target.value);
-            const handleCurrencyChange = (e) => setCurrency(e.target.value);
-            return (
-                <div className="flex items-center gap-3">
-                    <div className="relative text-white"> 
-                        <select 
-                            value={language} 
-                            onChange={handleLanguageChange} 
-                            className="appearance-none bg-anchor-blue border border-gray-600 rounded-lg py-1 pl-6 pr-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-anchor-gold cursor-pointer"
-                        >
-                            <option value="ar">{t('lang_ar')}</option>
-                            <option value="en">{t('lang_en')}</option>
-                            <option value="fr">{t('lang_fr')}</option>
-                        </select>
-                        <i className="fas fa-caret-down absolute top-1/2 right-2 transform -translate-y-1/2 pointer-events-none text-gray-400"></i>
-                    </div>
-                    <div className="relative text-white">
-                        <select 
-                            value={currency} 
-                            onChange={handleCurrencyChange} 
-                            className="appearance-none bg-anchor-blue border border-gray-600 rounded-lg py-1 pl-6 pr-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-anchor-gold cursor-pointer"
-                        >
-                            <option value="USD">{t('curr_usd')}</option>
-                            <option value="EUR">{t('curr_eur')}</option>
-                            <option value="SAR">{t('curr_sar')}</option>
-                        </select>
-                        <i className="fas fa-caret-down absolute top-1/2 right-2 transform -translate-y-1/2 pointer-events-none text-gray-400"></i>
-                    </div>
-                </div>
-            );
-        };
-
-        const Navbar = () => {
-            const { t } = useTranslation(); 
-            return (
-                <nav className="bg-anchor-blue text-white py-4 px-6 shadow-lg">
-                    <div className="max-w-7xl mx-auto flex justify-between items-center">
-                        <a href="index.html" className="flex items-center gap-3 group">
-                            <div className="w-10 h-10 bg-gradient-to-r from-anchor-gold to-yellow-500 rounded-lg flex items-center justify-center transition-transform group-hover:scale-110">
-                                <i className="fas fa-anchor text-white text-lg"></i>
-                            </div>
-                            <div>
-                                <span className="font-bold text-lg hidden md:block">{t('app_name')}</span> 
-                                <span className="text-xs text-slate-300 block">{t('preorder_title')}</span>
-                            </div>
-                        </a>
-                        
-                        <div className="flex gap-4 md:gap-6 text-sm font-medium items-center">
-                            <a href="index.html" className="hover:text-anchor-gold transition flex items-center gap-2">
-                                <i className="fas fa-home"></i>
-                                <span className="hidden md:inline">{t('home')}</span>
-                            </a>
-                            <a href="guide.html" className="hover:text-anchor-gold transition hidden sm:flex items-center gap-2">
-                                <i className="fas fa-book-open"></i>
-                                <span>{t('guide')}</span>
-                            </a>
-                            <a href="book-preorder.html" className="bg-anchor-gold text-anchor-blue px-5 py-2.5 rounded-full font-bold hover:bg-yellow-400 transition shadow-lg flex items-center gap-2">
-                                <i className="fas fa-shopping-cart"></i>
-                                <span>{t('buy_book')}</span>
-                            </a>
-                            
-                            <LanguageCurrencySwitcher />
-                        </div>
-                    </div>
-                </nav>
-            );
-        };
-
-        const PreorderPage = () => {
-            const { t, currency } = useTranslation();
-
-            return (
-                <div className="min-h-screen flex flex-col">
-                    <Navbar />
-                    <main className="flex-grow max-w-5xl mx-auto p-6 lg:p-12 w-full">
-                        <div className="bg-white p-8 md:p-12 rounded-2xl shadow-xl border-t-8 border-anchor-gold text-center">
-                            <i className="fas fa-book-open text-6xl text-anchor-gold mb-4"></i>
-                            <h1 className="text-3xl font-bold text-anchor-blue mb-2">{t('book-header')}</h1>
-                            <p className="text-gray-600 mb-8 max-w-2xl mx-auto">{t('book-subtitle')}</p>
-                            
-                            {/* Pricing Box */}
-                            <div className="bg-anchor-blue text-white p-6 rounded-lg max-w-md mx-auto mb-8 shadow-xl">
-                                <h2 className="text-2xl font-bold mb-2">{t('preorder-price')}</h2>
-                                <p className="text-5xl font-extrabold text-anchor-gold mb-1">
-                                    {t('price-value')} <span className="text-3xl font-medium">{currency}</span>
-                                </p>
-                                <p className="text-sm text-slate-400 line-through">{t('regular-price')} {t('price-regular')} {currency}</p>
-                            </div>
-
-                            {/* Benefits List */}
-                            <div className="max-w-md mx-auto text-right mb-10">
-                                <ul className="space-y-3 text-lg text-gray-700">
-                                    <li className="flex items-center justify-end gap-3">
-                                        <span>{t('benefit-1')}</span>
-                                        <i className="fas fa-check-circle text-anchor-green"></i>
-                                    </li>
-                                    <li className="flex items-center justify-end gap-3">
-                                        <span>{t('benefit-2')}</span>
-                                        <i className="fas fa-check-circle text-anchor-green"></i>
-                                    </li>
-                                    <li className="flex items-center justify-end gap-3 font-bold text-anchor-blue">
-                                        <span>{t('benefit-3')}</span>
-                                        <i className="fas fa-crown text-anchor-gold"></i>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            {/* Action Button */}
-                            <a href="thank-you-preorder.html" className="inline-block bg-anchor-gold text-anchor-blue px-12 py-4 rounded-lg font-bold text-xl hover:bg-yellow-400 transition shadow-lg hover:shadow-xl">
-                                <i className="fas fa-shopping-cart ml-3"></i>
-                                {t('btn-preorder')}
-                            </a>
-                            <p className="text-sm text-gray-500 mt-4">{t('preorder-note')}</p>
-                        </div>
-                    </main>
-                    
-                    <footer className="bg-anchor-blue text-slate-400 py-8 border-t border-slate-800 mt-12">
-                        <div className="max-w-4xl mx-auto px-6">
-                            <div className="flex flex-col md:flex-row justify-between items-center mb-6">
-                                <div className="mb-4 md:mb-0">
-                                    <div className="flex items-center justify-center md:justify-start gap-3">
-                                        <div className="w-10 h-10 bg-anchor-gold rounded-full flex items-center justify-center">
-                                            <i className="fas fa-anchor text-anchor-blue text-lg"></i>
-                                        </div>
-                                        <div>
-                                            <h3 className="font-bold text-white text-lg">{t('app_name')}</h3>
-                                            <p className="text-slate-300 text-sm">قيمة حقيقية في عالم رقمي</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <a href="mailto:garbaouisalma@gmail.com" className="text-anchor-gold hover:text-yellow-400 transition text-lg">
-                                        <i className="fas fa-envelope ml-2"></i>
-                                        garbaouisalma@gmail.com
-                                    </a>
-                                </div>
-                            </div>
-                            <hr className="border-slate-700 mb-8"/>
-                            <p className="text-sm">
-                                {t('footer-copy')}<br/>
-                                تم التطوير برسالة تحويلية واضحة: إعادة السيادة الرقمية للشباب.
-                            </p>
-                        </div>
-                    </footer>
-                </div>
-            );
-        };
-
-        ReactDOM.render(<LanguageProvider><PreorderPage /></LanguageProvider>, document.getElementById('root'));
+        document.addEventListener('DOMContentLoaded', () => {
+            const defaultLang = localStorage.getItem('preferredLang') || 'ar';
+            document.getElementById('lang-select').value = defaultLang;
+            setLanguage(defaultLang);
+        });
     </script>
 </body>
 </html>

@@ -3,267 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منطقة الأعضاء | المرساة الرقمية</title>
+    <title data-key="members_title">منطقة الأعضاء | المرساة الرقمية</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJZHN8FQQ2"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HJZHN8FQQ2');</script>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { 'anchor-blue': '#1a202c', 'anchor-gold': '#ffd700' },
-                    fontFamily: { sans: ['Tajawal', 'sans-serif'] }
-                }
-            }
-        }
-    </script>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <style>body { background-color: #f8fafc; }</style>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; }</style>
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans">
-    <div id="root"></div>
-    <script type="text/babel">
+<body class="text-slate-900 flex flex-col min-h-screen">
 
-        // ----------------------------------------------------
-        // الكود المشترك للغة والعملة (Language/Currency Logic)
-        // ----------------------------------------------------
-        
+    <nav class="bg-slate-900 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="logo.png" width="40" class="rounded-lg">
+                <span class="text-xl font-bold" data-key="site_name">المرساة الرقمية</span>
+            </a>
+            <div class="flex items-center gap-4">
+                <select id="lang-select" onchange="setLanguage(this.value)" class="text-xs bg-slate-800 border border-slate-700 rounded p-1 text-white">
+                    <option value="ar">عربي</option>
+                    <option value="en">English</option>
+                    <option value="fr">Français</option>
+                    <option value="de">Deutsch</option>
+                </select>
+                <a href="buy.html" class="bg-yellow-500 text-slate-900 px-4 py-2 rounded-full font-bold hover:bg-yellow-400 text-sm" data-key="nav_book_now">احجز نسختك</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow container mx-auto px-4 py-12 max-w-5xl">
+        <header class="text-center mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4" data-key="members_header">محتوى حصري للأعضاء</h1>
+            <p class="text-lg text-slate-600" data-key="members_subtitle">ابدأ رحلتك للقيادة الرقمية واكتشف الأدوات والدروس الحصرية.</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-6 rounded-2xl shadow-xl border-t-4 border-yellow-500 transform hover:-translate-y-2 transition duration-300">
+                <i class="fas fa-graduation-cap text-4xl text-yellow-500 mb-4"></i>
+                <h3 class="text-xl font-bold mb-2" data-key="course_title">دورة السيادة الرقمية</h3>
+                <p class="text-sm text-slate-500 mb-4" data-key="course_desc">أكثر من 10 ساعات من محتوى الفيديو والدليل العملي.</p>
+                <span class="bg-slate-100 text-slate-600 px-3 py-1 rounded text-xs font-bold" data-key="locked_badge">🔒 مغلق - للأعضاء فقط</span>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-xl border-t-4 border-yellow-500 transform hover:-translate-y-2 transition duration-300">
+                <i class="fas fa-chart-line text-4xl text-yellow-500 mb-4"></i>
+                <h3 class="text-xl font-bold mb-2" data-key="tool_title">أداة تتبع التقدم</h3>
+                <p class="text-sm text-slate-500 mb-4" data-key="tool_desc">راقب تحررّك من الإدمان وقياس الإنتاجية.</p>
+                <span class="bg-slate-100 text-slate-600 px-3 py-1 rounded text-xs font-bold" data-key="locked_badge">🔒 مغلق - للأعضاء فقط</span>
+            </div>
+            <div class="bg-white p-6 rounded-2xl shadow-xl border-t-4 border-yellow-500 transform hover:-translate-y-2 transition duration-300">
+                <i class="fas fa-users text-4xl text-yellow-500 mb-4"></i>
+                <h3 class="text-xl font-bold mb-2" data-key="community_title">المجتمع السري</h3>
+                <p class="text-sm text-slate-500 mb-4" data-key="community_desc">انضم إلى مجموعة النخبة للحصول على دعم متواصل.</p>
+                <span class="bg-slate-100 text-slate-600 px-3 py-1 rounded text-xs font-bold" data-key="locked_badge">🔒 مغلق - للأعضاء فقط</span>
+            </div>
+        </div>
+
+        <div class="mt-12 text-center p-8 bg-slate-100 rounded-2xl border border-slate-200">
+            <h2 class="text-2xl font-bold mb-2 text-slate-800" data-key="cta_title">هل أنت مستعد للانطلاق؟</h2>
+            <p class="text-slate-600 mb-6" data-key="cta_text">ابدأ الآن بالحجز المسبق للكتاب وانضم إلى منطقتنا الحصرية.</p>
+            <a href="buy.html" class="inline-block bg-slate-900 text-white px-8 py-3 rounded-lg font-bold hover:bg-slate-800 transition shadow-lg" data-key="cta_btn">احجز نسختك الآن</a>
+        </div>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-auto">
+        <p class="text-sm">© 2025 Digital Anchor Project.</p>
+    </footer>
+
+    <script>
         const translations = {
-            ar: {
-                'lang_ar': 'العربية', 'lang_en': 'English', 'lang_fr': 'Français',
-                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
-                'home': 'الرئيسية',
-                'stories_title': 'قصص النجاح الملهمة',
-                'covenant_title': 'عهد التحرر والقيادة',
-                'app_name': 'المرساة الرقمية',
-                'guide': 'الدليل',
-                'buy_book': 'الشراء',
-                'members_title': 'منطقة الأعضاء',
-                'footer-copy': '© 2025 المرساة الرقمية - "من أنت حين تنطفئ الشاشة؟". جميع الحقوق محفوظة.',
-                'footer-email': 'شارك قصتك معنا:',
-                'footer-covenant': 'عهد التحرر',
-                'footer-resources': 'الموارد المجانية',
-                'footer-preorder': 'طلب الكتاب',
-                
-                'members-header': 'محتوى حصري للأعضاء',
-                'members-subtitle': 'ابدأ رحلتك للقيادة الرقمية واكتشف الأدوات والدروس الحصرية.',
-                'card-course-title': 'دورة السيادة الرقمية',
-                'card-course-desc': 'أكثر من 10 ساعات من محتوى الفيديو والدليل العملي.',
-                'card-tool-title': 'أداة تتبع التقدم',
-                'card-tool-desc': 'راقب تحررّك من الإدمان وقياس الإنتاجية.',
-                'card-secret-title': 'المجتمع السري',
-                'card-secret-desc': 'انضم إلى مجموعة النخبة للحصول على دعم متواصل.',
-                'locked-badge': 'مغلق - يتطلب التسجيل',
-                'cta-title': 'هل أنت مستعد للانطلاق؟',
-                'cta-text': 'ابدأ الآن بالحجز المسبق للكتاب وانضم إلى منطقتنا الحصرية.',
-                'cta-button': 'احجز نسختك الآن',
+            'ar': {
+                'site_name': 'المرساة الرقمية', 'members_title': 'منطقة الأعضاء', 'nav_book_now': 'احجز نسختك',
+                'members_header': 'محتوى حصري للأعضاء', 'members_subtitle': 'ابدأ رحلتك للقيادة الرقمية واكتشف الأدوات والدروس الحصرية.',
+                'course_title': 'دورة السيادة الرقمية', 'course_desc': 'أكثر من 10 ساعات من محتوى الفيديو والدليل العملي.',
+                'tool_title': 'أداة تتبع التقدم', 'tool_desc': 'راقب تحررّك من الإدمان وقياس الإنتاجية.',
+                'community_title': 'المجتمع السري', 'community_desc': 'انضم إلى مجموعة النخبة للحصول على دعم متواصل.',
+                'locked_badge': '🔒 مغلق - للأعضاء فقط',
+                'cta_title': 'هل أنت مستعد للانطلاق؟', 'cta_text': 'ابدأ الآن بالحجز المسبق للكتاب وانضم إلى منطقتنا الحصرية.', 'cta_btn': 'احجز نسختك الآن'
             },
-            en: {
-                'lang_ar': 'Arabic', 'lang_en': 'English', 'lang_fr': 'French',
-                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
-                'home': 'Home',
-                'stories_title': 'Inspiring Success Stories',
-                'covenant_title': 'Pledge of Liberation and Leadership',
-                'app_name': 'Digital Anchor',
-                'guide': 'Guide',
-                'buy_book': 'Purchase',
-                'members_title': 'Members Area',
-                'footer-copy': '© 2025 Digital Anchor - "Who are you when the screen turns off?". All rights reserved.',
-                'footer-email': 'Share your story with us:',
-                'footer-covenant': 'Pledge of Liberation',
-                'footer-resources': 'Free Resources',
-                'footer-preorder': 'Order Book',
-
-                'members-header': 'Exclusive Members Content',
-                'members-subtitle': 'Start your digital leadership journey and unlock exclusive tools and lessons.',
-                'card-course-title': 'Digital Sovereignty Course',
-                'card-course-desc': 'Over 10 hours of video content and practical guides.',
-                'card-tool-title': 'Progress Tracking Tool',
-                'card-tool-desc': 'Monitor your liberation from addiction and measure productivity.',
-                'card-secret-title': 'Secret Community',
-                'card-secret-desc': 'Join the elite group for continuous support.',
-                'locked-badge': 'Locked - Requires Registration',
-                'cta-title': 'Ready to get started?',
-                'cta-text': 'Pre-order the book now and join our exclusive area.',
-                'cta-button': 'Pre-order Your Copy Now',
+            'en': {
+                'site_name': 'Digital Anchor', 'members_title': 'Members Area', 'nav_book_now': 'Order Now',
+                'members_header': 'Exclusive Members Content', 'members_subtitle': 'Unlock exclusive tools and lessons.',
+                'course_title': 'Digital Sovereignty Course', 'course_desc': '10+ hours of video content and guides.',
+                'tool_title': 'Progress Tracker', 'tool_desc': 'Monitor your liberation and productivity.',
+                'community_title': 'Secret Community', 'community_desc': 'Join the elite group for support.',
+                'locked_badge': '🔒 Locked - Members Only',
+                'cta_title': 'Ready to start?', 'cta_text': 'Pre-order now to join the exclusive area.', 'cta_btn': 'Order Now'
             },
-            fr: {
-                'lang_ar': 'Arabe', 'lang_en': 'Anglais', 'lang_fr': 'Français',
-                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
-                'home': 'Accueil',
-                'stories_title': 'Histoires de Succès Inspirantes',
-                'covenant_title': 'Engagement de Libération et de Leadership',
-                'app_name': 'Ancre Numérique',
-                'guide': 'Guide',
-                'buy_book': 'Acheter',
-                'members_title': 'Espace Membres',
-                'footer-copy': '© 2025 Ancre Numérique - "Qui êtes-vous lorsque l\'écran s\'éteint?". Tous droits réservés.',
-                'footer-email': 'Partagez votre histoire avec nous:',
-                'footer-covenant': 'Engagement de Libération',
-                'footer-resources': 'Ressources Gratuites',
-                'footer-preorder': 'Commander Livre',
-
-                'members-header': 'Contenu Exclusif pour les Membres',
-                'members-subtitle': 'Commencez votre voyage vers le leadership numérique et débloquez des outils et leçons exclusifs.',
-                'card-course-title': 'Cours de Souveraineté Numérique',
-                'card-course-desc': 'Plus de 10 heures de contenu vidéo et de guides pratiques.',
-                'card-tool-title': 'Outil de Suivi des Progrès',
-                'card-tool-desc': 'Surveillez votre libération de la dépendance et mesurez la productivité.',
-                'card-secret-title': 'Communauté Secrète',
-                'card-secret-desc': 'Rejoignez le groupe d\'élite pour un soutien continu.',
-                'locked-badge': 'Verrouillé - Inscription requise',
-                'cta-title': 'Êtes-vous prêt à vous lancer ?',
-                'cta-text': 'Précommandez le livre maintenant et rejoignez notre espace exclusif.',
-                'cta-button': 'Précommandez votre exemplaire maintenant',
+            'fr': {
+                'site_name': 'L\'Ancre Numérique', 'members_title': 'Espace Membres', 'nav_book_now': 'Commander',
+                'members_header': 'Contenu Exclusif', 'members_subtitle': 'Débloquez des outils et leçons exclusifs.',
+                'course_title': 'Cours de Souveraineté', 'course_desc': 'Plus de 10h de contenu vidéo.',
+                'tool_title': 'Suivi de Progrès', 'tool_desc': 'Surveillez votre productivité.',
+                'community_title': 'Communauté Secrète', 'community_desc': 'Rejoignez l\'élite pour du soutien.',
+                'locked_badge': '🔒 Verrouillé - Membres',
+                'cta_title': 'Prêt à commencer ?', 'cta_text': 'Précommandez pour rejoindre l\'espace.', 'cta_btn': 'Commander'
             },
+            'de': {
+                'site_name': 'Der Digitale Anker', 'members_title': 'Mitgliederbereich', 'nav_book_now': 'Bestellen',
+                'members_header': 'Exklusive Inhalte', 'members_subtitle': 'Schalten Sie exklusive Tools frei.',
+                'course_title': 'Souveränitätskurs', 'course_desc': 'Über 10 Stunden Videoinhalt.',
+                'tool_title': 'Fortschritts-Tracker', 'tool_desc': 'Überwachen Sie Ihre Produktivität.',
+                'community_title': 'Geheime Community', 'community_desc': 'Treten Sie der Elite bei.',
+                'locked_badge': '🔒 Gesperrt - Nur Mitglieder',
+                'cta_title': 'Bereit?', 'cta_text': 'Bestellen Sie jetzt vor.', 'cta_btn': 'Bestellen'
+            }
         };
 
-        const LanguageContext = React.createContext();
-        const LanguageProvider = ({ children }) => {
-            const [language, setLanguage] = React.useState('ar');
-            const [currency, setCurrency] = React.useState('USD');
-            const t = (key) => translations[language]?.[key] || key;
-            React.useEffect(() => {
-                document.documentElement.lang = language;
-                document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
-            }, [language]);
-            return (
-                <LanguageContext.Provider value={{ language, setLanguage, currency, setCurrency, t }}>
-                    {children}
-                </LanguageContext.Provider>
-            );
-        };
-        const useTranslation = () => React.useContext(LanguageContext);
+        function setLanguage(lang) {
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[lang][key]) el.textContent = translations[lang][key];
+            });
+            localStorage.setItem('preferredLang', lang);
+        }
 
-        const LanguageCurrencySwitcher = () => {
-            const { language, setLanguage, currency, setCurrency, t } = useTranslation();
-            const handleLanguageChange = (e) => setLanguage(e.target.value);
-            const handleCurrencyChange = (e) => setCurrency(e.target.value);
-            return (
-                <div className="flex items-center gap-3">
-                    <div className="relative text-white"> 
-                        <select 
-                            value={language} 
-                            onChange={handleLanguageChange} 
-                            className="appearance-none bg-anchor-blue border border-gray-600 rounded-lg py-1 pl-6 pr-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-anchor-gold cursor-pointer"
-                        >
-                            <option value="ar">{t('lang_ar')}</option>
-                            <option value="en">{t('lang_en')}</option>
-                            <option value="fr">{t('lang_fr')}</option>
-                        </select>
-                        <i className="fas fa-caret-down absolute top-1/2 right-2 transform -translate-y-1/2 pointer-events-none text-gray-400"></i>
-                    </div>
-                    <div className="relative text-white">
-                        <select 
-                            value={currency} 
-                            onChange={handleCurrencyChange} 
-                            className="appearance-none bg-anchor-blue border border-gray-600 rounded-lg py-1 pl-6 pr-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-anchor-gold cursor-pointer"
-                        >
-                            <option value="USD">{t('curr_usd')}</option>
-                            <option value="EUR">{t('curr_eur')}</option>
-                            <option value="SAR">{t('curr_sar')}</option>
-                        </select>
-                        <i className="fas fa-caret-down absolute top-1/2 right-2 transform -translate-y-1/2 pointer-events-none text-gray-400"></i>
-                    </div>
-                </div>
-            );
-        };
-
-        const Navbar = () => {
-            const { t } = useTranslation(); 
-            return (
-                <nav className="bg-anchor-blue text-white py-4 px-6 shadow-lg">
-                    <div className="max-w-7xl mx-auto flex justify-between items-center">
-                        <a href="index.html" className="flex items-center gap-3 group">
-                            <div className="w-10 h-10 bg-gradient-to-r from-anchor-gold to-yellow-500 rounded-lg flex items-center justify-center transition-transform group-hover:scale-110">
-                                <i className="fas fa-anchor text-white text-lg"></i>
-                            </div>
-                            <div>
-                                <span className="font-bold text-lg hidden md:block">{t('app_name')}</span> 
-                                <span className="text-xs text-slate-300 block">{t('members_title')}</span>
-                            </div>
-                        </a>
-                        
-                        <div className="flex gap-4 md:gap-6 text-sm font-medium items-center">
-                            <a href="index.html" className="hover:text-anchor-gold transition flex items-center gap-2">
-                                <i className="fas fa-home"></i>
-                                <span className="hidden md:inline">{t('home')}</span>
-                            </a>
-                            <a href="guide.html" className="hover:text-anchor-gold transition hidden sm:flex items-center gap-2">
-                                <i className="fas fa-book-open"></i>
-                                <span>{t('guide')}</span>
-                            </a>
-                            <a href="book-preorder.html" className="bg-anchor-gold text-anchor-blue px-5 py-2.5 rounded-full font-bold hover:bg-yellow-400 transition shadow-lg flex items-center gap-2">
-                                <i className="fas fa-shopping-cart"></i>
-                                <span>{t('buy_book')}</span>
-                            </a>
-                            
-                            <LanguageCurrencySwitcher />
-                        </div>
-                    </div>
-                </nav>
-            );
-        };
-
-        const MembersPage = () => {
-            const { t } = useTranslation();
-            return (
-                <div className="min-h-screen flex flex-col">
-                    <Navbar />
-                    <main className="flex-grow max-w-4xl mx-auto p-6 lg:p-12">
-                        <header className="text-center mb-10">
-                            <h1 className="text-3xl font-bold text-anchor-blue mb-2">{t('members-header')}</h1>
-                            <p className="text-gray-500">{t('members-subtitle')}</p>
-                        </header>
-                        
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            {/* Card 1: Course */}
-                            <div className="bg-white p-6 rounded-xl shadow-lg border-t-4 border-anchor-gold">
-                                <i className="fas fa-graduation-cap text-4xl text-anchor-gold mb-3"></i>
-                                <h3 className="text-lg font-bold mb-2">{t('card-course-title')}</h3>
-                                <p className="text-sm text-gray-500 mb-4">{t('card-course-desc')}</p>
-                                <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded text-xs font-bold">{t('locked-badge')}</span>
-                            </div>
-                            
-                            {/* Card 2: Tool */}
-                            <div className="bg-white p-6 rounded-xl shadow-lg border-t-4 border-anchor-gold">
-                                <i className="fas fa-chart-line text-4xl text-anchor-gold mb-3"></i>
-                                <h3 className="text-lg font-bold mb-2">{t('card-tool-title')}</h3>
-                                <p className="text-sm text-gray-500 mb-4">{t('card-tool-desc')}</p>
-                                <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded text-xs font-bold">{t('locked-badge')}</span>
-                            </div>
-                            
-                            {/* Card 3: Secret */}
-                            <div className="bg-white p-6 rounded-xl shadow-lg border-t-4 border-anchor-gold">
-                                <i className="fas fa-users text-4xl text-anchor-gold mb-3"></i>
-                                <h3 className="text-lg font-bold mb-2">{t('card-secret-title')}</h3>
-                                <p className="text-sm text-gray-500 mb-4">{t('card-secret-desc')}</p>
-                                <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded text-xs font-bold">{t('locked-badge')}</span>
-                            </div>
-                        </div>
-                        
-                        {/* Call to Action Box */}
-                        <div className="mt-8 text-center p-8 bg-gray-100 rounded-xl border border-gray-200">
-                            <h2 className="text-xl font-bold mb-2">{t('cta-title')}</h2>
-                            <p className="text-gray-600 mb-4">{t('cta-text')}</p>
-                            <a href="book-preorder.html" className="inline-block bg-anchor-gold text-anchor-blue px-8 py-3 rounded-lg font-bold hover:bg-yellow-400 transition shadow-md hover:shadow-lg">
-                                {t('cta-button')}
-                            </a>
-                        </div>
-                    </main>
-                    
-                    <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm border-t border-slate-800">
-                        {t('footer-copy')}
-                    </footer>
-                </div>
-            );
-        };
-
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<LanguageProvider><MembersPage /></LanguageProvider>);
+        document.addEventListener('DOMContentLoaded', () => {
+            const defaultLang = localStorage.getItem('preferredLang') || 'ar';
+            document.getElementById('lang-select').value = defaultLang;
+            setLanguage(defaultLang);
+        });
     </script>
 </body>
 </html>

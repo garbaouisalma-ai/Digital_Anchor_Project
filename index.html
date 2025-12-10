@@ -322,7 +322,7 @@
             }
         };
 
-        function setLanguage(lang) {
+           function setLanguage(lang) {
             const isRTL = lang === 'ar';
             document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
             document.documentElement.setAttribute('lang', lang);
@@ -330,12 +330,12 @@
             // تحديث النصوص
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.getAttribute('data-key');
-                if (translations[lang] && translations[lang][key]) {
+                if (translations[lang][key]) {
                     el.innerHTML = translations[lang][key]; 
                 }
             });
 
-            // تحديث تصميم الأزرار (النشط وغير النشط)
+            // تحديث أزرار اللغة (تلوين الزر النشط)
             ['ar', 'en', 'fr', 'de'].forEach(code => {
                 const btn = document.getElementById('d-btn-' + code);
                 if(btn) {
@@ -345,18 +345,32 @@
                 }
             });
 
-            // محاذاة النص
             document.body.style.textAlign = isRTL ? 'right' : 'left';
             
-            // عكس المسافات حسب الاتجاه
+            // عكس المسافات (Margins)
             document.querySelectorAll('.space-x-reverse').forEach(el => {
                 if (isRTL) el.classList.add('space-x-reverse');
                 else el.classList.remove('space-x-reverse');
             });
+
+            // (الجديد) تحديث قائمة العملات تلقائياً 💰
+            const currencyMap = {
+                'ar': 'SAR',
+                'en': 'USD',
+                'fr': 'EUR',
+                'de': 'EUR'
+            };
+            const targetCurrency = currencyMap[lang] || 'USD';
             
+            // تحديث القائمة المنسدلة في الكمبيوتر
+            const desktopCurr = document.getElementById('currency-select-desktop');
+            if(desktopCurr) {
+                desktopCurr.value = targetCurrency;
+                convertCurrency(targetCurrency);
+            }
+
             localStorage.setItem('preferredLang', lang);
         }
-
         // قائمة الموبايل
         const menuBtn = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
