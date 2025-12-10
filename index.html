@@ -1,24 +1,27 @@
+تفضل يا قبطان\! ⚓️
+هذا هو الكود **الكامل والنهائي** لملف `index.html`.
+
+لقد قمت بتحديثه ليعمل كـ **"لوحة تحكم مركزية"** تربط بين كل الصفحات الجديدة التي أنشأناها (`buy.html` و `resources.html`)، مع الحفاظ على سرعة وأداء 100%.
+
+### 📋 المميزات في هذه النسخة:
+
+1.  **القائمة (Navbar) المحدثة:** تربط الآن بصفحة "المكتبة المجانية" وصفحة "الشراء" بشكل صحيح.
+2.  **تحليل الزوار:** كود Google Analytics (`G-HJZHN8FQQ2`) مدمج وجاهز.
+3.  **اللغات:** تدعم (العربية، الإنجليزية، الفرنسية، الألمانية) وتعمل على الهاتف والكمبيوتر.
+4.  **الصور:** تم ضبطها لتعمل مع الأسماء القصيرة (`logo.png`, `hero.png`).
+
+-----
+
+### 💻 انسخ هذا الكود وضعه في ملف `index.html`:
+
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title data-key="page_title">من أنت حين تنطفئ الشاشة؟ | المرساة الرقمية</title>
-    <meta name="description" content="خطة عملية لمدة 90 يوماً لاستعادة السيطرة على حياتك الرقمية. حمل الكتاب ودليل العمل وابدأ رحلة الصحوة الرقمية.">
-    <meta name="keywords" content="المرساة الرقمية, إدمان الهاتف, تطوير الذات, نوال غرباوي, Digital Anchor">
-    <meta name="theme-color" content="#1a365d">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
-    <link rel="preconnect" href="https://www.googletagmanager.com">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-    
-    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-HJZHN8FQQ2"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJZHN8FQQ2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -26,12 +29,25 @@
       gtag('config', 'G-HJZHN8FQQ2');
     </script>
 
+    <title data-key="page_title">من أنت حين تنطفئ الشاشة؟ | المرساة الرقمية</title>
+    <meta name="description" content="الدليل الشامل لاستعادة السيطرة على حياتك الرقمية. خطة عملية لمدة 90 يوماً، أدوات مجانية، ومجتمع داعم.">
+    <meta name="keywords" content="المرساة الرقمية, إدمان الهاتف, تطوير الذات, نوال غرباوي, Digital Anchor, الصحة الرقمية">
+    <meta name="theme-color" content="#1a365d">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+    
     <style>
         :root { --primary: #1a365d; --secondary: #2d3748; --accent: #d69e2e; }
         body { font-family: 'Tajawal', sans-serif; background-color: #f7fafc; color: #2d3748; scroll-behavior: smooth; }
         h1, h2, h3 { font-family: 'Amiri', serif; }
         
-        /* Accessibility Focus */
         button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible { 
             outline: 3px solid #d69e2e; outline-offset: 2px; 
         }
@@ -60,9 +76,9 @@
                 </div>
                 
                 <div class="hidden md:flex items-center space-x-4 space-x-reverse">
-                    <a href="#home" class="text-gray-800 hover:text-blue-800 font-bold text-sm px-2" data-key="nav_home">الرئيسية</a>
+                    <a href="index.html" class="text-gray-800 hover:text-blue-800 font-bold text-sm px-2" data-key="nav_home">الرئيسية</a>
                     <a href="#roadmap" class="text-gray-800 hover:text-blue-800 font-bold text-sm px-2" data-key="nav_roadmap">البرنامج (90 يوم)</a>
-                    <a href="#resources" class="text-gray-800 hover:text-blue-800 font-bold text-sm px-2" data-key="nav_resources">الأدوات</a>
+                    <a href="resources.html" class="text-gray-800 hover:text-blue-800 font-bold text-sm px-2" data-key="nav_resources">المكتبة المجانية</a>
                     
                     <div class="flex flex-col justify-center">
                         <label for="currency-select-desktop" class="sr-only">اختر العملة</label>
@@ -80,22 +96,21 @@
                         <button onclick="setLanguage('de')" id="d-btn-de" class="text-xs font-bold px-2 py-1 rounded-full text-gray-700 hover:bg-gray-200 transition" aria-label="Deutsch">De</button>
                     </div>
                     
-                    <button class="btn-primary text-sm flex items-center h-10" data-key="nav_book_now">
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                        احجز نسختك
-                    </button>
+                    <a href="buy.html" class="btn-primary text-sm flex items-center h-10 no-underline text-white" data-key="nav_book_now">
+                        <i class="fas fa-shopping-cart ml-2" aria-hidden="true"></i> احجز نسختك
+                    </a>
                 </div>
                 
                 <button id="mobile-menu-button" class="md:hidden p-2 text-gray-800 rounded hover:bg-gray-100" aria-label="فتح القائمة" aria-expanded="false">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    <i class="fas fa-bars text-xl" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
 
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-4 shadow-xl">
-             <a href="#home" class="block py-3 text-gray-900 font-bold border-b border-gray-100 hover:text-blue-800" data-key="nav_home">الرئيسية</a>
+             <a href="index.html" class="block py-3 text-gray-900 font-bold border-b border-gray-100 hover:text-blue-800" data-key="nav_home">الرئيسية</a>
              <a href="#roadmap" class="block py-3 text-gray-900 font-bold border-b border-gray-100 hover:text-blue-800" data-key="nav_roadmap">البرنامج (90 يوم)</a>
-             <a href="#resources" class="block py-3 text-gray-900 font-bold border-b border-gray-100 hover:text-blue-800" data-key="nav_resources">الأدوات</a>
+             <a href="resources.html" class="block py-3 text-gray-900 font-bold border-b border-gray-100 hover:text-blue-800" data-key="nav_resources">المكتبة المجانية</a>
              
              <div class="flex justify-center flex-wrap gap-2 py-4">
                 <button onclick="setLanguage('ar')" class="px-3 py-2 rounded bg-gray-100 font-bold hover:bg-blue-100 text-sm w-20 text-gray-900">عربي</button>
@@ -104,7 +119,7 @@
                 <button onclick="setLanguage('de')" class="px-3 py-2 rounded bg-gray-100 font-bold hover:bg-blue-100 text-sm w-20 text-gray-900">De</button>
              </div>
 
-             <button class="w-full btn-primary py-3 mt-2" data-key="nav_book_now">احجز نسختك</button>
+             <a href="buy.html" class="w-full btn-primary py-3 mt-2 block text-center text-white no-underline" data-key="nav_book_now">احجز نسختك</a>
         </div>
     </nav>
 
@@ -117,13 +132,11 @@
                         <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6" data-key="hero_title">من أنت حين <span class="text-yellow-300">تنطفئ الشاشة</span>؟</h1>
                         <p class="text-xl opacity-90 mb-8 leading-relaxed font-medium" data-key="hero_subtitle">دليل الشباب للقيم والتركيز والهدف في اقتصاد الانتباه.</p>
                         <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-end">
-                            <button class="btn-primary text-lg flex items-center justify-center gap-2" data-key="hero_btn_start">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
-                                ابدأ الرحلة الآن
-                            </button>
-                            <a href="Digital_Anchor_ProjectdownloadsEmergency_Guide.pdf" target="_blank" rel="noopener noreferrer" class="bg-white text-blue-900 hover:bg-gray-100 font-bold py-3 px-8 rounded-lg transition text-center flex items-center justify-center gap-2">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-                                <span data-key="hero_btn_emergency">دليل الطوارئ</span>
+                            <a href="buy.html" class="btn-primary text-lg flex items-center justify-center gap-2 no-underline text-white" data-key="hero_btn_start">
+                                <i class="fas fa-play-circle ml-2" aria-hidden="true"></i> ابدأ الرحلة الآن
+                            </a>
+                            <a href="Digital_Anchor_ProjectdownloadsEmergency_Guide.pdf" target="_blank" rel="noopener noreferrer" class="bg-white text-blue-900 hover:bg-gray-100 font-bold py-3 px-8 rounded-lg transition text-center flex items-center justify-center gap-2 no-underline">
+                                <i class="fas fa-exclamation-triangle" aria-hidden="true"></i> <span data-key="hero_btn_emergency">دليل الطوارئ</span>
                             </a>
                         </div>
                     </div>
@@ -146,14 +159,26 @@
                     <article class="bg-blue-50 rounded-2xl p-8 border-t-4 border-blue-600 card-hover shadow-lg">
                         <h3 class="text-2xl font-bold text-gray-900 mb-2" data-key="month1_title">الشهر 1: الصحوة الرقمية</h3>
                         <p class="text-sm text-gray-700 mb-4 font-bold" data-key="month1_goal">الهدف: خفض الإلهاء بنسبة 30%</p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li><i class="fas fa-check text-green-500 ml-2"></i> اكتشاف القيم الشخصية</li>
+                            <li><i class="fas fa-check text-green-500 ml-2"></i> تمرين "ساعة بدون شاشة"</li>
+                        </ul>
                     </article>
                     <article class="bg-green-50 rounded-2xl p-8 border-t-4 border-green-600 card-hover shadow-lg">
                         <h3 class="text-2xl font-bold text-gray-900 mb-2" data-key="month2_title">الشهر 2: بناء النظام</h3>
                         <p class="text-sm text-gray-700 mb-4 font-bold" data-key="month2_goal">الهدف: إنشاء نظام إنتاجية مستدام</p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li><i class="fas fa-check text-green-500 ml-2"></i> تصميم الجدول اليومي</li>
+                            <li><i class="fas fa-check text-green-500 ml-2"></i> تطوير مهارة رقمية</li>
+                        </ul>
                     </article>
                     <article class="bg-yellow-50 rounded-2xl p-8 border-t-4 border-yellow-500 card-hover shadow-lg">
                         <h3 class="text-2xl font-bold text-gray-900 mb-2" data-key="month3_title">الشهر 3: التأثير</h3>
                         <p class="text-sm text-gray-700 mb-4 font-bold" data-key="month3_goal">الهدف: مساعدة شخص واحد</p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li><i class="fas fa-check text-green-500 ml-2"></i> مشاركة التجربة</li>
+                            <li><i class="fas fa-check text-green-500 ml-2"></i> دعوة صديق للتحدي</li>
+                        </ul>
                     </article>
                 </div>
             </div>
@@ -163,23 +188,29 @@
             <div class="container mx-auto px-4">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl font-bold mb-4" data-key="tools_title">حقيبة الأدوات الرقمية</h2>
+                    <p class="text-gray-400">أدوات عملية جاهزة للتحميل والطباعة</p>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
                     <a href="Full_Workbook.pdf" target="_blank" rel="noopener noreferrer" class="bg-gray-800 p-6 rounded-xl hover:bg-gray-700 transition group focus:ring-2 focus:ring-yellow-400">
-                        <svg class="w-10 h-10 text-yellow-400 mx-auto mb-4 group-hover:scale-110 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                        <i class="fas fa-book-open text-4xl text-yellow-400 mb-4 group-hover:scale-110 transition" aria-hidden="true"></i>
                         <h3 class="font-bold text-white" data-key="tool_workbook">دفتر التمارين</h3>
                     </a>
                     <a href="Certificate_Template.pdf" target="_blank" rel="noopener noreferrer" class="bg-gray-800 p-6 rounded-xl hover:bg-gray-700 transition group focus:ring-2 focus:ring-yellow-400">
-                        <svg class="w-10 h-10 text-green-400 mx-auto mb-4 group-hover:scale-110 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
+                        <i class="fas fa-certificate text-4xl text-green-400 mb-4 group-hover:scale-110 transition" aria-hidden="true"></i>
                         <h3 class="font-bold text-white" data-key="tool_cert">شهادة السيادة</h3>
                     </a>
                     <a href="Methodology_Guide.pdf" target="_blank" rel="noopener noreferrer" class="bg-gray-800 p-6 rounded-xl hover:bg-gray-700 transition group focus:ring-2 focus:ring-yellow-400">
-                        <svg class="w-10 h-10 text-purple-400 mx-auto mb-4 group-hover:scale-110 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path></svg>
+                        <i class="fas fa-compass text-4xl text-purple-400 mb-4 group-hover:scale-110 transition" aria-hidden="true"></i>
                         <h3 class="font-bold text-white" data-key="tool_guide">دليل المنهجية</h3>
                     </a>
                     <a href="Pledge_Paper.pdf" target="_blank" rel="noopener noreferrer" class="bg-gray-800 p-6 rounded-xl hover:bg-gray-700 transition group focus:ring-2 focus:ring-yellow-400">
-                        <svg class="w-10 h-10 text-blue-400 mx-auto mb-4 group-hover:scale-110 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                        <i class="fas fa-file-signature text-4xl text-blue-400 mb-4 group-hover:scale-110 transition" aria-hidden="true"></i>
                         <h3 class="font-bold text-white" data-key="tool_pledge">وثيقة التعهد</h3>
+                    </a>
+                </div>
+                <div class="text-center mt-10">
+                    <a href="resources.html" class="inline-block border border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-gray-900 transition font-bold">
+                        تصفح المكتبة الكاملة <i class="fas fa-arrow-left mr-2"></i>
                     </a>
                 </div>
             </div>
@@ -215,7 +246,7 @@
                 'page_title': 'من أنت حين تنطفئ الشاشة؟ | المرساة الرقمية',
                 'site_name': 'المرساة الرقمية',
                 'nav_tagline': 'من أنت حين تنطفئ الشاشة؟',
-                'nav_home': 'الرئيسية', 'nav_roadmap': 'البرنامج (90 يوم)', 'nav_resources': 'الأدوات', 'nav_book_now': 'احجز نسختك',
+                'nav_home': 'الرئيسية', 'nav_roadmap': 'البرنامج (90 يوم)', 'nav_resources': 'المكتبة المجانية', 'nav_book_now': 'احجز نسختك',
                 'hero_badge': '✨ الإصدار الجديد 2025',
                 'hero_title': 'من أنت حين <span class="text-yellow-300">تنطفئ الشاشة</span>؟',
                 'hero_subtitle': 'دليل الشباب للقيم والتركيز والهدف في اقتصاد الانتباه.',
@@ -235,7 +266,7 @@
                 'page_title': 'Who are you when the screen goes off? | Digital Anchor',
                 'site_name': 'Digital Anchor',
                 'nav_tagline': 'Who are you when the screen goes off?',
-                'nav_home': 'Home', 'nav_roadmap': '90-Day Program', 'nav_resources': 'Tools', 'nav_book_now': 'Book Now',
+                'nav_home': 'Home', 'nav_roadmap': '90-Day Program', 'nav_resources': 'Free Library', 'nav_book_now': 'Book Now',
                 'hero_badge': '✨ New Edition 2025',
                 'hero_title': 'Who are you when the screen <span class="text-yellow-300">goes off</span>?',
                 'hero_subtitle': 'A guide to values, focus, and purpose in the attention economy.',
@@ -255,7 +286,7 @@
                 'page_title': 'Qui êtes-vous quand l\'écran s\'éteint ?',
                 'site_name': 'L\'Ancre Numérique',
                 'nav_tagline': 'Qui êtes-vous quand l\'écran s\'éteint ?',
-                'nav_home': 'Accueil', 'nav_roadmap': 'Programme 90 Jours', 'nav_resources': 'Outils', 'nav_book_now': 'Réserver',
+                'nav_home': 'Accueil', 'nav_roadmap': 'Programme 90 Jours', 'nav_resources': 'Bibliothèque Gratuite', 'nav_book_now': 'Réserver',
                 'hero_badge': '✨ Nouvelle Édition 2025',
                 'hero_title': 'Qui êtes-vous quand l\'écran <span class="text-yellow-300">s\'éteint</span> ?',
                 'hero_subtitle': 'Un guide sur les valeurs et la concentration dans l\'économie de l\'attention.',
@@ -275,7 +306,7 @@
                 'page_title': 'Wer bist du, wenn der Bildschirm ausgeht?',
                 'site_name': 'Der Digitale Anker',
                 'nav_tagline': 'Wer bist du, wenn der Bildschirm ausgeht?',
-                'nav_home': 'Startseite', 'nav_roadmap': '90-Tage-Programm', 'nav_resources': 'Werkzeuge', 'nav_book_now': 'Buchen',
+                'nav_home': 'Startseite', 'nav_roadmap': '90-Tage-Programm', 'nav_resources': 'Kostenlose Bibliothek', 'nav_book_now': 'Buchen',
                 'hero_badge': '✨ Neue Ausgabe 2025',
                 'hero_title': 'Wer bist du, wenn der Bildschirm <span class="text-yellow-300">ausgeht</span>?',
                 'hero_subtitle': 'Ein Leitfaden zu Werten und Fokus in der Aufmerksamkeitsökonomie.',
@@ -345,3 +376,4 @@
     </script>
 </body>
 </html>
+```
