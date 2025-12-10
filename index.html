@@ -84,43 +84,58 @@
         }
 
         /* تحسين إمكانية الوصول عند التركيز */
-        button:focus, a:focus, select:focus {
-            outline: 2px solid #d69e2e;
+        button:focus-visible, a:focus-visible, select:focus-visible {
+            outline: 3px solid #d69e2e;
             outline-offset: 2px;
+        }
+        
+        /* فئة لإخفاء العناصر بصرياً فقط (لقارئ الشاشة) */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-gray-50 text-gray-900">
     
     <nav class="bg-white shadow-lg sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
                 
                 <div class="flex items-center space-x-3 space-x-reverse">
-                    <img src="logo.png" alt="شعار المرساة الرقمية" width="56" height="56" class="h-14 w-auto rounded-lg shadow-sm hover:scale-105 transition duration-300">
+                    <img src="logo.png" alt="شعار المرساة الرقمية - مرساة بحرية ذهبية" width="56" height="56" class="h-14 w-auto rounded-lg shadow-sm hover:scale-105 transition duration-300">
                     <div>
                         <h1 class="text-xl font-bold text-gray-900" data-key="site_name">المرساة الرقمية</h1>
-                        <p class="text-xs text-gray-600" data-key="nav_tagline">من أنت حين تنطفئ الشاشة؟</p>
+                        <p class="text-xs text-gray-700" data-key="nav_tagline">من أنت حين تنطفئ الشاشة؟</p>
                     </div>
                 </div>
                 
                 <div class="hidden md:flex items-center space-x-4 space-x-reverse">
-                    <a href="#home" class="text-gray-700 hover:text-blue-700 font-medium transition text-sm px-2 py-1" data-key="nav_home">الرئيسية</a>
-                    <a href="#about" class="text-gray-700 hover:text-blue-700 font-medium transition text-sm px-2 py-1" data-key="nav_about">عن الكتاب</a>
-                    <a href="#features" class="text-gray-700 hover:text-blue-700 font-medium transition text-sm px-2 py-1" data-key="nav_features">المميزات</a>
+                    <a href="#home" class="text-gray-800 hover:text-blue-800 font-bold transition text-sm px-2 py-1" data-key="nav_home">الرئيسية</a>
+                    <a href="#about" class="text-gray-800 hover:text-blue-800 font-bold transition text-sm px-2 py-1" data-key="nav_about">عن الكتاب</a>
+                    <a href="#features" class="text-gray-800 hover:text-blue-800 font-bold transition text-sm px-2 py-1" data-key="nav_features">المميزات</a>
                     
-                    <label for="currency-select" class="sr-only">اختر العملة</label>
-                    <select id="currency-select" onchange="convertCurrency(this.value)" class="text-xs border border-gray-300 rounded-lg p-1 text-gray-800 focus:outline-none focus:border-blue-500 bg-white">
-                        <option value="SAR">SAR</option>
-                        <option value="USD">USD</option>
-                        <option value="EUR">EUR</option>
-                    </select>
+                    <div class="flex flex-col">
+                        <label for="currency-select" class="sr-only">اختر العملة</label>
+                        <select id="currency-select" onchange="convertCurrency(this.value)" class="text-xs border border-gray-400 rounded-lg p-1 text-gray-900 font-bold focus:outline-none focus:border-blue-600 bg-white">
+                            <option value="SAR">SAR</option>
+                            <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
+                        </select>
+                    </div>
 
                     <div class="flex items-center border border-gray-300 rounded-full p-1 bg-gray-50" role="group" aria-label="Language selection">
-                        <button onclick="setLanguage('ar')" id="btn-ar" class="text-xs font-bold px-2 py-1 rounded-full transition" aria-label="اللغة العربية">ع</button>
-                        <button onclick="setLanguage('en')" id="btn-en" class="text-xs font-bold px-2 py-1 rounded-full transition" aria-label="English Language">En</button>
-                        <button onclick="setLanguage('fr')" id="btn-fr" class="text-xs font-bold px-2 py-1 rounded-full transition" aria-label="Langue Française">Fr</button>
-                        <button onclick="setLanguage('de')" id="btn-de" class="text-xs font-bold px-2 py-1 rounded-full transition" aria-label="Deutsche Sprache">De</button>
+                        <button onclick="setLanguage('ar')" id="btn-ar" class="text-xs font-bold px-2 py-1 rounded-full transition" aria-label="تغيير اللغة إلى العربية">ع</button>
+                        <button onclick="setLanguage('en')" id="btn-en" class="text-xs font-bold px-2 py-1 rounded-full transition" aria-label="Switch to English">En</button>
+                        <button onclick="setLanguage('fr')" id="btn-fr" class="text-xs font-bold px-2 py-1 rounded-full transition" aria-label="Passer au Français">Fr</button>
+                        <button onclick="setLanguage('de')" id="btn-de" class="text-xs font-bold px-2 py-1 rounded-full transition" aria-label="Wechseln zu Deutsch">De</button>
                     </div>
                     
                     <button class="btn-primary flex items-center py-2 px-4 text-sm" data-key="nav_book_now">
@@ -129,22 +144,22 @@
                     </button>
                 </div>
                 
-                <button id="mobile-menu-button" class="md:hidden text-gray-700 p-2" aria-label="فتح القائمة">
+                <button id="mobile-menu-button" class="md:hidden text-gray-800 p-2 rounded hover:bg-gray-100" aria-label="فتح القائمة الرئيسية" aria-expanded="false">
                     <i class="fas fa-bars text-xl" aria-hidden="true"></i>
                 </button>
             </div>
             
-            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-3 pb-2 border-t pt-2">
-                <a href="#home" class="block text-gray-800 hover:text-blue-700 font-medium py-2" data-key="nav_home">الرئيسية</a>
-                <a href="#about" class="block text-gray-800 hover:text-blue-700 font-medium py-2" data-key="nav_about">عن الكتاب</a>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-3 pb-2 border-t border-gray-200 pt-2">
+                <a href="#home" class="block text-gray-900 hover:text-blue-800 font-bold py-3 px-2 border-b border-gray-100" data-key="nav_home">الرئيسية</a>
+                <a href="#about" class="block text-gray-900 hover:text-blue-800 font-bold py-3 px-2 border-b border-gray-100" data-key="nav_about">عن الكتاب</a>
                 
-                <div class="flex justify-center space-x-4 py-2 text-sm">
-                    <button onclick="setLanguage('ar')" class="px-2">عربي</button>
-                    <button onclick="setLanguage('en')" class="px-2">English</button>
-                    <button onclick="setLanguage('fr')" class="px-2">Français</button>
-                    <button onclick="setLanguage('de')" class="px-2">Deutsch</button>
+                <div class="flex justify-center space-x-4 py-4 text-sm font-bold text-gray-800">
+                    <button onclick="setLanguage('ar')" class="px-3 py-1 bg-gray-100 rounded">عربي</button>
+                    <button onclick="setLanguage('en')" class="px-3 py-1 bg-gray-100 rounded">English</button>
+                    <button onclick="setLanguage('fr')" class="px-3 py-1 bg-gray-100 rounded">Français</button>
+                    <button onclick="setLanguage('de')" class="px-3 py-1 bg-gray-100 rounded">Deutsch</button>
                 </div>
-                <button class="btn-primary w-full" data-key="nav_book_now">احجز نسختك</button>
+                <button class="btn-primary w-full py-3 mt-2" data-key="nav_book_now">احجز نسختك</button>
             </div>
         </div>
     </nav>
@@ -160,7 +175,7 @@
                 <div class="lg:w-1/2 text-center lg:text-right mb-12 lg:mb-0">
                     <span class="inline-block bg-yellow-400 text-blue-900 px-4 py-2 rounded-full text-sm font-bold mb-6 shadow-lg" data-key="hero_badge">✨ الإصدار الجديد 2025</span>
                     <h1 class="hero-title text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6" data-key="hero_title">من أنت حين <span class="gradient-text">تنطفئ الشاشة</span>؟</h1>
-                    <p class="text-xl md:text-2xl opacity-90 mb-8 leading-relaxed" data-key="hero_subtitle">دليل الشباب للقيم والتركيز والهدف<br>في <span class="font-bold text-yellow-300">اقتصاد الانتباه</span></p>
+                    <p class="text-xl md:text-2xl opacity-90 mb-8 leading-relaxed font-medium" data-key="hero_subtitle">دليل الشباب للقيم والتركيز والهدف<br>في <span class="font-bold text-yellow-300">اقتصاد الانتباه</span></p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-end">
                         <button class="btn-primary text-lg py-4 px-8 flex items-center justify-center" data-key="hero_btn_start"><i class="fas fa-play-circle ml-2" aria-hidden="true"></i><span class="mr-2">ابدأ الرحلة الآن</span></button>
                         <button class="bg-white text-blue-900 hover:bg-gray-100 font-bold py-4 px-8 rounded-lg text-lg transition flex items-center justify-center" data-key="hero_btn_samples"><i class="fas fa-download ml-2" aria-hidden="true"></i><span class="mr-2">عينات مجانية</span></button>
@@ -168,7 +183,7 @@
                 </div>
                 <div class="lg:w-1/2 flex justify-center mt-8 lg:mt-0">
                     <div class="relative float-animation w-full max-w-lg">
-                        <img src="hero.png" alt="Digital Anchor Mockup" width="600" height="400" loading="eager" class="w-full h-auto drop-shadow-2xl hover:scale-105 transition-transform duration-500 rounded-xl">
+                        <img src="hero.png" alt="عرض كتاب المرساة الرقمية على لابتوب وهاتف" width="600" height="400" loading="eager" class="w-full h-auto drop-shadow-2xl hover:scale-105 transition-transform duration-500 rounded-xl">
                     </div>
                 </div>
             </div>
@@ -179,23 +194,23 @@
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4"><span class="border-b-4 border-yellow-400 pb-2" data-key="about_title">لماذا هذا الكتاب؟</span></h2>
-                <p class="text-gray-700 text-lg max-w-3xl mx-auto" data-key="about_subtitle">في عالم صُمم لسرقة انتباهك، أنت بحاجة إلى مرساة تثبت قيمك وأهدافك.</p>
+                <p class="text-gray-700 text-lg max-w-3xl mx-auto font-medium" data-key="about_subtitle">في عالم صُمم لسرقة انتباهك، أنت بحاجة إلى مرساة تثبت قيمك وأهدافك.</p>
             </div>
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 flex items-center justify-center card-hover">
                     <div class="text-center">
                         <div class="w-24 h-24 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6"><i class="fas fa-play text-3xl text-white" aria-hidden="true"></i></div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-2" data-key="about_video_title">جولة داخل الكتاب</h3>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2" data-key="about_video_title">جولة داخل الكتاب</h3>
                     </div>
                 </div>
                 <div class="space-y-6">
-                    <div class="bg-gray-50 rounded-xl p-6 card-hover">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2" data-key="part1_title">الجزء الأول: مرساة القيم</h3>
-                        <p class="text-gray-600" data-key="part1_desc">اكتشف قيمك الحقيقية وابني قانونك الداخلي.</p>
+                    <div class="bg-gray-50 rounded-xl p-6 card-hover border border-gray-100">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2" data-key="part1_title">الجزء الأول: مرساة القيم</h3>
+                        <p class="text-gray-700 font-medium" data-key="part1_desc">اكتشف قيمك الحقيقية وابني قانونك الداخلي.</p>
                     </div>
-                    <div class="bg-gray-50 rounded-xl p-6 card-hover">
-                        <h3 class="text-xl font-bold text-gray-800 mb-2" data-key="part2_title">الجزء الثاني: سهم الأهداف</h3>
-                        <p class="text-gray-600" data-key="part2_desc">حول أحلامك إلى أهداف ذكية واجعل الفشل حليفك.</p>
+                    <div class="bg-gray-50 rounded-xl p-6 card-hover border border-gray-100">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2" data-key="part2_title">الجزء الثاني: سهم الأهداف</h3>
+                        <p class="text-gray-700 font-medium" data-key="part2_desc">حول أحلامك إلى أهداف ذكية واجعل الفشل حليفك.</p>
                     </div>
                 </div>
             </div>
@@ -204,19 +219,19 @@
 
     <section id="features" class="py-16 bg-gradient-to-b from-white to-blue-50">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-12"><h2 class="text-3xl font-bold text-gray-800" data-key="features_title">ماذا تحصل عليه؟</h2></div>
+            <div class="text-center mb-12"><h2 class="text-3xl font-bold text-gray-900" data-key="features_title">ماذا تحصل عليه؟</h2></div>
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="bg-white rounded-2xl shadow-lg p-8 card-hover text-center">
-                    <div class="text-blue-600 text-5xl mb-6"><i class="fas fa-book" aria-hidden="true"></i></div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4" data-key="feat_book_title">الكتاب الرئيسي</h3>
+                    <div class="text-blue-700 text-5xl mb-6"><i class="fas fa-book" aria-hidden="true"></i></div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4" data-key="feat_book_title">الكتاب الرئيسي</h3>
                 </div>
                 <div class="bg-white rounded-2xl shadow-lg p-8 card-hover text-center border-2 border-yellow-400">
                     <div class="text-yellow-600 text-5xl mb-6"><i class="fas fa-toolbox" aria-hidden="true"></i></div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4" data-key="feat_tools_title">الأدوات العملية</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4" data-key="feat_tools_title">الأدوات العملية</h3>
                 </div>
                 <div class="bg-white rounded-2xl shadow-lg p-8 card-hover text-center">
-                    <div class="text-green-600 text-5xl mb-6"><i class="fas fa-graduation-cap" aria-hidden="true"></i></div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4" data-key="feat_extras_title">المزايا الإضافية</h3>
+                    <div class="text-green-700 text-5xl mb-6"><i class="fas fa-graduation-cap" aria-hidden="true"></i></div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4" data-key="feat_extras_title">المزايا الإضافية</h3>
                 </div>
             </div>
         </div>
@@ -224,12 +239,12 @@
 
     <section id="resources" class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <div class="text-center mb-12"><h2 class="text-3xl font-bold text-gray-800" data-key="resources_title">الموارد المجانية</h2></div>
+            <div class="text-center mb-12"><h2 class="text-3xl font-bold text-gray-900" data-key="resources_title">الموارد المجانية</h2></div>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-                <div class="bg-blue-50 rounded-xl p-6 card-hover"><h3 class="font-bold text-gray-800" data-key="res1_title">جدول التعلم</h3></div>
-                <div class="bg-green-50 rounded-xl p-6 card-hover"><h3 class="font-bold text-gray-800" data-key="res2_title">مقياس الصحة</h3></div>
-                <div class="bg-yellow-50 rounded-xl p-6 card-hover"><h3 class="font-bold text-gray-800" data-key="res3_title">ميثاق العائلة</h3></div>
-                <div class="bg-purple-50 rounded-xl p-6 card-hover"><h3 class="font-bold text-gray-800" data-key="res4_title">خريطة المستقبل</h3></div>
+                <div class="bg-blue-50 rounded-xl p-6 card-hover"><h3 class="font-bold text-gray-900" data-key="res1_title">جدول التعلم</h3></div>
+                <div class="bg-green-50 rounded-xl p-6 card-hover"><h3 class="font-bold text-gray-900" data-key="res2_title">مقياس الصحة</h3></div>
+                <div class="bg-yellow-50 rounded-xl p-6 card-hover"><h3 class="font-bold text-gray-900" data-key="res3_title">ميثاق العائلة</h3></div>
+                <div class="bg-purple-50 rounded-xl p-6 card-hover"><h3 class="font-bold text-gray-900" data-key="res4_title">خريطة المستقبل</h3></div>
             </div>
         </div>
     </section>
@@ -238,7 +253,7 @@
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-3xl font-bold mb-6" data-key="author_title">عن المؤلفة</h2>
             <h3 class="text-2xl font-bold text-yellow-300 mb-4" data-key="author_name">Naoual Guerbaoui</h3>
-            <p class="text-gray-200 text-lg max-w-2xl mx-auto leading-relaxed" data-key="author_bio">رائدة في رحلة التحول الرقمي الواعي.</p>
+            <p class="text-gray-100 text-lg max-w-2xl mx-auto leading-relaxed font-medium" data-key="author_bio">رائدة في رحلة التحول الرقمي الواعي.</p>
         </div>
     </section>
 
@@ -246,7 +261,7 @@
         <div class="container mx-auto px-4">
             <h2 class="text-3xl md:text-5xl font-bold mb-6" data-key="cta_title">هل أنت مستعد لاستعادة <span class="text-yellow-300">انتباهك</span>؟</h2>
             <div class="max-w-2xl mx-auto bg-white rounded-2xl p-8 shadow-2xl mt-10 text-gray-800">
-                <h3 class="text-2xl font-bold mb-2" data-key="package_title">الحزمة الكاملة</h3>
+                <h3 class="text-2xl font-bold mb-2 text-gray-900" data-key="package_title">الحزمة الكاملة</h3>
                 
                 <div id="price-display" class="text-5xl font-bold text-blue-900 mb-4">
                     <span id="price-value">199</span> <span id="currency-symbol">SAR</span>
@@ -261,9 +276,6 @@
         <div class="container mx-auto px-4 text-center">
             <h3 class="text-xl font-bold mb-4" data-key="site_name_footer">المرساة الرقمية</h3>
             <p class="text-gray-400">© 2025 Digital Anchor Project. All rights reserved.</p>
-            <div class="mt-4 text-sm text-gray-500">
-                Designed for Performance & Accessibility
-            </div>
         </div>
     </footer>
 
@@ -400,19 +412,19 @@
                 }
             });
 
-            // Update Buttons Style
+            // تحديث تصميم الأزرار
             ['ar', 'en', 'fr', 'de'].forEach(code => {
                 const btn = document.getElementById('btn-' + code);
                 if (btn) {
                     if (code === lang) {
-                        btn.className = "text-xs font-bold px-2 py-1 rounded-full bg-blue-700 text-white transition";
+                        btn.className = "text-xs font-bold px-2 py-1 rounded-full bg-blue-700 text-white transition ring-2 ring-offset-2 ring-blue-500";
                     } else {
                         btn.className = "text-xs font-medium px-2 py-1 rounded-full text-gray-700 hover:bg-gray-100 transition";
                     }
                 }
             });
 
-            // Handle Spacing for RTL/LTR
+            // عكس المسافات حسب الاتجاه
             document.querySelectorAll('.space-x-reverse').forEach(el => {
                 if (isRTL) el.classList.add('space-x-reverse');
                 else el.classList.remove('space-x-reverse');
@@ -442,7 +454,11 @@
             const menuBtn = document.getElementById('mobile-menu-button');
             const menu = document.getElementById('mobile-menu');
             if (menuBtn && menu) {
-                menuBtn.addEventListener('click', () => menu.classList.toggle('hidden'));
+                menuBtn.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                    const isExpanded = !menu.classList.contains('hidden');
+                    menuBtn.setAttribute('aria-expanded', isExpanded);
+                });
             }
         });
     </script>
