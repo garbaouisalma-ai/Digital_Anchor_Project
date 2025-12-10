@@ -37,6 +37,7 @@
             font-weight: bold;
             transition: all 0.3s ease;
             border: none;
+            cursor: pointer;
         }
         
         .btn-primary:hover {
@@ -44,13 +45,22 @@
             box-shadow: 0 10px 20px rgba(26, 54, 93, 0.2);
         }
         
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
         .gradient-text {
             background: linear-gradient(135deg, #1a365d 0%, #d69e2e 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         
-        /* تأثير الطفو للصورة */
+        /* حركة الطفو للصورة */
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-15px); }
@@ -69,7 +79,6 @@
                 
                 <div class="flex items-center space-x-3 space-x-reverse">
                     <img src="logo.png" alt="شعار المرساة الرقمية" class="h-14 w-auto rounded-lg shadow-sm hover:scale-105 transition duration-300">
-                    
                     <div>
                         <h1 class="text-xl font-bold text-gray-800" data-key="site_name">المرساة الرقمية</h1>
                         <p class="text-xs text-gray-500" data-key="nav_tagline">من أنت حين تنطفئ الشاشة؟</p>
@@ -84,8 +93,8 @@
                     <a href="#author" class="text-gray-700 hover:text-blue-700 font-medium transition" data-key="nav_author">المؤلفة</a>
 
                     <div class="flex items-center space-x-2 space-x-reverse border border-gray-300 rounded-full p-1">
-                        <button onclick="setLanguage('ar')" id="btn-ar" class="text-sm font-bold px-3 py-1 rounded-full transition">ع</button>
-                        <button onclick="setLanguage('en')" id="btn-en" class="text-sm font-bold px-3 py-1 rounded-full transition">En</button>
+                        <button onclick="setLanguage('ar')" id="btn-ar" class="text-sm font-bold px-3 py-1 rounded-full bg-blue-700 text-white transition">ع</button>
+                        <button onclick="setLanguage('en')" id="btn-en" class="text-sm font-bold px-3 py-1 rounded-full text-gray-700 hover:bg-gray-100 transition">En</button>
                     </div>
                     
                     <button class="btn-primary flex items-center" data-key="nav_book_now">
@@ -102,6 +111,9 @@
             <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-3">
                 <a href="#home" class="block text-gray-700 hover:text-blue-700 font-medium py-2" data-key="nav_home">الرئيسية</a>
                 <a href="#about" class="block text-gray-700 hover:text-blue-700 font-medium py-2" data-key="nav_about">عن الكتاب</a>
+                <a href="#features" class="block text-gray-700 hover:text-blue-700 font-medium py-2" data-key="nav_features">المميزات</a>
+                <a href="#resources" class="block text-gray-700 hover:text-blue-700 font-medium py-2" data-key="nav_resources">الموارد</a>
+                <a href="#author" class="block text-gray-700 hover:text-blue-700 font-medium py-2" data-key="nav_author">المؤلفة</a>
                 <button class="btn-primary w-full" data-key="nav_book_now">احجز نسختك</button>
             </div>
         </div>
@@ -115,53 +127,127 @@
         
         <div class="container mx-auto px-4 relative z-10">
             <div class="flex flex-col lg:flex-row items-center">
-                
                 <div class="lg:w-1/2 text-center lg:text-right mb-12 lg:mb-0">
-                    <span class="inline-block bg-yellow-400 text-blue-900 px-4 py-2 rounded-full text-sm font-bold mb-6 shadow-lg" data-key="hero_badge">
-                        ✨ الإصدار الجديد 2025
-                    </span>
-                    
-                    <h1 class="hero-title text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6" data-key="hero_title">
-                        من أنت حين <span class="gradient-text">تنطفئ الشاشة</span>؟
-                    </h1>
-                    
-                    <p class="text-xl md:text-2xl opacity-90 mb-8 leading-relaxed" data-key="hero_subtitle">
-                        دليل الشباب للقيم والتركيز والهدف<br>
-                        في <span class="font-bold text-yellow-300">اقتصاد الانتباه</span>
-                    </p>
-                    
+                    <span class="inline-block bg-yellow-400 text-blue-900 px-4 py-2 rounded-full text-sm font-bold mb-6 shadow-lg" data-key="hero_badge">✨ الإصدار الجديد 2025</span>
+                    <h1 class="hero-title text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6" data-key="hero_title">من أنت حين <span class="gradient-text">تنطفئ الشاشة</span>؟</h1>
+                    <p class="text-xl md:text-2xl opacity-90 mb-8 leading-relaxed" data-key="hero_subtitle">دليل الشباب للقيم والتركيز والهدف<br>في <span class="font-bold text-yellow-300">اقتصاد الانتباه</span></p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-end">
-                        <button class="btn-primary text-lg py-4 px-8 flex items-center justify-center" data-key="hero_btn_start">
-                            <i class="fas fa-play-circle ml-2"></i>
-                            <span class="mr-2">ابدأ الرحلة الآن</span>
-                        </button>
-                        <button class="bg-white text-blue-900 hover:bg-gray-100 font-bold py-4 px-8 rounded-lg text-lg transition flex items-center justify-center" data-key="hero_btn_samples">
-                            <i class="fas fa-download ml-2"></i>
-                            <span class="mr-2">عينات مجانية</span>
-                        </button>
+                        <button class="btn-primary text-lg py-4 px-8 flex items-center justify-center" data-key="hero_btn_start"><i class="fas fa-play-circle ml-2"></i><span class="mr-2">ابدأ الرحلة الآن</span></button>
+                        <button class="bg-white text-blue-900 hover:bg-gray-100 font-bold py-4 px-8 rounded-lg text-lg transition flex items-center justify-center" data-key="hero_btn_samples"><i class="fas fa-download ml-2"></i><span class="mr-2">عينات مجانية</span></button>
                     </div>
                 </div>
-                
                 <div class="lg:w-1/2 flex justify-center mt-8 lg:mt-0">
                     <div class="relative float-animation w-full max-w-lg">
-                        <img src="hero.png" 
-                             alt="عرض مشروع المرساة الرقمية على الأجهزة" 
-                             class="w-full h-auto drop-shadow-2xl hover:scale-105 transition-transform duration-500 rounded-xl">
+                        <img src="hero.png" alt="عرض مشروع المرساة الرقمية" class="w-full h-auto drop-shadow-2xl hover:scale-105 transition-transform duration-500 rounded-xl">
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
     <section id="about" class="py-16 bg-white">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4" data-key="about_title">لماذا هذا الكتاب؟</h2>
-            <p class="text-gray-600 text-lg max-w-3xl mx-auto" data-key="about_subtitle">
-                في عالم صُمم لسرقة انتباهك، أنت بحاجة إلى مرساة تثبت قيمك وأهدافك.
-            </p>
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4"><span class="border-b-4 border-yellow-400 pb-2" data-key="about_title">لماذا هذا الكتاب؟</span></h2>
+                <p class="text-gray-600 text-lg max-w-3xl mx-auto" data-key="about_subtitle">في عالم صُمم لسرقة انتباهك، أنت بحاجة إلى مرساة تثبت قيمك وأهدافك.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 flex items-center justify-center card-hover">
+                    <div class="text-center">
+                        <div class="w-24 h-24 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6"><i class="fas fa-play text-3xl text-white"></i></div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2" data-key="about_video_title">جولة داخل الكتاب</h3>
+                        <p class="text-gray-600" data-key="about_video_desc">شاهد مقطع تعريفي عن محتوى الكتاب ورحلته</p>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <div class="bg-gray-50 rounded-xl p-6 card-hover">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 text-blue-800 p-3 rounded-lg ml-4"><i class="fas fa-compass text-xl"></i></div>
+                            <div><h3 class="text-xl font-bold text-gray-800 mb-2" data-key="part1_title">الجزء الأول: مرساة القيم</h3><p class="text-gray-600" data-key="part1_desc">اكتشف قيمك الحقيقية وابني قانونك الداخلي.</p></div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 rounded-xl p-6 card-hover">
+                        <div class="flex items-start">
+                            <div class="bg-green-100 text-green-800 p-3 rounded-lg ml-4"><i class="fas fa-bullseye text-xl"></i></div>
+                            <div><h3 class="text-xl font-bold text-gray-800 mb-2" data-key="part2_title">الجزء الثاني: سهم الأهداف</h3><p class="text-gray-600" data-key="part2_desc">حول أحلامك إلى أهداف ذكية واجعل الفشل حليفك.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
+
+    <section id="features" class="py-16 bg-gradient-to-b from-white to-blue-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4"><span class="border-b-4 border-yellow-400 pb-2" data-key="features_title">ماذا تحصل عليه؟</span></h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl shadow-lg p-8 card-hover text-center">
+                    <div class="text-blue-600 text-5xl mb-6"><i class="fas fa-book"></i></div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4" data-key="feat_book_title">الكتاب الرئيسي</h3>
+                    <p class="text-gray-600" data-key="feat_book_desc">٣٤ فصلًا متكاملاً وتمارين عملية.</p>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-8 card-hover text-center border-2 border-yellow-400">
+                    <div class="text-yellow-600 text-5xl mb-6"><i class="fas fa-toolbox"></i></div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4" data-key="feat_tools_title">الأدوات العملية</h3>
+                    <p class="text-gray-600" data-key="feat_tools_desc">دفتر تمارين ٨ أسابيع وجداول تتبع.</p>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-8 card-hover text-center">
+                    <div class="text-green-600 text-5xl mb-6"><i class="fas fa-graduation-cap"></i></div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4" data-key="feat_extras_title">المزايا الإضافية</h3>
+                    <p class="text-gray-600" data-key="feat_extras_desc">شهادة السيادة الرقمية ومجتمع داعم.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="resources" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4"><span class="border-b-4 border-yellow-400 pb-2" data-key="resources_title">الموارد المجانية</span></h2>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                <div class="bg-blue-50 rounded-xl p-6 card-hover"><i class="fas fa-table text-blue-700 text-4xl mb-4"></i><h3 class="font-bold text-gray-800" data-key="res1_title">جدول التعلم</h3></div>
+                <div class="bg-green-50 rounded-xl p-6 card-hover"><i class="fas fa-heartbeat text-green-700 text-4xl mb-4"></i><h3 class="font-bold text-gray-800" data-key="res2_title">مقياس الصحة</h3></div>
+                <div class="bg-yellow-50 rounded-xl p-6 card-hover"><i class="fas fa-file-contract text-yellow-700 text-4xl mb-4"></i><h3 class="font-bold text-gray-800" data-key="res3_title">ميثاق العائلة</h3></div>
+                <div class="bg-purple-50 rounded-xl p-6 card-hover"><i class="fas fa-road text-purple-700 text-4xl mb-4"></i><h3 class="font-bold text-gray-800" data-key="res4_title">خريطة المستقبل</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="author" class="py-16 bg-gradient-to-r from-gray-900 to-blue-900 text-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-2/5 mb-10 lg:mb-0 text-center">
+                    <div class="w-64 h-64 bg-white rounded-full flex items-center justify-center mx-auto text-gray-900 text-9xl"><i class="fas fa-user-circle"></i></div>
+                </div>
+                <div class="lg:w-3/5 lg:pr-12">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6"><span class="border-b-4 border-yellow-400 pb-2" data-key="author_title">عن المؤلفة</span></h2>
+                    <h3 class="text-2xl font-bold text-yellow-300 mb-4" data-key="author_name">Naoual Guerbaoui</h3>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6" data-key="author_bio">رائدة في رحلة التحول الرقمي الواعي. هذا الكتاب هو نتاج تجربة شخصية لاستعادة السيطرة على الوقت والقيم.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-gradient-to-r from-blue-800 to-indigo-900 text-white text-center">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-5xl font-bold mb-6" data-key="cta_title">هل أنت مستعد لاستعادة <span class="text-yellow-300">انتباهك</span>؟</h2>
+            <div class="max-w-2xl mx-auto bg-white rounded-2xl p-8 shadow-2xl mt-10 text-gray-800">
+                <h3 class="text-2xl font-bold mb-2" data-key="package_title">الحزمة الكاملة</h3>
+                <div class="text-5xl font-bold text-blue-900 mb-4">١٩٩ ر.س</div>
+                <button class="w-full bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-4 px-8 rounded-xl text-xl transition transform hover:-translate-y-1 shadow-lg" data-key="cta_book_now">احجز نسختي الآن</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4 text-center">
+            <h3 class="text-xl font-bold mb-4" data-key="site_name_footer">المرساة الرقمية</h3>
+            <p class="text-gray-500">© 2025 Digital Anchor Project. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script>
         const translations = {
@@ -181,7 +267,32 @@
                 'hero_btn_start': 'ابدأ الرحلة الآن',
                 'hero_btn_samples': 'عينات مجانية',
                 'about_title': 'لماذا هذا الكتاب؟',
-                'about_subtitle': 'في عالم صُمم لسرقة انتباهك، أنت بحاجة إلى مرساة تثبت قيمك وأهدافك.'
+                'about_subtitle': 'في عالم صُمم لسرقة انتباهك، أنت بحاجة إلى مرساة تثبت قيمك وأهدافك.',
+                'about_video_title': 'جولة داخل الكتاب',
+                'about_video_desc': 'شاهد مقطع تعريفي عن محتوى الكتاب ورحلته',
+                'part1_title': 'الجزء الأول: مرساة القيم',
+                'part1_desc': 'اكتشف قيمك الحقيقية وابني قانونك الداخلي.',
+                'part2_title': 'الجزء الثاني: سهم الأهداف',
+                'part2_desc': 'حول أحلامك إلى أهداف ذكية واجعل الفشل حليفك.',
+                'features_title': 'ماذا تحصل عليه؟',
+                'feat_book_title': 'الكتاب الرئيسي',
+                'feat_book_desc': '٣٤ فصلًا متكاملاً وتمارين عملية.',
+                'feat_tools_title': 'الأدوات العملية',
+                'feat_tools_desc': 'دفتر تمارين ٨ أسابيع وجداول تتبع.',
+                'feat_extras_title': 'المزايا الإضافية',
+                'feat_extras_desc': 'شهادة السيادة الرقمية ومجتمع داعم.',
+                'resources_title': 'الموارد المجانية',
+                'res1_title': 'جدول التعلم',
+                'res2_title': 'مقياس الصحة',
+                'res3_title': 'ميثاق العائلة',
+                'res4_title': 'خريطة المستقبل',
+                'author_title': 'عن المؤلفة',
+                'author_name': 'Naoual Guerbaoui',
+                'author_bio': 'رائدة في رحلة التحول الرقمي الواعي. هذا الكتاب هو نتاج تجربة شخصية لاستعادة السيطرة على الوقت والقيم.',
+                'cta_title': 'هل أنت مستعد لاستعادة انتباهك؟',
+                'package_title': 'الحزمة الكاملة',
+                'cta_book_now': 'احجز نسختي الآن',
+                'site_name_footer': 'المرساة الرقمية'
             },
             'en': {
                 'page_title': 'Who are you when the screen goes off? | Digital Anchor',
@@ -199,19 +310,41 @@
                 'hero_btn_start': 'Start Journey',
                 'hero_btn_samples': 'Free Samples',
                 'about_title': 'Why this book?',
-                'about_subtitle': 'In a world designed to steal your attention, you need an anchor for your values and goals.'
+                'about_subtitle': 'In a world designed to steal your attention, you need an anchor for your values and goals.',
+                'about_video_title': 'Inside the Book',
+                'about_video_desc': 'Watch a video about the book journey',
+                'part1_title': 'Part 1: The Anchor of Values',
+                'part1_desc': 'Discover your true values and build your inner law.',
+                'part2_title': 'Part 2: The Arrow of Goals',
+                'part2_desc': 'Turn your dreams into smart goals and befriend failure.',
+                'features_title': 'What do you get?',
+                'feat_book_title': 'Main Book',
+                'feat_book_desc': '34 integrated chapters and practical exercises.',
+                'feat_tools_title': 'Practical Tools',
+                'feat_tools_desc': '8-week workbook and tracking charts.',
+                'feat_extras_title': 'Extra Benefits',
+                'feat_extras_desc': 'Digital Sovereignty Certificate and support community.',
+                'resources_title': 'Free Resources',
+                'res1_title': 'Learning Schedule',
+                'res2_title': 'Health Scale',
+                'res3_title': 'Family Covenant',
+                'res4_title': 'Future Map',
+                'author_title': 'About the Author',
+                'author_name': 'Naoual Guerbaoui',
+                'author_bio': 'A pioneer in the journey of conscious digital transformation. This book is the result of a personal experience to regain control over time and values.',
+                'cta_title': 'Ready to reclaim your attention?',
+                'package_title': 'Full Package',
+                'cta_book_now': 'Book My Copy Now',
+                'site_name_footer': 'Digital Anchor'
             }
         };
 
         function setLanguage(lang) {
             const isRTL = lang === 'ar';
-            
-            // تحديث الاتجاه
             document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
             document.documentElement.setAttribute('lang', lang);
             document.body.style.textAlign = isRTL ? 'right' : 'left';
 
-            // تحديث النصوص
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.getAttribute('data-key');
                 if (translations[lang][key]) {
@@ -219,7 +352,6 @@
                 }
             });
 
-            // تحديث الأزرار
             const btnAr = document.getElementById('btn-ar');
             const btnEn = document.getElementById('btn-en');
             
@@ -231,7 +363,6 @@
                 btnAr.className = "text-sm font-medium px-3 py-1 rounded-full text-gray-700 hover:bg-gray-100 transition";
             }
 
-            // عكس المسافات
             document.querySelectorAll('.space-x-reverse').forEach(el => {
                 if (isRTL) el.classList.add('space-x-reverse');
                 else el.classList.remove('space-x-reverse');
