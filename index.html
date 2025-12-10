@@ -13,21 +13,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.tailwindcss.com">
 
-    <link rel="preload" href="https://fonts.gstatic.com/s/amiri/v26/J7aRnpd8CGxBHqUpvrIw745y.woff2" as="font" type="font/woff2" crossorigin>
-
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" media="print" onload="this.media='all'" />
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
     
     <style>
         :root { --primary: #1a365d; --secondary: #2d3748; --accent: #d69e2e; }
         body { font-family: 'Tajawal', sans-serif; background-color: #f7fafc; color: #2d3748; scroll-behavior: smooth; }
         h1, h2, h3 { font-family: 'Amiri', serif; }
         
-        /* Accessibility: Focus Indicators */
+        /* Accessibility Focus */
         button:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible { 
             outline: 3px solid #d69e2e; outline-offset: 2px; 
         }
@@ -36,11 +32,10 @@
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(26, 54, 93, 0.2); }
         .card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: 0.3s; }
         .gradient-text { background: linear-gradient(135deg, #1a365d 0%, #d69e2e 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
         .float-animation { animation: float 6s ease-in-out infinite; }
         
-        /* Screen Reader Only Class */
+        /* Screen Reader Only */
         .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
     </style>
 </head>
@@ -64,7 +59,7 @@
                     
                     <div class="flex flex-col justify-center">
                         <label for="currency-select-desktop" class="sr-only">اختر العملة</label>
-                        <select id="currency-select-desktop" onchange="convertCurrency(this.value)" class="text-xs border border-gray-300 rounded-lg p-1 bg-white text-gray-900 font-medium h-8">
+                        <select id="currency-select-desktop" onchange="convertCurrency(this.value)" class="text-xs border border-gray-300 rounded-lg p-1 bg-white text-gray-900 font-bold h-8">
                             <option value="SAR">SAR</option>
                             <option value="USD">USD</option>
                             <option value="EUR">EUR</option>
@@ -72,10 +67,10 @@
                     </div>
 
                     <div class="flex items-center border border-gray-300 rounded-full p-1 bg-gray-50 h-8" role="group" aria-label="Language Switcher">
-                        <button onclick="setLanguage('ar')" id="d-btn-ar" class="text-xs font-bold px-2 py-1 rounded-full bg-blue-900 text-white transition">ع</button>
-                        <button onclick="setLanguage('en')" id="d-btn-en" class="text-xs font-bold px-2 py-1 rounded-full text-gray-700 hover:bg-gray-200 transition">En</button>
-                        <button onclick="setLanguage('fr')" id="d-btn-fr" class="text-xs font-bold px-2 py-1 rounded-full text-gray-700 hover:bg-gray-200 transition">Fr</button>
-                        <button onclick="setLanguage('de')" id="d-btn-de" class="text-xs font-bold px-2 py-1 rounded-full text-gray-700 hover:bg-gray-200 transition">De</button>
+                        <button onclick="setLanguage('ar')" id="d-btn-ar" class="text-xs font-bold px-2 py-1 rounded-full bg-blue-900 text-white transition" aria-label="العربية">ع</button>
+                        <button onclick="setLanguage('en')" id="d-btn-en" class="text-xs font-bold px-2 py-1 rounded-full text-gray-700 hover:bg-gray-200 transition" aria-label="English">En</button>
+                        <button onclick="setLanguage('fr')" id="d-btn-fr" class="text-xs font-bold px-2 py-1 rounded-full text-gray-700 hover:bg-gray-200 transition" aria-label="Français">Fr</button>
+                        <button onclick="setLanguage('de')" id="d-btn-de" class="text-xs font-bold px-2 py-1 rounded-full text-gray-700 hover:bg-gray-200 transition" aria-label="Deutsch">De</button>
                     </div>
                     
                     <button class="btn-primary text-sm flex items-center h-10" data-key="nav_book_now">
@@ -90,9 +85,9 @@
         </div>
 
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-4 shadow-xl">
-             <a href="#home" class="block py-3 text-gray-800 font-bold border-b border-gray-100 hover:text-blue-800" data-key="nav_home">الرئيسية</a>
-             <a href="#roadmap" class="block py-3 text-gray-800 font-bold border-b border-gray-100 hover:text-blue-800" data-key="nav_roadmap">البرنامج (90 يوم)</a>
-             <a href="#resources" class="block py-3 text-gray-800 font-bold border-b border-gray-100 hover:text-blue-800" data-key="nav_resources">الأدوات</a>
+             <a href="#home" class="block py-3 text-gray-900 font-bold border-b border-gray-100 hover:text-blue-800" data-key="nav_home">الرئيسية</a>
+             <a href="#roadmap" class="block py-3 text-gray-900 font-bold border-b border-gray-100 hover:text-blue-800" data-key="nav_roadmap">البرنامج (90 يوم)</a>
+             <a href="#resources" class="block py-3 text-gray-900 font-bold border-b border-gray-100 hover:text-blue-800" data-key="nav_resources">الأدوات</a>
              
              <div class="flex justify-center flex-wrap gap-2 py-4">
                 <button onclick="setLanguage('ar')" class="px-3 py-2 rounded bg-gray-100 font-bold hover:bg-blue-100 text-sm w-20 text-gray-900">عربي</button>
@@ -137,17 +132,14 @@
                 </div>
                 <div class="grid md:grid-cols-3 gap-8">
                     <article class="bg-blue-50 rounded-2xl p-8 border-t-4 border-blue-600 card-hover shadow-lg">
-                        <div class="text-4xl text-blue-600 mb-4"><i class="fas fa-eye" aria-hidden="true"></i></div>
                         <h3 class="text-2xl font-bold text-gray-900 mb-2" data-key="month1_title">الشهر 1: الصحوة الرقمية</h3>
                         <p class="text-sm text-gray-700 mb-4 font-bold" data-key="month1_goal">الهدف: خفض الإلهاء بنسبة 30%</p>
                     </article>
                     <article class="bg-green-50 rounded-2xl p-8 border-t-4 border-green-600 card-hover shadow-lg">
-                        <div class="text-4xl text-green-600 mb-4"><i class="fas fa-cogs" aria-hidden="true"></i></div>
                         <h3 class="text-2xl font-bold text-gray-900 mb-2" data-key="month2_title">الشهر 2: بناء النظام</h3>
                         <p class="text-sm text-gray-700 mb-4 font-bold" data-key="month2_goal">الهدف: إنشاء نظام إنتاجية مستدام</p>
                     </article>
                     <article class="bg-yellow-50 rounded-2xl p-8 border-t-4 border-yellow-500 card-hover shadow-lg">
-                        <div class="text-4xl text-yellow-600 mb-4"><i class="fas fa-hands-helping" aria-hidden="true"></i></div>
                         <h3 class="text-2xl font-bold text-gray-900 mb-2" data-key="month3_title">الشهر 3: التأثير</h3>
                         <p class="text-sm text-gray-700 mb-4 font-bold" data-key="month3_goal">الهدف: مساعدة شخص واحد</p>
                     </article>
