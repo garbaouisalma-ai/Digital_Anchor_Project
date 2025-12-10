@@ -52,9 +52,7 @@
         // الكود المشترك للغة والعملة (Language/Currency Logic)
         // ----------------------------------------------------
         
-        // 1. قاموس الترجمة
         const translations = {
-            // العربية (افتراضي)
             ar: {
                 'lang_ar': 'العربية', 'lang_en': 'English', 'lang_fr': 'Français',
                 'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
@@ -65,12 +63,7 @@
                 'guide': 'الدليل',
                 'buy_book': 'الشراء',
                 'footer-copy': '© 2025 المرساة الرقمية - "من أنت حين تنطفئ الشاشة؟". جميع الحقوق محفوظة.',
-                'footer-email': 'شارك قصتك معنا:',
-                'footer-covenant': 'عهد التحرر',
-                'footer-resources': 'الموارد المجانية',
-                'footer-preorder': 'طلب الكتاب',
             },
-            // الإنجليزية
             en: {
                 'lang_ar': 'Arabic', 'lang_en': 'English', 'lang_fr': 'French',
                 'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
@@ -81,12 +74,7 @@
                 'guide': 'Guide',
                 'buy_book': 'Purchase',
                 'footer-copy': '© 2025 Digital Anchor - "Who are you when the screen turns off?". All rights reserved.',
-                'footer-email': 'Share your story with us:',
-                'footer-covenant': 'Pledge of Liberation',
-                'footer-resources': 'Free Resources',
-                'footer-preorder': 'Order Book',
             },
-            // الفرنسية
             fr: {
                 'lang_ar': 'Arabe', 'lang_en': 'Anglais', 'lang_fr': 'Français',
                 'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
@@ -97,14 +85,9 @@
                 'guide': 'Guide',
                 'buy_book': 'Acheter',
                 'footer-copy': '© 2025 Ancre Numérique - "Qui êtes-vous lorsque l\'écran s\'éteint?". Tous droits réservés.',
-                'footer-email': 'Partagez votre histoire avec nous:',
-                'footer-covenant': 'Engagement de Libération',
-                'footer-resources': 'Ressources Gratuites',
-                'footer-preorder': 'Commander Livre',
             },
         };
 
-        // 2. مزود اللغة (Provider) والسياق (Context)
         const LanguageContext = React.createContext();
 
         const LanguageProvider = ({ children }) => {
@@ -124,10 +107,8 @@
             );
         };
 
-        // 3. الخطاف (Hook) للوصول إلى السياق
         const useTranslation = () => React.useContext(LanguageContext);
 
-        // 4. مكون مبدل اللغة والعملة
         const LanguageCurrencySwitcher = () => {
             const { language, setLanguage, currency, setCurrency, t } = useTranslation();
 
@@ -136,7 +117,6 @@
 
             return (
                 <div className="flex items-center gap-3">
-                    {/* القائمة المنسدلة للغة */}
                     <div className="relative text-white"> 
                         <select 
                             value={language} 
@@ -147,11 +127,9 @@
                             <option value="en">{t('lang_en')}</option>
                             <option value="fr">{t('lang_fr')}</option>
                         </select>
-                        {/* أيقونة السهم */}
                         <i className="fas fa-caret-down absolute top-1/2 right-2 transform -translate-y-1/2 pointer-events-none text-gray-400"></i>
                     </div>
                     
-                    {/* القائمة المنسدلة للعملة */}
                     <div className="relative text-white">
                         <select 
                             value={currency} 
@@ -162,7 +140,6 @@
                             <option value="EUR">{t('curr_eur')}</option>
                             <option value="SAR">{t('curr_sar')}</option>
                         </select>
-                        {/* أيقونة السهم */}
                         <i className="fas fa-caret-down absolute top-1/2 right-2 transform -translate-y-1/2 pointer-events-none text-gray-400"></i>
                     </div>
                 </div>
@@ -179,9 +156,8 @@
             const [name, setName] = useState('');
             const [date, setDate] = useState('');
             const [isSigned, setIsSigned] = useState(false);
-            const { t } = useTranslation(); // استخدام t
+            const { t } = useTranslation();
 
-            // دالة التوقيع
             const handleSign = () => {
                 if (name.trim() && date.trim()) {
                     setIsSigned(true);
@@ -192,7 +168,6 @@
         
             return (
                 <div className="min-h-screen flex flex-col bg-slate-100 font-sans">
-                    {/* Header - تم التحديث ليتضمن المبدل والترجمة */}
                     <header className="bg-anchor-blue text-white py-4 shadow-xl no-print">
                         <div className="max-w-5xl mx-auto px-6 flex justify-between items-center">
                             <div className="flex items-center gap-3">
@@ -214,6 +189,18 @@
                             </div>
                             
                             {/* ... (بقية محتوى العهد) ... */}
+                            <div className="text-lg text-right leading-loose text-gray-700">
+                                <p className="mb-6 font-serif font-bold text-anchor-blue">أنا الموقع أدناه، أُعلن بوعي كامل التزامي بما يلي:</p>
+                                
+                                <ul className="list-decimal pr-8 space-y-3">
+                                    <li>أتعهد بوضع القيمة الجوهرية لحياتي (العائلة، الإبداع، التركيز) فوق الإغراءات الرقمية المشتتة.</li>
+                                    <li>ألتزم بتخصيص وقت محدد يومياً لـ **إطفاء الشاشة** والتواصل الحقيقي مع عالمي غير الرقمي.</li>
+                                    <li>أُقر بسيادتي على جهازي، وأقوم بتعديل الإشعارات والتطبيقات لخدمة أهدافي، لا لخدمة خوارزميات الاستهلاك.</li>
+                                    <li>أوافق على استخدام التكنولوجيا كأداة لتحقيق أهدافي، وليس كملاذ للهروب من الواقع أو الشعور بالوحدة.</li>
+                                    <li>ألتزم بدعم مجتمع التحرر الرقمي، وأتبادل المعرفة والإلهام لتعزيز الوعي والقيادة الرقمية.</li>
+                                    <li>أعمل على تحويل انشغالي إلى إنجاز، وإهمالي إلى تركيز، وإعادة توجيه طاقتي الإبداعية نحو ما يخدم الإنسانية وأستخدم صوتي للخير دائماً.</li>
+                                </ul>
+                            </div>
                             
                             <div className="mt-16 pt-8 border-t border-gray-200 grid grid-cols-2 gap-12">
                                 <div>
@@ -296,7 +283,6 @@
             );
         };
 
-        // ✅ تحديث التصيير للتغليف بـ LanguageProvider
         ReactDOM.render(<LanguageProvider><CovenantPage /></LanguageProvider>, document.getElementById('root'));
     </script>
 </body>

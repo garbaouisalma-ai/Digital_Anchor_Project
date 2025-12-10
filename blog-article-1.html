@@ -40,9 +40,7 @@
         // الكود المشترك للغة والعملة (Language/Currency Logic)
         // ----------------------------------------------------
         
-        // 1. قاموس الترجمة
         const translations = {
-            // العربية (افتراضي)
             ar: {
                 'lang_ar': 'العربية', 'lang_en': 'English', 'lang_fr': 'Français',
                 'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
@@ -58,7 +56,6 @@
                 'footer-resources': 'الموارد المجانية',
                 'footer-preorder': 'طلب الكتاب',
             },
-            // الإنجليزية
             en: {
                 'lang_ar': 'Arabic', 'lang_en': 'English', 'lang_fr': 'French',
                 'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
@@ -74,7 +71,6 @@
                 'footer-resources': 'Free Resources',
                 'footer-preorder': 'Order Book',
             },
-            // الفرنسية
             fr: {
                 'lang_ar': 'Arabe', 'lang_en': 'Anglais', 'lang_fr': 'Français',
                 'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
@@ -92,7 +88,6 @@
             },
         };
 
-        // 2. مزود اللغة (Provider) والسياق (Context)
         const LanguageContext = React.createContext();
 
         const LanguageProvider = ({ children }) => {
@@ -112,10 +107,8 @@
             );
         };
 
-        // 3. الخطاف (Hook) للوصول إلى السياق
         const useTranslation = () => React.useContext(LanguageContext);
 
-        // 4. مكون مبدل اللغة والعملة
         const LanguageCurrencySwitcher = () => {
             const { language, setLanguage, currency, setCurrency, t } = useTranslation();
 
@@ -124,7 +117,6 @@
 
             return (
                 <div className="flex items-center gap-3">
-                    {/* القائمة المنسدلة للغة */}
                     <div className="relative text-white"> 
                         <select 
                             value={language} 
@@ -135,11 +127,9 @@
                             <option value="en">{t('lang_en')}</option>
                             <option value="fr">{t('lang_fr')}</option>
                         </select>
-                        {/* أيقونة السهم */}
                         <i className="fas fa-caret-down absolute top-1/2 right-2 transform -translate-y-1/2 pointer-events-none text-gray-400"></i>
                     </div>
                     
-                    {/* القائمة المنسدلة للعملة */}
                     <div className="relative text-white">
                         <select 
                             value={currency} 
@@ -150,7 +140,6 @@
                             <option value="EUR">{t('curr_eur')}</option>
                             <option value="SAR">{t('curr_sar')}</option>
                         </select>
-                        {/* أيقونة السهم */}
                         <i className="fas fa-caret-down absolute top-1/2 right-2 transform -translate-y-1/2 pointer-events-none text-gray-400"></i>
                     </div>
                 </div>
@@ -161,9 +150,6 @@
         // مكونات الصفحة
         // ----------------------------------------------------
         
-        const { useState } = React;
-
-        // Navbar المحدَّث لاستخدام الترجمة ومبدل اللغة
         const Navbar = () => {
             const { t } = useTranslation(); 
             return (
@@ -201,9 +187,7 @@
         };
 
         const BlogPage2 = () => {
-            const { t, currency } = useTranslation(); // استخدام t و currency
-            
-            // ... (بقية منطق الصفحة) ...
+            const { t, currency } = useTranslation();
             
             return (
                 <div className="min-h-screen flex flex-col">
@@ -282,7 +266,6 @@
             );
         };
 
-        // ✅ تحديث التصيير للتغليف بـ LanguageProvider
         ReactDOM.render(<LanguageProvider><BlogPage2 /></LanguageProvider>, document.getElementById('root'));
     </script>
 </body>

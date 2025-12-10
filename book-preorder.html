@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-key="page-title">احجز كتاب "من أنت حين تنطفئ الشاشة؟"</title>
+    <title>احجز كتاب "من أنت حين تنطفئ الشاشة؟"</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -28,171 +28,167 @@
     <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
-    <div id="root" class="flex flex-col min-h-screen w-full"></div>
-
+    <div id="root"></div>
     <script type="text/babel">
-        const { useState, useEffect, createContext, useContext, useMemo } = React;
 
-        // =====================================
-        // 1. قاموس الترجمة (AR و EN فقط)
-        // =====================================
-        const ALL_TRANSLATIONS = {
-            'site-logo': { ar: 'المرساة الرقمية', en: 'Digital Anchor' },
-            'nav-home': { ar: 'الرئيسية', en: 'Home' },
-            'nav-guide': { ar: 'الدليل', en: 'Guide' },
-            'nav-resources': { ar: 'الموارد', en: 'Resources' },
-            'nav-members': { ar: 'الأعضاء', en: 'Members' },
-            'nav-buy': { ar: 'احجز نسختك', en: 'Pre-order' },
-            'page-title': { ar: 'احجز كتاب "من أنت حين تنطفئ الشاشة؟"', en: 'Pre-order "Who are you when the screen turns off?"' },
-            'header-title': { ar: 'اطلب نسختك الآن', en: 'Order Your Copy Now' },
-            'header-subtitle': { ar: 'استثمر في سيادتك الرقمية. إطلاق الإصدار في الربع الأول 2026.', en: 'Invest in your digital sovereignty. Release in Q1 2026.' },
-            'product-title': { ar: 'حجز كتاب: من أنت حين تنطفئ الشاشة؟', en: 'Book Pre-order: Who are you when the screen turns off?' },
-            'product-feature-1': { ar: 'الكتاب الإلكتروني الكامل (يتم إرساله فوراً)', en: 'The complete e-book (sent immediately)' },
-            'product-feature-2': { ar: 'نسخة ورقية فاخرة (تُشحن لاحقاً)', en: 'Deluxe physical copy (shipped later)' },
-            'product-feature-3': { ar: 'وصول إلى مكتبة الأعضاء الحصرية', en: 'Access to the exclusive members library' },
-            'original-price': { ar: 'السعر الأصلي', en: 'Original Price' },
-            'preorder-price': { ar: 'سعر الحجز المسبق', en: 'Pre-order Price' },
-            'form-title': { ar: 'معلومات الطلب والدفع', en: 'Order and Payment Information' },
-            'label-name': { ar: 'الاسم الكامل', en: 'Full Name' },
-            'label-email': { ar: 'البريد الإلكتروني (لتلقي الكتاب)', en: 'Email (to receive the book)' },
-            'label-country': { ar: 'الدولة (للشحن)', en: 'Country (for shipping)' },
-            'label-agree': { ar: 'أوافق على الشروط والأحكام و سياسة الخصوصية.', en: 'I agree to the Terms, Conditions, and Privacy Policy.' },
-            'btn-confirm': { ar: 'تأكيد الحجز والدفع', en: 'Confirm Pre-order & Pay' },
-            'note-shipment': { ar: '*سيتم إرسال الكتاب الإلكتروني خلال ٢٤ ساعة. النسخ الورقية تُشحن في مارس ٢٠٢٦.', en: '*E-book will be sent within 24 hours. Physical copies ship in March 2026.' },
-            'footer-copy': { ar: '© 2025 المرساة الرقمية. جميع الحقوق محفوظة.', en: '© 2025 Digital Anchor. All Rights Reserved.' }
-        };
-
-        // =====================================
-        // 2. بيانات أسعار الصرف (مع اليورو EUR)
-        // =====================================
-        const EXCHANGE_RATES = {
-            'SAR': { rate: 3.75, symbol: 'ر.س', placement: 'after' },
-            'USD': { rate: 1.0, symbol: '$', placement: 'before' },    
-            'AED': { rate: 3.67, symbol: 'د.إ', placement: 'after' },
-            'EUR': { rate: 1.10, symbol: '€', placement: 'before' }   
-        };
-        const SAR_RATE = EXCHANGE_RATES['SAR'].rate; 
+        // ----------------------------------------------------
+        // الكود المشترك للغة والعملة (Language/Currency Logic)
+        // ----------------------------------------------------
         
-        const BASE_PRICE_SAR = 99;
-        const ORIGINAL_PRICE_SAR = 149;
+        const translations = {
+            ar: {
+                'lang_ar': 'العربية', 'lang_en': 'English', 'lang_fr': 'Français',
+                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
+                'home': 'الرئيسية',
+                'guide': 'الدليل',
+                'buy_book': 'الشراء',
+                'app_name': 'المرساة الرقمية',
+                'preorder_title': 'حجز الكتاب',
+                'footer-copy': '© 2025 المرساة الرقمية - "من أنت حين تنطفئ الشاشة؟". جميع الحقوق محفوظة.',
 
-        // =====================================
-        // 3. السياق والخطافات (Language Provider)
-        // =====================================
-        const LanguageContext = createContext();
+                'book-header': 'الكتاب المنتظر: "من أنت حين تنطفئ الشاشة؟"',
+                'book-subtitle': 'دليلك الشامل لاستعادة التركيز والقيادة الرقمية. احجز نسختك الآن بسعر خاص.',
+                'preorder-price': 'سعر الحجز المسبق:',
+                'regular-price': 'السعر العادي:',
+                'price-value': '19.99',
+                'price-regular': '24.99',
+                'benefit-1': 'نسخة ورقية (فور صدورها)',
+                'benefit-2': 'نسخة رقمية (PDF) فورية',
+                'benefit-3': 'وصول حصري لمنطقة الأعضاء',
+                'btn-preorder': 'احجز نسختك الآن',
+                'preorder-note': 'يشمل الكتاب شحن مجاني داخل منطقة الشرق الأوسط.',
+            },
+            en: {
+                'lang_ar': 'Arabic', 'lang_en': 'English', 'lang_fr': 'French',
+                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
+                'home': 'Home',
+                'guide': 'Guide',
+                'buy_book': 'Purchase',
+                'app_name': 'Digital Anchor',
+                'preorder_title': 'Book Pre-order',
+                'footer-copy': '© 2025 Digital Anchor - "Who are you when the screen turns off?". All rights reserved.',
 
-        function useTranslation() {
-            return useContext(LanguageContext);
-        }
+                'book-header': 'The Highly Anticipated Book: "Who are you when the screen turns off?"',
+                'book-subtitle': 'Your comprehensive guide to reclaiming focus and digital leadership. Pre-order your copy now at a special price.',
+                'preorder-price': 'Pre-order Price:',
+                'regular-price': 'Regular Price:',
+                'price-value': '19.99',
+                'price-regular': '24.99',
+                'benefit-1': 'Physical copy (upon release)',
+                'benefit-2': 'Instant digital copy (PDF)',
+                'benefit-3': 'Exclusive access to the Members Area',
+                'btn-preorder': 'Pre-order Your Copy Now',
+                'preorder-note': 'Includes free shipping within the Middle East.',
+            },
+            fr: {
+                'lang_ar': 'Arabe', 'lang_en': 'Anglais', 'lang_fr': 'Français',
+                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
+                'home': 'Accueil',
+                'guide': 'Guide',
+                'buy_book': 'Acheter',
+                'app_name': 'Ancre Numérique',
+                'preorder_title': 'Précommande du Livre',
+                'footer-copy': '© 2025 Ancre Numérique - "Qui êtes-vous lorsque l\'écran s\'éteint?". Tous droits réservés.',
 
-        function LanguageProvider({ children }) {
-            const [currentLang, setCurrentLang] = useState(localStorage.getItem('preferredLang') || 'ar');
-            const [currentCurrency, setCurrentCurrency] = useState(localStorage.getItem('preferredCurrency') || 'SAR');
+                'book-header': 'Le Livre Très Attendu : "Qui êtes-vous lorsque l\'écran s\'éteint ?"',
+                'book-subtitle': 'Votre guide complet pour retrouver la concentration et le leadership numérique. Précommandez votre exemplaire maintenant à un prix spécial.',
+                'preorder-price': 'Prix de Précommande :',
+                'regular-price': 'Prix Régulier :',
+                'price-value': '19.99',
+                'price-regular': '24.99',
+                'benefit-1': 'Exemplaire physique (à la sortie)',
+                'benefit-2': 'Exemplaire numérique (PDF) instantané',
+                'benefit-3': 'Accès exclusif à l\'Espace Membres',
+                'btn-preorder': 'Précommandez votre exemplaire maintenant',
+                'preorder-note': 'Inclut la livraison gratuite au Moyen-Orient.',
+            },
+        };
 
-            useEffect(() => {
-                localStorage.setItem('preferredLang', currentLang);
-                document.documentElement.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
-                document.documentElement.setAttribute('lang', currentLang);
-                
-                const titleKey = document.head.querySelector('title')?.getAttribute('data-key') || 'page-title';
-                document.title = ALL_TRANSLATIONS[titleKey]?.[currentLang] || ALL_TRANSLATIONS[titleKey]?.['ar'] || 'Digital Anchor';
-            }, [currentLang]);
-
-            const t = useMemo(() => (key) => {
-                return ALL_TRANSLATIONS[key]?.[currentLang] || ALL_TRANSLATIONS[key]?.['ar'] || `[${key}]`;
-            }, [currentLang]);
-
-            const convertPrice = (basePriceSAR) => {
-                const target = EXCHANGE_RATES[currentCurrency];
-                if (!target || isNaN(basePriceSAR)) return `${basePriceSAR} SAR`;
-
-                const priceInUSD = basePriceSAR / SAR_RATE;
-                
-                const decimalPlaces = (currentCurrency === 'SAR' || currentCurrency === 'AED') ? 0 : 2;
-                const newPrice = (priceInUSD * target.rate).toFixed(decimalPlaces); 
-                
-                const symbol = target.symbol;
-                
-                return target.placement === 'before' ? `${symbol}${newPrice}` : `${newPrice} ${symbol}`;
-            };
-
-            const setCurrency = (currencyCode) => {
-                setCurrentCurrency(currencyCode);
-                localStorage.setItem('preferredCurrency', currencyCode);
-            };
-
-            const contextValue = {
-                t,
-                currentLang,
-                setLang: setCurrentLang,
-                currentCurrency,
-                setCurrency,
-                convertPrice,
-                EXCHANGE_RATES,
-                SAR_RATE
-            };
-
+        const LanguageContext = React.createContext();
+        const LanguageProvider = ({ children }) => {
+            const [language, setLanguage] = React.useState('ar');
+            const [currency, setCurrency] = React.useState('USD');
+            const t = (key) => translations[language]?.[key] || key;
+            React.useEffect(() => {
+                document.documentElement.lang = language;
+                document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
+            }, [language]);
             return (
-                <LanguageContext.Provider value={contextValue}>
+                <LanguageContext.Provider value={{ language, setLanguage, currency, setCurrency, t }}>
                     {children}
                 </LanguageContext.Provider>
             );
-        }
+        };
+        const useTranslation = () => React.useContext(LanguageContext);
 
-        // =====================================
-        // 4. مكون NavBar الموحد (AR/EN + 4 Currencies)
-        // =====================================
-        const NavBar = () => {
-            const { t, setLang, currentLang, currentCurrency, setCurrency, EXCHANGE_RATES } = useTranslation();
-            
-            const availableLangs = ['ar', 'en'];
-            
+        const LanguageCurrencySwitcher = () => {
+            const { language, setLanguage, currency, setCurrency, t } = useTranslation();
+            const handleLanguageChange = (e) => setLanguage(e.target.value);
+            const handleCurrencyChange = (e) => setCurrency(e.target.value);
             return (
-                <nav className="bg-white shadow-md sticky top-0 z-50">
-                    <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-                        <div className="flex items-center space-x-3">
-                            <i className="fas fa-anchor text-xl text-anchor-gold"></i>
-                            <h1 className="text-2xl font-bold text-anchor-blue">{t('site-logo')}</h1>
-                        </div>
-                        
-                        <div className="flex items-center space-x-6">
-                            {/* 🌐 أزرار اللغة (AR/EN فقط) 🌐 */}
-                            <div className="flex items-center space-x-1 border border-gray-300 rounded-full p-1">
-                                {availableLangs.map(lang => (
-                                    <button 
-                                        key={lang}
-                                        onClick={() => setLang(lang)} 
-                                        className={`text-sm font-bold px-3 py-1 rounded-full 
-                                            ${currentLang === lang ? 'bg-anchor-blue text-white' : 'text-gray-700 hover:bg-gray-100'} transition`}
-                                    >
-                                        {lang === 'ar' ? 'ع' : 'En'}
-                                    </button>
-                                ))}
-                            </div>
-                            
-                            {/* 💵 قائمة العملة (SAR, USD, AED, EUR) 💵 */}
-                            <select 
-                                value={currentCurrency} 
-                                onChange={(e) => setCurrency(e.target.value)}
-                                className="text-gray-700 font-medium border border-gray-300 rounded-lg p-2 transition"
-                            >
-                                {Object.keys(EXCHANGE_RATES).map(code => (
-                                    <option key={code} value={code}>
-                                        {EXCHANGE_RATES[code].symbol} ({code})
-                                    </option>
-                                ))}
-                            </select>
+                <div className="flex items-center gap-3">
+                    <div className="relative text-white"> 
+                        <select 
+                            value={language} 
+                            onChange={handleLanguageChange} 
+                            className="appearance-none bg-anchor-blue border border-gray-600 rounded-lg py-1 pl-6 pr-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-anchor-gold cursor-pointer"
+                        >
+                            <option value="ar">{t('lang_ar')}</option>
+                            <option value="en">{t('lang_en')}</option>
+                            <option value="fr">{t('lang_fr')}</option>
+                        </select>
+                        <i className="fas fa-caret-down absolute top-1/2 right-2 transform -translate-y-1/2 pointer-events-none text-gray-400"></i>
+                    </div>
+                    <div className="relative text-white">
+                        <select 
+                            value={currency} 
+                            onChange={handleCurrencyChange} 
+                            className="appearance-none bg-anchor-blue border border-gray-600 rounded-lg py-1 pl-6 pr-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-anchor-gold cursor-pointer"
+                        >
+                            <option value="USD">{t('curr_usd')}</option>
+                            <option value="EUR">{t('curr_eur')}</option>
+                            <option value="SAR">{t('curr_sar')}</option>
+                        </select>
+                        <i className="fas fa-caret-down absolute top-1/2 right-2 transform -translate-y-1/2 pointer-events-none text-gray-400"></i>
+                    </div>
+                </div>
+            );
+        };
 
-                            {/* روابط التنقل */}
-                            <a href="index.html" className="text-gray-700 hover:text-anchor-gold font-medium transition">{t('nav-home')}</a>
-                            <a href="guide.html" className="text-gray-700 hover:text-anchor-gold font-medium transition">{t('nav-guide')}</a>
-                            <a href="resources.html" className="text-gray-700 hover:text-anchor-gold font-medium transition">{t('nav-resources')}</a>
-                            <a href="members.html" className="text-gray-700 hover:text-anchor-gold font-medium transition">{t('nav-members')}</a>
-                            <a href="book-preorder.html" className="bg-anchor-gold text-anchor-blue px-4 py-2 rounded-lg font-bold hover:bg-yellow-400 transition shadow-md">{t('nav-buy')}</a>
+        const Navbar = () => {
+            const { t } = useTranslation(); 
+            return (
+                <nav className="bg-anchor-blue text-white py-4 px-6 shadow-lg">
+                    <div className="max-w-7xl mx-auto flex justify-between items-center">
+                        <a href="index.html" className="flex items-center gap-3 group">
+                            <div className="w-10 h-10 bg-gradient-to-r from-anchor-gold to-yellow-500 rounded-lg flex items-center justify-center transition-transform group-hover:scale-110">
+                                <i className="fas fa-anchor text-white text-lg"></i>
+                            </div>
+                            <div>
+                                <span className="font-bold text-lg hidden md:block">{t('app_name')}</span> 
+                                <span className="text-xs text-slate-300 block">{t('preorder_title')}</span>
+                            </div>
+                        </a>
+                        
+                        <div className="flex gap-4 md:gap-6 text-sm font-medium items-center">
+                            <a href="index.html" className="hover:text-anchor-gold transition flex items-center gap-2">
+                                <i className="fas fa-home"></i>
+                                <span className="hidden md:inline">{t('home')}</span>
+                            </a>
+                            <a href="guide.html" className="hover:text-anchor-gold transition hidden sm:flex items-center gap-2">
+                                <i className="fas fa-book-open"></i>
+                                <span>{t('guide')}</span>
+                            </a>
+                            <a href="book-preorder.html" className="bg-anchor-gold text-anchor-blue px-5 py-2.5 rounded-full font-bold hover:bg-yellow-400 transition shadow-lg flex items-center gap-2">
+                                <i className="fas fa-shopping-cart"></i>
+                                <span>{t('buy_book')}</span>
+                            </a>
+                            
+                            <LanguageCurrencySwitcher />
                         </div>
                     </div>
                 </nav>
@@ -200,101 +196,78 @@
         };
 
         const PreorderPage = () => {
-            const { t, convertPrice } = useTranslation();
-            
+            const { t, currency } = useTranslation();
+
             return (
-                <div className="flex flex-col min-h-screen">
-                    <NavBar />
-
-                    <main className="flex-grow container mx-auto px-4 py-12 max-w-6xl">
-                        <header className="text-center mb-10">
-                            <h1 className="text-4xl font-extrabold text-anchor-blue mb-2">{t('header-title')}</h1>
-                            <p className="text-xl text-gray-600">{t('header-subtitle')}</p>
-                        </header>
-
-                        <div className="grid lg:grid-cols-2 gap-10 bg-white p-8 rounded-xl shadow-2xl border-t-4 border-anchor-gold">
+                <div className="min-h-screen flex flex-col">
+                    <Navbar />
+                    <main className="flex-grow max-w-5xl mx-auto p-6 lg:p-12 w-full">
+                        <div className="bg-white p-8 md:p-12 rounded-2xl shadow-xl border-t-8 border-anchor-gold text-center">
+                            <i className="fas fa-book-open text-6xl text-anchor-gold mb-4"></i>
+                            <h1 className="text-3xl font-bold text-anchor-blue mb-2">{t('book-header')}</h1>
+                            <p className="text-gray-600 mb-8 max-w-2xl mx-auto">{t('book-subtitle')}</p>
                             
-                            {/* Product Info Column */}
-                            <div>
-                                <h2 className="text-3xl font-bold text-anchor-blue mb-4">{t('product-title')}</h2>
-                                <img src="images/book-mockup.png" alt="Book Mockup" className="w-full h-auto rounded-lg shadow-xl mb-6"/>
-                                
+                            {/* Pricing Box */}
+                            <div className="bg-anchor-blue text-white p-6 rounded-lg max-w-md mx-auto mb-8 shadow-xl">
+                                <h2 className="text-2xl font-bold mb-2">{t('preorder-price')}</h2>
+                                <p className="text-5xl font-extrabold text-anchor-gold mb-1">
+                                    {t('price-value')} <span className="text-3xl font-medium">{currency}</span>
+                                </p>
+                                <p className="text-sm text-slate-400 line-through">{t('regular-price')} {t('price-regular')} {currency}</p>
+                            </div>
+
+                            {/* Benefits List */}
+                            <div className="max-w-md mx-auto text-right mb-10">
                                 <ul className="space-y-3 text-lg text-gray-700">
-                                    <li className="flex items-start">
-                                        <i className="fas fa-check-circle text-anchor-green ml-3 mt-1 text-xl"></i>
-                                        {t('product-feature-1')}
+                                    <li className="flex items-center justify-end gap-3">
+                                        <span>{t('benefit-1')}</span>
+                                        <i className="fas fa-check-circle text-anchor-green"></i>
                                     </li>
-                                    <li className="flex items-start">
-                                        <i className="fas fa-book text-anchor-gold ml-3 mt-1 text-xl"></i>
-                                        {t('product-feature-2')}
+                                    <li className="flex items-center justify-end gap-3">
+                                        <span>{t('benefit-2')}</span>
+                                        <i className="fas fa-check-circle text-anchor-green"></i>
                                     </li>
-                                    <li className="flex items-start">
-                                        <i className="fas fa-lock-open text-anchor-blue ml-3 mt-1 text-xl"></i>
-                                        {t('product-feature-3')}
+                                    <li className="flex items-center justify-end gap-3 font-bold text-anchor-blue">
+                                        <span>{t('benefit-3')}</span>
+                                        <i className="fas fa-crown text-anchor-gold"></i>
                                     </li>
                                 </ul>
-
-                                {/* Pricing Section - Uses convertPrice() */}
-                                <div className="mt-8 pt-4 border-t border-gray-200">
-                                    <div className="text-sm text-gray-400 line-through mb-1">
-                                        {t('original-price')}: {convertPrice(ORIGINAL_PRICE_SAR)}
-                                    </div>
-                                    <div className="text-2xl font-semibold text-anchor-blue mb-2">
-                                        {t('preorder-price')}:
-                                    </div>
-                                    <div className="text-6xl font-extrabold text-red-600">
-                                        {convertPrice(BASE_PRICE_SAR)}
-                                    </div>
-                                </div>
                             </div>
-                            
-                            {/* Form Column */}
-                            <div className="bg-gray-50 p-6 rounded-lg shadow-inner">
-                                <h3 className="text-2xl font-bold text-anchor-blue mb-6 border-b pb-3">{t('form-title')}</h3>
-                                
-                                <form action="thank-you-preorder.html" method="POST" className="space-y-5">
-                                    
-                                    <div>
-                                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">{t('label-name')}</label>
-                                        <input type="text" id="name" name="name" required 
-                                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-anchor-gold focus:border-anchor-gold transition" />
-                                    </div>
-                                    
-                                    <div>
-                                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">{t('label-email')}</label>
-                                        <input type="email" id="email" name="email" required 
-                                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-anchor-gold focus:border-anchor-gold transition" />
-                                    </div>
-                                    
-                                    <div>
-                                        <label htmlFor="country" className="block text-sm font-medium text-gray-700 mb-1">{t('label-country')}</label>
-                                        <input type="text" id="country" name="country" required 
-                                            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-anchor-gold focus:border-anchor-gold transition" />
-                                    </div>
-                                    
-                                    <div className="flex items-center pt-2">
-                                        <input id="agree" name="agree" type="checkbox" required
-                                            className="h-4 w-4 text-anchor-blue border-gray-300 rounded focus:ring-anchor-gold" />
-                                        <label htmlFor="agree" className="mr-2 block text-sm text-gray-900 cursor-pointer">
-                                            {t('label-agree')}
-                                        </label>
-                                    </div>
 
-                                    <p className="text-xs text-gray-500 pt-4">{t('note-shipment')}</p>
-                                    
-                                    <button type="submit" className="w-full bg-anchor-gold text-anchor-blue py-3 rounded-lg font-bold text-xl hover:bg-yellow-400 transition shadow-lg">
-                                        {t('btn-confirm')}
-                                    </button>
-                                </form>
-                            </div>
+                            {/* Action Button */}
+                            <a href="thank-you-preorder.html" className="inline-block bg-anchor-gold text-anchor-blue px-12 py-4 rounded-lg font-bold text-xl hover:bg-yellow-400 transition shadow-lg hover:shadow-xl">
+                                <i className="fas fa-shopping-cart ml-3"></i>
+                                {t('btn-preorder')}
+                            </a>
+                            <p className="text-sm text-gray-500 mt-4">{t('preorder-note')}</p>
                         </div>
                     </main>
-
-                    <footer className="bg-anchor-blue text-slate-400 py-8 text-center">
+                    
+                    <footer className="bg-anchor-blue text-slate-400 py-8 border-t border-slate-800 mt-12">
                         <div className="max-w-4xl mx-auto px-6">
+                            <div className="flex flex-col md:flex-row justify-between items-center mb-6">
+                                <div className="mb-4 md:mb-0">
+                                    <div className="flex items-center justify-center md:justify-start gap-3">
+                                        <div className="w-10 h-10 bg-anchor-gold rounded-full flex items-center justify-center">
+                                            <i className="fas fa-anchor text-anchor-blue text-lg"></i>
+                                        </div>
+                                        <div>
+                                            <h3 className="font-bold text-white text-lg">{t('app_name')}</h3>
+                                            <p className="text-slate-300 text-sm">قيمة حقيقية في عالم رقمي</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a href="mailto:garbaouisalma@gmail.com" className="text-anchor-gold hover:text-yellow-400 transition text-lg">
+                                        <i className="fas fa-envelope ml-2"></i>
+                                        garbaouisalma@gmail.com
+                                    </a>
+                                </div>
+                            </div>
                             <hr className="border-slate-700 mb-8"/>
                             <p className="text-sm">
-                                {t('footer-copy')}
+                                {t('footer-copy')}<br/>
+                                تم التطوير برسالة تحويلية واضحة: إعادة السيادة الرقمية للشباب.
                             </p>
                         </div>
                     </footer>
@@ -302,8 +275,7 @@
             );
         };
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<LanguageProvider><PreorderPage /></LanguageProvider>);
+        ReactDOM.render(<LanguageProvider><PreorderPage /></LanguageProvider>, document.getElementById('root'));
     </script>
 </body>
 </html>

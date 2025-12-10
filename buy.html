@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-key="page-title">شراء الحزمة | المرساة الرقمية</title>
+    <title>شراء الحزمة | المرساة الرقمية</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -28,172 +28,187 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
-    <div id="root" class="flex flex-col min-h-screen w-full"></div>
-
+    <div id="root"></div>
     <script type="text/babel">
-        const { useState, useEffect, createContext, useContext, useMemo } = React;
 
-        // =====================================
-        // 1. قاموس الترجمة (AR و EN فقط)
-        // =====================================
-        // مفاتيح الترجمة الخاصة بصفحة الشراء
-        const ALL_TRANSLATIONS = {
-            'site-logo': { ar: 'المرساة الرقمية', en: 'Digital Anchor' },
-            'nav-home': { ar: 'الرئيسية', en: 'Home' },
-            'nav-guide': { ar: 'الدليل', en: 'Guide' },
-            'nav-resources': { ar: 'الموارد', en: 'Resources' },
-            'nav-members': { ar: 'الأعضاء', en: 'Members' },
-            'nav-buy': { ar: 'احجز نسختك', en: 'Pre-order' },
-            'page-title': { ar: 'شراء حزمة المرساة الرقمية', en: 'Purchase the Digital Anchor Package' },
-            'page-subtitle': { ar: 'ابدأ رحلة التحرر الرقمي الآن', en: 'Begin your journey of digital liberation now' },
-            'item-ebook': { ar: 'الكتاب الإلكتروني الكامل', en: 'The Complete E-Book' },
-            'item-ebook-desc': { ar: 'نسخة رقمية حديثة، سهلة القراءة على جميع الأجهزة.', en: 'Modern digital version, easy to read on all devices.' },
-            'item-print': { ar: 'نسخة ورقية (طلبات الحجز المسبق)', en: 'Physical Copy (Pre-order only)' },
-            'item-print-desc': { ar: 'تجربة ملموسة. سيتم شحنها بعد تاريخ الإصدار.', en: 'A tangible experience. Will be shipped after the release date.' },
-            'price-note': { ar: 'السعر لا يشمل ضريبة القيمة المضافة أو تكاليف الشحن.', en: 'Price excludes VAT or shipping costs.' },
-            'btn-checkout': { ar: 'المتابعة للدفع الآمن', en: 'Proceed to Secure Checkout' },
-            'footer-copy': { ar: '© 2025 المرساة الرقمية. جميع الحقوق محفوظة.', en: '© 2025 Digital Anchor. All Rights Reserved.' },
-            'price-original': { ar: 'السعر الأصلي', en: 'Original Price' },
-            'price-preorder': { ar: 'سعر الحجز المسبق', en: 'Pre-order Price' }
-        };
-
-        // =====================================
-        // 2. بيانات أسعار الصرف (SAR, USD, AED, EUR)
-        // =====================================
-        const EXCHANGE_RATES = {
-            'SAR': { rate: 3.75, symbol: 'ر.س', placement: 'after' },
-            'USD': { rate: 1.0, symbol: '$', placement: 'before' },    
-            'AED': { rate: 3.67, symbol: 'د.إ', placement: 'after' },
-            'EUR': { rate: 1.10, symbol: '€', placement: 'before' }   
-        };
-        const SAR_RATE = EXCHANGE_RATES['SAR'].rate; 
+        // ----------------------------------------------------
+        // الكود المشترك للغة والعملة (Language/Currency Logic)
+        // ----------------------------------------------------
         
-        // الأسعار الأساسية بالريال السعودي (SAR)
-        const BASE_PRICE_SAR = 99;
-        const ORIGINAL_PRICE_SAR = 149;
+        const translations = {
+            ar: {
+                'lang_ar': 'العربية', 'lang_en': 'English', 'lang_fr': 'Français',
+                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
+                'home': 'الرئيسية',
+                'guide': 'الدليل',
+                'buy_book': 'الشراء',
+                'app_name': 'المرساة الرقمية',
+                'buy_title': 'شراء الحزمة',
+                'footer-copy': '© 2025 المرساة الرقمية - "من أنت حين تنطفئ الشاشة؟". جميع الحقوق محفوظة.',
 
-        // =====================================
-        // 3. السياق والخطافات (Language Provider)
-        // =====================================
-        const LanguageContext = createContext();
-
-        function useTranslation() {
-            return useContext(LanguageContext);
-        }
-
-        function LanguageProvider({ children }) {
-            const [currentLang, setCurrentLang] = useState(localStorage.getItem('preferredLang') || 'ar');
-            const [currentCurrency, setCurrentCurrency] = useState(localStorage.getItem('preferredCurrency') || 'SAR');
-
-            useEffect(() => {
-                localStorage.setItem('preferredLang', currentLang);
-                document.documentElement.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
-                document.documentElement.setAttribute('lang', currentLang);
+                'buy-header': 'اختر حزمتك للانطلاق',
+                'buy-subtitle': 'ابدأ رحلتك للقيادة الرقمية بحزمة تلائم احتياجاتك.',
                 
-                const titleKey = document.head.querySelector('title')?.getAttribute('data-key') || 'page-title';
-                document.title = ALL_TRANSLATIONS[titleKey]?.[currentLang] || ALL_TRANSLATIONS[titleKey]?.['ar'] || 'Buy Page';
-            }, [currentLang]);
-
-            const t = useMemo(() => (key) => {
-                return ALL_TRANSLATIONS[key]?.[currentLang] || ALL_TRANSLATIONS[key]?.['ar'] || `[${key}]`;
-            }, [currentLang]);
-
-            const convertPrice = (basePriceSAR) => {
-                const target = EXCHANGE_RATES[currentCurrency];
-                if (!target || isNaN(basePriceSAR)) return `${basePriceSAR} SAR`;
-
-                const priceInUSD = basePriceSAR / SAR_RATE;
+                'plan-basic-title': 'الحزمة الأساسية',
+                'plan-basic-price': '9.99',
+                'plan-basic-desc': 'الوصول إلى الأدوات الأساسية وإرشادات التحرر.',
+                'plan-basic-feature-1': 'دليل الطوارئ (PDF)',
+                'plan-basic-feature-2': 'أداة تحديد القيمة الجوهرية (تجريبية)',
+                'plan-basic-feature-3': 'نسخة من عهد التحرر',
                 
-                // استخدام منزلتين عشريتين لليورو والدولار، وصفر للمحلي
-                const decimalPlaces = (currentCurrency === 'SAR' || currentCurrency === 'AED') ? 0 : 2;
-                const newPrice = (priceInUSD * target.rate).toFixed(decimalPlaces); 
-                
-                const symbol = target.symbol;
-                
-                return target.placement === 'before' ? `${symbol}${newPrice}` : `${newPrice} ${symbol}`;
-            };
+                'plan-premium-title': 'الحزمة الكاملة (الأكثر شعبية)',
+                'plan-premium-price': '19.99',
+                'plan-premium-desc': 'الحصول على الكتاب وجميع الموارد الحصرية ودعم المجتمع.',
+                'plan-premium-feature-1': 'كتاب "من أنت حين تنطفئ الشاشة؟"',
+                'plan-premium-feature-2': 'دورة السيادة الرقمية الكاملة',
+                'plan-premium-feature-3': 'وصول لمنطقة الأعضاء الحصرية',
 
-            const setCurrency = (currencyCode) => {
-                setCurrentCurrency(currencyCode);
-                localStorage.setItem('preferredCurrency', currencyCode);
-            };
+                'btn-buy': 'اشترِ الآن',
+            },
+            en: {
+                'lang_ar': 'Arabic', 'lang_en': 'English', 'lang_fr': 'French',
+                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
+                'home': 'Home',
+                'guide': 'Guide',
+                'buy_book': 'Purchase',
+                'app_name': 'Digital Anchor',
+                'buy_title': 'Purchase Package',
+                'footer-copy': '© 2025 Digital Anchor - "Who are you when the screen turns off?". All rights reserved.',
 
-            const contextValue = {
-                t,
-                currentLang,
-                setLang: setCurrentLang,
-                currentCurrency,
-                setCurrency,
-                convertPrice,
-                EXCHANGE_RATES,
-                SAR_RATE
-            };
+                'buy-header': 'Choose Your Launch Package',
+                'buy-subtitle': 'Start your digital leadership journey with a package that suits your needs.',
 
+                'plan-basic-title': 'Basic Package',
+                'plan-basic-price': '9.99',
+                'plan-basic-desc': 'Access to essential tools and liberation guidance.',
+                'plan-basic-feature-1': 'Emergency Guide (PDF)',
+                'plan-basic-feature-2': 'Core Value Identification Tool (Trial)',
+                'plan-basic-feature-3': 'Copy of the Liberation Pledge',
+
+                'plan-premium-title': 'Complete Package (Most Popular)',
+                'plan-premium-price': '19.99',
+                'plan-premium-desc': 'Get the book, all exclusive resources, and community support.',
+                'plan-premium-feature-1': 'The book "Who are you when the screen turns off?"',
+                'plan-premium-feature-2': 'Full Digital Sovereignty Course',
+                'plan-premium-feature-3': 'Access to the Exclusive Members Area',
+
+                'btn-buy': 'Buy Now',
+            },
+            fr: {
+                'lang_ar': 'Arabe', 'lang_en': 'Anglais', 'lang_fr': 'Français',
+                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
+                'home': 'Accueil',
+                'guide': 'Guide',
+                'buy_book': 'Acheter',
+                'app_name': 'Ancre Numérique',
+                'buy_title': 'Achat du Forfait',
+                'footer-copy': '© 2025 Ancre Numérique - "Qui êtes-vous lorsque l\'écran s\'éteint?". Tous droits réservés.',
+
+                'buy-header': 'Choisissez Votre Forfait de Lancement',
+                'buy-subtitle': 'Commencez votre voyage de leadership numérique avec un forfait adapté à vos besoins.',
+
+                'plan-basic-title': 'Forfait de Base',
+                'plan-basic-price': '9.99',
+                'plan-basic-desc': 'Accès aux outils essentiels et aux conseils de libération.',
+                'plan-basic-feature-1': 'Guide d\'Urgence (PDF)',
+                'plan-basic-feature-2': 'Outil d\'Identification des Valeurs Fondamentales (Essai)',
+                'plan-basic-feature-3': 'Exemplaire de l\'Engagement de Libération',
+
+                'plan-premium-title': 'Forfait Complet (Le Plus Populaire)',
+                'plan-premium-price': '19.99',
+                'plan-premium-desc': 'Obtenez le livre, toutes les ressources exclusives et le soutien communautaire.',
+                'plan-premium-feature-1': 'Le livre "Qui êtes-vous lorsque l\'écran s\'éteint ?"',
+                'plan-premium-feature-2': 'Cours Complet de Souveraineté Numérique',
+                'plan-premium-feature-3': 'Accès à l\'Espace Membres Exclusif',
+
+                'btn-buy': 'Acheter Maintenant',
+            },
+        };
+
+        const LanguageContext = React.createContext();
+        const LanguageProvider = ({ children }) => {
+            const [language, setLanguage] = React.useState('ar');
+            const [currency, setCurrency] = React.useState('USD');
+            const t = (key) => translations[language]?.[key] || key;
+            React.useEffect(() => {
+                document.documentElement.lang = language;
+                document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
+            }, [language]);
             return (
-                <LanguageContext.Provider value={contextValue}>
+                <LanguageContext.Provider value={{ language, setLanguage, currency, setCurrency, t }}>
                     {children}
                 </LanguageContext.Provider>
             );
-        }
+        };
+        const useTranslation = () => React.useContext(LanguageContext);
 
-
-        // =====================================
-        // 4. مكونات الصفحة (مع تطبيق الترجمة)
-        // =====================================
-        
-        // 🚀 تم تحديث الـ NavBar ليدعم العملات واللغات
-        const NavBar = () => {
-            const { t, setLang, currentLang, currentCurrency, setCurrency, EXCHANGE_RATES } = useTranslation();
-            
-            const availableLangs = ['ar', 'en'];
-            
+        const LanguageCurrencySwitcher = () => {
+            const { language, setLanguage, currency, setCurrency, t } = useTranslation();
+            const handleLanguageChange = (e) => setLanguage(e.target.value);
+            const handleCurrencyChange = (e) => setCurrency(e.target.value);
             return (
-                <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-lg">
+                <div className="flex items-center gap-3">
+                    <div className="relative text-white"> 
+                        <select 
+                            value={language} 
+                            onChange={handleLanguageChange} 
+                            className="appearance-none bg-anchor-blue border border-gray-600 rounded-lg py-1 pl-6 pr-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-anchor-gold cursor-pointer"
+                        >
+                            <option value="ar">{t('lang_ar')}</option>
+                            <option value="en">{t('lang_en')}</option>
+                            <option value="fr">{t('lang_fr')}</option>
+                        </select>
+                        <i className="fas fa-caret-down absolute top-1/2 right-2 transform -translate-y-1/2 pointer-events-none text-gray-400"></i>
+                    </div>
+                    <div className="relative text-white">
+                        <select 
+                            value={currency} 
+                            onChange={handleCurrencyChange} 
+                            className="appearance-none bg-anchor-blue border border-gray-600 rounded-lg py-1 pl-6 pr-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-anchor-gold cursor-pointer"
+                        >
+                            <option value="USD">{t('curr_usd')}</option>
+                            <option value="EUR">{t('curr_eur')}</option>
+                            <option value="SAR">{t('curr_sar')}</option>
+                        </select>
+                        <i className="fas fa-caret-down absolute top-1/2 right-2 transform -translate-y-1/2 pointer-events-none text-gray-400"></i>
+                    </div>
+                </div>
+            );
+        };
+
+        const Navbar = () => {
+            const { t } = useTranslation(); 
+            return (
+                <nav className="bg-anchor-blue text-white py-4 px-6 shadow-lg">
                     <div className="max-w-7xl mx-auto flex justify-between items-center">
                         <a href="index.html" className="flex items-center gap-3 group">
-                            <div className="w-10 h-10 bg-gradient-to-r from-anchor-gold to-yellow-500 rounded-lg flex items-center justify-center">
-                                <i className="fas fa-anchor text-anchor-blue text-lg"></i>
+                            <div className="w-10 h-10 bg-gradient-to-r from-anchor-gold to-yellow-500 rounded-lg flex items-center justify-center transition-transform group-hover:scale-110">
+                                <i className="fas fa-anchor text-white text-lg"></i>
                             </div>
                             <div>
-                                <span className="font-bold text-lg hidden md:block">{t('site-logo')}</span>
+                                <span className="font-bold text-lg hidden md:block">{t('app_name')}</span> 
+                                <span className="text-xs text-slate-300 block">{t('buy_title')}</span>
                             </div>
                         </a>
                         
                         <div className="flex gap-4 md:gap-6 text-sm font-medium items-center">
-                            {/* 🌐 أزرار اللغة (AR/EN فقط) 🌐 */}
-                            <div className="flex items-center space-x-1 border border-gray-600 rounded-full p-1">
-                                {availableLangs.map(lang => (
-                                    <button 
-                                        key={lang}
-                                        onClick={() => setLang(lang)} 
-                                        className={`text-sm font-bold px-3 py-1 rounded-full 
-                                            ${currentLang === lang ? 'bg-white text-anchor-blue' : 'text-gray-300 hover:bg-gray-700'} transition`}
-                                    >
-                                        {lang === 'ar' ? 'ع' : 'En'}
-                                    </button>
-                                ))}
-                            </div>
-                            
-                            {/* 💵 قائمة العملة (SAR, USD, AED, EUR) 💵 */}
-                            <select 
-                                value={currentCurrency} 
-                                onChange={(e) => setCurrency(e.target.value)}
-                                className="text-anchor-blue font-medium border border-gray-300 rounded-lg p-2 transition"
-                            >
-                                {Object.keys(EXCHANGE_RATES).map(code => (
-                                    <option key={code} value={code}>
-                                        {EXCHANGE_RATES[code].symbol} ({code})
-                                    </option>
-                                ))}
-                            </select>
-
-                            <a href="index.html" className="hover:text-anchor-gold transition">{t('nav-home')}</a>
-                            <a href="book-preorder.html" className="bg-anchor-gold text-anchor-blue px-5 py-2.5 rounded-full font-bold hover:bg-yellow-400 transition shadow-lg">
-                                {t('nav-buy')}
+                            <a href="index.html" className="hover:text-anchor-gold transition flex items-center gap-2">
+                                <i className="fas fa-home"></i>
+                                <span className="hidden md:inline">{t('home')}</span>
                             </a>
+                            <a href="guide.html" className="hover:text-anchor-gold transition hidden sm:flex items-center gap-2">
+                                <i className="fas fa-book-open"></i>
+                                <span>{t('guide')}</span>
+                            </a>
+                            <a href="book-preorder.html" className="bg-anchor-gold text-anchor-blue px-5 py-2.5 rounded-full font-bold hover:bg-yellow-400 transition shadow-lg flex items-center gap-2">
+                                <i className="fas fa-shopping-cart"></i>
+                                <span>{t('buy_book')}</span>
+                            </a>
+                            
+                            <LanguageCurrencySwitcher />
                         </div>
                     </div>
                 </nav>
@@ -201,73 +216,84 @@
         };
 
         const BuyPage = () => {
-            const { t, convertPrice } = useTranslation();
-            const [orderSent, setOrderSent] = React.useState(false);
-            
-            // Note: The actual payment logic is handled by the form action
-            const handleSubmit = (e) => {
-                e.preventDefault();
-                // هنا قد تضعين منطق التحقق قبل التحويل إلى صفحة الدفع
-                window.location.href = 'thank-you-preorder.html'; // تحويل مؤقت
-            };
+            const { t, currency } = useTranslation();
+
+            const PlanCard = ({ isPremium, titleKey, priceKey, descKey, features }) => (
+                <div className={`bg-white p-8 rounded-2xl shadow-xl transition-all duration-300 transform hover:scale-[1.02] relative ${isPremium ? 'border-t-8 border-anchor-gold' : 'border-t-4 border-anchor-blue'}`}>
+                    {isPremium && (
+                        <div className="absolute top-0 right-0 bg-anchor-gold text-anchor-blue px-4 py-1 rounded-bl-lg font-bold text-xs">
+                            {t('plan-premium-title').split(' ')[2].replace(/[()]/g, '')}
+                        </div>
+                    )}
+                    <h2 className={`text-2xl font-bold mb-2 ${isPremium ? 'text-anchor-gold' : 'text-anchor-blue'}`}>{t(titleKey)}</h2>
+                    <p className="text-gray-500 mb-6">{t(descKey)}</p>
+
+                    <div className="text-center mb-8">
+                        <span className="text-6xl font-extrabold text-anchor-blue">{t(priceKey)}</span>
+                        <span className="text-3xl font-medium text-gray-600 ml-1">{currency}</span>
+                        <p className="text-sm text-gray-500">لشراء لمرة واحدة</p>
+                    </div>
+
+                    <ul className="space-y-3 text-right mb-10">
+                        {features.map((featureKey, index) => (
+                            <li key={index} className="flex items-center justify-end gap-3 text-gray-700">
+                                <span>{t(featureKey)}</span>
+                                <i className="fas fa-check-circle text-anchor-green"></i>
+                            </li>
+                        ))}
+                    </ul>
+
+                    <a href="thank-you-preorder.html" className={`block w-full text-center px-8 py-3 rounded-lg font-bold transition shadow-md ${isPremium ? 'bg-anchor-gold text-anchor-blue hover:bg-yellow-400 text-lg' : 'bg-anchor-blue text-white hover:bg-gray-800'}`}>
+                        <i className="fas fa-shopping-bag ml-2"></i>
+                        {t('btn-buy')}
+                    </a>
+                </div>
+            );
+
+            const basicFeatures = ['plan-basic-feature-1', 'plan-basic-feature-2', 'plan-basic-feature-3'];
+            const premiumFeatures = ['plan-premium-feature-1', 'plan-premium-feature-2', 'plan-premium-feature-3'];
 
             return (
-                <div className="flex flex-col min-h-screen">
-                    <NavBar />
-
-                    <main className="flex-grow container mx-auto px-4 py-12 max-w-4xl">
+                <div className="min-h-screen flex flex-col">
+                    <Navbar />
+                    <main className="flex-grow max-w-5xl mx-auto p-6 lg:p-12 w-full">
                         <header className="text-center mb-10">
-                            <h1 className="text-4xl font-extrabold text-anchor-blue mb-2">{t('page-title')}</h1>
-                            <p className="text-xl text-gray-600">{t('page-subtitle')}</p>
+                            <h1 className="text-3xl font-bold text-anchor-blue mb-2">{t('buy-header')}</h1>
+                            <p className="text-gray-500">{t('buy-subtitle')}</p>
                         </header>
-
-                        <div className="bg-white p-8 md:p-10 rounded-xl shadow-2xl border-t-4 border-anchor-gold">
-                            
-                            {/* Product Details */}
-                            <div className="text-center mb-8">
-                                <h2 className="text-3xl font-bold text-anchor-blue mb-4">{t('item-ebook')}</h2>
-                                <p className="text-gray-500 mb-6">{t('item-ebook-desc')}</p>
-                                
-                                {/* Pricing Section - Uses convertPrice() */}
-                                <div className="flex flex-col items-center justify-center space-y-2 mb-6">
-                                    <div className="text-sm text-gray-400 line-through">
-                                        {t('price-original')}: {convertPrice(ORIGINAL_PRICE_SAR)}
-                                    </div>
-                                    <div className="text-2xl font-semibold text-anchor-gold">
-                                        {t('price-preorder')}:
-                                    </div>
-                                    <div className="text-6xl font-extrabold text-red-600">
-                                        {convertPrice(BASE_PRICE_SAR)}
-                                    </div>
-                                </div>
-                                
-                                <div className="flex flex-col gap-3 justify-center text-left text-sm text-gray-600 border-t pt-4">
-                                    <p className="flex items-start">
-                                        <i className="fas fa-check-circle text-anchor-green ml-2 mt-1"></i>
-                                        {t('item-ebook-desc')}
-                                    </p>
-                                    <p className="flex items-start">
-                                        <i className="fas fa-file-contract text-anchor-gold ml-2 mt-1"></i>
-                                        {t('item-print-desc')}
-                                    </p>
-                                </div>
-                            </div>
-                            
-                            {/* Checkout Button */}
-                            <form onSubmit={handleSubmit} className="mt-8">
-                                <p className="text-center text-sm text-gray-400 mb-4">{t('price-note')}</p>
-                                <button
-                                    type="submit"
-                                    className="w-full bg-anchor-green text-white py-3 rounded-lg font-bold text-xl hover:bg-green-600 transition shadow-lg"
-                                >
-                                    {t('btn-checkout')}
-                                </button>
-                            </form>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <PlanCard 
+                                isPremium={false} 
+                                titleKey="plan-basic-title" 
+                                priceKey="plan-basic-price" 
+                                descKey="plan-basic-desc" 
+                                features={basicFeatures}
+                            />
+                            <PlanCard 
+                                isPremium={true} 
+                                titleKey="plan-premium-title" 
+                                priceKey="plan-premium-price" 
+                                descKey="plan-premium-desc" 
+                                features={premiumFeatures}
+                            />
                         </div>
                     </main>
-
-                    <footer className="bg-anchor-blue text-slate-400 py-8 text-center">
+                    
+                    <footer className="bg-anchor-blue text-slate-400 py-8 text-center border-t border-slate-800 mt-12">
                         <div className="max-w-4xl mx-auto px-6">
+                            <div className="flex flex-col md:flex-row justify-between items-center mb-6">
+                                <div className="mb-4 md:mb-0">
+                                    <h4 className="font-bold text-white mb-2">{t('app_name')}</h4>
+                                    <p className="text-slate-300 text-sm">قيمة حقيقية في عالم رقمي</p>
+                                </div>
+                                <div>
+                                    <a href="mailto:garbaouisalma@gmail.com" className="text-anchor-gold hover:text-yellow-400 transition">
+                                        <i className="fas fa-envelope ml-2"></i>
+                                        garbaouisalma@gmail.com
+                                    </a>
+                                </div>
+                            </div>
                             <hr className="border-slate-700 mb-6"/>
                             <p className="text-sm">
                                 {t('footer-copy')}
@@ -278,11 +304,7 @@
             );
         };
 
-        // ✅ التصيير الصحيح
-        // بما أن ملفك الأصلي استخدم ReactDOM.render، سنستخدم ReactDOM.createRoot إذا كان React 18 متاحاً
-        // (وهو متوفر حسب الروابط في رأس الملف)
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<LanguageProvider><BuyPage /></LanguageProvider>);
+        ReactDOM.render(<LanguageProvider><BuyPage /></LanguageProvider>, document.getElementById('root'));
     </script>
 </body>
 </html>
