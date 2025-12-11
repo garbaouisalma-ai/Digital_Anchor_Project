@@ -1,103 +1,91 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-key="guide_title">دليل المنهجية | المرساة الرقمية</title>
-    
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJZHN8FQQ2"></script>
-        <script src="analytics.js"></script>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; }</style>
+    <meta charset="UTF-8">
+    <title>دليل الاستخدام | المرساة الرقمية</title>
+    
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        // تعريف الألوان والخطوط الموحدة
+        tailwind.config = { 
+            theme: { 
+                extend: { 
+                    colors: { 'anchor-blue': '#0f172a', 'anchor-gold': '#d4af37' }, 
+                    fontFamily: { sans: ['Tajawal', 'sans-serif'], serif: ['Amiri', 'serif'] } 
+                } 
+            } 
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>body { background-color: #f8fafc; }</style>
 </head>
-<body class="text-slate-900 flex flex-col min-h-screen">
+<body class="bg-slate-50 text-slate-900 font-sans">
+    <div id="root"></div>
+    <script type="text/babel">
+        // ----------------------------------------------------
+        // 1. مكون Navbar (موحد)
+        // ----------------------------------------------------
+        const Navbar = () => (
+            <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-md backdrop-blur-md bg-opacity-95">
+                <div className="max-w-7xl mx-auto flex justify-between items-center">
+                    <a href="index.html" className="flex items-center gap-3 group">
+                        {/* ⚠️ تم توحيد المسار إلى img/logo.png */}
+                        <img src="img/logo.png" alt="Logo" className="h-10 w-auto" />
+                        <span className="font-bold text-lg hidden md:block">المرساة الرقمية</span>
+                    </a>
+                    <a href="index.html" className="text-sm hover:text-anchor-gold transition">العودة للرئيسية</a>
+                </div>
+            </nav>
+        );
 
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center space-x-2 space-x-reverse">
-                <i class="fas fa-anchor text-lg text-blue-900"></i>
-                <span class="font-extrabold text-xl text-blue-900" data-key="site_name">المرساة الرقمية</span>
-            </a>
-            
-            <select id="lang-select" onchange="setLanguage(this.value)" class="p-2 border rounded-lg text-sm">
-                <option value="ar">العربية</option>
-                <option value="en">English</option>
-                <option value="fr">Français</option>
-                <option value="de">Deutsch</option>
-            </select>
-        </div>
-    </nav>
-    
-    <main class="flex-grow container mx-auto px-4 py-16 max-w-4xl">
-        <div class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-blue-900 mb-4" data-key="guide_header">
-                منهجية المرساة الرقمية
-            </h1>
-            <p class="text-xl text-slate-600" data-key="guide_subtitle">
-                دليل خطوة بخطوة للسيادة الرقمية.
-            </p>
-        </div>
+        // ----------------------------------------------------
+        // 2. مكون Footer (موحد)
+        // ----------------------------------------------------
+        const Footer = () => (
+            <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm">© 2025 المرساة الرقمية</footer>
+        );
 
-        <div class="space-y-12">
-            
-            <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-red-500">
-                <div class="flex items-center mb-4">
-                    <i class="fas fa-lock-open text-3xl text-red-600 ml-4"></i>
-                    <h2 class="text-2xl font-bold text-slate-800" data-key="step1_title">التحرر والالتزام</h2>
-                </div>
-                <p class="text-lg text-slate-700">
-                    <span data-key="step1_text1">في اللحظات التي تشعر فيها بالانجراف، استخدم</span>
-                    <a href="Emergency_Guide.pdf" target="_blank" data-key="link_emergency" class="text-blue-500 hover:underline font-bold transition">دليل الطوارئ</a>.
-                    <span data-key="step1_text2">ولتثبيت التزامك، قم بتوقيع</span> 
-                    <a href="Pledge_Paper.pdf" target="_blank" data-key="link_covenant" class="text-blue-500 hover:underline font-bold transition">وثيقة العهد</a> 
-                    <span data-key="step1_text3">لتبدأ رحلة القيم.</span>
-                </p>
-            </div>
-            
-            <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-green-500">
-                <div class="flex items-center mb-4">
-                    <i class="fas fa-cogs text-3xl text-green-600 ml-4"></i>
-                    <h2 class="text-2xl font-bold text-slate-800" data-key="step2_title">القيادة والإنتاجية</h2>
-                </div>
-                <ul class="list-disc pr-6 space-y-3 text-lg text-slate-700">
-                    <li data-key="step2_li1">راقب وقت الشاشة بوعي واستخدمه كأداة لا كقائد.</li>
-                    <li data-key="step2_li2">خصص وقتاً غير متصل بالإنترنت بانتظام للتركيز العميق والإبداع.</li>
-                </ul>
-            </div>
-            
-            <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-yellow-500">
-                <div class="flex items-center mb-4">
-                    <i class="fas fa-users text-3xl text-yellow-600 ml-4"></i>
-                    <h2 class="text-2xl font-bold text-slate-800" data-key="step3_title">المجتمع والدعم</h2>
-                </div>
-                <ul class="list-disc pr-6 space-y-3 text-lg text-slate-700">
-                    <li data-key="step3_li1">شارك إنجازاتك الصغيرة والكبيرة مع مجموعة الدعم لتحفيز نفسك والآخرين.</li>
-                    <li data-key="step3_li2">اطلب الدعم والمساعدة عندما تواجه تحديات التكنولوجيا.</li>
-                </ul>
-            </div>
-            
-        </div>
-
-        <div class="text-center mt-12">
-            <a href="index.html" class="inline-block bg-blue-900 text-white font-bold px-8 py-3 rounded-xl hover:bg-blue-800 transition shadow-md">
-                العودة إلى الرئيسية
-            </a>
-        </div>
-    </main>
-
-    <footer class="bg-gray-800 text-white py-8 mt-auto">
-        <div class="container mx-auto px-4 text-center text-slate-400 text-sm">
-            <p>&copy; 2025 <span data-key="site_name">المرساة الرقمية</span>. جميع الحقوق محفوظة.</p>
-        </div>
-    </footer>
-
-    <script src="i18n.js"></script>
-    <script>
-        // تشغيل التهيئة والترجمة عند تحميل الصفحة
-        document.addEventListener('DOMContentLoaded', initializePage);
-    </script>
+        // ----------------------------------------------------
+        // 3. المكون الرئيسي (GuidePage)
+        // ----------------------------------------------------
+        const GuidePage = () => {
+            return (
+                <div className="min-h-screen flex flex-col">
+                    <Navbar />
+                    <main className="max-w-4xl mx-auto px-6 py-12 flex-grow">
+                        <h1 className="text-3xl font-bold font-serif text-anchor-blue mb-2">📚 دليل استخدام الحزمة</h1>
+                        <p className="text-gray-500 mb-8">كيف تحقق أقصى استفادة من أدوات المرساة الرقمية.</p>
+                        <div className="space-y-8">
+                            <section className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                                <h2 className="text-xl font-bold text-anchor-blue mb-3">1. البداية السريعة (يوم 1)</h2>
+                                <ul className="list-disc pr-5 space-y-2 text-gray-700">
+                                    {/* ⚠️ تم توحيد مسار دليل الطوارئ */}
+                                    <li>قم بتحميل <a href="downloads/Emergency_Guide.pdf" className="text-blue-600 underline">دليل الطوارئ</a>.</li>
+                                    {/* ⚠️ تم توحيد مسار وثيقة العهد (افتراض أنها صفحة الطباعة) */}
+                                    <li>اطبع <a href="covenant.html" className="text-blue-600 underline">وثيقة العهد</a> وعلقها في غرفتك.</li>
+                                </ul>
+                            </section>
+                            <section className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                                <h2 className="text-xl font-bold text-anchor-blue mb-3">2. الأسبوع الأول (التأسيس)</h2>
+                                <ul className="list-disc pr-5 space-y-2 text-gray-700">
+                                    <li>طبق قاعدة 40/40/20 في التعلم.</li>
+                                    <li>ابدأ بتعليق ملصق "منطقة السيادة" على باب غرفة النوم.</li>
+                                </ul>
+                            </section>
+                        </div>
+                    </main>
+                    <Footer />
+                </div>
+            );
+        };
+        
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<GuidePage />);
+    </script>
 </body>
 </html>

@@ -2,146 +2,167 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أداة تحديد القيم | المرساة الرقمية</title>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJZHN8FQQ2"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HJZHN8FQQ2');</script>
     
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
-        body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; }
-        .selected { background-color: #1a202c !important; color: white !important; transform: scale(1.05); border-color: #1a202c !important; }
-        .selected i { color: #d4af37 !important; } /* لون ذهبي للأيقونة عند التحديد */
-        .disabled { opacity: 0.5; pointer-events: none; }
-    </style>
-</head>
-<body class="text-slate-900 flex flex-col min-h-screen">
-
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="index.html" class="flex items-center gap-3">
-                <img src="logo.png" width="40" class="rounded-lg">
-                <span class="text-xl font-bold">المرساة الرقمية</span>
-            </a>
-            <a href="buy.html" class="bg-yellow-500 text-slate-900 px-4 py-2 rounded-lg font-bold hover:bg-yellow-400 text-sm">احجز نسختك</a>
-        </div>
-    </nav>
-
-    <main class="flex-grow container mx-auto px-4 py-12 max-w-5xl">
-        <div class="bg-white p-8 md:p-12 rounded-2xl shadow-xl border-t-8 border-slate-900 text-center">
-            
-            <header class="mb-10">
-                <h1 class="text-3xl font-bold text-slate-800 mb-2">اكتشف قيمك الجوهرية</h1>
-                <p class="text-slate-600">اختر 3 قيم هي الأكثر أهمية بالنسبة لك في حياتك بعيداً عن الشاشة.</p>
-                <p id="counter" class="text-yellow-600 font-bold mt-4">تم اختيار 0 من 3</p>
-            </header>
-
-            <div id="values-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
-                </div>
-
-            <button id="btn-result" class="bg-slate-300 text-slate-500 px-10 py-3 rounded-lg font-bold cursor-not-allowed transition" disabled>
-                عرض النتيجة <i class="fas fa-arrow-left mr-2"></i>
-            </button>
-
-            <div id="result-section" class="hidden mt-10 animate-fade-in bg-blue-50 p-8 rounded-xl">
-                <h2 class="text-2xl font-bold text-slate-900 mb-6">نتائجك هي:</h2>
-                <div id="selected-list" class="flex justify-center flex-wrap gap-4 mb-8"></div>
-                <div class="bg-white p-6 rounded-xl border border-blue-100 mb-8 shadow-sm">
-                    <p class="text-slate-700 font-medium leading-relaxed">"تهانينا! هذه القيم هي بوصلتك. الآن، اربط أوقات 'إطفاء الشاشة' بهذه القيم لتعزيز التحرر والقيادة."</p>
-                </div>
-                <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="Pledge_Paper.pdf" target="_blank" class="bg-slate-900 text-white px-6 py-3 rounded-lg font-bold hover:bg-slate-800 transition">
-                        <i class="fas fa-file-signature ml-2"></i> وقّع عهد التحرر
-                    </a>
-                    <button onclick="location.reload()" class="text-slate-500 underline hover:text-slate-800">إعادة الاختبار</button>
-                </div>
-            </div>
-
-        </div>
-    </main>
-
-    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-auto"><p class="text-sm">© 2025 Digital Anchor Project.</p></footer>
-
+    <script src="https://cdn.tailwindcss.com"></script>
+    
     <script>
-        // قائمة القيم
-        const values = [
-            { name: 'الإبداع', icon: 'fas fa-palette' }, 
-            { name: 'التركيز', icon: 'fas fa-bullseye' },
-            { name: 'السكينة', icon: 'fas fa-spa' }, 
-            { name: 'التعلم', icon: 'fas fa-lightbulb' },
-            { name: 'العائلة', icon: 'fas fa-home' }, 
-            { name: 'الصحة', icon: 'fas fa-heartbeat' },
-            { name: 'المال', icon: 'fas fa-dollar-sign' }, 
-            { name: 'الشغف', icon: 'fas fa-fire' },
-            { name: 'الإنجاز', icon: 'fas fa-trophy' }, 
-            { name: 'الاستقلال', icon: 'fas fa-user-tie' },
-            { name: 'التواصل', icon: 'fas fa-comments' }, 
-            { name: 'المغامرة', icon: 'fas fa-compass' }
+        tailwind.config = {
+            theme: {
+                extend: { 
+                    colors: { 
+                        'anchor-blue': '#0f172a', 
+                        'anchor-gold': '#d4af37',
+                        'value-btn-bg': '#fef3c7', 
+                        'value-btn-border': '#fbbf24'
+                    }, 
+                    fontFamily: { 
+                        sans: ['Tajawal', 'sans-serif'] 
+                    } 
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>body { background-color: #f8fafc; }</style>
+</head>
+<body class="text-slate-900 font-sans">
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        const { useState } = React;
+
+        const VALUES_LIST = [
+            { name: "التركيز والعمل العميق", icon: "fas fa-bullseye" }, 
+            { name: "النزاهة الرقمية", icon: "fas fa-shield-alt" },
+            { name: "الإنجاز العملي", icon: "fas fa-trophy" },
+            { name: "التأمل والوعي الذاتي", icon: "fas fa-spa" },
+            { name: "الصحة والاهتمام بالذات", icon: "fas fa-heartbeat" },
+            { name: "العلاقات والتواصل الفعال", icon: "fas fa-comments" },
+            { name: "الإبداع", icon: "fas fa-lightbulb" }, 
+            { name: "الهدوء النفسي", icon: "fas fa-moon" }, 
+            { name: "التعلم المستمر", icon: "fas fa-book-open" }
         ];
 
-        const grid = document.getElementById('values-grid');
-        let selected = [];
+        const Navbar = () => (
+            <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-md">
+                <div className="max-w-7xl mx-auto flex justify-between items-center">
+                    <a href="index.html" className="flex items-center gap-3">
+                        <img src="img/logo.png" alt="Logo" className="h-10 w-auto" /> 
+                        <span className="font-bold text-lg hidden md:block">المرساة الرقمية</span>
+                    </a>
+                    <a href="buy.html" className="bg-anchor-gold text-anchor-blue px-4 py-2 rounded-full font-bold">احجز نسختك</a>
+                </div>
+            </nav>
+        );
 
-        // توليد البطاقات
-        values.forEach((val, index) => {
-            const div = document.createElement('div');
-            div.className = 'bg-white border border-slate-200 p-6 rounded-xl cursor-pointer hover:shadow-lg transition flex flex-col items-center gap-3 select-none text-slate-600';
-            div.innerHTML = `<i class="${val.icon} text-4xl text-yellow-500 transition"></i><span class="font-bold text-lg">${val.name}</span>`;
-            div.onclick = () => toggleSelect(index, div);
-            grid.appendChild(div);
-        });
+        const Footer = () => (
+            <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm mt-auto">© 2025 المرساة الرقمية</footer>
+        );
 
-        function toggleSelect(index, element) {
-            if (selected.includes(index)) {
-                selected = selected.filter(i => i !== index);
-                element.classList.remove('selected');
-            } else {
-                if (selected.length < 3) {
-                    selected.push(index);
-                    element.classList.add('selected');
+        const ValueTool = () => {
+            const [selectedValues, setSelectedValues] = useState([]);
+            const [showResult, setShowResult] = useState(false);
+
+            const toggleValue = (value) => {
+                const valueName = value.name;
+                if (selectedValues.includes(valueName)) {
+                    setSelectedValues(selectedValues.filter(v => v !== valueName));
+                } else {
+                    if (selectedValues.length < 3) setSelectedValues([...selectedValues, valueName]);
                 }
-            }
-            updateUI();
-        }
+            };
+            
+            const isSelectDisabled = (valueName) => {
+                return selectedValues.length >= 3 && !selectedValues.includes(valueName);
+            };
 
-        function updateUI() {
-            document.getElementById('counter').innerText = `تم اختيار ${selected.length} من 3`;
-            const btn = document.getElementById('btn-result');
-            const cards = grid.children;
-
-            if (selected.length === 3) {
-                btn.disabled = false;
-                btn.classList.remove('bg-slate-300', 'text-slate-500', 'cursor-not-allowed');
-                btn.classList.add('bg-slate-900', 'text-white', 'hover:bg-slate-800', 'shadow-lg');
-                
-                // تعطيل الباقي
-                for (let i = 0; i < cards.length; i++) {
-                    if (!selected.includes(i)) cards[i].classList.add('disabled');
+            const handleShowResult = () => {
+                if (selectedValues.length === 3) {
+                    setShowResult(true);
+                    setTimeout(() => {
+                        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                    }, 100);
                 }
-            } else {
-                btn.disabled = true;
-                btn.classList.add('bg-slate-300', 'text-slate-500', 'cursor-not-allowed');
-                btn.classList.remove('bg-slate-900', 'text-white', 'hover:bg-slate-800', 'shadow-lg');
-                
-                // تفعيل الكل
-                for (let i = 0; i < cards.length; i++) cards[i].classList.remove('disabled');
-            }
-        }
+            };
 
-        document.getElementById('btn-result').onclick = () => {
-            const list = document.getElementById('selected-list');
-            list.innerHTML = '';
-            selected.forEach(i => {
-                const span = document.createElement('span');
-                span.className = 'bg-slate-900 text-white px-6 py-3 rounded-full font-bold shadow-md text-lg';
-                span.innerText = values[i].name;
-                list.appendChild(span);
-            });
-            document.getElementById('result-section').classList.remove('hidden');
-            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            return (
+                <div className="min-h-screen flex flex-col">
+                    <Navbar />
+                    <main className="max-w-3xl mx-auto px-6 py-12 flex-grow w-full">
+                        <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+                            <header className="text-center mb-10">
+                                <h1 className="text-3xl font-bold text-anchor-blue mb-3">💎 بوصلة القيم الشخصية</h1>
+                                <p className="text-gray-600">اختر أهم 3 قيم تعبر عنك لتبني عليها خطتك الرقمية.</p>
+                            </header>
+
+                            {!showResult ? (
+                                <div className="space-y-8">
+                                    <div className="grid md:grid-cols-2 gap-4">
+                                        {VALUES_LIST.map((val, idx) => {
+                                            const isSelected = selectedValues.includes(val.name);
+                                            const isDisabled = isSelectDisabled(val.name);
+                                            
+                                            return (
+                                                <button 
+                                                    key={idx} 
+                                                    onClick={() => toggleValue(val)} 
+                                                    disabled={isDisabled}
+                                                    className={`p-4 rounded-xl border-2 text-right transition-all flex justify-between items-center text-lg ${
+                                                        isSelected 
+                                                            ? 'border-anchor-blue bg-value-btn-bg text-anchor-blue font-bold shadow-md' 
+                                                            : (isDisabled 
+                                                                ? 'border-gray-100 bg-gray-50 text-gray-400 opacity-70 cursor-not-allowed' 
+                                                                : 'border-gray-100 hover:border-value-btn-border hover:bg-gray-100 text-gray-600'
+                                                            )
+                                                    }`}
+                                                >
+                                                    <span className="flex items-center gap-3">
+                                                        <i className={`${val.icon} ${isSelected ? 'text-anchor-blue' : 'text-gray-400'}`}></i>
+                                                        {val.name}
+                                                    </span>
+                                                    {isSelected && <span className="text-green-600 text-xl font-extrabold">✓</span>}
+                                                </button>
+                                            )
+                                        })}
+                                    </div>
+                                    <div className="text-center pt-4">
+                                        <p className={`text-sm mb-4 font-bold ${selectedValues.length === 3 ? 'text-green-600' : 'text-gray-500'}`}>تم اختيار {selectedValues.length} من 3</p>
+                                        <button onClick={handleShowResult} disabled={selectedValues.length !== 3} className={`px-10 py-3 rounded-xl font-bold text-lg transition-all ${selectedValues.length === 3 ? 'bg-anchor-blue text-white hover:bg-gray-800 shadow-lg' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}>تحليل قيمي</button>
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="text-center animate-fade-in">
+                                    <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">🎯</div>
+                                    <h2 className="text-2xl font-bold text-anchor-blue mb-6">قيمك الجوهرية هي:</h2>
+                                    <div className="flex flex-wrap justify-center gap-3 mb-8">
+                                        {selectedValues.map((val, idx) => (
+                                            <span key={idx} className="bg-anchor-gold text-anchor-blue px-6 py-2 rounded-full font-bold shadow-sm text-lg">{val}</span>
+                                        ))}
+                                    </div>
+                                    <div className="bg-blue-50 p-6 rounded-xl border border-blue-100 mb-8">
+                                        <p className="text-gray-700 leading-relaxed">رائع! هذه القيم هي بوصلتك. الخطوة التالية هي حماية هذه القيم في عالمك الرقمي.</p>
+                                    </div>
+                                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                                        <a href="downloads/Pledge_Paper.pdf" target="_blank" className="bg-anchor-blue text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-800 transition">توقيع العهد</a>
+                                        <button onClick={() => setShowResult(false)} className="text-gray-500 hover:text-anchor-blue underline">إعادة الاختيار</button>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </main>
+                    <Footer />
+                </div>
+            );
         };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<ValueTool />);
     </script>
 </body>
 </html>

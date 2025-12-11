@@ -2,199 +2,119 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-key="buy_title">شراء الحزمة | المرساة الرقمية</title>
+    <title>صفحة الحجز المسبق | المرساة الرقمية</title>
     
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJZHN8FQQ2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-HJZHN8FQQ2');
-    </script>
-
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
-    <style>
-        body { font-family: 'Tajawal', sans-serif; background-color: #f7fafc; }
-        h1, h2, h3 { font-family: 'Amiri', serif; }
-        .btn-primary { background-color: #0d47a1; transition: background-color 0.3s; }
-        .btn-primary:hover { background-color: #1976d2; }
-    </style>
-</head>
-<body class="text-slate-900 flex flex-col min-h-screen">
-    
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center space-x-2 space-x-reverse">
-                <i class="fas fa-anchor text-lg text-blue-900"></i>
-                <span class="font-extrabold text-xl text-blue-900" data-key="site_name">المرساة الرقمية</span>
-            </a>
-            
-            <div class="hidden md:flex items-center space-x-6 space-x-reverse">
-                <a href="index.html#roadmap" class="text-slate-600 hover:text-blue-700 transition" data-key="nav_tracks">المسارات</a>
-                <a href="dashboard.html" class="text-slate-600 hover:text-blue-700 transition" data-key="nav_dashboard">لوحة القيادة</a>
-                <a href="blog.html" class="text-slate-600 hover:text-blue-700 transition" data-key="nav_blog">المدونة</a>
-                
-                <div class="flex items-center space-x-2 space-x-reverse">
-                    <select id="curr-select" class="p-2 border rounded-lg text-sm">
-                        <option value="SAR">SAR</option>
-                        <option value="USD">USD</option>
-                        <option value="EUR">EUR</option>
-                    </select>
-                    <select id="lang-select" onchange="setLanguage(this.value)" class="p-2 border rounded-lg text-sm">
-                        <option value="ar">العربية</option>
-                        <option value="en">English</option>
-                        <option value="fr">Français</option>
-                        <option value="de">Deutsch</option>
-                    </select>
-                    <a href="buy.html" class="bg-blue-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-800 transition shadow-md" data-key="nav_join">احجز الكتاب</a>
-                </div>
-            </div>
-            
-            <div class="md:hidden flex items-center">
-                <button id="mobile-menu-btn" class="text-slate-600 hover:text-blue-700 focus:outline-none">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-            </div>
-        </div>
-        
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="index.html#roadmap" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-gray-100" data-key="nav_tracks">المسارات</a>
-                <a href="dashboard.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-gray-100" data-key="nav_dashboard">لوحة القيادة</a>
-                <a href="blog.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-gray-100" data-key="nav_blog">المدونة</a>
-                <a href="buy.html" class="block w-full text-center bg-blue-900 text-white px-3 py-2 rounded-md text-base font-medium hover:bg-blue-800 mt-2" data-key="nav_join">احجز الكتاب</a>
-                
-                <div class="flex justify-between space-x-4 space-x-reverse pt-4 px-3">
-                    <div>
-                        <label for="lang-select-mobile" class="text-sm font-medium text-slate-700 block mb-1">اللغة:</label>
-                        <select id="lang-select-mobile" onchange="setLanguage(this.value)" class="w-full p-2 border rounded-lg text-base">
-                            <option value="ar">العربية</option>
-                            <option value="en">English</option>
-                            <option value="fr">Français</option>
-                            <option value="de">Deutsch</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="curr-select-mobile" class="text-sm font-medium text-slate-700 block mb-1">العملة:</label>
-                        <select id="curr-select-mobile" class="w-full p-2 border rounded-lg text-base">
-                            <option value="SAR">SAR</option>
-                            <option value="USD">USD</option>
-                            <option value="EUR">EUR</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-    
-    <main class="flex-grow container mx-auto px-4 py-16 max-w-4xl">
-        <div class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-blue-900 mb-4" data-key="package_title">
-                حزمة السيادة الرقمية (بريميوم)
-            </h1>
-            <p class="text-xl text-slate-600">
-                استعد انتباهك وابنِ مستقبلك بقوة وتركيز.
-            </p>
-        </div>
-
-        <div class="bg-white p-8 md:p-12 rounded-2xl shadow-2xl border border-gray-100 transform hover:scale-[1.01] transition duration-300">
-            <div class="grid md:grid-cols-2 gap-10 items-start">
-                
-                <div>
-                    <h2 class="text-2xl font-bold mb-4 border-b pb-2 text-blue-800">ماذا ستحصل عليه؟</h2>
-                    <ul class="space-y-4 text-lg text-slate-700">
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 ml-3 flex-shrink-0"></i>
-                            <span data-key="benefit1">نسخة ورقية من الكتاب "من أنت حين تنطفئ الشاشة؟"</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 ml-3 flex-shrink-0"></i>
-                            <span data-key="benefit2">وصول فوري لملف PDF (لتبدأ القراءة الآن)</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 ml-3 flex-shrink-0"></i>
-                            <span data-key="benefit3">وصول مدى الحياة للمنصة التعليمية والأدوات الحصرية</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-500 mt-1 ml-3 flex-shrink-0"></i>
-                            <span>شحن مجاني لمعظم دول الشرق الأوسط</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="bg-blue-50 p-6 rounded-xl border border-blue-200">
-                    <h3 class="text-2xl font-bold mb-6 text-blue-900 text-center">تفاصيل السعر</h3>
-                    
-                    <div class="flex justify-between items-center mb-3 text-lg font-medium">
-                        <span data-key="price_regular">السعر المعتاد:</span>
-                        <span class="line-through text-slate-500">$59.99 <span data-key="price_currency">USD</span></span>
-                    </div>
-                    
-                    <div class="flex justify-between items-center text-3xl font-extrabold text-red-600 p-3 bg-red-100 rounded-lg mb-6">
-                        <span data-key="price_today">سعر اليوم فقط:</span>
-                        <span>$39.99 <span data-key="price_currency">USD</span></span>
-                    </div>
-
-                    <a href="#" class="btn-primary text-white font-bold text-xl px-8 py-4 rounded-xl block text-center transition transform hover:scale-[1.02] shadow-xl" data-key="cta_button">
-                        اشترِ الآن واستعد انتباهك
-                    </a>
-                    
-                    <p class="text-sm text-slate-500 mt-4 text-center" data-key="currency_note">
-                        الأسعار تقريبية وقد تتغير حسب العملة المختارة.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <footer class="bg-gray-800 text-white py-12 mt-auto">
-        <div class="container mx-auto px-4 max-w-6xl">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 border-b border-gray-700 pb-8 mb-8">
-                <div>
-                    <h4 class="font-bold mb-3" data-key="site_name">المرساة الرقمية</h4>
-                    <ul class="space-y-2 text-sm text-slate-300">
-                        <li><a href="index.html#roadmap" class="hover:text-yellow-300 transition" data-key="nav_tracks">المسارات</a></li>
-                        <li><a href="guide.html" class="hover:text-yellow-300 transition">المنهجية</a></li>
-                        <li><a href="buy.html" class="hover:text-yellow-300 transition" data-key="nav_join">احجز الآن</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-3">الموارد</h4>
-                    <ul class="space-y-2 text-sm text-slate-300">
-                        <li><a href="dashboard.html" class="hover:text-yellow-300 transition" data-key="nav_dashboard">لوحة القيادة</a></li>
-                        <li><a href="blog.html" class="hover:text-yellow-300 transition" data-key="nav_blog">المدونة</a></li>
-                        <li><a href="Pledge_Paper.pdf" target="_blank" class="hover:text-yellow-300 transition">وثيقة العهد</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-3">الدعم</h4>
-                    <ul class="space-y-2 text-sm text-slate-300">
-                        <li><a href="#" class="hover:text-yellow-300 transition">الأسئلة الشائعة</a></li>
-                        <li><a href="#" class="hover:text-yellow-300 transition">شروط الاستخدام</a></li>
-                        <li><a href="#" class="hover:text-yellow-300 transition">سياسة الخصوصية</a></li>
-                    </ul>
-                </div>
-                <div class="text-right">
-                    <h4 class="font-bold mb-3">تواصل معنا</h4>
-                    <p class="text-sm text-slate-400 mb-2">للاستفسارات:</p>
-                    <a href="mailto:garbaouisalma@gmail.com" class="text-yellow-300 hover:underline font-medium">garbaouisalma@gmail.com</a>
-                </div>
-            </div>
-            
-            <div class="text-center text-slate-400 text-sm">
-                <p>&copy; 2025 المرساة الرقمية. جميع الحقوق محفوظة.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="i18n.js"></script>
     <script>
-        // تشغيل التهيئة والترجمة عند تحميل الصفحة
-        document.addEventListener('DOMContentLoaded', initializePage);
+        tailwind.config = { 
+            theme: { 
+                extend: { 
+                    colors: { 'anchor-blue': '#0f172a', 'anchor-gold': '#d4af37' }, 
+                    fontFamily: { 'sans': ['Tajawal', 'sans-serif'], 'serif': ['Amiri', 'serif'] } 
+                } 
+            } 
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>body { background-color: #f8fafc; }</style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        // ----------------------------------------------------
+        // المكونات المشتركة
+        // ----------------------------------------------------
+        const Navbar = () => (
+            <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-md">
+                <div className="max-w-7xl mx-auto flex justify-between items-center">
+                    <a href="index.html" className="flex items-center gap-3">
+                        <img src="img/logo.png" alt="Logo" className="h-10 w-auto" />
+                        <span className="font-bold text-lg hidden md:block">المرساة الرقمية</span>
+                    </a>
+                    <a href="index.html" className="text-sm hover:text-anchor-gold transition">العودة للرئيسية</a>
+                </div>
+            </nav>
+        );
+
+        const Footer = () => (
+            <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm">© 2025 المرساة الرقمية</footer>
+        );
+
+        // ----------------------------------------------------
+        // المكون الرئيسي للصفحة
+        // ----------------------------------------------------
+        const BuyPage = () => {
+            
+            const plans = [
+                { id: 1, title: 'النسخة الذاتية (الكتاب فقط)', price: 97, features: ['الكتاب الإلكتروني', 'دفتر التمارين الرقمي', 'وصول لمنتدى الدعم العام'], bestSeller: false, currency: 'SAR' },
+                { id: 2, title: 'الحزمة الموجهة (الأكثر شيوعاً)', price: 297, features: ['كل مميزات النسخة الذاتية', '4 جلسات توجيه فردية', 'تصحيح الواجبات الأسبوعية', 'شهادة إكمال'], bestSeller: true, currency: 'SAR' },
+            ];
+
+            return (
+                <div className="min-h-screen flex flex-col">
+                    <Navbar />
+                    <main className="flex-grow py-12 px-6">
+                        <div className="max-w-4xl mx-auto text-center">
+                            <h1 className="text-4xl font-bold font-serif text-anchor-blue mb-4">اختر حزمتك للانطلاق</h1>
+                            <p className="text-lg text-gray-600 mb-12">استثمر في انتباهك وقيمك. كل حجز يتضمن هدية فورية.</p>
+
+                            <div className="grid md:grid-cols-2 gap-8 items-center">
+                                {plans.map(plan => (
+                                    <div 
+                                        key={plan.id} 
+                                        className={`p-8 rounded-2xl shadow-xl transition-all ${
+                                            plan.bestSeller 
+                                                ? 'bg-anchor-blue text-white border-4 border-anchor-gold transform scale-105' 
+                                                : 'bg-white border-2 border-gray-100'
+                                        }`}
+                                    >
+                                        {plan.bestSeller && (
+                                            <span className="inline-block bg-anchor-gold text-anchor-blue px-4 py-1 rounded-full text-xs font-bold mb-4">الأكثر شيوعاً</span>
+                                        )}
+                                        <h2 className="text-3xl font-bold mb-2">{plan.title}</h2>
+                                        <p className={`text-5xl font-extrabold my-6 ${plan.bestSeller ? 'text-anchor-gold' : 'text-anchor-blue'}`}>
+                                            {plan.price} {plan.currency}
+                                        </p>
+                                        <ul className="text-sm space-y-3 mb-8 text-right pr-4">
+                                            {plan.features.map((feature, index) => (
+                                                <li key={index} className="flex items-start gap-3">
+                                                    <span className={`text-sm ${plan.bestSeller ? 'text-green-400' : 'text-green-500'}`}>✓</span>
+                                                    {feature}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                        <button 
+                                            onClick={() => alert(`جاري الانتقال للدفع لـ ${plan.title}`)} 
+                                            className={`w-full py-3 rounded-lg font-bold text-lg transition-all shadow-md ${
+                                                plan.bestSeller 
+                                                    ? 'bg-anchor-gold text-anchor-blue hover:bg-yellow-300' 
+                                                    : 'bg-anchor-blue text-white hover:bg-gray-800'
+                                            }`}
+                                        >
+                                            {plan.bestSeller ? 'ابدأ رحلة السيادة' : 'اختر هذا الخيار'}
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                            
+                            <div className="mt-12 p-6 bg-blue-50 rounded-xl border border-blue-100">
+                                <p className="text-sm font-bold text-anchor-blue">ضمان استرداد المال لمدة 30 يوماً بلا أسئلة.</p>
+                            </div>
+                        </div>
+                    </main>
+                    <Footer />
+                </div>
+            );
+        };
+        
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<BuyPage />);
     </script>
 </body>
 </html>

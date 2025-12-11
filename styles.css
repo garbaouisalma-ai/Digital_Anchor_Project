@@ -1,0 +1,104 @@
+/*
+   ====================================================================
+   ⚠️ يجب وضع كود Tailwind CSS المُصغَّر والمُنقَّى هنا أولاً
+   ====================================================================
+*/
+
+/* ------------------------------------------------------------------
+ * 1. الستايلات الأساسية والمُخصَّصة (من index.html والصفحات الأخرى)
+ * ------------------------------------------------------------------
+ */
+body { 
+    font-family: 'Tajawal', sans-serif; 
+    background-color: #f7fafc; 
+    color: #1e293b; 
+    scroll-behavior: smooth; 
+}
+h1, h2, h3 { 
+    font-family: 'Amiri', serif; 
+}
+
+/* ------------------------------------------------------------------
+ * 2. أنماط الأزرار والحركة (Animations & Buttons)
+ * ------------------------------------------------------------------
+ */
+.btn-primary { 
+    /* ملاحظة: تم دمج الألوان المخصصة هنا مباشرة */
+    background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%); 
+    color: white; 
+    transition: 0.3s; 
+}
+.btn-primary:hover { 
+    transform: translateY(-3px); 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2); 
+}
+.float-animation { 
+    animation: float 6s ease-in-out infinite; 
+}
+@keyframes float { 
+    0%, 100% { transform: translateY(0); } 
+    50% { transform: translateY(-10px); } 
+}
+
+/* ------------------------------------------------------------------
+ * 3. أنماط البطاقات والمكتبة (Card & Library Styles)
+ * ------------------------------------------------------------------
+ */
+.card-hover:hover { 
+    transform: translateY(-5px); 
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1); 
+    transition: 0.3s; 
+}
+
+.btn-download { 
+    /* اللون هنا مطابق لـ #1a365d (جزء من Anchor Blue) */
+    background-color: #1a365d; 
+    color: white; 
+    padding: 8px 20px; 
+    border-radius: 8px; 
+    font-weight: bold; 
+    transition: 0.3s; 
+    width: 100%; 
+    display: block; 
+    text-align: center; 
+}
+.btn-download:hover { 
+    background-color: #2d3748; 
+}
+
+/* ------------------------------------------------------------------
+ * 4. أنماط الخط الزمني (Timeline Styles)
+ * ------------------------------------------------------------------
+ */
+.timeline-line { 
+    position: absolute; 
+    right: 8px; 
+    top: 0; 
+    bottom: 0; 
+    width: 4px; 
+    background: #e2e8f0; 
+}
+
+/* نمط الخط الزمني في صفحة program.html */
+.program-timeline-line { 
+    position: absolute; 
+    left: 50%; 
+    top: 0; 
+    bottom: 0; 
+    width: 4px; 
+    background: #e2e8f0; 
+    transform: translateX(-50%); 
+}
+
+/* ------------------------------------------------------------------
+ * 5. أنماط الطباعة (Print Styles)
+ * ------------------------------------------------------------------
+ */
+@media print { 
+    .no-print { 
+        display: none !important; 
+    } 
+    body { 
+        background: white; 
+    } 
+}

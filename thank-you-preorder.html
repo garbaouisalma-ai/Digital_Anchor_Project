@@ -2,103 +2,70 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-key="thankyou_title">شكراً لطلبك | المرساة الرقمية</title>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJZHN8FQQ2"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HJZHN8FQQ2');</script>
+    <title>شكراً لطلبك | المرساة الرقمية</title>
+    
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; }</style>
-</head>
-<body class="text-slate-900 flex flex-col min-h-screen">
-
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="index.html" class="flex items-center gap-3">
-                <img src="logo.png" width="40" class="rounded-lg">
-                <span class="text-xl font-bold" data-key="site_name">المرساة الرقمية</span>
-            </a>
-            <select id="lang-select" onchange="setLanguage(this.value)" class="text-xs border border-gray-300 rounded p-1 bg-white">
-                <option value="ar">عربي</option>
-                <option value="en">English</option>
-                <option value="fr">Français</option>
-                <option value="de">Deutsch</option>
-            </select>
-        </div>
-    </nav>
-
-    <main class="flex-grow container mx-auto px-4 py-12 max-w-3xl">
-        <div class="bg-white p-8 md:p-12 rounded-2xl shadow-2xl border-t-8 border-green-500 text-center">
-            <i class="fas fa-check-circle text-6xl text-green-500 mb-6 animate-bounce"></i>
-            <h1 class="text-3xl font-bold text-slate-800 mb-2" data-key="thanks_header">تم تأكيد طلبك بنجاح!</h1>
-            <p class="text-slate-600 mb-8" data-key="thanks_subtitle">شكراً لكونك جزءاً من عائلة المرساة الرقمية. سنرسل لك تفاصيل الدخول عبر البريد الإلكتروني قريباً.</p>
-            
-            <div class="bg-blue-50 p-6 rounded-xl text-right mb-8 border border-blue-100">
-                <h2 class="text-lg font-bold text-slate-800 mb-4 border-b pb-2" data-key="gift_title">هدية الحجز المسبق:</h2>
-                <p class="text-slate-700 flex items-center gap-2">
-                    <i class="fas fa-gift text-yellow-500"></i>
-                    <span data-key="gift_desc">وصول فوري ومجاني لأداة تحديد القيم.</span>
-                </p>
-            </div>
-
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="tool-value.html" class="bg-yellow-500 text-slate-900 px-8 py-3 rounded-lg font-bold hover:bg-yellow-400 transition shadow-md">
-                    <i class="fas fa-brain ml-2"></i> <span data-key="btn_tool">جرب الأداة الآن</span>
-                </a>
-                <a href="index.html" class="bg-slate-200 text-slate-600 px-8 py-3 rounded-lg font-bold hover:bg-slate-300 transition">
-                    <span data-key="btn_home">العودة للرئيسية</span>
-                </a>
-            </div>
-        </div>
-    </main>
-
-    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-auto"><p class="text-sm">© 2025 Digital Anchor Project.</p></footer>
-
+    
     <script>
-        const translations = {
-            'ar': {
-                'site_name': 'المرساة الرقمية', 'thankyou_title': 'شكراً لطلبك',
-                'thanks_header': 'تم تأكيد طلبك بنجاح!', 'thanks_subtitle': 'شكراً لكونك جزءاً من عائلة المرساة الرقمية. سنرسل لك تفاصيل الدخول عبر البريد الإلكتروني قريباً.',
-                'gift_title': 'هدية الحجز المسبق:', 'gift_desc': 'وصول فوري ومجاني لأداة تحديد القيم.',
-                'btn_tool': 'جرب الأداة الآن', 'btn_home': 'العودة للرئيسية'
-            },
-            'en': {
-                'site_name': 'Digital Anchor', 'thankyou_title': 'Thank You',
-                'thanks_header': 'Order Confirmed!', 'thanks_subtitle': 'Thank you for joining the Digital Anchor family. We will send you login details via email shortly.',
-                'gift_title': 'Pre-order Gift:', 'gift_desc': 'Instant free access to the Values Tool.',
-                'btn_tool': 'Try Tool Now', 'btn_home': 'Back to Home'
-            },
-            'fr': {
-                'site_name': 'L\'Ancre Numérique', 'thankyou_title': 'Merci',
-                'thanks_header': 'Commande Confirmée !', 'thanks_subtitle': 'Merci de rejoindre la famille. Nous vous enverrons les détails par email bientôt.',
-                'gift_title': 'Cadeau de précommande :', 'gift_desc': 'Accès gratuit immédiat à l\'outil de valeurs.',
-                'btn_tool': 'Essayer l\'outil', 'btn_home': 'Retour Accueil'
-            },
-            'de': {
-                'site_name': 'Der Digitale Anker', 'thankyou_title': 'Danke',
-                'thanks_header': 'Bestellung Bestätigt!', 'thanks_subtitle': 'Danke, dass Sie Teil der Familie sind. Wir senden Ihnen bald Details per E-Mail.',
-                'gift_title': 'Vorbestellungsgeschenk:', 'gift_desc': 'Sofortiger kostenloser Zugang zum Werte-Tool.',
-                'btn_tool': 'Tool jetzt testen', 'btn_home': 'Zurück zur Startseite'
-            }
-        };
-
-        function setLanguage(lang) {
-            document.documentElement.lang = lang;
-            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-            document.querySelectorAll('[data-key]').forEach(el => {
-                const key = el.getAttribute('data-key');
-                if (translations[lang][key]) el.textContent = translations[lang][key];
-            });
-            localStorage.setItem('preferredLang', lang);
+        tailwind.config = { 
+            theme: { 
+                extend: { 
+                    colors: { 'anchor-blue': '#0f172a', 'anchor-gold': '#d4af37' }, 
+                    fontFamily: { sans: ['Tajawal', 'sans-serif'], serif: ['Amiri', 'serif'] } 
+                } 
+            } 
         }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>body { background-color: #f8fafc; }</style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+    <div id="root"></div>
+    <script type="text/babel">
+        
+        const Navbar = () => (
+            <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-md">
+                <div className="max-w-7xl mx-auto flex justify-between items-center">
+                    <a href="index.html" className="flex items-center gap-3">
+                        <img src="img/logo.png" alt="Logo" className="h-10 w-auto" />
+                        <span className="font-bold text-lg hidden md:block">المرساة الرقمية</span>
+                    </a>
+                    <a href="index.html" className="text-sm hover:text-anchor-gold transition">العودة للرئيسية</a>
+                </div>
+            </nav>
+        );
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const defaultLang = localStorage.getItem('preferredLang') || 'ar';
-            document.getElementById('lang-select').value = defaultLang;
-            setLanguage(defaultLang);
-        });
+        const Footer = () => (
+            <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm">© 2025 المرساة الرقمية</footer>
+        );
+
+        const ThankYouPage = () => {
+            return (
+                <div className="min-h-screen flex flex-col">
+                    <Navbar />
+                    <main className="flex-grow flex items-center justify-center p-6">
+                        <div className="bg-white p-12 rounded-2xl shadow-xl text-center max-w-xl w-full border-t-8 border-green-500">
+                            <div className="w-24 h-24 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6 text-5xl">✓</div>
+                            <h1 className="text-3xl font-bold font-serif text-anchor-blue mb-4">شكراً لطلبك!</h1>
+                            <p className="text-lg text-gray-700 mb-2">تم استلام طلب الحجز المسبق بنجاح.</p>
+                            <p className="text-gray-500 text-sm mb-8">سيقوم فريقنا بالتواصل معك قريباً لتأكيد التفاصيل.</p>
+                            <div className="space-y-3">
+                                <a href="index.html" className="block w-full bg-anchor-blue text-white py-3 rounded-lg font-bold hover:bg-gray-800 transition">العودة للصفحة الرئيسية</a>
+                                <a href="downloads/Emergency_Guide.pdf" target="_blank" className="block w-full bg-gray-100 text-gray-700 py-3 rounded-lg font-bold hover:bg-gray-200 transition">تحميل هدية (دليل الطوارئ)</a>
+                            </div>
+                        </div>
+                    </main>
+                    <Footer />
+                </div>
+            );
+        };
+        
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<ThankYouPage />);
     </script>
 </body>
 </html>

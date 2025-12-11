@@ -6,60 +6,47 @@
     <title data-key="page_title">المكتبة المجانية | المرساة الرقمية</title>
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJZHN8FQQ2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-HJZHN8FQQ2');
-    </script>
+    <script src="js/analytics.js"></script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="css/styles.css" rel="stylesheet"> 
+
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
-    <style>
-        body { font-family: 'Tajawal', sans-serif; background-color: #f7fafc; }
-        h1, h2, h3 { font-family: 'Amiri', serif; }
-        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); transition: 0.3s; }
-        .btn-download { background-color: #1a365d; color: white; padding: 8px 20px; border-radius: 8px; font-weight: bold; transition: 0.3s; width: 100%; display: block; text-align: center; }
-        .btn-download:hover { background-color: #2d3748; }
-        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
-    </style>
-</head>
+    </head>
 <body class="text-gray-900">
 
     <nav class="bg-white shadow-lg sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="index.html" class="flex items-center space-x-3 space-x-reverse">
-                <img src="logo.png" width="40" class="rounded-lg">
+                <img src="img/logo.png" width="40" class="rounded-lg">
                 <h1 class="text-xl font-bold" data-key="site_name">المرساة الرقمية</h1>
             </a>
             
             <div class="hidden md:flex items-center gap-4">
                 <a href="index.html" class="text-sm font-bold text-gray-600 hover:text-blue-900" data-key="nav_home">الرئيسية</a>
                 
-                <div class="flex items-center border border-gray-300 rounded-full p-1 bg-gray-50 h-8">
-                    <button onclick="setLanguage('ar')" id="d-btn-ar" class="text-xs font-bold px-2 py-1 rounded-full bg-blue-900 text-white transition">ع</button>
-                    <button onclick="setLanguage('en')" id="d-btn-en" class="text-xs font-bold px-2 py-1 rounded-full text-gray-700 hover:bg-gray-200 transition">En</button>
-                    <button onclick="setLanguage('fr')" id="d-btn-fr" class="text-xs font-bold px-2 py-1 rounded-full text-gray-700 hover:bg-gray-200 transition">Fr</button>
-                    <button onclick="setLanguage('de')" id="d-btn-de" class="text-xs font-bold px-2 py-1 rounded-full text-gray-700 hover:bg-gray-200 transition">De</button>
-                </div>
+                <select id="lang-select" onchange="setLanguage(this.value)" class="text-xs border border-gray-300 rounded p-1 bg-white focus:outline-none focus:border-blue-500">
+                    <option value="ar">عربي</option><option value="en">English</option><option value="fr">Français</option><option value="de">Deutsch</option>
+                </select>
 
                 <a href="buy.html" class="bg-yellow-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-yellow-600 transition text-sm" data-key="nav_book_now">احجز الكتاب</a>
             </div>
 
-            <button id="mobile-menu-button" class="md:hidden p-2 text-gray-800"><i class="fas fa-bars text-xl"></i></button>
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-800"><i class="fas fa-bars text-xl"></i></button>
         </div>
-
+        
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-4 shadow-xl">
-             <a href="index.html" class="block py-3 text-gray-900 font-bold border-b border-gray-100 hover:text-blue-800" data-key="nav_home">الرئيسية</a>
-             <div class="flex justify-center flex-wrap gap-2 py-4">
-                <button onclick="setLanguage('ar')" class="px-3 py-2 rounded bg-gray-100 font-bold hover:bg-blue-100 text-sm">عربي</button>
-                <button onclick="setLanguage('en')" class="px-3 py-2 rounded bg-gray-100 font-bold hover:bg-blue-100 text-sm">En</button>
-                <button onclick="setLanguage('fr')" class="px-3 py-2 rounded bg-gray-100 font-bold hover:bg-blue-100 text-sm">Fr</button>
-                <button onclick="setLanguage('de')" class="px-3 py-2 rounded bg-gray-100 font-bold hover:bg-blue-100 text-sm">De</button>
-             </div>
-             <a href="buy.html" class="w-full bg-yellow-500 text-white py-3 mt-2 block text-center rounded-lg font-bold" data-key="nav_book_now">احجز الكتاب</a>
+            <a href="index.html" class="block py-3 text-gray-900 font-bold border-b border-gray-100 hover:text-blue-800" data-key="nav_home">الرئيسية</a>
+            
+            <select onchange="setLanguage(this.value)" class="w-full p-2 border rounded bg-gray-50 text-sm mt-2 mb-4"> 
+                <option value="ar">عربي</option> 
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+            </select>
+            
+            <a href="buy.html" class="w-full bg-yellow-500 text-white py-3 block text-center rounded-lg font-bold" data-key="nav_book_now">احجز الكتاب</a>
         </div>
     </nav>
 
@@ -85,7 +72,7 @@
                     </div>
                     <h3 class="text-xl font-bold mb-2" data-key="p1_title">منطقة السيادة الشخصية</h3>
                     <p class="text-sm text-gray-500 mb-4" data-key="p1_desc">ملصق لتذكيرك بالمناطق الخالية من الهاتف.</p>
-                    <a href="Poster_Zone.pdf" download class="btn-download">
+                    <a href="downloads/Poster_Zone.pdf" download class="btn-download">
                         <i class="fas fa-download ml-2"></i> <span data-key="btn_download">تحميل (PDF)</span>
                     </a>
                 </div>
@@ -96,7 +83,7 @@
                     </div>
                     <h3 class="text-xl font-bold mb-2" data-key="p2_title">افصل لتتصل</h3>
                     <p class="text-sm text-gray-500 mb-4" data-key="p2_desc">تذكير بأن الحياة الحقيقية تحدث بعيداً عن الشاشة.</p>
-                    <a href="Poster_Connection.pdf" download class="btn-download">
+                    <a href="downloads/Poster_Connection.pdf" download class="btn-download">
                         <i class="fas fa-download ml-2"></i> <span data-key="btn_download">تحميل (PDF)</span>
                     </a>
                 </div>
@@ -107,7 +94,7 @@
                     </div>
                     <h3 class="text-xl font-bold mb-2" data-key="p3_title">بوصلة الانتباه</h3>
                     <p class="text-sm text-gray-500 mb-4" data-key="p3_desc">هل ما تفعله الآن يخدم هدف الـ 5 سنوات؟</p>
-                    <a href="Poster_Compass.pdf" download class="btn-download">
+                    <a href="downloads/Poster_Compass.pdf" download class="btn-download">
                         <i class="fas fa-download ml-2"></i> <span data-key="btn_download">تحميل (PDF)</span>
                     </a>
                 </div>
@@ -127,7 +114,7 @@
                         <h3 class="font-bold text-lg" data-key="tool1_title">دليل الطوارئ الرقمي</h3>
                         <p class="text-xs text-gray-500" data-key="tool1_desc">للحظات الضعف والعودة للإدمان.</p>
                     </div>
-                    <a href="Digital_Anchor_ProjectdownloadsEmergency_Guide.pdf" download class="text-blue-900 hover:text-blue-700"><i class="fas fa-download text-xl"></i></a>
+                    <a href="downloads/Emergency_Guide.pdf" download class="text-blue-900 hover:text-blue-700"><i class="fas fa-download text-xl"></i></a>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-md flex items-center gap-4">
                     <div class="bg-purple-100 p-4 rounded-full text-purple-600"><i class="fas fa-brain text-2xl"></i></div>
@@ -135,7 +122,7 @@
                         <h3 class="font-bold text-lg" data-key="tool2_title">دليل المنهجية (40/40/20)</h3>
                         <p class="text-xs text-gray-500" data-key="tool2_desc">كيف تتعلم بذكاء وتطبق ما تتعلمه.</p>
                     </div>
-                    <a href="Methodology_Guide.pdf" download class="text-blue-900 hover:text-blue-700"><i class="fas fa-download text-xl"></i></a>
+                    <a href="downloads/Methodology_Guide.pdf" download class="text-blue-900 hover:text-blue-700"><i class="fas fa-download text-xl"></i></a>
                 </div>
             </div>
         </div>
@@ -163,126 +150,8 @@
     <footer class="bg-gray-900 text-white py-8 text-center mt-8">
         <p class="text-gray-400 text-sm">© 2025 Digital Anchor Project.</p>
     </footer>
+    
+    <script src="js/main.js"></script>
 
-    <script>
-        const translations = {
-            'ar': {
-                'page_title': 'المكتبة المجانية | المرساة الرقمية',
-                'site_name': 'المرساة الرقمية',
-                'nav_home': 'الرئيسية',
-                'nav_book_now': 'احجز الكتاب',
-                'header_title': 'المكتبة المجانية',
-                'header_subtitle': 'أدوات، معلقات، وملصقات لتذكيرك بقيمك الرقمية يومياً.',
-                'posters_title': '🖼️ المعلقات الجدارية',
-                'posters_desc': 'صممت للطباعة وتعليقها في غرفتك أو مكتبك.',
-                'p1_title': 'منطقة السيادة الشخصية', 'p1_desc': 'ملصق لتذكيرك بالمناطق الخالية من الهاتف.', 'p1_img_text': 'منطقة محظورة',
-                'p2_title': 'افصل لتتصل', 'p2_desc': 'تذكير بأن الحياة الحقيقية تحدث بعيداً عن الشاشة.', 'p2_img_text': 'افصل.. لتتصل',
-                'p3_title': 'بوصلة الانتباه', 'p3_desc': 'هل ما تفعله الآن يخدم هدف الـ 5 سنوات؟', 'p3_img_text': 'أين انتباهك؟',
-                'btn_download': 'تحميل (PDF)',
-                'tools_title': '📚 الكتيبات والأدوات',
-                'tool1_title': 'دليل الطوارئ الرقمي', 'tool1_desc': 'للحظات الضعف والعودة للإدمان.',
-                'tool2_title': 'دليل المنهجية (40/40/20)', 'tool2_desc': 'كيف تتعلم بذكاء وتطبق ما تتعلمه.',
-                'stickers_title': '✨ ملصقات اللابتوب والهاتف',
-                'sticker_text': 'أنا القبطان',
-                'btn_print': 'طباعة الملصقات'
-            },
-            'en': {
-                'page_title': 'Free Library | Digital Anchor',
-                'site_name': 'Digital Anchor',
-                'nav_home': 'Home',
-                'nav_book_now': 'Order Book',
-                'header_title': 'Free Library',
-                'header_subtitle': 'Tools, posters, and stickers to remind you of your digital values daily.',
-                'posters_title': '🖼️ Wall Posters',
-                'posters_desc': 'Designed to be printed and hung in your room or office.',
-                'p1_title': 'Sovereignty Zone', 'p1_desc': 'A reminder of phone-free zones.', 'p1_img_text': 'No Phone Zone',
-                'p2_title': 'Disconnect to Connect', 'p2_desc': 'Real life happens away from the screen.', 'p2_img_text': 'Connect',
-                'p3_title': 'Attention Compass', 'p3_desc': 'Does this serve your 5-year goal?', 'p3_img_text': 'Focus?',
-                'btn_download': 'Download (PDF)',
-                'tools_title': '📚 Booklets & Tools',
-                'tool1_title': 'Digital Emergency Guide', 'tool1_desc': 'For moments of weakness and relapse.',
-                'tool2_title': 'Methodology Guide', 'tool2_desc': 'How to learn smart and apply.',
-                'stickers_title': '✨ Laptop & Phone Stickers',
-                'sticker_text': 'I am Captain',
-                'btn_print': 'Print Stickers'
-            },
-            'fr': {
-                'page_title': 'Bibliothèque Gratuite | L\'Ancre Numérique',
-                'site_name': 'L\'Ancre Numérique',
-                'nav_home': 'Accueil',
-                'nav_book_now': 'Commander',
-                'header_title': 'Bibliothèque Gratuite',
-                'header_subtitle': 'Outils et affiches pour vos valeurs numériques.',
-                'posters_title': '🖼️ Affiches Murales',
-                'posters_desc': 'Conçues pour être imprimées et affichées.',
-                'p1_title': 'Zone de Souveraineté', 'p1_desc': 'Rappel des zones sans téléphone.', 'p1_img_text': 'Zone Interdite',
-                'p2_title': 'Déconnecter pour Connecter', 'p2_desc': 'La vraie vie est hors écran.', 'p2_img_text': 'Connecter',
-                'p3_title': 'Boussole d\'Attention', 'p3_desc': 'Cela sert-il votre objectif de 5 ans ?', 'p3_img_text': 'Focus ?',
-                'btn_download': 'Télécharger (PDF)',
-                'tools_title': '📚 Livrets et Outils',
-                'tool1_title': 'Guide d\'Urgence', 'tool1_desc': 'Pour les moments de faiblesse.',
-                'tool2_title': 'Guide Méthodologique', 'tool2_desc': 'Apprendre intelligemment.',
-                'stickers_title': '✨ Autocollants',
-                'sticker_text': 'Je suis Capitaine',
-                'btn_print': 'Imprimer'
-            },
-            'de': {
-                'page_title': 'Kostenlose Bibliothek | Der Digitale Anker',
-                'site_name': 'Der Digitale Anker',
-                'nav_home': 'Startseite',
-                'nav_book_now': 'Buch Bestellen',
-                'header_title': 'Kostenlose Bibliothek',
-                'header_subtitle': 'Werkzeuge und Poster für Ihre digitalen Werte.',
-                'posters_title': '🖼️ Wandposter',
-                'posters_desc': 'Zum Ausdrucken und Aufhängen.',
-                'p1_title': 'Souveränitätszone', 'p1_desc': 'Erinnerung an handyfreie Zonen.', 'p1_img_text': 'Verbotszone',
-                'p2_title': 'Trennen um zu Verbinden', 'p2_desc': 'Das echte Leben findet offline statt.', 'p2_img_text': 'Verbinden',
-                'p3_title': 'Aufmerksamkeitskompass', 'p3_desc': 'Dient dies Ihrem 5-Jahres-Ziel?', 'p3_img_text': 'Fokus?',
-                'btn_download': 'Herunterladen (PDF)',
-                'tools_title': '📚 Hefte & Werkzeuge',
-                'tool1_title': 'Notfallleitfaden', 'tool1_desc': 'Für Momente der Schwäche.',
-                'tool2_title': 'Methodenleitfaden', 'tool2_desc': 'Intelligent lernen.',
-                'stickers_title': '✨ Aufkleber',
-                'sticker_text': 'Ich bin Kapitän',
-                'btn_print': 'Drucken'
-            }
-        };
-
-        function setLanguage(lang) {
-            document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-            document.documentElement.setAttribute('lang', lang);
-            
-            document.querySelectorAll('[data-key]').forEach(el => {
-                const key = el.getAttribute('data-key');
-                if (translations[lang][key]) el.textContent = translations[lang][key];
-            });
-
-            // Update button styles
-            ['ar', 'en', 'fr', 'de'].forEach(code => {
-                const btn = document.getElementById('d-btn-' + code);
-                if(btn) {
-                    btn.className = (code === lang) 
-                        ? "text-xs font-bold px-2 py-1 rounded-full bg-blue-900 text-white transition"
-                        : "text-xs font-medium px-2 py-1 rounded-full text-gray-700 hover:bg-gray-200 transition";
-                }
-            });
-
-            document.body.style.textAlign = lang === 'ar' ? 'right' : 'left';
-            localStorage.setItem('preferredLang', lang);
-        }
-
-        // Mobile Menu
-        const menuBtn = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (menuBtn && mobileMenu) {
-            menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-        }
-
-        // Init
-        document.addEventListener('DOMContentLoaded', () => {
-            const defaultLang = localStorage.getItem('preferredLang') || 'ar';
-            setLanguage(defaultLang);
-        });
-    </script>
 </body>
 </html>
