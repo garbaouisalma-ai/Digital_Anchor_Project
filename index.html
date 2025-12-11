@@ -176,7 +176,82 @@
     </footer>
 
     <script>
-        // (لصق الكود الموحد من الخطوة 1 هنا)
+        const translations = {
+            'ar': {
+                'site_name': 'المرساة الرقمية', 'nav_tagline': 'من أنت حين تنطفئ الشاشة؟', 'nav_tracks': 'المسارات', 'nav_dashboard': 'لوحة القيادة', 'nav_blog': 'المدونة', 'nav_join': 'احجز الكتاب', 'nav_home': 'الرئيسية',
+                'hero_title': 'من أنت حين <span class="text-yellow-300">تنطفئ الشاشة</span>؟', 'hero_subtitle': 'دليل الشباب للقيم والتركيز والهدف في اقتصاد الانتباه.',
+                'hero_badge': '✨ الإصدار الجديد 2025', 'hero_btn_start': 'احجز الكتاب والرحلة الآن', 'hero_btn_emergency': 'دليل الطوارئ',
+                'roadmap_title': 'برنامج الـ 90 يوماً', 'roadmap_desc': 'خطة عملية لتحويل الوعي الرقمي إلى ممارسة يومية.',
+                'month1_title': 'الشهر 1: الصحوة الرقمية', 'month1_goal': 'الهدف: خفض الإلهاء بنسبة 30%',
+                'month2_title': 'الشهر 2: بناء النظام', 'month2_goal': 'الهدف: إنشاء نظام إنتاجية مستدام',
+                'month3_title': 'الشهر 3: التأثير', 'month3_goal': 'الهدف: مساعدة شخص واحد',
+                'tools_title': 'حقيبة الأدوات الرقمية', 'btn_free_tools': 'اكتشف المكتبة المجانية',
+                'author_label': 'عن المؤلفة', 'author_name': 'نوال غرباوي', 'author_bio': 'رائدة في مجال التحول الرقمي الواعي، وخبيرة في مواجهة تحديات التشتت الرقمي. هذا الكتاب لم ينبع من دراسات أكاديمية فحسب، بل من تجربة شخصية عميقة في استعادة السيطرة على الوقت والقيم.',
+                'pledge_title': 'تعهد السيادة الرقمية', 'pledge_text': '"أتعهد أمام نفسي بأن تكون القيم الخمس التي أؤمن بها هي الفلتر الأساسي لجميع قراراتي اليومية، خاصة في العالم الرقمي."', 'pledge_btn': 'أوقع العهد الآن ✍️',
+            },
+            'en': {
+                'site_name': 'Digital Anchor', 'nav_tagline': 'Who are you when the screen goes off?', 'nav_tracks': 'Tracks', 'nav_dashboard': 'Dashboard', 'nav_blog': 'Blog', 'nav_join': 'Order Book', 'nav_home': 'Home',
+                'hero_title': 'Who are you when the screen <span class="text-yellow-300">goes off</span>?', 'hero_subtitle': 'A guide to values, focus, and purpose in the attention economy.',
+                'hero_badge': '✨ New Edition 2025', 'hero_btn_start': 'Order Book & Journey Now', 'hero_btn_emergency': 'Emergency Guide',
+                'roadmap_title': 'The 90-Day Program', 'roadmap_desc': 'A practical roadmap to turn digital awareness into daily practice.',
+                'month1_title': 'Month 1: Digital Awakening', 'month1_goal': 'Goal: Reduce distraction by 30%',
+                'month2_title': 'Month 2: System Building', 'month2_goal': 'Goal: Sustainable productivity system',
+                'month3_title': 'Month 3: Impact', 'month3_goal': 'Goal: Help one person',
+                'tools_title': 'Digital Toolkit', 'btn_free_tools': 'Discover Free Library',
+                'author_label': 'About the Author', 'author_name': 'Nawal Gharbawi', 'author_bio': 'A pioneer in conscious digital transformation. This book emerged from deep personal experience in regaining control over time and values.',
+                'pledge_title': 'Digital Sovereignty Pledge', 'pledge_text': '"I pledge to myself that my core values will be the primary filter for all my daily decisions, especially in the digital world."', 'pledge_btn': 'Sign Pledge Now ✍️',
+            },
+            // ... (بقية اللغات للتوحيد)
+        };
+
+        const RATES = { 'SAR': { r: 1, s: 'SAR' }, 'USD': { r: 0.27, s: '$' }, 'EUR': { r: 0.25, s: '€' } };
+
+        function convertCurrency(curr) {
+            const rate = RATES[curr] ? RATES[curr].r : 1;
+            const symbol = RATES[curr] ? RATES[curr].s : 'SAR';
+            document.querySelectorAll('.price-display').forEach(el => {
+                const base = el.getAttribute('data-base-price'); 
+                if (base) el.textContent = Math.round(parseFloat(base) * rate);
+            });
+            document.querySelectorAll('.currency-symbol').forEach(el => {
+                el.textContent = symbol;
+            });
+            document.querySelectorAll('#curr-select').forEach(select => { if(select) select.value = curr; });
+        }
+
+        function setLanguage(lang) {
+            const isRTL = lang === 'ar';
+            document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+            document.documentElement.setAttribute('lang', lang);
+            
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key]; 
+                }
+            });
+
+            document.querySelectorAll('#lang-select').forEach(select => { if(select) select.value = lang; });
+            
+            const currencyMap = {'ar': 'SAR', 'en': 'USD', 'fr': 'EUR', 'de': 'EUR'};
+            const targetCurrency = currencyMap[lang] || 'USD';
+            convertCurrency(targetCurrency);
+            
+            localStorage.setItem('preferredLang', lang);
+        }
+
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const defaultLang = localStorage.getItem('preferredLang') || 'ar';
+            setLanguage(defaultLang);
+        });
     </script>
 </body>
 </html>
