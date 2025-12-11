@@ -19,7 +19,7 @@
     <nav class="bg-white shadow-lg sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="index.html" class="flex items-center space-x-3 space-x-reverse">
-                <img src="logo.png" width="45" class="rounded-lg shadow-sm">
+                <img src="logo.png" width="45" height="45" class="rounded-lg shadow-sm" alt="شعار المرساة الرقمية">
                 <h1 class="text-xl font-bold text-gray-900" data-key="site_name">المرساة الرقمية</h1>
             </a>
             
@@ -28,10 +28,10 @@
                 <a href="dashboard.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key="nav_dashboard">لوحة القيادة</a>
                 <a href="blog.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key="nav_blog">المدونة</a>
 
-                <select id="lang-select" onchange="setLanguage(this.value)" class="text-xs border border-gray-300 rounded p-1 bg-white">
+                <select id="lang-select" onchange="setLanguage(this.value)" class="text-xs border border-gray-300 rounded p-1 bg-white focus:outline-none focus:border-blue-500" aria-label="اختر اللغة">
                     <option value="ar">عربي</option><option value="en">English</option><option value="fr">Français</option><option value="de">Deutsch</option>
                 </select>
-                <select id="curr-select" onchange="convertCurrency(this.value)" class="text-xs border border-gray-300 rounded p-1 bg-white font-bold text-blue-900">
+                <select id="curr-select" onchange="convertCurrency(this.value)" class="text-xs border border-gray-300 rounded p-1 bg-white font-bold text-blue-900 focus:outline-none focus:border-blue-500" aria-label="اختر العملة">
                     <option value="SAR">SAR (ر.س)</option><option value="USD">USD ($)</option><option value="EUR">EUR (€)</option>
                 </select>
 
@@ -40,7 +40,7 @@
                 </a>
             </div>
             
-            <button id="mobile-menu-btn" class="md:hidden text-gray-800 p-2"><i class="fas fa-bars text-xl"></i></button>
+            <button id="mobile-menu-btn" class="md:hidden text-gray-800 p-2" aria-label="قائمة التنقل"><i class="fas fa-bars text-xl"></i></button>
         </div>
     </nav>
     <header class="bg-blue-900 text-white py-20 text-center relative overflow-hidden">
@@ -79,7 +79,7 @@
                     <div class="md:w-1/2 md:order-3"></div>
                 </div>
                 
-                <div class="text-center text-slate-400 font-bold">... (أسابيع 5-13) ...</div>
+                <div class="text-center text-slate-400 font-bold">... (الأسابيع المتبقية) ...</div>
 
             </div>
         </section>
@@ -110,7 +110,7 @@
     </footer>
 
     <script>
-        // ... (لصق الكود الموحد من الخطوة 2 هنا)
+        // (لصق الكود الموحد من الخطوة 1 هنا)
     </script>
 </body>
 </html>

@@ -5,69 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-key="lab_page_title">أداة تحديد القيم | المرساة الرقمية</title>
     
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="[https://unpkg.com/react@18/umd/react.development.js](https://unpkg.com/react@18/umd/react.development.js)"></script>
+    <script crossorigin src="[https://unpkg.com/react-dom@18/umd/react-dom.development.js](https://unpkg.com/react-dom@18/umd/react-dom.development.js)"></script>
+    <script src="[https://unpkg.com/@babel/standalone/babel.min.js](https://unpkg.com/@babel/standalone/babel.min.js)"></script>
     
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+    <script>
+        tailwind.config = { 
+            theme: { 
+                extend: { 
+                    colors: { 'anchor-blue': '#1a365d', 'anchor-gold': '#d69e2e' }, 
+                    fontFamily: { sans: ['Tajawal', 'sans-serif'], serif: ['Amiri', 'serif'] } 
+                } 
+            } 
+        }
+    </script>
+    
+    <link href="[https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap](https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap)" rel="stylesheet">
+    <link href="[https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css](https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css)" rel="stylesheet">
     
     <style>
-        body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; }
-        .anchor-blue { background-color: #0f172a; }
-        .anchor-gold { background-color: #d4af37; }
+        body { background-color: #f8fafc; font-family: 'Tajawal', sans-serif; } 
+        .anchor-blue { background-color: #1a365d; }
+        .anchor-gold { background-color: #d69e2e; }
     </style>
 </head>
-<body class="text-slate-900 font-sans flex flex-col min-h-screen">
-    <div id="root" class="flex flex-col min-h-screen"></div>
+<body class="bg-slate-50 text-slate-900 font-sans">
+    <div id="root"></div>
 
     <script type="text/babel">
-        const { useState, useEffect } = React;
+        const { useState, useEffect } = React; 
 
-        // Navbar (تم إعادة كتابته كـ React Component ليتوافق مع الصفحة)
-        const Navbar = ({ translations, setLanguage, convertCurrency }) => {
-            useEffect(() => {
-                // تفعيل قائمة الموبايل (نحتاج الكود الأصلي لـ JS في الأسفل)
-                const menuBtn = document.getElementById('mobile-menu-btn');
-                const mobileMenu = document.getElementById('mobile-menu');
-                if (menuBtn && mobileMenu) {
-                    menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-                }
-            }, []);
-
-            return (
-                <nav className="bg-white shadow-lg sticky top-0 z-50">
-                    <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-                        <a href="index.html" className="flex items-center space-x-3 space-x-reverse">
-                            <img src="logo.png" width="45" className="rounded-lg shadow-sm" alt="Logo" />
-                            <h1 className="text-xl font-bold text-gray-900" data-key="site_name">{translations.ar.site_name}</h1>
+        const Navbar = ({ translations, setLanguage, convertCurrency }) => (
+            <nav className="bg-white shadow-lg sticky top-0 z-50">
+                <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+                    <a href="index.html" className="flex items-center space-x-3 space-x-reverse">
+                        <img src="logo.png" width="45" height="45" className="rounded-lg shadow-sm" alt="Logo" />
+                        <h1 className="text-xl font-bold text-gray-900" data-key="site_name">{translations.ar.site_name}</h1>
+                    </a>
+                    
+                    <div className="hidden md:flex items-center gap-5">
+                        <select id="lang-select" onChange={(e) => setLanguage(e.target.value)} className="text-xs border border-gray-300 rounded p-1 bg-white focus:outline-none focus:border-anchor-blue">
+                            <option value="ar">عربي</option><option value="en">English</option><option value="fr">Français</option><option value="de">Deutsch</option>
+                        </select>
+                        <select id="curr-select" onChange={(e) => convertCurrency(e.target.value)} className="text-xs border border-gray-300 rounded p-1 bg-white font-bold text-anchor-blue focus:outline-none focus:border-anchor-blue">
+                            <option value="SAR">SAR (ر.س)</option><option value="USD">USD ($)</option><option value="EUR">EUR (€)</option>
+                        </select>
+                        <a href="buy.html" className="bg-anchor-blue text-white px-6 py-2 rounded-lg text-sm font-bold shadow-md flex items-center gap-2 no-underline" data-key="nav_join">
+                            <i className="fas fa-shopping-cart"></i> {translations.ar.nav_join}
                         </a>
-                        
-                        <div className="hidden md:flex items-center gap-5">
-                            <a href="index.html" className="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key="nav_home">{translations.ar.nav_home}</a>
-
-                            <select id="lang-select" onChange={(e) => setLanguage(e.target.value)} className="text-xs border border-gray-300 rounded p-1 bg-white focus:outline-none focus:border-blue-500">
-                                <option value="ar">عربي</option><option value="en">English</option><option value="fr">Français</option><option value="de">Deutsch</option>
-                            </select>
-                            <select id="curr-select" onChange={(e) => convertCurrency(e.target.value)} className="text-xs border border-gray-300 rounded p-1 bg-white font-bold text-blue-900 focus:outline-none focus:border-blue-500">
-                                <option value="SAR">SAR (ر.س)</option><option value="USD">USD ($)</option><option value="EUR">EUR (€)</option>
-                            </select>
-
-                            <a href="buy.html" className="bg-anchor-blue text-white px-6 py-2 rounded-lg text-sm font-bold shadow-md flex items-center gap-2 no-underline" data-key="nav_join">
-                                <i className="fas fa-shopping-cart"></i> {translations.ar.nav_join}
-                            </a>
-                        </div>
-                        
-                        <button id="mobile-menu-btn" className="md:hidden text-gray-800 p-2"><i className="fas fa-bars text-xl"></i></button>
                     </div>
-
-                    <div id="mobile-menu" className="hidden">
-                        {/* Mobile Menu Links here (Simplified) */}
-                    </div>
-                </nav>
-            );
-        };
+                </div>
+            </nav>
+        );
 
         const ValueTool = ({ translations, setLanguage, convertCurrency }) => {
             const [selectedValues, setSelectedValues] = useState([]);
@@ -139,19 +129,14 @@
         };
 
         const RootComponent = () => {
-             // دمج كود الترجمة والمنطق هنا
-            const translations = {
-                'ar': { 'site_name': 'المرساة الرقمية', 'nav_home': 'الرئيسية', 'nav_join': 'احجز الكتاب' },
-                'en': { 'site_name': 'Digital Anchor', 'nav_home': 'Home', 'nav_join': 'Order Book' }
-            };
-            const RATES = { 'SAR': { r: 1, s: 'SAR' }, 'USD': { r: 0.27, s: '$' }, 'EUR': { r: 0.25, s: '€' } };
+            const translations = { /* ... (نسخ من القاموس الموحد) ... */ };
+            const RATES = { /* ... */ };
             
-            // دوال العملة واللغة (مبسطة هنا)
-            const convertCurrency = (curr) => { /* Logic here */ };
-            const setLanguage = (lang) => { /* Logic here */ };
+            const convertCurrency = (curr) => { /* Logic is in the full script */ };
+            const setLanguage = (lang) => { /* Logic is in the full script */ };
 
             useEffect(() => {
-                 const defaultLang = 'ar'; // يمكن استخدام localStorage.getItem('preferredLang') || 'ar';
+                 const defaultLang = 'ar';
                  setLanguage(defaultLang);
             }, []);
 
@@ -160,6 +145,9 @@
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<RootComponent />);
+    </script>
+    <script>
+        // (لصق الكود الموحد من الخطوة 1 هنا)
     </script>
 </body>
 </html>
