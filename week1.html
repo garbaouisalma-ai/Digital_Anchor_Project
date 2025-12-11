@@ -1,141 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-key="week1_title">الأسبوع 1: لقاء مع الذات | الأكاديمية</title>
-    
-    <link rel="icon" type="image/png" href="img/logo.png">
-
-    <link href="css/styles.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
-    <script src="i18n.js"></script>
-    
-</head>
-<body class="text-slate-900 flex flex-col min-h-screen">
-
-    <nav class="bg-white shadow-md sticky top-0 z-50 px-4 py-3 flex justify-between items-center">
-        <a href="track-sovereignty.html" class="font-bold text-slate-600 hover:text-blue-900 flex items-center gap-2" data-key="nav_track_map">
-            <i class="fas fa-arrow-right"></i> خريطة المسار
-        </a>
-        <span class="font-bold text-blue-900" data-key="week1_header">الأسبوع 1: لقاء مع الذات</span>
-    </nav>
-
-    <main class="flex-grow container mx-auto px-4 py-8 max-w-6xl grid md:grid-cols-4 gap-6">
-        
-        <div class="md:col-span-1 space-y-2">
-            <div class="bg-white p-4 rounded-xl shadow-sm">
-                <h3 class="text-xs font-bold text-gray-400 uppercase mb-3" data-key="week_days_header">أيام الأسبوع</h3>
-                <button onclick="showDay('d1', this)" class="w-full text-right p-3 rounded-lg hover:bg-blue-50 font-bold text-sm bg-blue-100 text-blue-800" data-key="day1_title">الاثنين: التأسيس</button>
-                <button onclick="showDay('d2', this)" class="w-full text-right p-3 rounded-lg hover:bg-blue-50 font-bold text-sm text-gray-600" data-key="day2_title">الثلاثاء: التشخيص</button>
-                <button onclick="showDay('d3', this)" class="w-full text-right p-3 rounded-lg hover:bg-blue-50 font-bold text-sm text-gray-600" data-key="day3_title">الأربعاء: النبض</button>
-                <button onclick="showDay('d4', this)" class="w-full text-right p-3 rounded-lg hover:bg-blue-50 font-bold text-sm text-gray-600" data-key="day4_title">الخميس: المرساة 💎</button>
-                <button onclick="showDay('d5', this)" class="w-full text-right p-3 rounded-lg hover:bg-blue-50 font-bold text-sm text-gray-600" data-key="day5_title">الجمعة: العهد</button>
-            </div>
-            
-            <div class="bg-blue-900 text-white p-5 rounded-xl shadow-lg mt-4">
-                <h3 class="font-bold mb-3 text-sm" data-key="week_tools_header"><i class="fas fa-box-open"></i> أدوات الأسبوع</h3>
-                <ul class="text-xs space-y-2">
-                    <li data-key="tool_workbook"><a href="downloads/Sovereignty_Workbook.pdf" class="hover:text-yellow-400 flex items-center gap-2"><i class="fas fa-file-pdf"></i> دفتر السيادة</a></li>
-                    <li data-key="tool_scale"><a href="tool-value.html" class="hover:text-yellow-400 flex items-center gap-2"><i class="fas fa-chart-bar"></i> مقياس البداية</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="md:col-span-3">
-            
-            <div id="d1" class="day-content bg-white p-8 rounded-2xl shadow-lg border border-slate-100">
-                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full font-bold mb-4 inline-block" data-key="day_indicator">اليوم الأول</span>
-                <h1 class="text-3xl font-bold text-slate-800 mb-6" data-key="d1_title_content">الوصول وتأسيس المساحة 🏠</h1>
-                
-                <div class="prose max-w-none text-slate-700">
-                    <p class="mb-4" data-key="d1_intro">أهلاً بك في بداية الرحلة. اليوم لا نغير شيئاً كبيراً، فقط نجهز "الغرفة" للعمل.</p>
-                    
-                    <div class="bg-yellow-50 p-6 rounded-xl border-r-4 border-yellow-500 mb-8">
-                        <h3 class="font-bold text-slate-900 mb-3" data-key="d1_task_header">🎯 مهمتك اليوم:</h3>
-                        <ul class="list-disc list-inside space-y-2">
-                            <li data-key="d1_task_1">أنشئ مجلداً على جهازك باسم "المرساة الرقمية".</li>
-                            <li data-key="d1_task_2">حمل <a href="downloads/Sovereignty_Workbook.pdf" class="text-blue-600 font-bold underline">دفتر السيادة الرقمية</a>.</li>
-                            <li data-key="d1_task_3">انضم لمجموعة Telegram عبر هذا الرابط [Link].</li>
-                        </ul>
-                    </div>
-
-                    <h3 class="font-bold mb-4 flex items-center gap-2" data-key="d1_video_header"><i class="fas fa-play-circle text-red-500"></i> شاهد فيديو الترحيب (8 د):</h3>
-                    <div class="aspect-w-16 aspect-h-9 bg-gray-200 rounded-xl flex items-center justify-center text-gray-500 mb-8">
-                        [فيديو: كيف ستتغير علاقتك بالتكنولوجيا؟]
-                    </div>
-
-                    <div class="border-t pt-6">
-                        <p class="text-center italic text-slate-500 font-serif text-lg" data-key="d1_quote">"الرحلة تبدأ بخطوة، والتحول يبدأ بمساحة مخصصة."</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div id="d2" class="day-content p-8 bg-white rounded-2xl shadow-lg border border-slate-100" style="display:none;">
-                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full font-bold mb-4 inline-block" data-key="day_indicator">اليوم الثاني</span>
-                <h1 class="text-3xl font-bold text-slate-800 mb-6" data-key="d2_title_content">الثلاثاء: التشخيص وبناء المقياس</h1>
-                <p data-key="d2_placeholder">محتوى اليوم الثاني سيتم تحميله هنا. التركيز على استخدام مقياس البداية.</p>
-            </div>
-
-            <div id="d3" class="day-content p-8 bg-white rounded-2xl shadow-lg border border-slate-100" style="display:none;">
-                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full font-bold mb-4 inline-block" data-key="day_indicator">اليوم الثالث</span>
-                <h1 class="text-3xl font-bold text-slate-800 mb-6" data-key="d3_title_content">الأربعاء: النبض الرقمي (تتبع التشتت)</h1>
-                <p data-key="d3_placeholder">محتوى اليوم الثالث سيتم تحميله هنا. ابدأ بتتبع استخدامك الحقيقي.</p>
-            </div>
-            
-            <div id="d4" class="day-content p-8 bg-white rounded-2xl shadow-lg border border-slate-100" style="display:none;">
-                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full font-bold mb-4 inline-block" data-key="day_indicator">اليوم الرابع</span>
-                <h1 class="text-3xl font-bold text-slate-800 mb-6" data-key="d4_title_content">الخميس: اكتشاف المرساة 💎 (القيم)</h1>
-                <p data-key="d4_placeholder">محتوى اليوم الرابع سيتم تحميله هنا. استخدم أداة تحديد القيم.</p>
-            </div>
-            
-            <div id="d5" class="day-content p-8 bg-white rounded-2xl shadow-lg border border-slate-100" style="display:none;">
-                <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full font-bold mb-4 inline-block" data-key="day_indicator">اليوم الخامس</span>
-                <h1 class="text-3xl font-bold text-slate-800 mb-6" data-key="d5_title_content">الجمعة: توقيع العهد الرقمي</h1>
-                <p data-key="d5_placeholder">محتوى اليوم الخامس سيتم تحميله هنا. مهمة توقيع وثيقة العهد.</p>
-            </div>
-            
-        </div>
-    </main>
-
-    <footer class="bg-white border-t py-6 text-center text-sm text-slate-500 mt-auto">© 2025 <span data-key="site_name_short">الأكاديمية الرقمية</span></footer>
-
-    <script>
-        // دالة عرض اليوم (الموجودة في الملف الأصلي)
-        function showDay(id, buttonElement) {
-            // إخفاء كل المحتوى باستثناء اليوم المحدد
-            document.querySelectorAll('.day-content').forEach(el => el.style.display = 'none');
-            const target = document.getElementById(id);
-            if (target) target.style.display = 'block';
-            
-            // تحديث زر اليوم النشط
-            document.querySelectorAll('.md\\:col-span-1 button').forEach(btn => {
-                btn.classList.remove('bg-blue-100', 'text-blue-800');
-                btn.classList.add('text-gray-600');
-            });
-            buttonElement.classList.add('bg-blue-100', 'text-blue-800');
-            buttonElement.classList.remove('text-gray-600');
-        }
-        
-        // تشغيل التهيئة واليوم الأول عند تحميل الصفحة
-        document.addEventListener('DOMContentLoaded', () => {
-            // تهيئة اللغة (من i18n.js)
-            initializePage(); 
-
-            // إخفاء كل المحتوى باستثناء اليوم الأول
-            document.querySelectorAll('.day-content').forEach(el => el.style.display = 'none');
-            const d1 = document.getElementById('d1');
-            if(d1) d1.style.display = 'block';
-            
-            // تحديث زر اليوم الأول ليكون نشطاً
-            const firstButton = document.querySelector('button[onclick="showDay(\'d1\', this)"]');
-             if(firstButton) {
-                 firstButton.classList.add('bg-blue-100', 'text-blue-800');
-                 firstButton.classList.remove('text-gray-600');
-             }
-        });
-    </script>
-</body>
-</html>
