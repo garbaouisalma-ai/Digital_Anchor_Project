@@ -296,7 +296,145 @@
             
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.getAttribute('data-key');
-                if (translations[lang] && translations[lang][key]) el.innerHTML = translations[lang][key];
+                if (translations[lang] && translations[lang][key]) el.innerHTML = translations[lang][key];<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJZHN8FQQ2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-HJZHN8FQQ2');
+    </script>
+
+    <title data-key="page_title">الأكاديمية الرقمية | رحلة التحول من الوعي إلى التمكين</title>
+    <meta name="description" content="أول منصة عربية متكاملة للتحول الرقمي الشخصي. مسارات متخصصة، أدوات عملية، ومجتمع داعم بقيادة نوال غرباوي.">
+    <link rel="icon" type="image/png" href="img/logo.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root { --primary: #1a365d; --secondary: #2d3748; --accent: #d69e2e; }
+        body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; color: #1e293b; scroll-behavior: smooth; }
+        h1, h2, h3 { font-family: 'Amiri', serif; }
+        
+        .btn-primary { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white; transition: 0.3s; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); transition: 0.3s; }
+        
+        @keyframes pulse-gold { 0% { box-shadow: 0 0 0 0 rgba(214, 158, 46, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(214, 158, 46, 0); } 100% { box-shadow: 0 0 0 0 rgba(214, 158, 46, 0); } }
+        .pulse-animation { animation: pulse-gold 2s infinite; }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+    
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <a href="index.html">
+                    <img src="img/logo.png" width="50" class="rounded-lg shadow-sm hover:scale-105 transition">
+                </a>
+                <div>
+                    <h1 class="text-xl font-bold text-gray-900" data-key="site_name">الأكاديمية الرقمية</h1>
+                    <p class="text-xs text-yellow-600 font-bold hidden sm:block">بقيادة: نوال غرباوي</p>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-5">
+                <a href="program.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key="nav_program">البرنامج (90 يوم)</a>
+                <a href="lab.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key="nav_lab">مختبر التطبيق</a>
+                <a href="members.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key="nav_members">منطقة الأعضاء</a>
+                <a href="blog.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key="nav_blog">المدونة</a>
+                
+                <div class="flex items-center border border-gray-300 rounded-full px-2 py-1 bg-gray-50 h-8">
+                    <button onclick="setLanguage('ar')" id="d-btn-ar" class="text-xs px-2 font-bold transition">ع</button>
+                    <span class="text-gray-300">|</span>
+                    <button onclick="setLanguage('en')" id="d-btn-en" class="text-xs px-2 font-bold transition">En</button>
+                    <span class="text-gray-300">|</span>
+                    <button onclick="setLanguage('fr')" id="d-btn-fr" class="text-xs px-2 font-bold transition">Fr</button>
+                </div>
+
+                <a href="buy.html" class="btn-primary px-6 py-2 rounded-lg text-sm font-bold shadow-md flex items-center gap-2 no-underline text-white" data-key="nav_join">
+                    <i class="fas fa-user-plus"></i> انضم للأكاديمية
+                </a>
+            </div>
+            
+            <button id="mobile-menu-btn" class="md:hidden text-gray-800 p-2 rounded hover:bg-gray-100"><i class="fas fa-bars text-xl"></i></button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-4 shadow-xl">
+            <a href="program.html" class="block py-3 font-bold border-b border-gray-100" data-key="nav_program">البرنامج (90 يوم)</a>
+            <a href="lab.html" class="block py-3 font-bold border-b border-gray-100" data-key="nav_lab">مختبر التطبيق</a>
+            <a href="members.html" class="block py-3 font-bold border-b border-gray-100" data-key="nav_members">منطقة الأعضاء</a>
+            <a href="blog.html" class="block py-3 font-bold border-b border-gray-100" data-key="nav_blog">المدونة</a>
+            
+            <div class="flex justify-center gap-4 py-4">
+                <button onclick="setLanguage('ar')" class="bg-gray-100 px-3 py-1 rounded text-sm font-bold">عربي</button>
+                <button onclick="setLanguage('en')" class="bg-gray-100 px-3 py-1 rounded text-sm font-bold">English</button>
+                <button onclick="setLanguage('fr')" class="bg-gray-100 px-3 py-1 rounded text-sm font-bold">Français</button>
+            </div>
+
+            <a href="buy.html" class="block w-full py-3 mt-2 text-center bg-blue-900 text-white rounded-lg font-bold" data-key="nav_join">انضم للأكاديمية</a>
+        </div>
+    </nav>
+
+    <header class="bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white py-20 relative overflow-hidden">
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <span class="inline-block bg-yellow-500 text-slate-900 px-4 py-1 rounded-full text-xs font-bold mb-6 pulse-animation" data-key="hero_badge">🚀 أول منصة عربية للتحول الرقمي</span>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight" data-key="hero_title">من الوعي... إلى <span class="text-yellow-400">التمكين</span></h1>
+            <p class="text-xl text-blue-100 max-w-2xl mx-auto mb-10 font-medium" data-key="hero_subtitle">نحن لا نبيع لك كتاباً فقط، بل نرافقك في رحلة مدتها سنة كاملة لتحويل علاقتك مع التكنولوجيا من الاستهلاك إلى السيادة.</p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="tool-value.html" class="bg-yellow-500 text-slate-900 px-8 py-4 rounded-xl font-bold hover:bg-yellow-400 transition shadow-lg flex items-center justify-center gap-2 no-underline">
+                    <i class="fas fa-clipboard-check"></i> <span data-key="btn_quiz">اختبر مستوى وعيك (مجاناً)</span>
+                </a>
+                <a href="#tracks" class="bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/20 transition flex items-center justify-center gap-2 no-underline">
+                    <i class="fas fa-map-signs"></i> <span data-key="btn_tracks">اكتشف المسارات</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section id="tracks" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-slate-800 mb-4" data-key="tracks_title">اختر مسار تحولك</h2>
+                <p class="text-slate-600" data-key="tracks_desc">تم تفكيك الكتاب إلى 4 مسارات تطبيقية تناسب هدفك</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-lg border-t-4 border-blue-500 card-hover group">
+                    <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                        <i class="fas fa-shield-alt text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2" data-key="track1_title">السيادة الرقمية</h3>
+                    <p class="text-xs text-gray-500 mb-4" data-key="track1_meta">الفصول 1-15 | للمبتدئين</p>
+                    <p class="text-sm text-gray-600 mb-6" data-key="track1_desc">اكتشف قيمك واستعد سيطرتك على وقتك وانتباهك.</p>
+                    <a href="tracks.html" class="text-blue-600 font-bold text-sm hover:underline">التفاصيل &larr;</a>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-lg border-t-4 border-green-500 card-hover group">
+                    <div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                        <i class="fas fa-briefcase text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2" data-key="track2_title">الإنتاجية الرقمية</h3>
+                    <p class="text-xs text-gray-500 mb-4" data-key="track2_meta">الفصول 23-24 | للموظفين</p>
+                    <p class="text-sm text-gray-600 mb-6" data-key="track2_desc">أتقن العمل عن بُعد وابنِ نظاماً مهنياً لا يقهر.</p>
+                    <a href="tracks.html" class="text-green-600 font-bold text-sm hover:underline">التفاصيل &larr;</a>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-lg border-t-4 border-purple-500 card-hover group">
+                    <div class="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                        <i class="fas fa-rocket text-2xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2" data-key="track3_title">ريادة الأعمال</h3>
+                    <p class="text-xs text-gray-500 mb-4"
             });
 
             ['ar', 'en', 'fr'].forEach(code => {
