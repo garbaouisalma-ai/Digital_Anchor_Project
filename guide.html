@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-key="guide_title">دليل المنهجية | المرساة الرقمية</title>
+    
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJZHN8FQQ2"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HJZHN8FQQ2');</script>
     
@@ -15,121 +16,88 @@
 <body class="text-slate-900 flex flex-col min-h-screen">
 
     <nav class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="index.html" class="flex items-center gap-3">
-                <img src="logo.png" width="40" class="rounded-lg">
-                <span class="text-xl font-bold" data-key="site_name">المرساة الرقمية</span>
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-2 space-x-reverse">
+                <i class="fas fa-anchor text-lg text-blue-900"></i>
+                <span class="font-extrabold text-xl text-blue-900" data-key="site_name">المرساة الرقمية</span>
             </a>
-            <div class="flex items-center gap-4">
-                <select id="lang-select" onchange="setLanguage(this.value)" class="text-xs border border-gray-300 rounded p-1 bg-white">
-                    <option value="ar">عربي</option>
-                    <option value="en">English</option>
-                    <option value="fr">Français</option>
-                    <option value="de">Deutsch</option>
-                </select>
-                <a href="buy.html" class="bg-yellow-500 text-slate-900 px-4 py-2 rounded-lg font-bold hover:bg-yellow-400 text-sm" data-key="nav_book_now">احجز نسختك</a>
-            </div>
+            
+            <select id="lang-select" onchange="setLanguage(this.value)" class="p-2 border rounded-lg text-sm">
+                <option value="ar">العربية</option>
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+            </select>
         </div>
     </nav>
+    
+    <main class="flex-grow container mx-auto px-4 py-16 max-w-4xl">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-blue-900 mb-4" data-key="guide_header">
+                منهجية المرساة الرقمية
+            </h1>
+            <p class="text-xl text-slate-600" data-key="guide_subtitle">
+                دليل خطوة بخطوة للسيادة الرقمية.
+            </p>
+        </div>
 
-    <main class="flex-grow container mx-auto px-4 py-12 max-w-4xl">
-        <header class="text-center mb-12">
-            <h1 class="text-4xl font-bold text-slate-800 mb-4" data-key="guide_header">منهجية المرساة الرقمية</h1>
-            <p class="text-xl text-slate-600" data-key="guide_subtitle">دليل إرشادي خطوة بخطوة للتحرر واستعادة السيادة الرقمية.</p>
-        </header>
-
-        <div class="space-y-8">
-            <section class="bg-white p-8 rounded-2xl shadow-lg border-r-4 border-yellow-500">
-                <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-3">
-                    <span class="bg-yellow-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">1</span>
-                    <span data-key="step1_title">التحرر والعهد</span>
-                </h2>
-                <ul class="list-disc pr-6 space-y-3 text-slate-700 text-lg">
-                    <li>
-                        <span data-key="step1_text1">في اللحظات التي تشعر فيها بالانجراف، استخدم</span> 
-                        <a href="Digital_Anchor_ProjectdownloadsEmergency_Guide.pdf" class="text-blue-600 font-bold hover:underline" data-key="link_emergency">دليل الطوارئ</a>.
-                    </li>
-                    <li>
-                        <span data-key="step1_text2">ابدأ بتحديد نيتك ووقع</span> 
-                        <a href="Pledge_Paper.pdf" class="text-blue-600 font-bold hover:underline" data-key="link_covenant">عهد التحرر</a> 
-                        <span data-key="step1_text3">لربط نفسك بقيمك الحقيقية.</span>
-                    </li>
+        <div class="space-y-12">
+            
+            <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-red-500">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-lock-open text-3xl text-red-600 ml-4"></i>
+                    <h2 class="text-2xl font-bold text-slate-800" data-key="step1_title">التحرر والالتزام</h2>
+                </div>
+                <p class="text-lg text-slate-700">
+                    <span data-key="step1_text1">استخدم</span> 
+                    <a href="Digital_Anchor_ProjectdownloadsEmergency_Guide.pdf" target="_blank" class="text-red-500 hover:underline font-medium" data-key="link_emergency">دليل الطوارئ</a>
+                    <span data-key="step1_text2">ووقع على</span> 
+                    <a href="Pledge_Paper.pdf" target="_blank" class="text-blue-500 hover:underline font-medium" data-key="link_covenant">وثيقة العهد</a> 
+                    <span data-key="step1_text3">لتثبيت نفسك ضد الإلهاء والبدء برحلة القيم.</span>
+                </p>
+            </div>
+            
+            <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-green-500">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-cogs text-3xl text-green-600 ml-4"></i>
+                    <h2 class="text-2xl font-bold text-slate-800" data-key="step2_title">القيادة والإنتاجية</h2>
+                </div>
+                <ul class="list-disc pr-6 space-y-3 text-lg text-slate-700">
+                    <li data-key="step2_li1">راقب وقت الشاشة بوعي واستخدمه كأداة لا كقائد.</li>
+                    <li data-key="step2_li2">خصص وقتاً غير متصل بالإنترنت بانتظام للتركيز العميق والإبداع.</li>
                 </ul>
-            </section>
-
-            <section class="bg-white p-8 rounded-2xl shadow-lg border-r-4 border-blue-600">
-                <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-3">
-                    <span class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">2</span>
-                    <span data-key="step2_title">القيادة والإنتاجية</span>
-                </h2>
-                <ul class="list-disc pr-6 space-y-3 text-slate-700 text-lg">
-                    <li data-key="step2_li1">استخدم أدوات التتبع للتحكم في وقتك على الشاشة بشكل واعٍ.</li>
-                    <li data-key="step2_li2">خصص وقتاً غير رقمي منتظماً لتغذية قيمك الجوهرية.</li>
+            </div>
+            
+            <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-yellow-500">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-users text-3xl text-yellow-600 ml-4"></i>
+                    <h2 class="text-2xl font-bold text-slate-800" data-key="step3_title">المجتمع والدعم</h2>
+                </div>
+                <ul class="list-disc pr-6 space-y-3 text-lg text-slate-700">
+                    <li data-key="step3_li1">شارك إنجازاتك الصغيرة والكبيرة مع مجموعة الدعم لتحفيز نفسك والآخرين.</li>
+                    <li data-key="step3_li2">اطلب الدعم والمساعدة عندما تواجه تحديات التكنولوجيا.</li>
                 </ul>
-            </section>
+            </div>
+            
+        </div>
 
-            <section class="bg-white p-8 rounded-2xl shadow-lg border-r-4 border-green-600">
-                <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-3">
-                    <span class="bg-green-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">3</span>
-                    <span data-key="step3_title">المجتمع والدعم</span>
-                </h2>
-                <ul class="list-disc pr-6 space-y-3 text-slate-700 text-lg">
-                    <li data-key="step3_li1">شارك قصص نجاحك وتحدياتك مع مجتمع المرساة الرقمية.</li>
-                    <li data-key="step3_li2">اطلب المساعدة والدعم عندما تشعر بأنك تفقد السيطرة.</li>
-                </ul>
-            </section>
+        <div class="text-center mt-12">
+            <a href="index.html" class="inline-block bg-blue-900 text-white font-bold px-8 py-3 rounded-xl hover:bg-blue-800 transition shadow-md">
+                العودة إلى الرئيسية
+            </a>
         </div>
     </main>
 
-    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-auto"><p class="text-sm">© 2025 Digital Anchor Project.</p></footer>
+    <footer class="bg-gray-800 text-white py-8 mt-auto">
+        <div class="container mx-auto px-4 text-center text-slate-400 text-sm">
+            <p>&copy; 2025 <span data-key="site_name">المرساة الرقمية</span>. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
 
+    <script src="i18n.js"></script>
     <script>
-        const translations = {
-            'ar': {
-                'site_name': 'المرساة الرقمية', 'guide_title': 'دليل المنهجية', 'nav_book_now': 'احجز نسختك',
-                'guide_header': 'منهجية المرساة الرقمية', 'guide_subtitle': 'دليل إرشادي خطوة بخطوة للتحرر واستعادة السيادة الرقمية.',
-                'step1_title': 'التحرر والعهد', 'step1_text1': 'في اللحظات التي تشعر فيها بالانجراف، استخدم', 'link_emergency': 'دليل الطوارئ', 'step1_text2': 'ابدأ بتحديد نيتك ووقع', 'link_covenant': 'عهد التحرر', 'step1_text3': 'لربط نفسك بقيمك الحقيقية.',
-                'step2_title': 'القيادة والإنتاجية', 'step2_li1': 'استخدم أدوات التتبع للتحكم في وقتك على الشاشة بشكل واعٍ.', 'step2_li2': 'خصص وقتاً غير رقمي منتظماً لتغذية قيمك الجوهرية.',
-                'step3_title': 'المجتمع والدعم', 'step3_li1': 'شارك قصص نجاحك مع مجتمع المرساة الرقمية.', 'step3_li2': 'اطلب المساعدة والدعم عندما تشعر بأنك تفقد السيطرة.'
-            },
-            'en': {
-                'site_name': 'Digital Anchor', 'guide_title': 'Methodology Guide', 'nav_book_now': 'Order Now',
-                'guide_header': 'Digital Anchor Methodology', 'guide_subtitle': 'A step-by-step guide to reclaiming digital sovereignty.',
-                'step1_title': 'Liberation & Pledge', 'step1_text1': 'In moments of drift, use the', 'link_emergency': 'Emergency Guide', 'step1_text2': 'Start by signing the', 'link_covenant': 'Liberation Pledge', 'step1_text3': 'to anchor to your values.',
-                'step2_title': 'Leadership & Productivity', 'step2_li1': 'Use tracking tools to consciously control screen time.', 'step2_li2': 'Allocate non-digital time for core values.',
-                'step3_title': 'Community & Support', 'step3_li1': 'Share success stories with the community.', 'step3_li2': 'Seek support when losing control.'
-            },
-            'fr': {
-                'site_name': 'L\'Ancre Numérique', 'guide_title': 'Guide Méthodologique', 'nav_book_now': 'Commander',
-                'guide_header': 'Méthodologie Ancre Numérique', 'guide_subtitle': 'Un guide étape par étape pour la souveraineté numérique.',
-                'step1_title': 'Libération et Engagement', 'step1_text1': 'Utilisez le', 'link_emergency': 'Guide d\'Urgence', 'step1_text2': 'Signez l\'', 'link_covenant': 'Engagement', 'step1_text3': 'pour vous ancrer.',
-                'step2_title': 'Leadership et Productivité', 'step2_li1': 'Contrôlez consciemment votre temps d\'écran.', 'step2_li2': 'Allouez du temps hors écran.',
-                'step3_title': 'Communauté et Soutien', 'step3_li1': 'Partagez vos succès.', 'step3_li2': 'Demandez de l\'aide si nécessaire.'
-            },
-            'de': {
-                'site_name': 'Der Digitale Anker', 'guide_title': 'Methodenleitfaden', 'nav_book_now': 'Bestellen',
-                'guide_header': 'Methodik des Digitalen Ankers', 'guide_subtitle': 'Ein Schritt-für-Schritt-Leitfaden zur digitalen Souveränität.',
-                'step1_title': 'Befreiung & Verpflichtung', 'step1_text1': 'Nutzen Sie den', 'link_emergency': 'Notfallleitfaden', 'step1_text2': 'Unterzeichnen Sie die', 'link_covenant': 'Verpflichtung', 'step1_text3': 'um sich zu verankern.',
-                'step2_title': 'Führung & Produktivität', 'step2_li1': 'Kontrollieren Sie Ihre Bildschirmzeit bewusst.', 'step2_li2': 'Planen Sie offline-Zeit ein.',
-                'step3_title': 'Gemeinschaft & Unterstützung', 'step3_li1': 'Teilen Sie Erfolge.', 'step3_li2': 'Suchen Sie Unterstützung.'
-            }
-        };
-
-        function setLanguage(lang) {
-            document.documentElement.lang = lang;
-            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-            document.querySelectorAll('[data-key]').forEach(el => {
-                const key = el.getAttribute('data-key');
-                if (translations[lang][key]) el.textContent = translations[lang][key];
-            });
-            localStorage.setItem('preferredLang', lang);
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const defaultLang = localStorage.getItem('preferredLang') || 'ar';
-            document.getElementById('lang-select').value = defaultLang;
-            setLanguage(defaultLang);
-        });
+        // تشغيل التهيئة والترجمة عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', initializePage);
     </script>
 </body>
 </html>

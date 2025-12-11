@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-key="preorder_title">حجز الكتاب | المرساة الرقمية</title>
+    
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJZHN8FQQ2"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HJZHN8FQQ2');</script>
     
@@ -15,80 +16,70 @@
 <body class="text-slate-900 flex flex-col min-h-screen">
 
     <nav class="bg-slate-900 text-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="index.html" class="flex items-center gap-3">
-                <img src="logo.png" width="40" class="rounded-lg">
-                <span class="text-xl font-bold" data-key="site_name">المرساة الرقمية</span>
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-2 space-x-reverse">
+                <i class="fas fa-anchor text-lg text-yellow-300"></i>
+                <span class="font-extrabold text-xl text-white" data-key="site_name">المرساة الرقمية</span>
             </a>
-            <select id="lang-select" onchange="setLanguage(this.value)" class="text-xs bg-slate-800 border border-slate-700 rounded p-1 text-white">
-                <option value="ar">عربي</option>
+            
+            <select id="lang-select" onchange="setLanguage(this.value)" class="p-2 border border-slate-700 bg-slate-800 rounded-lg text-sm text-white">
+                <option value="ar">العربية</option>
                 <option value="en">English</option>
                 <option value="fr">Français</option>
                 <option value="de">Deutsch</option>
             </select>
         </div>
     </nav>
-
-    <main class="flex-grow container mx-auto px-4 py-12 max-w-4xl">
-        <div class="bg-white p-10 rounded-2xl shadow-2xl border-t-8 border-yellow-500 text-center">
-            <i class="fas fa-book-open text-6xl text-yellow-500 mb-6"></i>
-            <h1 class="text-3xl font-bold text-slate-800 mb-4" data-key="book_header">الكتاب المنتظر: "من أنت حين تنطفئ الشاشة؟"</h1>
-            <p class="text-lg text-slate-600 mb-8" data-key="book_subtitle">دليلك الشامل لاستعادة التركيز والقيادة الرقمية. احجز نسختك الآن بسعر خاص.</p>
+    
+    <main class="flex-grow container mx-auto px-4 py-16 max-w-3xl">
+        <div class="bg-white p-8 md:p-10 rounded-2xl shadow-2xl border-t-8 border-yellow-500 text-center">
             
-            <div class="bg-slate-900 text-white p-6 rounded-xl max-w-md mx-auto mb-8 shadow-lg">
-                <h2 class="text-xl font-bold mb-2" data-key="preorder_price">سعر الحجز المسبق:</h2>
-                <p class="text-5xl font-extrabold text-yellow-500">19.99 $</p>
-                <p class="text-sm text-slate-400 line-through mt-2" data-key="regular_price">السعر العادي: 24.99 $</p>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-2" data-key="book_header">
+                الكتاب: "من أنت حين تنطفئ الشاشة؟"
+            </h1>
+            <p class="text-xl text-slate-600 mb-8" data-key="book_subtitle">
+                دليلك للتركيز والسيادة الرقمية.
+            </p>
+
+            <div class="w-full h-64 bg-gray-200 rounded-xl mb-8 flex items-center justify-center text-gray-500 font-bold">
+                [صورة غلاف الكتاب]
             </div>
 
-            <ul class="text-right max-w-md mx-auto space-y-4 mb-10 text-lg">
-                <li class="flex items-center gap-3"><i class="fas fa-check-circle text-green-500"></i> <span data-key="benefit1">نسخة ورقية (فور صدورها)</span></li>
-                <li class="flex items-center gap-3"><i class="fas fa-check-circle text-green-500"></i> <span data-key="benefit2">نسخة رقمية (PDF) فورية</span></li>
-                <li class="flex items-center gap-3 font-bold text-slate-800"><i class="fas fa-crown text-yellow-500"></i> <span data-key="benefit3">وصول حصري لمنطقة الأعضاء</span></li>
-            </ul>
+            <div class="bg-yellow-50 p-6 rounded-xl border border-yellow-200 mb-8">
+                <h3 class="text-2xl font-bold text-yellow-800 mb-4" data-key="preorder_price">
+                    سعر الحجز المسبق: 19.99 $
+                </h3>
+                <p class="text-red-500 font-medium line-through mb-4" data-key="regular_price">
+                    السعر المعتاد: 24.99 $
+                </p>
 
-            <a href="buy.html" class="inline-block bg-yellow-500 text-slate-900 px-12 py-4 rounded-full font-bold text-xl hover:bg-yellow-400 transition shadow-xl" data-key="btn_preorder">احجز نسختك الآن</a>
-            <p class="text-sm text-slate-500 mt-4" data-key="preorder_note">يشمل الكتاب شحن مجاني داخل منطقة الشرق الأوسط.</p>
+                <div class="text-left space-y-3 text-slate-700">
+                    <p class="flex items-center"><i class="fas fa-box-open text-green-500 ml-3"></i> <span data-key="benefit1">نسخة ورقية من الكتاب</span></p>
+                    <p class="flex items-center"><i class="fas fa-file-pdf text-blue-500 ml-3"></i> <span data-key="benefit2">وصول فوري لملف PDF</span></p>
+                    <p class="flex items-center"><i class="fas fa-users text-purple-500 ml-3"></i> <span data-key="benefit3">وصول مدى الحياة للمنصة التعليمية</span></p>
+                </div>
+            </div>
+
+            <a href="buy.html" class="bg-blue-900 text-white font-bold text-xl px-10 py-4 rounded-xl block hover:bg-blue-800 transition transform hover:scale-[1.02] shadow-xl">
+                احجز نسختك الآن
+            </a>
+            
+            <p class="text-sm text-slate-500 mt-4" data-key="preorder_note">
+                (توصيل مجاني في الشرق الأوسط)
+            </p>
         </div>
     </main>
 
-    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-auto"><p class="text-sm">© 2025 Digital Anchor Project.</p></footer>
+    <footer class="bg-gray-800 text-white py-8 mt-auto">
+        <div class="container mx-auto px-4 text-center text-slate-400 text-sm">
+            <p>&copy; 2025 <span data-key="site_name">المرساة الرقمية</span>. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
 
+    <script src="i18n.js"></script>
     <script>
-        const translations = {
-            'ar': {
-                'site_name': 'المرساة الرقمية', 'preorder_title': 'حجز الكتاب', 'book_header': 'الكتاب المنتظر: "من أنت حين تنطفئ الشاشة؟"', 'book_subtitle': 'دليلك الشامل لاستعادة التركيز. احجز الآن.',
-                'preorder_price': 'سعر الحجز المسبق:', 'regular_price': 'السعر العادي: 24.99 $', 'benefit1': 'نسخة ورقية (فور صدورها)', 'benefit2': 'نسخة رقمية (PDF) فورية', 'benefit3': 'وصول حصري لمنطقة الأعضاء', 'btn_preorder': 'احجز نسختك الآن', 'preorder_note': 'شحن مجاني للشرق الأوسط.'
-            },
-            'en': {
-                'site_name': 'Digital Anchor', 'preorder_title': 'Pre-order Book', 'book_header': 'The Book: "Who are you when the screen goes off?"', 'book_subtitle': 'Your guide to focus. Pre-order now.',
-                'preorder_price': 'Pre-order Price:', 'regular_price': 'Regular Price: 24.99 $', 'benefit1': 'Physical Copy', 'benefit2': 'Instant PDF', 'benefit3': 'Exclusive Member Access', 'btn_preorder': 'Pre-order Now', 'preorder_note': 'Free shipping in Middle East.'
-            },
-            'fr': {
-                'site_name': 'L\'Ancre Numérique', 'preorder_title': 'Précommander', 'book_header': 'Le Livre : "Qui êtes-vous hors écran ?"', 'book_subtitle': 'Votre guide de concentration.',
-                'preorder_price': 'Prix Précommande :', 'regular_price': 'Prix Normal : 24.99 $', 'benefit1': 'Copie Physique', 'benefit2': 'PDF Instantané', 'benefit3': 'Accès Membre Exclusif', 'btn_preorder': 'Précommander', 'preorder_note': 'Livraison gratuite au Moyen-Orient.'
-            },
-            'de': {
-                'site_name': 'Der Digitale Anker', 'preorder_title': 'Vorbestellen', 'book_header': 'Das Buch: "Wer bist du ohne Bildschirm?"', 'book_subtitle': 'Ihr Leitfaden zum Fokus.',
-                'preorder_price': 'Vorbestellpreis:', 'regular_price': 'Normalpreis: 24.99 $', 'benefit1': 'Physische Kopie', 'benefit2': 'Sofortiges PDF', 'benefit3': 'Exklusiver Mitgliederzugang', 'btn_preorder': 'Jetzt Vorbestellen', 'preorder_note': 'Kostenloser Versand im Nahen Osten.'
-            }
-        };
-
-        function setLanguage(lang) {
-            document.documentElement.lang = lang;
-            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-            document.querySelectorAll('[data-key]').forEach(el => {
-                const key = el.getAttribute('data-key');
-                if (translations[lang][key]) el.textContent = translations[lang][key];
-            });
-            localStorage.setItem('preferredLang', lang);
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const defaultLang = localStorage.getItem('preferredLang') || 'ar';
-            document.getElementById('lang-select').value = defaultLang;
-            setLanguage(defaultLang);
-        });
+        // تشغيل التهيئة والترجمة عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', initializePage);
     </script>
 </body>
 </html>
