@@ -1,79 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <title data-key="thank_you_title">شكراً لطلبك | المرساة الرقمية</title>
-    
-    <link rel="icon" type="image/png" href="img/logo.png">
-
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
-    <script src="i18n.js"></script>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <script>
-        tailwind.config = { 
-            theme: { 
-                extend: { 
-                    colors: { 'anchor-blue': '#0f172a', 'anchor-gold': '#d4af37' }, 
-                    fontFamily: { sans: ['Tajawal', 'sans-serif'], serif: ['Amiri', 'serif'] } 
-                } 
-            } 
-        }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-    <style>body { background-color: #f8fafc; }</style>
-</head>
-<body class="bg-slate-50 text-slate-900 font-sans">
-    <div id="root"></div>
-    <script type="text/babel">
-        
-        // 🚨 ** [إصلاح: 3. تهيئة اللغة قبل تصيير React] **
-        initializePage();
-        
-        const Navbar = () => (
-            <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-md">
-                <div className="max-w-7xl mx-auto flex justify-between items-center">
-                    <a href="index.html" className="flex items-center gap-3">
-                        <img src="img/logo.png" alt="Logo" className="h-10 w-auto" />
-                        <span className="font-bold text-lg hidden md:block" data-key="site_name">المرساة الرقمية</span>
-                    </a>
-                    <a href="index.html" className="text-sm hover:text-anchor-gold transition" data-key="nav_home">العودة للرئيسية</a>
-                </div>
-            </nav>
-        );
-
-        const Footer = () => (
-            <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm">© 2025 <span data-key="site_name">المرساة الرقمية</span></footer>
-        );
-
-        const ThankYouPage = () => {
-            return (
-                <div className="min-h-screen flex flex-col">
-                    <Navbar />
-                    <main className="flex-grow flex items-center justify-center p-6">
-                        <div className="bg-white p-12 rounded-2xl shadow-xl text-center max-w-xl w-full border-t-8 border-green-500">
-                            <div className="w-24 h-24 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6 text-5xl">✓</div>
-                            <h1 className="text-3xl font-bold font-serif text-anchor-blue mb-4" data-key="thank_you_header">شكراً لطلبك!</h1>
-                            <p className="text-lg text-gray-700 mb-2" data-key="thank_you_message">تم استلام طلب الحجز المسبق بنجاح.</p>
-                            <p className="text-gray-500 text-sm mb-8" data-key="thank_you_contact">سيقوم فريقنا بالتواصل معك قريباً لتأكيد التفاصيل.</p>
-                            
-                            <div className="space-y-3">
-                                <a href="index.html" className="block w-full bg-anchor-blue text-white py-3 rounded-lg font-bold hover:bg-gray-800 transition" data-key="btn_back_home">العودة للصفحة الرئيسية</a>
-                                <a href="downloads/Emergency_Guide.pdf" target="_blank" className="block w-full bg-gray-100 text-gray-700 py-3 rounded-lg font-bold hover:bg-gray-200 transition" data-key="btn_download_gift">تحميل هدية (دليل الطوارئ)</a>
-                            </div>
-                        </div>
-                    </main>
-                    <Footer />
-                </div>
-            );
-        };
-        
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<ThankYouPage />);
-    </script>
-</body>
-</html>
