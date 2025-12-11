@@ -3,23 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-key="page_title">من أنت حين تنطفئ الشاشة؟ | المرساة الرقمية</title>
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJZHN8FQQ2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-HJZHN8FQQ2');
-    </script>
-
-    <title data-key="page_title">من أنت حين تنطفئ الشاشة؟ | المرساة الرقمية</title>
-    <meta name="description" content="الدليل الشامل لاستعادة السيطرة على حياتك الرقمية. خطة عملية لمدة 90 يوماً، أدوات مجانية، ومجتمع داعم.">
-    <meta name="keywords" content="المرساة الرقمية, إدمان الهاتف, تطوير الذات, نوال غرباوي, Digital Anchor, الصحة الرقمية">
-    <meta name="theme-color" content="#1a365d">
+    <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-HJZHN8FQQ2');</script>
 
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
     <style>
@@ -37,10 +27,7 @@
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="index.html" class="flex items-center space-x-3 space-x-reverse">
                 <img src="logo.png" width="45" class="rounded-lg shadow-sm">
-                <div>
-                    <h1 class="text-xl font-bold text-gray-900" data-key="site_name">المرساة الرقمية</h1>
-                    <p class="text-xs text-gray-700 font-medium hidden sm:block" data-key="nav_tagline">من أنت حين تنطفئ الشاشة؟</p>
-                </div>
+                <h1 class="text-xl font-bold text-gray-900" data-key="site_name">المرساة الرقمية</h1>
             </a>
             
             <div class="hidden md:flex items-center gap-5">
@@ -54,10 +41,11 @@
                     <option value="fr">Français</option>
                     <option value="de">Deutsch</option>
                 </select>
+
                 <select id="curr-select" onchange="convertCurrency(this.value)" class="text-xs border border-gray-300 rounded p-1 bg-white font-bold text-blue-900 focus:outline-none focus:border-blue-500">
-                    <option value="SAR">SAR</option>
-                    <option value="USD">USD</option>
-                    <option value="EUR">EUR</option>
+                    <option value="SAR">SAR (ر.س)</option>
+                    <option value="USD">USD ($)</option>
+                    <option value="EUR">EUR (€)</option>
                 </select>
 
                 <a href="buy.html" class="btn-primary px-6 py-2 rounded-lg text-sm font-bold shadow-md flex items-center gap-2 no-underline text-white" data-key="nav_join">
@@ -74,8 +62,17 @@
             <a href="blog.html" class="block py-2 font-bold border-b border-gray-100" data-key="nav_blog">المدونة</a>
             
             <div class="flex gap-4 py-4">
-                <select onchange="setLanguage(this.value)" class="w-1/2 p-2 border rounded bg-gray-50 text-sm"> <option value="ar">عربي</option> <option value="en">English</option> </select>
-                <select onchange="convertCurrency(this.value)" class="w-1/2 p-2 border rounded bg-gray-50 text-sm"> <option value="SAR">SAR</option> <option value="USD">USD</option> </select>
+                <select onchange="setLanguage(this.value)" class="w-1/2 p-2 border rounded bg-gray-50 text-sm"> 
+                    <option value="ar">عربي</option> 
+                    <option value="en">English</option>
+                    <option value="fr">Français</option>
+                    <option value="de">Deutsch</option>
+                </select>
+                <select onchange="convertCurrency(this.value)" class="w-1/2 p-2 border rounded bg-gray-50 text-sm"> 
+                    <option value="SAR">SAR</option> 
+                    <option value="USD">USD</option> 
+                    <option value="EUR">EUR</option> 
+                </select>
             </div>
             <a href="buy.html" class="block w-full py-3 mt-2 text-center bg-blue-900 text-white rounded-lg font-bold" data-key="nav_join">احجز الكتاب</a>
         </div>
@@ -142,7 +139,7 @@
             </div>
         </section>
 
-         <section id="author" class="py-20 bg-gray-50">
+        <section id="author" class="py-20 bg-gray-50">
             <div class="container mx-auto px-4">
                 <div class="flex flex-col md:flex-row items-center gap-12 max-w-6xl mx-auto">
                     <div class="w-full md:w-1/3 flex justify-center">
@@ -155,7 +152,18 @@
                         <h2 class="text-blue-900 text-sm font-bold uppercase tracking-wide mb-2" data-key="author_label">عن المؤلفة</h2>
                         <h3 class="text-4xl font-bold text-gray-900 mb-6 font-serif" data-key="author_name">نوال غرباوي</h3>
                         <p class="text-lg text-gray-700 leading-relaxed mb-6 font-medium" data-key="author_bio">
-                            رائدة في مجال التحول الرقمي الواعي، وخبيرة في مواجهة تحديات التشتت الرقمي. هذا الكتاب لم ينبع من دراسات أكاديمية فحسب، بل من تجربة شخصية عميقة في استعادة السيطرة على الوقت والقيم.
+                             مرشدة تحول رقمي عملي.
+لم تدرس في أكاديميات، بل تعلَّمت منهجها في مدرسة الحياة الواقعية. من تجربتها الشخصية مع إدمان الشاشات وفقدان السيطرة على الوقت، صمَّمت خريطة 90 يوماً تساعد الآخرين على استعادة انتباههم وقيمتهم في العصر الرقمي.
+
+مصدر منهجها: التجربة الحية، الاختبار الشخصي، والملاحظة العملية – ليست نظريات من كتب، بل خطوات مشى فيها بنفسها.
+
+رسالتها:
+"إذا استطعتُ أنا – الشخص العادي – أن أتحرر من تشتت الشاشات وأبني حياة رقمية واعية،
+فأنت تستطيع أيضاً. ها هي الخريطة التي وجدتُها بعد سنوات من الضياع."
+
+باختصار: هي مرشدة رحلة أكثر منها خبيرة أكاديمية، تقدِّم أدوات مجرَّبة من أرض الواقع للشباب العربي ليكون سيداً لأجهزته، لا عبداً لها.
+
+
                         </p>
                     </div>
                 </div>
@@ -186,6 +194,7 @@
     </footer>
 
     <script>
+        // قاموس الترجمة الكامل (أعدت دمج كل اللغات المطلوبة)
         const translations = {
             'ar': {
                 'page_title': 'من أنت حين تنطفئ الشاشة؟ | المرساة الرقمية',
@@ -199,15 +208,13 @@
                 'month1_title': 'الشهر 1: الصحوة الرقمية', 'month1_goal': 'الهدف: خفض الإلهاء بنسبة 30%',
                 'month2_title': 'الشهر 2: بناء النظام', 'month2_goal': 'الهدف: إنشاء نظام إنتاجية مستدام',
                 'month3_title': 'الشهر 3: التأثير', 'month3_goal': 'الهدف: مساعدة شخص واحد',
-                'tools_title': 'أدوات مجانية لتبدأ الآن', 'btn_free_tools': 'اكتشف المكتبة المجانية',
+                'tools_title': 'حقيبة الأدوات الرقمية', 'tool_workbook': 'دفتر التمارين', 'tool_cert': 'شهادة السيادة', 'tool_guide': 'دليل المنهجية', 'tool_pledge': 'وثيقة التعهد',
                 'pledge_title': 'تعهد السيادة الرقمية', 'pledge_text': '"أتعهد أمام نفسي بأن تكون القيم الخمس التي أؤمن بها هي الفلتر الأساسي لجميع قراراتي اليومية، خاصة في العالم الرقمي."', 'pledge_btn': 'أوقع العهد الآن ✍️'
             },
             'en': {
-                'page_title': 'Who are you when the screen goes off? | Digital Anchor',
-                'site_name': 'Digital Anchor', 'nav_tagline': 'Who are you when the screen goes off?',
+                'page_title': 'Who are you when the screen goes off? | Digital Anchor', 'site_name': 'Digital Anchor', 'nav_tagline': 'Who are you when the screen goes off?',
                 'nav_tracks': 'Tracks', 'nav_lab': 'Lab', 'nav_dashboard': 'Dashboard', 'nav_blog': 'Blog', 'nav_join': 'Order Book',
-                'hero_title': 'Who are you when the screen <span class="text-yellow-300">goes off</span>?',
-                'hero_subtitle': 'A guide to values, focus, and purpose in the attention economy.',
+                'hero_title': 'Who are you when the screen <span class="text-yellow-300">goes off</span>?', 'hero_subtitle': 'A guide to values, focus, and purpose in the attention economy.',
                 'hero_badge': '✨ New Edition 2025',
                 'hero_btn_start': 'Order Book & Journey Now', 'hero_btn_emergency': 'Emergency Guide',
                 'author_label': 'About the Author', 'author_name': 'Nawal Gharbawi', 'author_bio': 'A pioneer in conscious digital transformation. This book emerged from deep personal experience in regaining control over time and values.',
@@ -215,10 +222,37 @@
                 'month1_title': 'Month 1: Digital Awakening', 'month1_goal': 'Goal: Reduce distraction by 30%',
                 'month2_title': 'Month 2: System Building', 'month2_goal': 'Goal: Sustainable productivity system',
                 'month3_title': 'Month 3: Impact', 'month3_goal': 'Goal: Help one person',
-                'tools_title': 'Free Tools to Start Now', 'btn_free_tools': 'Discover Free Library',
+                'tools_title': 'Digital Toolkit', 'tool_workbook': 'Workbook', 'tool_cert': 'Certificate', 'tool_guide': 'Methodology', 'tool_pledge': 'Pledge Doc',
                 'pledge_title': 'Digital Sovereignty Pledge', 'pledge_text': '"I pledge to myself that my core values will be the primary filter for all my daily decisions, especially in the digital world."', 'pledge_btn': 'Sign Pledge Now ✍️'
+            },
+            'fr': {
+                'page_title': 'Qui êtes-vous quand l\'écran s\'éteint ?', 'site_name': 'L\'Ancre Numérique', 'nav_tagline': 'Qui êtes-vous quand l\'écran s\'éteint ?',
+                'nav_tracks': 'Parcours', 'nav_lab': 'Labo', 'nav_dashboard': 'Tableau de bord', 'nav_blog': 'Blog', 'nav_join': 'Réserver',
+                'hero_title': 'Qui êtes-vous quand l\'écran <span class="text-yellow-300">s\'éteint</span> ?', 'hero_subtitle': 'Un guide sur les valeurs et la concentration dans l\'économie de l\'attention.',
+                'hero_badge': '✨ Nouvelle Édition 2025',
+                'hero_btn_start': 'Réserver le livre et le voyage', 'hero_btn_emergency': 'Guide d\'urgence',
+                'author_label': 'À propos de l\'auteure', 'author_name': 'Nawal Gharbawi', 'author_bio': 'Pionnière de la transformation numérique consciente. Ce livre est né d\'une expérience personnelle profonde.',
+                'roadmap_title': 'Le Programme de 90 Jours', 'roadmap_desc': 'Une feuille de route pratique.',
+                'month1_title': 'Mois 1 : Éveil Numérique', 'month1_goal': 'Objectif : Réduire les distractions de 30%',
+                'month2_title': 'Mois 2 : Construction', 'month2_goal': 'Objectif : Système de productivité durable',
+                'month3_title': 'Mois 3 : Impact', 'month3_goal': 'Objectif : Aider une personne',
+                'tools_title': 'Boîte à Outils', 'tool_workbook': 'Cahier d\'exercices', 'tool_cert': 'Certificat', 'tool_guide': 'Méthodologie', 'tool_pledge': 'Engagement',
+                'pledge_title': 'Engagement de Souveraineté', 'pledge_text': '"Je m\'engage à ce que mes valeurs fondamentales soient le filtre principal de toutes mes décisions quotidiennes."', 'pledge_btn': 'Signer maintenant ✍️'
+            },
+            'de': {
+                'page_title': 'Wer bist du, wenn der Bildschirm ausgeht?', 'site_name': 'Der Digitale Anker', 'nav_tagline': 'Wer bist du, wenn der Bildschirm ausgeht?',
+                'nav_tracks': 'Pfade', 'nav_lab': 'Labor', 'nav_dashboard': 'Dashboard', 'nav_blog': 'Blog', 'nav_join': 'Buchen',
+                'hero_title': 'Wer bist du, wenn der Bildschirm <span class="text-yellow-300">ausgeht</span>?', 'hero_subtitle': 'Ein Leitfaden zu Werten und Fokus in der Aufmerksamkeitsökonomie.',
+                'hero_badge': '✨ Neue Ausgabe 2025',
+                'hero_btn_start': 'Buch & Reise jetzt bestellen', 'hero_btn_emergency': 'Notfallleitfaden',
+                'author_label': 'Über die Autorin', 'author_name': 'Nawal Gharbawi', 'author_bio': 'Pionierin der bewussten digitalen Transformation. Dieses Buch entstand aus tiefen persönlichen Erfahrungen.',
+                'roadmap_title': 'Das 90-Tage-Programm', 'roadmap_desc': 'Ein praktischer Fahrplan.',
+                'month1_title': 'Monat 1: Digitales Erwachen', 'month1_goal': 'Ziel: Ablenkung um 30% reduzieren',
+                'month2_title': 'Monat 2: Systemaufbau', 'month2_goal': 'Ziel: Nachhaltiges Produktivitätssystem',
+                'month3_title': 'Monat 3: Einfluss', 'month3_goal': 'Ziel: Einer Person helfen',
+                'tools_title': 'Digitaler Werkzeugkasten', 'tool_workbook': 'Arbeitsbuch', 'tool_cert': 'Zertifikat', 'tool_guide': 'Methodik', 'tool_pledge': 'Verpflichtung',
+                'pledge_title': 'Digitale Souveränität', 'pledge_text': '"Ich verpflichte mich, dass meine Grundwerte der primäre Filter für alle meine täglichen Entscheidungen sind."', 'pledge_btn': 'Jetzt unterschreiben ✍️'
             }
-            // إضافة الفرنسية والألمانية لاحقاً
         };
 
         // دالة تغيير اللغة
@@ -234,13 +268,26 @@
                 }
             });
 
-            // تحديث حالة أزرار اللغة
+            // تحديث حالة أزرار اللغة (Desktop)
             ['ar', 'en', 'fr', 'de'].forEach(code => {
                 const btn = document.getElementById('d-btn-' + code);
                 if(btn) {
                     btn.className = (code === lang) 
                         ? "text-xs font-bold px-2 py-1 rounded-full bg-blue-900 text-white transition"
                         : "text-xs font-medium px-2 py-1 rounded-full text-gray-700 hover:bg-gray-200 transition";
+                }
+            });
+
+            // تحديث القوائم المنسدلة (Mobile)
+            document.querySelectorAll('#lang-select').forEach(select => { if(select) select.value = lang; });
+            
+            // تحديث العملة تلقائياً مع اللغة
+            const currencyMap = {'ar': 'SAR', 'en': 'USD', 'fr': 'EUR', 'de': 'EUR'};
+            const targetCurrency = currencyMap[lang] || 'USD';
+            document.querySelectorAll('#curr-select').forEach(select => { 
+                if(select) {
+                    select.value = targetCurrency;
+                    // convertCurrency(targetCurrency); // لا نحتاج استدعاء هنا طالما لا يوجد أسعار في index
                 }
             });
 
