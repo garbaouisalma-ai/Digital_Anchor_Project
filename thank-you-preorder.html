@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-key="page_title">شكراً لطلبك | المرساة الرقمية</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Tajawal', sans-serif; background-color: #f0f4f8; }
+        h1, h2, h3 { font-family: 'Amiri', serif; }
+        .confetti-animation { animation: pulse 1.5s infinite; }
+    </style>
+</head>
+<body class="text-slate-900 flex flex-col min-h-screen">
+
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-3 space-x-reverse">
+                <img src="logo.png" width="45" class="rounded-lg shadow-sm">
+                <h1 class="text-xl font-bold text-gray-900" data-key="site_name">المرساة الرقمية</h1>
+            </a>
+            
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="text-sm font-bold text-gray-600 hover:text-blue-900" data-key="nav_home">الرئيسية</a>
+                <a href="tool-value.html" class="bg-blue-900 text-white px-4 py-2 rounded-lg font-bold text-sm" data-key="btn_tool">ابدأ الأداة</a>
+            </div>
+        </div>
+    </nav>
+    <main class="flex-grow container mx-auto px-4 py-12 max-w-3xl">
+        <div class="bg-white p-8 md:p-12 rounded-2xl shadow-2xl border-t-8 border-green-500 text-center">
+            
+            <i class="fas fa-check-circle text-6xl text-green-500 mb-6 confetti-animation"></i>
+            <h1 class="text-3xl font-bold text-slate-800 mb-2" data-key="thanks_header">تم تأكيد حجزك بنجاح!</h1>
+            <p class="text-lg text-slate-600 mb-8" data-key="thanks_subtitle">شكراً لكونك جزءاً من عائلة المرساة الرقمية. سنرسل لك تفاصيل إضافية عبر البريد.</p>
+            
+            <div class="bg-green-50 p-6 rounded-lg text-right mb-8 border border-green-100">
+                <h2 class="text-xl font-bold text-green-700 mb-4 border-b border-green-200 pb-2" data-key="order_details">تفاصيل طلبك:</h2>
+                <div class="space-y-3 text-gray-700 text-sm">
+                    <p class="flex justify-between items-center">
+                        <span class="font-medium text-slate-800" data-key="order_id">رقم الطلب:</span>
+                        <span>#123456789</span>
+                    </p>
+                    <p class="flex justify-between items-center">
+                        <span class="font-medium text-slate-800" data-key="order_price">المبلغ المدفوع:</span>
+                        <span class="font-bold text-green-700 text-lg">19.99 <span class="currency-symbol">USD</span></span>
+                        </p>
+                </div>
+            </div>
+
+            <div class="bg-blue-900 text-white p-6 rounded-lg text-right mb-8 relative overflow-hidden">
+                <i class="fas fa-gift text-4xl text-yellow-500 absolute left-4 top-1/2 transform -translate-y-1/2"></i>
+                <h2 class="text-xl font-bold text-yellow-400 mb-2 border-b border-yellow-800 pb-2" data-key="preorder_gift">هدية الحجز المسبق:</h2>
+                <p class="text-slate-300" data-key="gift_desc">وصول فوري إلى أداة تحديد القيمة الجوهرية (لتحديد مرساتك)</p>
+            </div>
+
+            <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="tool-value.html" class="bg-yellow-500 text-slate-900 px-8 py-3 rounded-lg font-bold hover:bg-yellow-400 transition shadow-md flex items-center justify-center gap-2 no-underline">
+                    <i class="fas fa-brain"></i> <span data-key="btn_tool_start">بدء استخدام الأداة الآن</span>
+                </a>
+                <a href="index.html" class="bg-slate-200 text-slate-600 px-8 py-3 rounded-lg font-bold hover:bg-slate-300 transition flex items-center justify-center gap-2 no-underline">
+                    <i class="fas fa-home"></i> <span data-key="btn_home">العودة إلى الرئيسية</span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-auto"><p class="text-sm">© 2025 Digital Anchor Academy.</p></footer>
+
+    <script>
+        // قاموس الترجمة الكامل
+        const translations = {
+            'ar': {
+                'page_title': 'شكراً لطلبك', 'site_name': 'المرساة الرقمية', 'nav_home': 'الرئيسية', 
+                'thanks_header': 'تم تأكيد حجزك بنجاح!', 'thanks_subtitle': 'شكراً لكونك جزءاً من عائلة المرساة الرقمية. سنرسل لك تفاصيل إضافية عبر البريد.',
+                'order_details': 'تفاصيل طلبك:', 'order_id': 'رقم الطلب:', 'order_price': 'المبلغ المدفوع:',
+                'preorder_gift': 'هدية الحجز المسبق:', 'gift_desc': 'وصول فوري إلى أداة تحديد القيمة الجوهرية (لتحديد مرساتك)',
+                'btn_tool_start': 'بدء استخدام الأداة الآن', 'btn_home': 'العودة إلى الرئيسية', 'btn_tool': 'ابدأ الأداة',
+            },
+            'en': {
+                'page_title': 'Thank You for Your Order', 'site_name': 'Digital Anchor', 'nav_home': 'Home', 
+                'thanks_header': 'Your Pre-Order is Confirmed!', 'thanks_subtitle': 'Thank you for being part of the Digital Anchor family. We will send you further details soon via email.',
+                'order_details': 'Your Order Details:', 'order_id': 'Order ID:', 'order_price': 'Amount Paid:',
+                'preorder_gift': 'Pre-Order Gift:', 'gift_desc': 'Immediate access to the Core Value Identification Tool.',
+                'btn_tool_start': 'Start Using the Tool Now', 'btn_home': 'Return to Home', 'btn_tool': 'Start Tool',
+            },
+            'fr': {
+                'page_title': 'Merci pour votre commande', 'site_name': 'L\'Ancre Numérique', 'nav_home': 'Accueil', 
+                'thanks_header': 'Votre Précommande est Confirmée !', 'thanks_subtitle': 'Merci de faire partie de la famille. Nous vous enverrons plus de détails prochainement.',
+                'order_details': 'Détails de votre commande :', 'order_id': 'Numéro de commande :', 'order_price': 'Montant payé :',
+                'preorder_gift': 'Cadeau de précommande :', 'gift_desc': 'Accès immédiat à l\'Outil d\'Identification des Valeurs Fondamentales.',
+                'btn_tool_start': 'Commencer à utiliser l\'outil', 'btn_home': 'Retour à l\'Accueil', 'btn_tool': 'Démarrer Outil',
+            },
+            'de': {
+                'page_title': 'Vielen Dank für Ihre Bestellung', 'site_name': 'Der Digitale Anker', 'nav_home': 'Startseite', 
+                'thanks_header': 'Ihre Vorbestellung ist bestätigt!', 'thanks_subtitle': 'Vielen Dank, dass Sie Teil der Familie sind. Wir senden Ihnen in Kürze weitere Details per E-Mail.',
+                'order_details': 'Ihre Bestelldetails:', 'order_id': 'Bestellnummer:', 'order_price': 'Bezahlter Betrag:',
+                'preorder_gift': 'Vorbestellungsgeschenk:', 'gift_desc': 'Sofortiger Zugriff auf das Kernwert-Identifikations-Tool.',
+                'btn_tool_start': 'Tool jetzt verwenden', 'btn_home': 'Zurück zur Startseite', 'btn_tool': 'Tool starten',
+            }
+        };
+
+        const RATES = { 'SAR': { r: 1, s: 'SAR' }, 'USD': { r: 0.27, s: '$' }, 'EUR': { r: 0.25, s: '€' } };
+
+        function convertCurrency(curr) {
+            // لا حاجة لتحويل السعر في هذه الصفحة بشكل تفاعلي، لكن يجب إظهار الرمز الصحيح
+            const symbol = RATES[curr] ? RATES[curr].s : 'USD';
+            document.querySelectorAll('.currency-symbol').forEach(el => {
+                el.textContent = symbol;
+            });
+        }
+
+        function setLanguage(lang) {
+            const isRTL = lang === 'ar';
+            document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+            document.documentElement.setAttribute('lang', lang);
+            
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key]; 
+                }
+            });
+
+            // نعرض رمز العملة الافتراضي (USD) أو بناءً على اللغة
+            const targetCurrency = (lang === 'ar' ? 'SAR' : (lang === 'fr' || lang === 'de' ? 'EUR' : 'USD'));
+            convertCurrency(targetCurrency);
+            
+            localStorage.setItem('preferredLang', lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // في صفحة الشكر، نجعل اللغة تتطابق مع آخر لغة اختارها العميل
+            const defaultLang = localStorage.getItem('preferredLang') || 'ar';
+            setLanguage(defaultLang);
+        });
+    </script>
+</body>
+</html>

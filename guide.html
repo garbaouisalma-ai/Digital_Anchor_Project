@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-key="guide_title">دليل المنهجية | المرساة الرقمية</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; color: #1e293b; }
+        h1, h2, h3 { font-family: 'Amiri', serif; }
+        .step-card { transition: all 0.3s ease; border-right: 4px solid #1a365d; }
+        .step-card:hover { transform: translateX(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-3 space-x-reverse">
+                <img src="logo.png" width="45" class="rounded-lg shadow-sm">
+                <h1 class="text-xl font-bold text-gray-900" data-key="site_name">المرساة الرقمية</h1>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-5">
+                <a href="track-sovereignty.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key="nav_tracks">المسارات</a>
+                <a href="dashboard.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key="nav_dashboard">لوحة القيادة</a>
+                <a href="blog.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key="nav_blog">المدونة</a>
+
+                <select id="lang-select" onchange="setLanguage(this.value)" class="text-xs border border-gray-300 rounded p-1 bg-white focus:outline-none focus:border-blue-500">
+                    <option value="ar">عربي</option><option value="en">English</option><option value="fr">Français</option><option value="de">Deutsch</option>
+                </select>
+                <select id="curr-select" onchange="convertCurrency(this.value)" class="text-xs border border-gray-300 rounded p-1 bg-white font-bold text-blue-900 focus:outline-none focus:border-blue-500">
+                    <option value="SAR">SAR (ر.س)</option><option value="USD">USD ($)</option><option value="EUR">EUR (€)</option>
+                </select>
+
+                <a href="buy.html" class="btn-primary px-6 py-2 rounded-lg text-sm font-bold shadow-md flex items-center gap-2 no-underline text-white" data-key="nav_join">
+                    <i class="fas fa-shopping-cart"></i> احجز الكتاب
+                </a>
+            </div>
+            
+            <button id="mobile-menu-btn" class="md:hidden text-gray-800 p-2"><i class="fas fa-bars text-xl"></i></button>
+        </div>
+    </nav>
+    <main class="flex-grow container mx-auto px-4 py-12 max-w-4xl">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-slate-800 mb-4" data-key="guide_header">منهجية المرساة الرقمية</h1>
+            <p class="text-xl text-slate-600" data-key="guide_subtitle">دليل إرشادي خطوة بخطوة للتحرر واستعادة السيادة الرقمية.</p>
+        </header>
+
+        <section class="space-y-8">
+            
+            <article class="bg-white p-6 rounded-2xl shadow-lg step-card border-blue-600">
+                <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-3">
+                    <span class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">1</span>
+                    <span data-key="step1_title">التحرر والعهد (القيم)</span>
+                </h2>
+                <ul class="list-disc pr-6 space-y-3 text-slate-700 text-lg">
+                    <li data-key="step1_li1">ابدأ بأداة تحديد القيمة الجوهرية قبل أي شيء آخر.</li>
+                    <li data-key="step1_li2">وقّع عهد التحرر لربط نفسك بقيمك الحقيقية.</li>
+                </ul>
+            </article>
+
+            <article class="bg-white p-6 rounded-2xl shadow-lg step-card border-green-600">
+                <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-3">
+                    <span class="bg-green-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">2</span>
+                    <span data-key="step2_title">القيادة والإنتاجية (الأهداف)</span>
+                </h2>
+                <ul class="list-disc pr-6 space-y-3 text-slate-700 text-lg">
+                    <li data-key="step2_li1">حوّل التمني إلى أهداف ذكية (SMART) قابلة للقياس.</li>
+                    <li data-key="step2_li2">استخدم لوحة القيادة لمراقبة وقت الإنتاج وليس وقت الإلهاء.</li>
+                </ul>
+            </article>
+
+            <article class="bg-white p-6 rounded-2xl shadow-lg border-t-4 border-yellow-600">
+                <h2 class="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-3">
+                    <span class="bg-yellow-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">3</span>
+                    <span data-key="step3_title">التوازن والإتقان (المجتمع)</span>
+                </h2>
+                <ul class="list-disc pr-6 space-y-3 text-slate-700 text-lg">
+                    <li data-key="step3_li1">انضم لمجتمع الدعم لمواجهة تحديات الإلهاء بشكل جماعي.</li>
+                    <li data-key="step3_li2">طبق قاعدة 40/40/20 لتعلم مهارات جديدة بدلاً من الاستهلاك.</li>
+                </ul>
+            </article>
+
+            <div class="bg-blue-900 text-white p-8 rounded-2xl shadow-xl mt-10">
+                <h3 class="text-3xl font-bold mb-4 text-yellow-400" data-key="rule_header">قاعدة 40/40/20 للتعلم العميق</h3>
+                <div class="grid md:grid-cols-3 gap-4 text-center">
+                    <div><span class="block text-4xl font-extrabold mb-1">40%</span><p data-key="rule_desc1">تعلم نظري (قراءة/مشاهدة)</p></div>
+                    <div><span class="block text-4xl font-extrabold mb-1">40%</span><p data-key="rule_desc2">تطبيق عملي (إنجاز مشاريع)</p></div>
+                    <div><span class="block text-4xl font-extrabold mb-1">20%</span><p data-key="rule_desc3">مراجعة وتدوين (تعليم الآخرين)</p></div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-12 text-center border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <p class="text-gray-400 text-sm" data-key="footer_copy">© 2025 Digital Anchor Project. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            'ar': {
+                'site_name': 'المرساة الرقمية', 'nav_home': 'الرئيسية', 'nav_tracks': 'المسارات', 'nav_dashboard': 'لوحة القيادة', 'nav_blog': 'المدونة', 'nav_join': 'احجز الكتاب',
+                'guide_header': 'منهجية المرساة الرقمية', 'guide_subtitle': 'دليل إرشادي خطوة بخطوة للتحرر واستعادة السيادة الرقمية.',
+                'step1_title': 'التحرر والعهد (القيم)', 'step1_li1': 'ابدأ بأداة تحديد القيمة الجوهرية قبل أي شيء آخر.', 'step1_li2': 'وقّع عهد التحرر لربط نفسك بقيمك الحقيقية.',
+                'step2_title': 'القيادة والإنتاجية (الأهداف)', 'step2_li1': 'حوّل التمني إلى أهداف ذكية (SMART) قابلة للقياس.', 'step2_li2': 'استخدم لوحة القيادة لمراقبة وقت الإنتاج وليس وقت الإلهاء.',
+                'step3_title': 'التوازن والإتقان (المجتمع)', 'step3_li1': 'انضم لمجتمع الدعم لمواجهة تحديات الإلهاء بشكل جماعي.', 'step3_li2': 'طبق قاعدة 40/40/20 لتعلم مهارات جديدة بدلاً من الاستهلاك.',
+                'rule_header': 'قاعدة 40/40/20 للتعلم العميق', 'rule_desc1': 'تعلم نظري (قراءة/مشاهدة)', 'rule_desc2': 'تطبيق عملي (إنجاز مشاريع)', 'rule_desc3': 'مراجعة وتدوين (تعليم الآخرين)',
+                'footer_copy': '© 2025 Digital Anchor Project. جميع الحقوق محفوظة.',
+            },
+            'en': {
+                'site_name': 'Digital Anchor', 'nav_home': 'Home', 'nav_tracks': 'Tracks', 'nav_dashboard': 'Dashboard', 'nav_blog': 'Blog', 'nav_join': 'Order Book',
+                'guide_header': 'Digital Anchor Methodology', 'guide_subtitle': 'A step-by-step guide to reclaiming digital sovereignty.',
+                'step1_title': 'Liberation & Pledge (Values)', 'step1_li1': 'Start with the Core Value Identification Tool.', 'step1_li2': 'Sign the Liberation Pledge to anchor to your true values.',
+                'step2_title': 'Leadership & Productivity (Goals)', 'step2_li1': 'Convert wishes into SMART, measurable goals.', 'step2_li2': 'Use the dashboard to monitor productive time, not just distraction.',
+                'step3_title': 'Balance & Mastery (Community)', 'step3_li1': 'Join the support community to face distraction challenges collectively.', 'step3_li2': 'Apply the 40/40/20 rule to learn new skills instead of consuming.',
+                'rule_header': 'The 40/40/20 Rule for Deep Learning', 'rule_desc1': 'Theoretical Learning (Input)', 'rule_desc2': 'Practical Application (Output)', 'rule_desc3': 'Review & Documentation (Integration)',
+                'footer_copy': '© 2025 Digital Anchor Project. All Rights Reserved.',
+            },
+            'fr': {
+                'site_name': 'L\'Ancre Numérique', 'nav_home': 'Accueil', 'nav_tracks': 'Parcours', 'nav_dashboard': 'Tableau de bord', 'nav_blog': 'Blog', 'nav_join': 'Réserver',
+                'guide_header': 'Méthodologie Ancre Numérique', 'guide_subtitle': 'Un guide étape par étape pour la souveraineté numérique.',
+                'step1_title': 'Libération et Engagement (Valeurs)', 'step1_li1': 'Commencez par l\'outil d\'identification des valeurs.', 'step1_li2': 'Signez l\'Engagement pour vous ancrer à vos vraies valeurs.',
+                'step2_title': 'Leadership et Productivité (Objectifs)', 'step2_li1': 'Convertissez les souhaits en objectifs SMART.', 'step2_li2': 'Utilisez le tableau de bord pour surveiller le temps productif.',
+                'step3_title': 'Équilibre et Maîtrise (Communauté)', 'step3_li1': 'Rejoignez la communauté pour faire face collectivement aux défis.', 'step3_li2': 'Appliquez la règle 40/40/20 pour acquérir de nouvelles compétences.',
+                'rule_header': 'La Règle 40/40/20', 'rule_desc1': 'Apprentissage Théorique', 'rule_desc2': 'Application Pratique', 'rule_desc3': 'Révision et Documentation',
+                'footer_copy': '© 2025 L\'Ancre Numérique. Tous droits réservés.',
+            },
+            'de': {
+                'site_name': 'Der Digitale Anker', 'nav_home': 'Startseite', 'nav_tracks': 'Pfade', 'nav_dashboard': 'Dashboard', 'nav_blog': 'Blog', 'nav_join': 'Buchen',
+                'guide_header': 'Digitale Anker-Methodik', 'guide_subtitle': 'Ein Leitfaden zur Wiederherstellung der digitalen Souveränität.',
+                'step1_title': 'Befreiung und Verpflichtung (Werte)', 'step1_li1': 'Beginnen Sie mit dem Kernwerte-Tool.', 'step1_li2': 'Unterzeichnen Sie die Verpflichtung, um sich an Ihren Werten zu verankern.',
+                'step2_title': 'Führung und Produktivität (Ziele)', 'step2_li1': 'Wandeln Sie Wünsche in SMART-Ziele um.', 'step2_li2': 'Überwachen Sie die produktive Zeit über das Dashboard.',
+                'step3_title': 'Balance und Meisterschaft (Community)', 'step3_li1': 'Treten Sie der Community bei, um Ablenkungen zu begegnen.', 'step3_li2': 'Wenden Sie die 40/40/20-Regel an, um neue Fähigkeiten zu erlernen.',
+                'rule_header': 'Die 40/40/20-Regel', 'rule_desc1': 'Theoretisches Lernen', 'rule_desc2': 'Praktische Anwendung', 'rule_desc3': 'Überprüfung und Dokumentation',
+                'footer_copy': '© 2025 Der Digitale Anker. Alle Rechte vorbehalten.',
+            },
+        };
+
+        const RATES = { 'SAR': { r: 1, s: 'SAR' }, 'USD': { r: 0.27, s: '$' }, 'EUR': { r: 0.25, s: '€' } };
+
+        function convertCurrency(curr) {
+            const rate = RATES[curr] ? RATES[curr].r : 1;
+            const symbol = RATES[curr] ? RATES[curr].s : 'SAR';
+            document.querySelectorAll('.price-display').forEach(el => {
+                const base = el.getAttribute('data-base-price'); 
+                if (base) el.textContent = Math.round(parseFloat(base) * rate);
+            });
+            document.querySelectorAll('.currency-symbol').forEach(el => {
+                el.textContent = symbol;
+            });
+            document.querySelectorAll('#curr-select').forEach(select => { if(select) select.value = curr; });
+        }
+
+        function setLanguage(lang) {
+            const isRTL = lang === 'ar';
+            document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+            document.documentElement.setAttribute('lang', lang);
+            
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key]; 
+                }
+            });
+
+            document.querySelectorAll('#lang-select').forEach(select => { if(select) select.value = lang; });
+            
+            const currencyMap = {'ar': 'SAR', 'en': 'USD', 'fr': 'EUR', 'de': 'EUR'};
+            const targetCurrency = currencyMap[lang] || 'USD';
+            convertCurrency(targetCurrency);
+            
+            localStorage.setItem('preferredLang', lang);
+        }
+
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const defaultLang = localStorage.getItem('preferredLang') || 'ar';
+            setLanguage(defaultLang);
+        });
+    </script>
+</body>
+</html>
