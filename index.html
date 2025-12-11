@@ -6,8 +6,7 @@
     <title data-key="page_title">من أنت حين تنطفئ الشاشة؟ | المرساة الرقمية</title>
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJZHN8FQQ2"></script>
-    <script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-HJZHN8FQQ2');</script>
-
+    <script src="analytics.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -15,6 +14,12 @@
     <style>
         body { font-family: 'Tajawal', sans-serif; background-color: #f7fafc; color: #1e293b; scroll-behavior: smooth; }
         h1, h2, h3 { font-family: 'Amiri', serif; }
+        /* تحديد الألوان المخصصة */
+        .border-anchor-green { border-color: #059669; }
+        .text-anchor-green { color: #059669; }
+        .border-anchor-purple { border-color: #7c3aed; }
+        .text-anchor-purple { color: #7c3aed; }
+        /* قص خلفية الهيدر */
         .clip-path-header { clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%); }
         .clip-path-pledge { clip-path: polygon(0 10%, 100% 0, 100% 100%, 0% 100%); }
     </style>
@@ -83,12 +88,16 @@
                 <a href="buy.html" class="bg-yellow-300 text-blue-900 font-bold text-lg px-8 py-3 rounded-xl hover:bg-yellow-400 transition transform hover:scale-105 shadow-xl w-full sm:w-auto" data-key="hero_btn_start">
                     احجز الكتاب والرحلة الآن
                 </a>
-                <a href="Emergency_Guide.pdf" target="_blank" rel="noopener noreferrer" class="bg-white text-blue-900 hover:bg-gray-100 font-bold py-3 px-8 rounded-lg transition text-center flex items-center justify-center gap-2 no-underline">
-    <i class="fas fa-exclamation-triangle"></i> <span data-key="hero_btn_emergency">دليل الطوارئ</span>
-</a>
+                <a href="Emergency_Guide.pdf" target="_blank" rel="noopener noreferrer" class="bg-white text-blue-900 hover:bg-gray-100 font-bold py-3 px-8 rounded-lg transition text-center flex items-center justify-center gap-2 no-underline w-full sm:w-auto">
+                    <i class="fas fa-exclamation-triangle"></i> <span data-key="hero_btn_emergency">دليل الطوارئ</span>
+                </a>
             </div>
         </div>
-    </header>
+        
+        <div class="container mx-auto px-4 mt-12 flex justify-center">
+            <img src="hero-mockup.png" alt="كتاب المرساة الرقمية" width="500" height="600" loading="eager" class="w-full sm:w-1/2 max-w-sm h-auto drop-shadow-2xl rounded-xl">
+        </div>
+        </header>
 
     <section id="roadmap" class="container mx-auto px-4 -mt-32 pb-24 max-w-6xl">
         <h2 class="text-4xl font-extrabold text-center mb-12 text-blue-900 pt-8" data-key="roadmap_title">
@@ -102,7 +111,7 @@
             <div class="bg-white p-6 rounded-xl shadow-2xl border-t-4 border-anchor-green transform hover:scale-[1.02] transition duration-300">
                 <div class="text-anchor-green text-4xl mb-4 font-extrabold">1</div>
                 <h3 class="text-2xl font-bold mb-2 text-slate-800" data-key="month1_title">الشهر 1: الصحوة الرقمية</h3>
-                <p class="text-slate-600 mb-4">تركيز على الوعي بقيمك ومحركات الإلهاء الرئيسية.</p>
+                <p class="text-slate-600 mb-4" data-key="month1_desc">تركيز على الوعي بقيمك ومحركات الإلهاء الرئيسية.</p>
                 <div class="bg-gray-100 p-3 rounded-lg text-sm text-slate-700 font-medium border-l-4 border-anchor-green" data-key="month1_goal">
                     الهدف: خفض الإلهاء بنسبة 30%
                 </div>
@@ -111,7 +120,7 @@
             <div class="bg-white p-6 rounded-xl shadow-2xl border-t-4 border-anchor-purple transform hover:scale-[1.02] transition duration-300">
                 <div class="text-anchor-purple text-4xl mb-4 font-extrabold">2</div>
                 <h3 class="text-2xl font-bold mb-2 text-slate-800" data-key="month2_title">الشهر 2: بناء النظام</h3>
-                <p class="text-slate-600 mb-4">تصميم روتين يومي وأدوات رقمية تدعم الإنتاجية بدلاً من سرقتها.</p>
+                <p class="text-slate-600 mb-4" data-key="month2_desc">تصميم روتين يومي وأدوات رقمية تدعم الإنتاجية بدلاً من سرقتها.</p>
                 <div class="bg-gray-100 p-3 rounded-lg text-sm text-slate-700 font-medium border-l-4 border-anchor-purple" data-key="month2_goal">
                     الهدف: إنشاء نظام إنتاجية مستدام
                 </div>
@@ -120,7 +129,7 @@
             <div class="bg-white p-6 rounded-xl shadow-2xl border-t-4 border-yellow-500 transform hover:scale-[1.02] transition duration-300">
                 <div class="text-yellow-500 text-4xl mb-4 font-extrabold">3</div>
                 <h3 class="text-2xl font-bold mb-2 text-slate-800" data-key="month3_title">الشهر 3: التأثير</h3>
-                <p class="text-slate-600 mb-4">استخدام وقتك المُستعاد وقدرتك على التركيز لإحداث تغيير في عالمك.</p>
+                <p class="text-slate-600 mb-4" data-key="month3_desc">استخدام وقتك المُستعاد وقدرتك على التركيز لإحداث تغيير في عالمك.</p>
                 <div class="bg-gray-100 p-3 rounded-lg text-sm text-slate-700 font-medium border-l-4 border-yellow-500" data-key="month3_goal">
                     الهدف: مساعدة شخص واحد
                 </div>
@@ -131,23 +140,23 @@
     <section class="bg-gray-100 py-16">
         <div class="container mx-auto px-4 text-center max-w-4xl">
             <h2 class="text-4xl font-extrabold text-blue-900 mb-4" data-key="tools_title">أدوات مجانية لتبدأ الآن</h2>
-            <p class="text-slate-600 mb-8 text-lg">مجموعة من الموارد المجانية التي ستساعدك على الانطلاق في رحلة السيادة الرقمية.</p>
+            <p class="text-slate-600 mb-8 text-lg" data-key="tools_subtitle">مجموعة من الموارد المجانية التي ستساعدك على الانطلاق في رحلة السيادة الرقمية.</p>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
                 <a href="Golden_Lighthouse.pdf" target="_blank" class="bg-white p-5 rounded-xl shadow-lg hover:shadow-xl transition transform hover:translate-y-[-2px] border-t-4 border-orange-500">
                     <i class="fas fa-lightbulb text-3xl text-orange-500 mb-3"></i>
-                    <p class="font-bold text-sm">منارة القيم</p>
+                    <p class="font-bold text-sm" data-key="tool1_title">منارة القيم</p>
                 </a>
                 <a href="Poster_Compass.pdf" target="_blank" class="bg-white p-5 rounded-xl shadow-lg hover:shadow-xl transition transform hover:translate-y-[-2px] border-t-4 border-teal-500">
                     <i class="fas fa-compass text-3xl text-teal-500 mb-3"></i>
-                    <p class="font-bold text-sm">بوصلة التركيز</p>
+                    <p class="font-bold text-sm" data-key="tool2_title">بوصلة التركيز</p>
                 </a>
                 <a href="Methodology_Guide.pdf" target="_blank" class="bg-white p-5 rounded-xl shadow-lg hover:shadow-xl transition transform hover:translate-y-[-2px] border-t-4 border-fuchsia-500">
                     <i class="fas fa-book-open text-3xl text-fuchsia-500 mb-3"></i>
-                    <p class="font-bold text-sm">دليل المنهجية</p>
+                    <p class="font-bold text-sm" data-key="tool3_title">دليل المنهجية</p>
                 </a>
                 <a href="Pledge_Paper.pdf" target="_blank" class="bg-white p-5 rounded-xl shadow-lg hover:shadow-xl transition transform hover:translate-y-[-2px] border-t-4 border-sky-500">
                     <i class="fas fa-handshake text-3xl text-sky-500 mb-3"></i>
-                    <p class="font-bold text-sm">ورقة العهد</p>
+                    <p class="font-bold text-sm" data-key="tool4_title">ورقة العهد</p>
                 </a>
             </div>
             <a href="guide.html" class="bg-blue-900 text-white font-bold text-lg px-8 py-3 rounded-xl hover:bg-blue-800 transition shadow-md inline-block" data-key="btn_free_tools">
@@ -168,7 +177,7 @@
             <a href="#" onclick="trackPledgeSubmit(); return false;" class="bg-red-600 text-white font-bold text-lg px-10 py-4 rounded-xl hover:bg-red-700 transition transform hover:scale-105 shadow-2xl" data-key="pledge_btn">
                 أوقع العهد الآن ✍️
             </a>
-            <p class="text-sm text-slate-500 mt-4"> (لن تُشارك معلوماتك، هذا التزام شخصي) </p>
+            <p class="text-sm text-slate-500 mt-4" data-key="pledge_note"> (لن تُشارك معلوماتك، هذا التزام شخصي) </p>
         </div>
     </section>
 
@@ -180,8 +189,8 @@
                 <div>
                     <span class="text-yellow-300 font-bold uppercase text-sm" data-key="author_label">عن المؤلفة</span>
                     <h3 class="text-3xl font-bold mb-2" data-key="author_name">نوال غرباوي</h3>
-                    <p class="text-slate-300 text-base">
-                        نوال غرباوي هي خبيرة في استعادة الانتباه والإنتاجية الرقمية، ومؤسسة مشروع المرساة الرقمية. كرست عملها لمساعدة الشباب على العيش بوعي وهدف في العصر الرقمي. وهي كاتبة ومدربة لديها الآلاف من المتابعين والطلاب.
+                    <p class="text-slate-300 text-base" data-key="author_bio">
+                        نوال غرباوي هي ومؤسسة مشروع المرساة الرقمية. كرست عملها لمساعدة الشباب على العيش بوعي وهدف في العصر الرقمي. وهي كاتبة.
                     </p>
                 </div>
             </div>
@@ -195,49 +204,287 @@
                     <h4 class="font-bold mb-3" data-key="site_name">المرساة الرقمية</h4>
                     <ul class="space-y-2 text-sm text-slate-300">
                         <li><a href="#roadmap" class="hover:text-yellow-300 transition" data-key="nav_tracks">المسارات</a></li>
-                        <li><a href="guide.html" class="hover:text-yellow-300 transition">المنهجية</a></li>
+                        <li><a href="guide.html" class="hover:text-yellow-300 transition" data-key="footer_methodology">المنهجية</a></li>
                         <li><a href="buy.html" class="hover:text-yellow-300 transition" data-key="nav_join">احجز الآن</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-bold mb-3">الموارد</h4>
+                    <h4 class="font-bold mb-3" data-key="footer_resources">الموارد</h4>
                     <ul class="space-y-2 text-sm text-slate-300">
                         <li><a href="dashboard.html" class="hover:text-yellow-300 transition" data-key="nav_dashboard">لوحة القيادة</a></li>
                         <li><a href="blog.html" class="hover:text-yellow-300 transition" data-key="nav_blog">المدونة</a></li>
-                        <li><a href="Pledge_Paper.pdf" target="_blank" class="hover:text-yellow-300 transition">وثيقة العهد</a></li>
+                        <li><a href="Pledge_Paper.pdf" target="_blank" class="hover:text-yellow-300 transition" data-key="footer_covenant_doc">وثيقة العهد</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-bold mb-3">الدعم</h4>
+                    <h4 class="font-bold mb-3" data-key="footer_support">الدعم</h4>
                     <ul class="space-y-2 text-sm text-slate-300">
-                        <li><a href="#" class="hover:text-yellow-300 transition">الأسئلة الشائعة</a></li>
-                        <li><a href="#" class="hover:text-yellow-300 transition">شروط الاستخدام</a></li>
-                        <li><a href="#" class="hover:text-yellow-300 transition">سياسة الخصوصية</a></li>
+                        <li><a href="#" class="hover:text-yellow-300 transition" data-key="footer_faq">الأسئلة الشائعة</a></li>
+                        <li><a href="#" class="hover:text-yellow-300 transition" data-key="footer_terms">شروط الاستخدام</a></li>
+                        <li><a href="#" class="hover:text-yellow-300 transition" data-key="footer_privacy">سياسة الخصوصية</a></li>
                     </ul>
                 </div>
                 <div class="text-right">
-                    <h4 class="font-bold mb-3">تواصل معنا</h4>
-                    <p class="text-sm text-slate-400 mb-2">للاستفسارات:</p>
+                    <h4 class="font-bold mb-3" data-key="footer_contact">تواصل معنا</h4>
+                    <p class="text-sm text-slate-400 mb-2" data-key="footer_inquiries">للاستفسارات:</p>
                     <a href="mailto:garbaouisalma@gmail.com" class="text-yellow-300 hover:underline font-medium">garbaouisalma@gmail.com</a>
                 </div>
             </div>
             
             <div class="text-center text-slate-400 text-sm">
-                <p>&copy; 2025 المرساة الرقمية. جميع الحقوق محفوظة.</p>
+                <p data-key="footer_copyright">&copy; 2025 المرساة الرقمية. جميع الحقوق محفوظة.</p>
             </div>
         </div>
     </footer>
 
-    <script src="i18n.js"></script>
     <script>
-        // تشغيل التهيئة والترجمة عند تحميل الصفحة
-        document.addEventListener('DOMContentLoaded', initializePage);
+        // قاموس الترجمة الكامل (تم إضافة المفاتيح المفقودة)
+        const translations = {
+            'ar': {
+                'page_title': 'من أنت حين تنطفئ الشاشة؟ | المرساة الرقمية',
+                'site_name': 'المرساة الرقمية',
+                'nav_tracks': 'المسارات',
+                'nav_dashboard': 'لوحة القيادة',
+                'nav_blog': 'المدونة',
+                'nav_join': 'احجز الكتاب',
+                'hero_badge': '✨ الإصدار الجديد 2025',
+                'hero_title': 'من أنت حين تنطفئ الشاشة؟',
+                'hero_subtitle': 'دليل الشباب للقيم والتركيز والهدف في اقتصاد الانتباه.',
+                'hero_btn_start': 'احجز الكتاب والرحلة الآن',
+                'hero_btn_emergency': 'دليل الطوارئ',
+                'roadmap_title': 'برنامج الـ 90 يوماً',
+                'roadmap_desc': 'خطة عملية لتحويل الوعي الرقمي إلى ممارسة يومية.',
+                'month1_title': 'الشهر 1: الصحوة الرقمية',
+                'month1_desc': 'تركيز على الوعي بقيمك ومحركات الإلهاء الرئيسية.',
+                'month1_goal': 'الهدف: خفض الإلهاء بنسبة 30%',
+                'month2_title': 'الشهر 2: بناء النظام',
+                'month2_desc': 'تصميم روتين يومي وأدوات رقمية تدعم الإنتاجية بدلاً من سرقتها.',
+                'month2_goal': 'الهدف: إنشاء نظام إنتاجية مستدام',
+                'month3_title': 'الشهر 3: التأثير',
+                'month3_desc': 'استخدام وقتك المُستعاد وقدرتك على التركيز لإحداث تغيير في عالمك.',
+                'month3_goal': 'الهدف: مساعدة شخص واحد',
+                'tools_title': 'أدوات مجانية لتبدأ الآن',
+                'tools_subtitle': 'مجموعة من الموارد المجانية التي ستساعدك على الانطلاق في رحلة السيادة الرقمية.', // تم الإضافة
+                'tool1_title': 'منارة القيم',
+                'tool2_title': 'بوصلة التركيز',
+                'tool3_title': 'دليل المنهجية',
+                'tool4_title': 'ورقة العهد',
+                'btn_free_tools': 'اكتشف المكتبة المجانية',
+                'pledge_title': 'تعهد السيادة الرقمية',
+                'pledge_text': '"أتعهد أمام نفسي بأن تكون القيم الخمس التي أؤمن بها هي الفلتر الأساسي لجميع قراراتي اليومية، خاصة في العالم الرقمي."',
+                'pledge_btn': 'أوقع العهد الآن ✍️',
+                'pledge_note': '(لن تُشارك معلوماتك، هذا التزام شخصي)',
+                'author_label': 'عن المؤلفة',
+                'author_name': 'نوال غرباوي',
+                'author_bio': 'نوال غرباوي هي ومؤسسة مشروع المرساة الرقمية. كرست عملها لمساعدة الشباب على العيش بوعي وهدف في العصر الرقمي. وهي كاتبة.', // تم الإضافة
+                'footer_methodology': 'المنهجية',
+                'footer_resources': 'الموارد',
+                'footer_covenant_doc': 'وثيقة العهد',
+                'footer_support': 'الدعم',
+                'footer_faq': 'الأسئلة الشائعة',
+                'footer_terms': 'شروط الاستخدام',
+                'footer_privacy': 'سياسة الخصوصية',
+                'footer_contact': 'تواصل معنا',
+                'footer_inquiries': 'للاستفسارات:',
+                'footer_copyright': '© 2025 المرساة الرقمية. جميع الحقوق محفوظة.'
+            },
+            'en': {
+                'page_title': 'Who Are You When The Screen Goes Off? | Digital Anchor',
+                'site_name': 'Digital Anchor',
+                'nav_tracks': 'Tracks',
+                'nav_dashboard': 'Dashboard',
+                'nav_blog': 'Blog',
+                'nav_join': 'Pre-order Book',
+                'hero_badge': '✨ New Edition 2025',
+                'hero_title': 'Who Are You When The Screen Goes Off?',
+                'hero_subtitle': 'The youth guide to values, focus, and purpose in the attention economy.',
+                'hero_btn_start': 'Pre-order Book & Journey Now',
+                'hero_btn_emergency': 'Emergency Guide',
+                'roadmap_title': '90-Day Program',
+                'roadmap_desc': 'A practical plan to turn digital awareness into daily practice.',
+                'month1_title': 'Month 1: Digital Awakening',
+                'month1_desc': 'Focus on your values awareness and key distraction drivers.',
+                'month1_goal': 'Goal: Reduce distraction by 30%',
+                'month2_title': 'Month 2: Building the System',
+                'month2_desc': 'Designing a daily routine and digital tools that support, instead of steal, productivity.',
+                'month2_goal': 'Goal: Create a sustainable productivity system',
+                'month3_title': 'Month 3: Impact',
+                'month3_desc': 'Using your recovered time and focus ability to make a change in your world.',
+                'month3_goal': 'Goal: Help one person',
+                'tools_title': 'Free Tools to Start Now',
+                'tools_subtitle': 'A collection of free resources that will help you launch your digital sovereignty journey.', // تم الإضافة
+                'tool1_title': 'Values Lighthouse',
+                'tool2_title': 'Focus Compass',
+                'tool3_title': 'Methodology Guide',
+                'tool4_title': 'Pledge Paper',
+                'btn_free_tools': 'Discover the Free Library',
+                'pledge_title': 'Digital Sovereignty Pledge',
+                'pledge_text': '"I pledge to myself that the five values I believe in will be the primary filter for all my daily decisions, especially in the digital world."',
+                'pledge_btn': 'Sign the Pledge Now ✍️',
+                'pledge_note': '(Your information will not be shared, this is a personal commitment)',
+                'author_label': 'About the Author',
+                'author_name': 'Nawal Gharbaoui',
+                'author_bio': 'Nawal Gharbaoui is the founder of the Digital Anchor Project. She dedicated her work to helping young people live consciously and purposefully in the digital age. She is an author.', // تم الإضافة
+                'footer_methodology': 'Methodology',
+                'footer_resources': 'Resources',
+                'footer_covenant_doc': 'Covenant Document',
+                'footer_support': 'Support',
+                'footer_faq': 'FAQ',
+                'footer_terms': 'Terms of Use',
+                'footer_privacy': 'Privacy Policy',
+                'footer_contact': 'Contact Us',
+                'footer_inquiries': 'For inquiries:',
+                'footer_copyright': '© 2025 Digital Anchor. All rights reserved.'
+            },
+            'fr': {
+                'page_title': 'Qui êtes-vous sans l\'écran ? | Ancre Digitale',
+                'site_name': 'Ancre Digitale',
+                'nav_tracks': 'Parcours',
+                'nav_dashboard': 'Tableau de bord',
+                'nav_blog': 'Blog',
+                'nav_join': 'Précommander',
+                'hero_badge': '✨ Nouvelle Édition 2025',
+                'hero_title': 'Qui êtes-vous sans l\'écran ?',
+                'hero_subtitle': 'Le guide des jeunes pour les valeurs, la concentration et le but dans l\'économie de l\'attention.',
+                'hero_btn_start': 'Précommander le livre et le voyage maintenant',
+                'hero_btn_emergency': 'Guide d\'urgence',
+                'roadmap_title': 'Programme de 90 jours',
+                'roadmap_desc': 'Un plan pratique pour transformer la conscience numérique en pratique quotidienne.',
+                'month1_title': 'Mois 1 : L\'éveil Numérique',
+                'month1_desc': 'Concentrez-vous sur la conscience de vos valeurs et des principaux moteurs de distraction.',
+                'month1_goal': 'Objectif : Réduire la distraction de 30%',
+                'month2_title': 'Mois 2 : Construire le Système',
+                'month2_desc': 'Concevoir une routine quotidienne et des outils numériques qui soutiennent, au lieu de voler, la productivité.',
+                'month2_goal': 'Objectif : Créer un système de productivité durable',
+                'month3_title': 'Mois 3 : L\'Impact',
+                'month3_desc': 'Utiliser votre temps récupéré et votre capacité de concentration pour faire un changement dans votre monde.',
+                'month3_goal': 'Objectif : Aider une personne',
+                'tools_title': 'Outils Gratuits pour Commencer',
+                'tools_subtitle': 'Une collection de ressources gratuites qui vous aideront à lancer votre voyage vers la souveraineté numérique.', // تم الإضافة
+                'tool1_title': 'Phare des Valeurs',
+                'tool2_title': 'Boussole de Concentration',
+                'tool3_title': 'Guide Méthodologique',
+                'tool4_title': 'Papier d\'Engagement',
+                'btn_free_tools': 'Découvrir la Bibliothèque Gratuite',
+                'pledge_title': 'Engagement de Souveraineté Numérique',
+                'pledge_text': '"Je m\'engage envers moi-même à ce que les cinq valeurs auxquelles je crois soient le filtre principal de toutes mes décisions quotidiennes, surtout dans le monde numérique."',
+                'pledge_btn': 'Signer l\'engagement maintenant ✍️',
+                'pledge_note': '(Vos informations ne seront pas partagées, c\'est un engagement personnel)',
+                'author_label': 'À propos de l\'auteur',
+                'author_name': 'Nawal Gharbaoui',
+                'author_bio': 'Nawal Gharbaoui est la fondatrice du projet Ancre Digitale. Elle a consacré son travail à aider les jeunes à vivre consciemment et avec un but à l\'ère numérique. Elle est auteure.', // تم الإضافة
+                'footer_methodology': 'Méthodologie',
+                'footer_resources': 'Ressources',
+                'footer_covenant_doc': 'Document d\'Engagement',
+                'footer_support': 'Support',
+                'footer_faq': 'FAQ',
+                'footer_terms': 'Conditions d\'utilisation',
+                'footer_privacy': 'Politique de confidentialité',
+                'footer_contact': 'Contactez-nous',
+                'footer_inquiries': 'Pour toute question :',
+                'footer_copyright': '© 2025 Ancre Digitale. Tous droits réservés.'
+            },
+            'de': {
+                'page_title': 'Wer bist du, wenn der Bildschirm ausgeht? | Der Digitale Anker',
+                'site_name': 'Der Digitale Anker',
+                'nav_tracks': 'Pfade',
+                'nav_dashboard': 'Dashboard',
+                'nav_blog': 'Blog',
+                'nav_join': 'Buch Vorbestellen',
+                'hero_badge': '✨ Neue Ausgabe 2025',
+                'hero_title': 'Wer bist du, wenn der Bildschirm ausgeht?',
+                'hero_subtitle': 'Der Leitfaden für Jugendliche zu Werten, Fokus und Sinn in der Aufmerksamkeitsökonomie.',
+                'hero_btn_start': 'Buch & Reise Jetzt Vorbestellen',
+                'hero_btn_emergency': 'Notfall-Leitfaden',
+                'roadmap_title': '90-Tage-Programm',
+                'roadmap_desc': 'Ein praktischer Plan, um digitales Bewusstsein in tägliche Praxis umzusetzen.',
+                'month1_title': 'Monat 1: Digitales Erwachen',
+                'month1_desc': 'Fokus auf das Bewusstsein Ihrer Werte und der wichtigsten Ablenkungsfaktoren.',
+                'month1_goal': 'Ziel: Ablenkung um 30% reduzieren',
+                'month2_title': 'Monat 2: Das System Aufbauen',
+                'month2_desc': 'Gestaltung einer täglichen Routine und digitaler Werkzeuge, die Produktivität unterstützen, anstatt sie zu stehlen.',
+                'month2_goal': 'Ziel: Ein nachhaltiges Produktivitätssystem schaffen',
+                'month3_title': 'Monat 3: Der Einfluss',
+                'month3_desc': 'Nutzung Ihrer wiedergewonnenen Zeit und Fokusfähigkeit, um eine Veränderung in Ihrer Welt zu bewirken.',
+                'month3_goal': 'Ziel: Einer Person helfen',
+                'tools_title': 'Kostenlose Tools für den Start',
+                'tools_subtitle': 'Eine Sammlung kostenloser Ressourcen, die Ihnen helfen, Ihre Reise zur digitalen Souveränität zu beginnen.', // تم الإضافة
+                'tool1_title': 'Werte-Leuchtturm',
+                'tool2_title': 'Fokus-Kompass',
+                'tool3_title': 'Methodik-Leitfaden',
+                'tool4_title': 'Verpflichtungspapier',
+                'btn_free_tools': 'Kostenlose Bibliothek Entdecken',
+                'pledge_title': 'Gelöbnis der Digitalen Souveränität',
+                'pledge_text': '"Ich gelobe mir selbst, dass die fünf Werte, an die ich glaube, der Hauptfilter für alle meine täglichen Entscheidungen sein werden, besonders in der digitalen Welt."',
+                'pledge_btn': 'Gelöbnis Jetzt Unterzeichnen ✍️',
+                'pledge_note': '(Ihre Informationen werden nicht geteilt, dies ist eine persönliche Verpflichtung)',
+                'author_label': 'Über die Autorin',
+                'author_name': 'Nawal Gharbaoui',
+                'author_bio': 'Nawal Gharbaoui ist die Gründerin des Digital Anchor Projekts. Sie widmete ihre Arbeit der Unterstützung junger Menschen, bewusst und zielgerichtet im digitalen Zeitalter zu leben. Sie ist Autorin.', // تم الإضافة
+                'footer_methodology': 'Methodik',
+                'footer_resources': 'Ressourcen',
+                'footer_covenant_doc': 'Verpflichtungsdokument',
+                'footer_support': 'Support',
+                'footer_faq': 'FAQ',
+                'footer_terms': 'Nutzungsbedingungen',
+                'footer_privacy': 'Datenschutzrichtlinie',
+                'footer_contact': 'Kontaktieren Sie uns',
+                'footer_inquiries': 'Für Anfragen:',
+                'footer_copyright': '© 2025 Der Digitale Anker. Alle Rechte vorbehalten.'
+            }
+        };
 
-        // هذه الدالة بقيت هنا لأنها خاصة بحدث (Event)
+        // دالة الترجمة
+        function setLanguage(lang) {
+            const isRTL = lang === 'ar';
+            document.documentElement.lang = lang;
+            document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
+
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                const translation = translations[lang] && translations[lang][key];
+                
+                if (translation) {
+                    // إذا كان العنصر يحتوي على HTML داخلي (مثل <span> في الهيدر)، استخدم innerHTML
+                    if (el.dataset.html) {
+                         el.innerHTML = translation; 
+                    } else {
+                        // للنصوص العادية، استخدم textContent
+                        el.textContent = translation;
+                    }
+                }
+            });
+
+            // تحديث قوائم اللغة المنسدلة
+            document.querySelectorAll('select[id^="lang-select"]').forEach(select => { 
+                if(select) select.value = lang; 
+            });
+
+            localStorage.setItem('preferredLang', lang);
+        }
+
+        // دالة تتبع العهد
         function trackPledgeSubmit() {
             alert('تم توقيع العهد! سيتم توجيهك الآن إلى صفحة الشراء.');
             // يفضل إضافة كود تتبع (GA4) هنا لاحقاً
             window.location.href = 'buy.html';
+        }
+        
+        // تشغيل التهيئة والترجمة عند تحميل الصفحة
+        function initializePage() {
+            const defaultLang = localStorage.getItem('preferredLang') || 'ar';
+            setLanguage(defaultLang);
+        }
+
+        document.addEventListener('DOMContentLoaded', initializePage);
+        
+        // إعداد قائمة الموبايل
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
         }
     </script>
 </body>
