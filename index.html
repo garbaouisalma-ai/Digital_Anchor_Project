@@ -27,34 +27,166 @@
     <script type="text/babel">
         const { useState, useEffect } = React;
         
-        // هنا يجب لصق أكواد مكونات Navbar و Footer المشتركة من الخطوة 1
-        // (تم حذفه هنا للاختصار، لكن يجب تضمينه في ملفك)
-        
-        // بيانات الروابط (ثابتة)
+        // ===================================================
+        // البيانات الأساسية (Data)
+        // ===================================================
         const NAV_LINKS = [
             { key: 'nav_tracks', label: 'المسارات', href: 'track-sovereignty.html' },
             { key: 'nav_dashboard', label: 'لوحة القيادة', href: 'dashboard.html' },
             { key: 'nav_blog', label: 'المدونة', href: 'blog.html' },
         ];
         
-        // البيانات اللغات والعملات (يفترض أن يتم نقلها من js/main.js)
         const LANG_OPTIONS = [ { value: 'ar', label: 'عربي' }, { value: 'en', label: 'English' }, { value: 'fr', label: 'Français' }, { value: 'de', label: 'Deutsch' }];
         const CURR_OPTIONS = [ { value: 'SAR', label: 'SAR (ر.س)' }, { value: 'USD', label: 'USD ($)' }, { value: 'EUR', label: 'EUR (€)' }];
 
-        // ----------------------------------------------------
-        // المكون الرئيسي للصفحة (محتوى index.html)
-        // ----------------------------------------------------
-        const HomePage = () => {
-            // (في مشروع حقيقي، سيتم إدارة حالة اللغة والعملة هنا باستخدام Hooks)
-            const [lang, setLang] = useState('ar');
-            const [curr, setCurr] = useState('SAR');
+        // قاموس ترجمة مصغر (يجب استكماله لاحقاً)
+        const translations = {
+            'ar': {
+                'page_title': 'من أنت حين تنطفئ الشاشة؟ | المرساة الرقمية',
+                'site_name': 'المرساة الرقمية',
+                'nav_tracks': 'المسارات', 'nav_dashboard': 'لوحة القيادة', 'nav_blog': 'المدونة', 'nav_join': 'احجز الكتاب',
+                'hero_badge': '✨ الإصدار الجديد 2025', 'hero_title': 'من أنت حين <span class="text-yellow-300">تنطفئ الشاشة</span>؟', 
+                'hero_subtitle': 'دليل الشباب للقيم والتركيز والهدف في اقتصاد الانتباه.',
+                'hero_btn_start': 'احجز الكتاب والرحلة الآن', 'hero_btn_emergency': 'دليل الطوارئ',
+                'author_label': 'عن المؤلفة', 'author_name': 'نوال غرباوي', 
+                'author_bio': 'رائدة في مجال التحول الرقمي الواعي، وخبيرة في مواجهة تحديات التشتت الرقمي. هذا الكتاب لم ينبع من دراسات أكاديمية فحسب، بل من تجربة شخصية عميقة في استعادة السيطرة على الوقت والقيم.',
+                'roadmap_title': 'برنامج الـ 90 يوماً', 'roadmap_desc': 'خطة عملية لتحويل الوعي الرقمي إلى ممارسة يومية.',
+                'month1_title': 'الشهر 1: الصحوة الرقمية', 'month1_goal': 'الهدف: خفض الإلهاء بنسبة 30%',
+                'month2_title': 'الشهر 2: بناء النظام', 'month2_goal': 'الهدف: إنشاء نظام إنتاجية مستدام',
+                'month3_title': 'الشهر 3: التأثير', 'month3_goal': 'الهدف: مساعدة شخص واحد',
+                'tools_title': 'حقيبة الأدوات الرقمية', 
+                'pledge_title': 'تعهد السيادة الرقمية', 'pledge_btn': 'أوقع العهد الآن ✍️'
+                // ... إلخ
+            },
+            'en': {
+                'page_title': 'Who are you when the screen goes off? | Digital Anchor',
+                'site_name': 'Digital Anchor',
+                'nav_tracks': 'Tracks', 'nav_dashboard': 'Dashboard', 'nav_blog': 'Blog', 'nav_join': 'Order Book',
+                'hero_badge': '✨ New Edition 2025', 'hero_title': 'Who are you when the screen <span class="text-yellow-300">goes off</span>?',
+                'hero_subtitle': 'A guide to values, focus, and purpose in the attention economy.',
+                'hero_btn_start': 'Order Book & Journey Now', 'hero_btn_emergency': 'Emergency Guide',
+                'author_label': 'About the Author', 'author_name': 'Nawal Gharbawi',
+                'author_bio': 'A pioneer in conscious digital transformation. This book emerged from deep personal experience in regaining control over time and values.',
+                'roadmap_title': 'The 90-Day Program', 'roadmap_desc': 'A practical roadmap to turn digital awareness into daily practice.',
+                'month1_title': 'Month 1: Digital Awakening', 'month1_goal': 'Goal: Reduce distraction by 30%',
+                'month2_title': 'Month 2: System Building', 'month2_goal': 'Goal: Sustainable productivity system',
+                'month3_title': 'Month 3: Impact', 'month3_goal': 'Goal: Help one person',
+                'tools_title': 'Digital Toolkit',
+                'pledge_title': 'Digital Sovereignty Pledge', 'pledge_btn': 'Sign Pledge Now ✍️'
+                // ... إلخ
+            }
+        };
+
+        // ===================================================
+        // المكونات المشتركة (Components)
+        // ===================================================
+
+        // 1. مكون Navbar الموحد
+        const Navbar = ({ links, logoSrc, currencyOptions, langOptions, activeLang, activeCurr, onLangChange, onCurrChange }) => {
+            const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
             
-            // محاكاة عمل setLanguage و convertCurrency
-            const handleLangChange = (newLang) => {
+            return (
+                <nav className="bg-white shadow-lg sticky top-0 z-50">
+                    <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+                        <a href="index.html" className="flex items-center space-x-3 space-x-reverse">
+                            <img src={logoSrc || "img/logo.png"} width="45" className="rounded-lg shadow-sm" alt="Logo" />
+                            <h1 className="text-xl font-bold text-gray-900" data-key="site_name">{translations[activeLang]['site_name']}</h1>
+                        </a>
+                        
+                        {/* قائمة التنقل وسطح المكتب */}
+                        <div className="hidden md:flex items-center gap-5">
+                            {links.map((link, index) => (
+                                <a key={index} href={link.href} className="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key={link.key}>
+                                    {translations[activeLang][link.key] || link.label}
+                                </a>
+                            ))}
+
+                            <select id="lang-select" value={activeLang} onChange={(e) => onLangChange(e.target.value)} className="text-xs border border-gray-300 rounded p-1 bg-white focus:outline-none focus:border-blue-500">
+                                {langOptions.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
+                            </select>
+
+                            <select id="curr-select" value={activeCurr} onChange={(e) => onCurrChange(e.target.value)} className="text-xs border border-gray-300 rounded p-1 bg-white font-bold text-blue-900 focus:outline-none focus:border-blue-500">
+                                {currencyOptions.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
+                            </select>
+                            
+                            <a href="buy.html" className="btn-primary px-6 py-2 rounded-lg text-sm font-bold shadow-md flex items-center gap-2 no-underline text-white" data-key="nav_join">
+                                <i className="fas fa-shopping-cart"></i> {translations[activeLang]['nav_join']}
+                            </a>
+                        </div>
+                        
+                        {/* زر قائمة الجوال (الهاتف) */}
+                        <button id="mobile-menu-btn" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="md:hidden text-gray-800 p-2"><i className="fas fa-bars text-xl"></i></button>
+                    </div>
+                    
+                    {/* قائمة الجوال (تظهر عند الضغط) */}
+                    <div id="mobile-menu" className={`${isMobileMenuOpen ? 'block' : 'hidden'} md:hidden bg-white border-t p-4 shadow-xl`}>
+                        {links.map((link, index) => (
+                            <a key={index} href={link.href} className="block py-2 font-bold text-gray-600 hover:text-blue-900 border-b" data-key={link.key}>
+                                {translations[activeLang][link.key] || link.label}
+                            </a>
+                        ))}
+                        <div className="pt-3 flex gap-4">
+                            <select value={activeLang} onChange={(e) => onLangChange(e.target.value)} className="text-xs border border-gray-300 rounded p-1 bg-white focus:outline-none flex-grow">
+                                {langOptions.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
+                            </select>
+                            <select value={activeCurr} onChange={(e) => onCurrChange(e.target.value)} className="text-xs border border-gray-300 rounded p-1 bg-white font-bold text-blue-900 focus:outline-none flex-grow">
+                                {currencyOptions.map(opt => <option key={opt.value} value={opt.value}>{opt.label}</option>)}
+                            </select>
+                        </div>
+                    </div>
+                </nav>
+            );
+        };
+
+        // 2. مكون Footer الموحد
+        const Footer = ({ activeLang }) => (
+            <footer className="bg-gray-900 text-white py-12 text-center border-t border-gray-800">
+                <div className="container mx-auto px-4">
+                    <h3 className="text-xl font-bold mb-4" data-key="site_name">{translations[activeLang]['site_name']}</h3>
+                    <p className="text-gray-400 text-sm">© 2025 Digital Anchor Project. جميع الحقوق محفوظة.</p>
+                </div>
+            </footer>
+        );
+
+        // ===================================================
+        // المكون الرئيسي للصفحة (HomePage)
+        // ===================================================
+        const HomePage = () => {
+            const [lang, setLang] = useState(localStorage.getItem('preferredLang') || 'ar');
+            const [curr, setCurr] = useState('SAR');
+
+            // دالة الترجمة وتغيير الاتجاه
+            const setLanguage = (newLang) => {
+                const isRTL = newLang === 'ar';
+                document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+                document.documentElement.setAttribute('lang', newLang);
+                document.title = translations[newLang]['page_title'] || document.title;
+                
+                // تحديث العملة بناءً على اللغة
+                const currencyMap = {'ar': 'SAR', 'en': 'USD', 'fr': 'EUR', 'de': 'EUR'};
+                setCurr(currencyMap[newLang] || 'USD');
+                
                 setLang(newLang);
-                // منطق تغيير الـ dir و الترجمة (سيتم استخدامه في مشروع حقيقي)
+                localStorage.setItem('preferredLang', newLang);
             };
-            const handleCurrChange = (newCurr) => { setCurr(newCurr); };
+            
+            // محاكاة تغيير العملة
+            const convertCurrency = (newCurr) => {
+                 setCurr(newCurr);
+                 console.log('Currency changed to:', newCurr);
+                 // هنا يمكنك إضافة منطق تحديث الأسعار
+            };
+
+            // تشغيل اللغة الافتراضية عند التحميل
+            useEffect(() => {
+                setLanguage(lang);
+            }, []); // يتم تشغيله مرة واحدة فقط عند التركيب
+
+            // دالة ترجمة النص
+            const t = (key) => {
+                const text = translations[lang][key] || key;
+                return { __html: text }; // للسماح بعرض وسم <span> في Hero Title
+            };
 
             return (
                 <div className="flex flex-col min-h-screen">
@@ -64,23 +196,21 @@
                         langOptions={LANG_OPTIONS} 
                         activeLang={lang} 
                         activeCurr={curr} 
-                        onLangChange={handleLangChange} 
-                        onCurrChange={handleCurrChange}
+                        onLangChange={setLanguage} 
+                        onCurrChange={convertCurrency}
                     />
                     
                     <header className="bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white py-16 md:py-24 relative overflow-hidden">
                         <div className="container mx-auto px-4 relative z-10">
                             <div className="flex flex-col lg:flex-row items-center">
                                 <div className="lg:w-1/2 text-center lg:text-right mb-12 lg:mb-0">
-                                    <span className="inline-block bg-yellow-400 text-blue-900 px-4 py-2 rounded-full text-sm font-bold mb-6 shadow-lg" data-key="hero_badge">✨ الإصدار الجديد 2025</span>
-                                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6" data-key="hero_title">من أنت حين <span className="text-yellow-300">تنطفئ الشاشة</span>؟</h1>
-                                    <p className="text-xl opacity-90 mb-8 leading-relaxed font-medium" data-key="hero_subtitle">دليل الشباب للقيم والتركيز والهدف في اقتصاد الانتباه.</p>
+                                    <span className="inline-block bg-yellow-400 text-blue-900 px-4 py-2 rounded-full text-sm font-bold mb-6 shadow-lg" dangerouslySetInnerHTML={t('hero_badge')}></span>
+                                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6" dangerouslySetInnerHTML={t('hero_title')}></h1>
+                                    <p className="text-xl opacity-90 mb-8 leading-relaxed font-medium" dangerouslySetInnerHTML={t('hero_subtitle')}></p>
                                     <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-end">
-                                        <a href="buy.html" className="btn-primary text-lg flex items-center justify-center gap-2 no-underline text-white" data-key="hero_btn_start">
-                                            <i className="fas fa-play-circle ml-2"></i> احجز الكتاب والرحلة الآن
-                                        </a>
+                                        <a href="buy.html" className="btn-primary text-lg flex items-center justify-center gap-2 no-underline text-white" dangerouslySetInnerHTML={t('hero_btn_start')}></a>
                                         <a href="downloads/Emergency_Guide.pdf" target="_blank" rel="noopener noreferrer" className="bg-white text-blue-900 hover:bg-gray-100 font-bold py-3 px-8 rounded-lg transition text-center flex items-center justify-center gap-2 no-underline">
-                                            <i className="fas fa-exclamation-triangle"></i> <span data-key="hero_btn_emergency">دليل الطوارئ</span>
+                                            <i className="fas fa-exclamation-triangle"></i> <span dangerouslySetInnerHTML={t('hero_btn_emergency')}></span>
                                         </a>
                                     </div>
                                 </div>
@@ -98,23 +228,23 @@
                         <section id="roadmap" className="py-20 bg-white">
                             <div className="container mx-auto px-4">
                                 <div className="text-center mb-16">
-                                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-key="roadmap_title">برنامج الـ 90 يوماً</h2>
-                                    <p className="text-gray-700 text-lg font-medium" data-key="roadmap_desc">خطة عملية لتحويل الوعي الرقمي إلى ممارسة يومية.</p>
+                                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" dangerouslySetInnerHTML={t('roadmap_title')}></h2>
+                                    <p className="text-gray-700 text-lg font-medium" dangerouslySetInnerHTML={t('roadmap_desc')}></p>
                                 </div>
                                 <div className="grid md:grid-cols-3 gap-8">
                                     <article className="bg-blue-50 rounded-2xl p-8 border-t-4 border-blue-600 card-hover shadow-lg">
-                                        <h3 className="text-2xl font-bold text-gray-900 mb-2" data-key="month1_title">الشهر 1: الصحوة الرقمية</h3>
-                                        <p className="text-sm text-gray-700 mb-4 font-bold" data-key="month1_goal">الهدف: خفض الإلهاء بنسبة 30%</p>
+                                        <h3 className="text-2xl font-bold text-gray-900 mb-2" dangerouslySetInnerHTML={t('month1_title')}></h3>
+                                        <p className="text-sm text-gray-700 mb-4 font-bold" dangerouslySetInnerHTML={t('month1_goal')}></p>
                                         <a href="program.html" className="text-blue-600 font-bold text-sm hover:underline">تفاصيل البرنامج &larr;</a>
                                     </article>
                                     <article className="bg-green-50 rounded-2xl p-8 border-t-4 border-green-600 card-hover shadow-lg">
-                                        <h3 className="text-2xl font-bold text-gray-900 mb-2" data-key="month2_title">الشهر 2: بناء النظام</h3>
-                                        <p className="text-sm text-gray-700 mb-4 font-bold" data-key="month2_goal">الهدف: إنشاء نظام إنتاجية مستدام</p>
+                                        <h3 className="text-2xl font-bold text-gray-900 mb-2" dangerouslySetInnerHTML={t('month2_title')}></h3>
+                                        <p className="text-sm text-gray-700 mb-4 font-bold" dangerouslySetInnerHTML={t('month2_goal')}></p>
                                         <a href="program.html" className="text-green-600 font-bold text-sm hover:underline">تفاصيل البرنامج &larr;</a>
                                     </article>
                                     <article className="bg-yellow-50 rounded-2xl p-8 border-t-4 border-yellow-500 card-hover shadow-lg">
-                                        <h3 className="text-2xl font-bold text-gray-900 mb-2" data-key="month3_title">الشهر 3: التأثير</h3>
-                                        <p className="text-sm text-gray-700 mb-4 font-bold" data-key="month3_goal">الهدف: مساعدة شخص واحد</p>
+                                        <h3 className="text-2xl font-bold text-gray-900 mb-2" dangerouslySetInnerHTML={t('month3_title')}></h3>
+                                        <p className="text-sm text-gray-700 mb-4 font-bold" dangerouslySetInnerHTML={t('month3_goal')}></p>
                                         <a href="program.html" className="text-yellow-600 font-bold text-sm hover:underline">تفاصيل البرنامج &larr;</a>
                                     </article>
                                 </div>
@@ -124,10 +254,8 @@
                         {/* قسم الموارد المجانية */}
                         <section id="resources" className="py-16 bg-gray-900 text-white">
                             <div className="container mx-auto px-4 text-center">
-                                <h2 className="text-3xl font-bold mb-8" data-key="tools_title">أدوات مجانية لتبدأ الآن</h2>
-                                <a href="resources.html" className="inline-block border border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-gray-900 transition font-bold" data-key="btn_free_tools">
-                                    اكتشف المكتبة المجانية
-                                </a>
+                                <h2 className="text-3xl font-bold mb-8" dangerouslySetInnerHTML={t('tools_title')}></h2>
+                                <a href="resources.html" className="inline-block border border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-gray-900 transition font-bold" data-key="btn_free_tools">اكتشف المكتبة المجانية</a>
                             </div>
                         </section>
                         
@@ -142,11 +270,9 @@
                                         </div>
                                     </div>
                                     <div className="w-full md:w-2/3 text-center lg:text-right">
-                                        <h2 className="text-blue-900 text-sm font-bold uppercase tracking-wide mb-2" data-key="author_label">عن المؤلفة</h2>
-                                        <h3 className="text-4xl font-bold text-gray-900 mb-6 font-serif" data-key="author_name">نوال غرباوي</h3>
-                                        <p className="text-lg text-gray-700 leading-relaxed mb-6 font-medium" data-key="author_bio">
-                                            رائدة في مجال التحول الرقمي الواعي، وخبيرة في مواجهة تحديات التشتت الرقمي. هذا الكتاب لم ينبع من دراسات أكاديمية فحسب، بل من تجربة شخصية عميقة في استعادة السيطرة على الوقت والقيم.
-                                        </p>
+                                        <h2 className="text-blue-900 text-sm font-bold uppercase tracking-wide mb-2" dangerouslySetInnerHTML={t('author_label')}></h2>
+                                        <h3 className="text-4xl font-bold text-gray-900 mb-6 font-serif" dangerouslySetInnerHTML={t('author_name')}></h3>
+                                        <p className="text-lg text-gray-700 leading-relaxed mb-6 font-medium" dangerouslySetInnerHTML={t('author_bio')}></p>
                                     </div>
                                 </div>
                             </div>
@@ -156,19 +282,19 @@
                         <section className="py-20 bg-blue-50">
                             <div className="container mx-auto px-4 max-w-4xl">
                                 <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-blue-100 p-8 text-center">
-                                    <h2 className="text-2xl font-bold text-blue-900 mb-4" data-key="pledge_title">تعهد السيادة الرقمية</h2>
-                                    <p className="text-lg text-gray-800 leading-relaxed font-amiri mb-8" data-key="pledge_text">
+                                    <h2 className="text-2xl font-bold text-blue-900 mb-4" dangerouslySetInnerHTML={t('pledge_title')}></h2>
+                                    <p className="text-lg text-gray-800 leading-relaxed font-amiri mb-8">
                                         "أتعهد أمام نفسي بأن تكون القيم الخمس التي أؤمن بها هي الفلتر الأساسي لجميع قراراتي اليومية، خاصة في العالم الرقمي."
                                     </p>
                                     <form className="space-y-4 max-w-md mx-auto" onSubmit={(e) => { e.preventDefault(); alert('تم توقيع العهد بنجاح! أنت الآن قبطان سفينتك.'); }}>
                                         <input id="pledge-name" type="text" placeholder="الاسم الكامل" className="w-full p-3 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500" required />
-                                        <button type="submit" className="w-full btn-primary py-3 text-lg" data-key="pledge_btn">أوقع العهد الآن ✍️</button>
+                                        <button type="submit" className="w-full btn-primary py-3 text-lg" dangerouslySetInnerHTML={t('pledge_btn')}></button>
                                     </form>
                                 </div>
                             </div>
                         </section>
                     </main>
-                    <Footer />
+                    <Footer activeLang={lang} />
                 </div>
             );
         };
