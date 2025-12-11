@@ -3,72 +3,258 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الأكاديمية الرقمية | رحلة التحول</title>
+    <title data-key="page_title">الأكاديمية الرقمية | رحلة التحول</title>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJZHN8FQQ2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-HJZHN8FQQ2');
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; }</style>
+    
+    <style>
+        body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; color: #1e293b; scroll-behavior: smooth; }
+        h1, h2, h3 { font-family: 'Amiri', serif; }
+        .btn-primary { background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%); color: white; transition: 0.3s; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); transition: 0.3s; }
+    </style>
 </head>
 <body class="flex flex-col min-h-screen">
+    
     <nav class="bg-white shadow-lg sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="index.html" class="flex items-center gap-3">
-                <img src="logo.png" width="40" class="rounded-lg">
-                <span class="text-xl font-bold">الأكاديمية الرقمية</span>
+            <a href="index.html" class="flex items-center space-x-3 space-x-reverse">
+                <img src="logo.png" width="45" class="rounded-lg shadow-sm">
+                <div>
+                    <h1 class="text-xl font-bold text-gray-900" data-key="site_name">المرساة الرقمية</h1>
+                </div>
             </a>
+            
             <div class="hidden md:flex items-center gap-5">
-                <a href="track-sovereignty.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm">المسارات</a>
-                <a href="lab.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm">المختبر</a>
-                <a href="dashboard.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm">لوحة القيادة</a>
-                <a href="buy.html" class="bg-blue-900 text-white px-6 py-2 rounded-lg font-bold text-sm">انضم الآن</a>
+                <a href="track-sovereignty.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key="nav_tracks">المسارات</a>
+                <a href="lab.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key="nav_lab">المختبر</a>
+                <a href="dashboard.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key="nav_dashboard">لوحة القيادة</a>
+                <a href="blog.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key="nav_blog">المدونة</a>
+
+                <select id="lang-select" onchange="setLanguage(this.value)" class="text-xs border border-gray-300 rounded p-1 bg-white focus:outline-none focus:border-blue-500">
+                    <option value="ar">عربي</option>
+                    <option value="en">English</option>
+                    <option value="fr">Français</option>
+                    <option value="de">Deutsch</option>
+                </select>
+
+                <select id="curr-select" onchange="convertCurrency(this.value)" class="text-xs border border-gray-300 rounded p-1 bg-white font-bold text-blue-900 focus:outline-none focus:border-blue-500">
+                    <option value="SAR">SAR (ر.س)</option>
+                    <option value="USD">USD ($)</option>
+                    <option value="EUR">EUR (€)</option>
+                </select>
+
+                <a href="buy.html" class="btn-primary px-6 py-2 rounded-lg text-sm font-bold shadow-md flex items-center gap-2 no-underline text-white" data-key="nav_join">
+                    <i class="fas fa-user-plus"></i> انضم الآن
+                </a>
             </div>
+            
+            <button id="mobile-menu-btn" class="md:hidden text-gray-800 p-2"><i class="fas fa-bars text-xl"></i></button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-4 shadow-xl">
+            <a href="track-sovereignty.html" class="block py-3 font-bold border-b border-gray-100" data-key="nav_tracks">المسارات</a>
+            <a href="lab.html" class="block py-3 font-bold border-b border-gray-100" data-key="nav_lab">المختبر</a>
+            <a href="dashboard.html" class="block py-3 font-bold border-b border-gray-100" data-key="nav_dashboard">لوحة القيادة</a>
+            <div class="flex gap-4 py-4">
+                <select onchange="setLanguage(this.value)" class="w-1/2 p-2 border rounded bg-gray-50 text-sm">
+                    <option value="ar">عربي</option>
+                    <option value="en">English</option>
+                </select>
+                <select onchange="convertCurrency(this.value)" class="w-1/2 p-2 border rounded bg-gray-50 text-sm">
+                    <option value="SAR">SAR</option>
+                    <option value="USD">USD</option>
+                </select>
+            </div>
+            <a href="buy.html" class="block w-full py-3 mt-2 text-center bg-blue-900 text-white rounded-lg font-bold" data-key="nav_join">انضم للأكاديمية</a>
         </div>
     </nav>
 
-    <header class="bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white py-20 text-center relative">
+    <header class="bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white py-20 text-center relative overflow-hidden">
         <div class="container mx-auto px-4 relative z-10">
-            <span class="bg-yellow-500 text-slate-900 px-4 py-1 rounded-full text-xs font-bold mb-6 inline-block">🚀 أول منصة عربية للتحول الرقمي</span>
-            <h1 class="text-4xl md:text-6xl font-bold mb-6">من الوعي... إلى <span class="text-yellow-400">التمكين</span></h1>
-            <p class="text-xl text-blue-100 max-w-2xl mx-auto mb-10">نرافقك في رحلة مدتها سنة كاملة لتحويل علاقتك مع التكنولوجيا من الاستهلاك إلى السيادة.</p>
-            <div class="flex justify-center gap-4">
-                <a href="tool-value.html" class="bg-yellow-500 text-slate-900 px-8 py-4 rounded-xl font-bold hover:bg-yellow-400">اختبر مستوى وعيك</a>
-                <a href="track-sovereignty.html" class="bg-white/10 border border-white/30 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/20">اكتشف المسارات</a>
+            <span class="inline-block bg-yellow-500 text-slate-900 px-4 py-1 rounded-full text-xs font-bold mb-6 animate-pulse" data-key="hero_badge">🚀 أول منصة عربية للتحول الرقمي</span>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight" data-key="hero_title">من الوعي... إلى <span class="text-yellow-400">التمكين</span></h1>
+            <p class="text-xl text-blue-100 max-w-2xl mx-auto mb-10 font-medium" data-key="hero_subtitle">نرافقك في رحلة مدتها سنة كاملة لتحويل علاقتك مع التكنولوجيا من الاستهلاك إلى السيادة. الكتاب هو البداية، والأكاديمية هي الطريق.</p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="tool-value.html" class="bg-yellow-500 text-slate-900 px-8 py-4 rounded-xl font-bold hover:bg-yellow-400 transition shadow-lg flex items-center justify-center gap-2 no-underline">
+                    <i class="fas fa-clipboard-check"></i> <span data-key="btn_quiz">اختبر مستوى وعيك (مجاناً)</span>
+                </a>
+                <a href="track-sovereignty.html" class="bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/20 transition flex items-center justify-center gap-2 no-underline">
+                    <i class="fas fa-map-signs"></i> <span data-key="btn_tracks">اكتشف المسارات</span>
+                </a>
             </div>
         </div>
     </header>
 
-    <section class="py-20 bg-gray-50">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold mb-12">مسارات التحول</h2>
-            <div class="grid md:grid-cols-4 gap-6">
-                <div class="bg-white p-6 rounded-2xl shadow-lg border-t-4 border-blue-500">
-                    <i class="fas fa-shield-alt text-4xl text-blue-600 mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">السيادة الرقمية</h3>
-                    <p class="text-sm text-gray-600 mb-4">للمبتدئين: استعد انتباهك ووقتك.</p>
-                    <a href="track-sovereignty.html" class="text-blue-600 font-bold text-sm">التفاصيل &larr;</a>
+    <section id="tracks" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-slate-800 mb-4" data-key="tracks_title">اختر مسار تحولك</h2>
+                <p class="text-slate-600" data-key="tracks_desc">تم تفكيك الكتاب إلى 4 مسارات تطبيقية تناسب هدفك</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-lg border-t-4 border-blue-500 card-hover group">
+                    <div class="w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                        <i class="fas fa-shield-alt text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2" data-key="track1_title">السيادة الرقمية</h3>
+                    <p class="text-xs text-gray-500 mb-4" data-key="track1_meta">الفصول 1-15 | للمبتدئين</p>
+                    <p class="text-sm text-gray-600 mb-6" data-key="track1_desc">اكتشف قيمك واستعد سيطرتك على وقتك وانتباهك.</p>
+                    <a href="track-sovereignty.html" class="text-blue-600 font-bold text-sm hover:underline">التفاصيل &larr;</a>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-lg border-t-4 border-green-500">
-                    <i class="fas fa-briefcase text-4xl text-green-600 mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">الإنتاجية الرقمية</h3>
-                    <p class="text-sm text-gray-600 mb-4">للموظفين: أتقن العمل العميق.</p>
-                    <a href="#" class="text-green-600 font-bold text-sm">قريباً</a>
+                <div class="bg-white p-6 rounded-2xl shadow-lg border-t-4 border-green-500 card-hover group">
+                    <div class="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                        <i class="fas fa-briefcase text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2" data-key="track2_title">الإنتاجية الرقمية</h3>
+                    <p class="text-xs text-gray-500 mb-4">الفصول 23-24 | للموظفين</p>
+                    <p class="text-sm text-gray-600 mb-6">أتقن العمل عن بُعد وابنِ نظاماً مهنياً لا يقهر.</p>
+                    <a href="#" class="text-green-600 font-bold text-sm hover:underline">قريباً</a>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-lg border-t-4 border-purple-500">
-                    <i class="fas fa-rocket text-4xl text-purple-600 mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">ريادة الأعمال</h3>
-                    <p class="text-sm text-gray-600 mb-4">للمبدعين: أطلق مشروعك الرقمي.</p>
-                    <a href="#" class="text-purple-600 font-bold text-sm">قريباً</a>
+                <div class="bg-white p-6 rounded-2xl shadow-lg border-t-4 border-purple-500 card-hover group">
+                    <div class="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                        <i class="fas fa-rocket text-2xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2" data-key="track3_title">ريادة الأعمال</h3>
+                    <p class="text-xs text-gray-500 mb-4">الفصل 31 | للمبدعين</p>
+                    <p class="text-sm text-gray-600 mb-6">حوّل مهاراتك إلى مشروع، وفكرتك إلى شركة ناشئة.</p>
+                    <a href="#" class="text-purple-600 font-bold text-sm hover:underline">قريباً</a>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-lg border-t-4 border-red-500">
-                    <i class="fas fa-lock text-4xl text-red-600 mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">الأمان والخصوصية</h3>
-                    <p class="text-sm text-gray-600 mb-4">للجميع: احمِ بياناتك وهويتك.</p>
-                    <a href="#" class="text-red-600 font-bold text-sm">قريباً</a>
+                <div class="bg-white p-6 rounded-2xl shadow-lg border-t-4 border-red-500 card-hover group">
+                    <div class="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                        <i class="fas fa-lock text-2xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2" data-key="track4_title">الأمان والخصوصية</h3>
+                    <p class="text-xs text-gray-500 mb-4">الفصل 32 | للجميع</p>
+                    <p class="text-sm text-gray-600 mb-6">احمِ هويتك الرقمية وبياناتك كأنها كنزك الأثمن.</p>
+                    <a href="#" class="text-red-600 font-bold text-sm hover:underline">قريباً</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-auto"><p class="text-sm">© 2025 Digital Anchor Academy.</p></footer>
+    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-auto border-t border-slate-800">
+        <div class="container mx-auto px-4">
+            <p class="text-sm">© 2025 Digital Anchor Academy.</p>
+            <div class="flex justify-center gap-4 text-xs mt-2">
+                <a href="mailto:garbaouisalma@gmail.com" class="hover:text-white">اتصل بنا</a>
+                <span>|</span>
+                <a href="#" class="hover:text-white">سياسة الخصوصية</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // قاموس الترجمة الكامل
+        const translations = {
+            'ar': { 
+                'page_title': 'الأكاديمية الرقمية | رحلة التحول', 'site_name': 'المرساة الرقمية',
+                'nav_tracks': 'المسارات', 'nav_lab': 'المختبر', 'nav_dashboard': 'لوحة القيادة', 'nav_blog': 'المدونة', 'nav_join': 'انضم الآن',
+                'hero_title': 'من الوعي... إلى <span class="text-yellow-400">التمكين</span>', 
+                'hero_subtitle': 'نرافقك في رحلة مدتها سنة كاملة لتحويل علاقتك مع التكنولوجيا من الاستهلاك إلى السيادة. الكتاب هو البداية، والأكاديمية هي الطريق.',
+                'hero_badge': '🚀 أول منصة عربية للتحول الرقمي',
+                'btn_quiz': 'اختبر مستوى وعيك', 'btn_tracks': 'اكتشف المسارات',
+                'tracks_title': 'اختر مسار تحولك', 'tracks_desc': 'تم تفكيك الكتاب إلى 4 مسارات تطبيقية تناسب هدفك.',
+                'track1_title': 'السيادة الرقمية', 'track1_desc': 'اكتشف قيمك واستعد سيطرتك.', 'track1_meta': 'الفصول 1-15 | للمبتدئين',
+                'track2_title': 'الإنتاجية الرقمية', 'track3_title': 'ريادة الأعمال', 'track4_title': 'الأمان والخصوصية'
+            },
+            'en': { 
+                'page_title': 'Digital Academy | Transformation Journey', 'site_name': 'Digital Anchor',
+                'nav_tracks': 'Tracks', 'nav_lab': 'Lab', 'nav_dashboard': 'Dashboard', 'nav_blog': 'Blog', 'nav_join': 'Join Now',
+                'hero_title': 'From Awareness to <span class="text-yellow-400">Empowerment</span>', 
+                'hero_subtitle': 'We accompany you on a year-long journey to transform your relationship with technology from consumption to sovereignty. The book is the beginning, the Academy is the path.',
+                'hero_badge': '🚀 First Arab Digital Transformation Platform',
+                'btn_quiz': 'Take Awareness Quiz', 'btn_tracks': 'Explore Tracks',
+                'tracks_title': 'Choose Your Track', 'tracks_desc': 'The book is broken down into 4 practical tracks.',
+                'track1_title': 'Digital Sovereignty', 'track1_desc': 'Reclaim your time.', 'track1_meta': 'Ch 1-15 | Beginners',
+                'track2_title': 'Digital Productivity', 'track3_title': 'Entrepreneurship', 'track4_title': 'Security & Privacy'
+            },
+            'fr': {
+                'page_title': 'Académie Numérique | Transformation', 'site_name': 'L\'Ancre Numérique',
+                'nav_tracks': 'Parcours', 'nav_lab': 'Labo', 'nav_dashboard': 'Tableau de bord', 'nav_blog': 'Blog', 'nav_join': 'Rejoindre',
+                'hero_title': 'De la Conscience à <span class="text-yellow-400">l\'Autonomie</span>',
+                'hero_subtitle': 'Nous vous accompagnons dans un voyage d\'un an pour transformer votre relation avec la technologie. Le livre est le début, l\'Académie est le chemin.',
+                'hero_badge': '🚀 Première Plateforme Arabe',
+                'btn_quiz': 'Faire le Quiz', 'btn_tracks': 'Explorer',
+                'tracks_title': 'Choisissez votre voie', 'tracks_desc': 'Le livre est décomposé en 4 parcours pratiques.',
+                'track1_title': 'Souveraineté Numérique', 'track1_desc': 'Reprenez le contrôle.', 'track1_meta': 'Ch 1-15 | Débutants',
+                'track2_title': 'Productivité Numérique', 'track3_title': 'Entrepreneuriat', 'track4_title': 'Sécurité & Privé'
+            },
+            'de': {
+                'page_title': 'Digitale Akademie | Transformation', 'site_name': 'Der Digitale Anker',
+                'nav_tracks': 'Pfade', 'nav_lab': 'Labor', 'nav_dashboard': 'Dashboard', 'nav_blog': 'Blog', 'nav_join': 'Beitreten',
+                'hero_title': 'Vom Bewusstsein zur <span class="text-yellow-400">Ermächtigung</span>',
+                'hero_subtitle': 'Wir begleiten Sie auf einer einjährigen Reise, um Ihre Beziehung zur Technologie zu verändern. Das Buch ist der Anfang, die Akademie ist der Weg.',
+                'hero_badge': '🚀 Erste arabische Plattform',
+                'btn_quiz': 'Quiz machen', 'btn_tracks': 'Entdecken',
+                'tracks_title': 'Wähle deinen Weg', 'tracks_desc': 'Das Buch ist in 4 praktische Pfade unterteilt.',
+                'track1_title': 'Digitale Souveränität', 'track1_desc': 'Holen Sie sich die Kontrolle zurück.', 'track1_meta': 'Kap 1-15 | Anfänger',
+                'track2_title': 'Digitale Produktivität', 'track3_title': 'Unternehmertum', 'track4_title': 'Sicherheit & Datenschutz'
+            }
+        };
+
+        // دالة تغيير اللغة
+        function setLanguage(lang) {
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            
+            // تحديث النصوص
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key]; 
+                }
+            });
+
+            // تحديث القائمة المنسدلة
+            const select = document.getElementById('lang-select');
+            if(select) select.value = lang;
+
+            // تحديث العملة تلقائياً مع اللغة
+            const currencyMap = {'ar': 'SAR', 'en': 'USD', 'fr': 'EUR', 'de': 'EUR'};
+            const targetCurrency = currencyMap[lang] || 'USD';
+            const currSelect = document.getElementById('curr-select');
+            if(currSelect) {
+                currSelect.value = targetCurrency;
+                convertCurrency(targetCurrency);
+            }
+
+            localStorage.setItem('preferredLang', lang);
+        }
+
+        // دالة تحويل العملة (وهمية حالياً للعرض)
+        function convertCurrency(curr) {
+            console.log("Currency changed to: " + curr);
+            // هنا يمكنك إضافة منطق تحديث الأسعار في الصفحة إذا وجد
+        }
+
+        // قائمة الموبايل
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // التشغيل عند التحميل
+        document.addEventListener('DOMContentLoaded', () => {
+            const defaultLang = localStorage.getItem('preferredLang') || 'ar';
+            setLanguage(defaultLang);
+        });
+    </script>
 </body>
 </html>
