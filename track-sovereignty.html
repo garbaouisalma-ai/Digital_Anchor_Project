@@ -6,26 +6,18 @@
     <title data-key="page_title">مسار السيادة الرقمية | الأكاديمية الرقمية</title>
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJZHN8FQQ2"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HJZHN8FQQ2');</script>
+    <script src="js/analytics.js"></script>
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="css/styles.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
-        body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; color: #1e293b; }
-        h1, h2, h3 { font-family: 'Amiri', serif; }
-        .stage-card { transition: all 0.3s ease; }
-        .stage-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .timeline-line { position: absolute; right: 8px; top: 0; bottom: 0; width: 4px; background: #e2e8f0; md:right: 1/2; }
-        .btn-primary { background-color: #1a365d; color: white; transition: 0.3s; }
-    </style>
 </head>
 <body class="flex flex-col min-h-screen">
 
     <nav class="bg-white shadow-lg sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="index.html" class="flex items-center space-x-3 space-x-reverse">
-                <img src="logo.png" width="45" class="rounded-lg shadow-sm">
+                <img src="img/logo.png" width="45" class="rounded-lg shadow-sm">
                 <h1 class="text-xl font-bold text-gray-900" data-key="site_name">المرساة الرقمية</h1>
             </a>
             
@@ -123,16 +115,6 @@
             </div>
         </section>
 
-        <section class="mb-20 bg-slate-50 p-10 rounded-3xl">
-            <h2 class="text-3xl font-bold text-center mb-10 text-slate-800" data-key="tools_support_header">الأدوات والدعم</h2>
-            <div class="grid md:grid-cols-4 gap-6">
-                <div class="text-center"><i class="fas fa-book-open text-3xl text-blue-500 mb-2"></i><p class="font-bold text-sm" data-key="tool1">دفتر السيادة</p></div>
-                <div class="text-center"><i class="fas fa-chart-pie text-3xl text-green-500 mb-2"></i><p class="font-bold text-sm" data-key="tool2">مقياس واقعك</p></div>
-                <div class="text-center"><i class="fas fa-users text-3xl text-purple-500 mb-2"></i><p class="font-bold text-sm" data-key="tool3">مجتمع الدعم</p></div>
-                <div class="text-center"><i class="fas fa-video text-3xl text-red-500 mb-2"></i><p class="font-bold text-sm" data-key="tool4">لقاء الخميس الحي</p></div>
-            </div>
-        </section>
-
         <section id="pricing" class="mb-20 max-w-4xl mx-auto">
             <h2 class="text-3xl font-bold text-center mb-12 text-slate-800" data-key="pricing_header">اختر استثمارك في نفسك</h2>
             
@@ -152,7 +134,7 @@
                 </div>
             </div>
         </section>
-
+        
         <section class="max-w-3xl mx-auto">
             <h2 class="text-2xl font-bold text-center mb-8 text-slate-800" data-key="faq_header">أسئلة شائعة</h2>
             <div class="space-y-4">
@@ -165,7 +147,6 @@
                 </details>
             </div>
         </section>
-
     </main>
 
     <footer class="bg-gray-900 text-white py-8 text-center mt-auto border-t border-gray-800">
@@ -174,88 +155,6 @@
         </div>
     </footer>
 
-    <script>
-        // قاموس الترجمة الكامل
-        const translations = {
-            'ar': {
-                'page_title': 'مسار السيادة الرقمية | الأكاديمية الرقمية', 'site_name': 'المرساة الرقمية', 'nav_home': 'الرئيسية', 'nav_dashboard': 'لوحة القيادة', 'nav_blog': 'المدونة', 'nav_join': 'اشترك الآن',
-                'track_badge': 'المسار الأول: الأساس', 'track_title': 'مسار السيادة الرقمية 🛡️', 'track_subtitle': 'استعد انتباهك ووقتك وقيمتك في رحلة موجهة لمدة 90 يوماً.', 'meta_weeks': '13 أسبوعاً', 'meta_time': '60 دقيقة/يوم',
-                'outcomes_header': 'لماذا هذا المسار؟', 'outcome_1': 'خفض التشتت', 'outcome_1_desc': 'بنسبة 50% على الأقل', 'outcome_2': 'نظام الأهداف', 'outcome_2_desc': 'بناء نظام إنتاجية شخصي', 'outcome_3': 'السلام الداخلي', 'outcome_3_desc': 'التحرر من FOMO',
-                'roadmap_header': 'خريطة الرحلة التفصيلية', 
-                'phase1_title': 'المرحلة 1: الصحوة (أسابيع 1-4)', 'phase1_desc': 'تشخيص الواقع، اكتشاف "المرساة" (القيم)، وبناء الحصانة الداخلية.', 'phase1_btn': 'ابدأ الأسبوع الأول &larr;',
-                'phase2_title': 'المرحلة 2: البناء (أسابيع 5-8)', 'phase2_desc': 'تحويل الأحلام إلى أهداف ذكية (السهم)، هندسة البيئة، واستراتيجية التعامل مع الفشل.',
-                'phase3_title': 'المرحلة 3: التمكين (أسابيع 9-13)', 'phase3_desc': 'فهم اقتصاد الانتباه، إتقان إدارة الوقت، والتتويج بمشروع التأثير المجتمعي.',
-                'tools_support_header': 'الأدوات والدعم', 'tool1': 'دفتر السيادة', 'tool2': 'مقياس واقعك', 'tool3': 'مجتمع الدعم', 'tool4': 'لقاء الخميس الحي',
-                'pricing_header': 'اختر استثمارك في نفسك', 'plan1_title': 'النسخة الذاتية', 'plan1_desc': 'وصول كامل للمواد، دعم المجتمع العام.', 'plan2_title': 'النسخة الموجهة', 'plan2_desc': 'بالإضافة إلى 4 جلسات توجيه فردية وتصحيح الواجبات.', 'plan_btn': 'اختر الخطة',
-                'faq_header': 'أسئلة شائعة', 'footer_copy': '© 2025 Digital Anchor Academy. جميع الحقوق محفوظة.', 'nav_tracks': 'المسارات', 
-            },
-            'en': {
-                'page_title': 'Digital Sovereignty Track | Digital Academy', 'site_name': 'Digital Anchor', 'nav_home': 'Home', 'nav_dashboard': 'Dashboard', 'nav_blog': 'Blog', 'nav_join': 'Enroll Now',
-                'track_badge': 'Track 1: The Foundation', 'track_title': 'Digital Sovereignty Track 🛡️', 'track_subtitle': 'Reclaim your attention, time, and value in a 90-day guided journey.', 'meta_weeks': '13 Weeks', 'meta_time': '60 min/Day',
-                'outcomes_header': 'Why This Track?', 'outcome_1': 'Reduce Distraction', 'outcome_1_desc': 'By at least 50%', 'outcome_2': 'Goal System', 'outcome_2_desc': 'Build a personal productivity system', 'outcome_3': 'Inner Peace', 'outcome_3_desc': 'Freedom from FOMO',
-                'roadmap_header': 'Detailed Journey Map', 
-                'phase1_title': 'Phase 1: Awakening (Wk 1-4)', 'phase1_desc': 'Diagnosis, discovering your "Anchor" (Values), and building internal immunity.', 'phase1_btn': 'Start Week 1 &larr;',
-                'phase2_title': 'Phase 2: Building (Wk 5-8)', 'phase2_desc': 'SMART goals, environment engineering, and failure strategy.',
-                'phase3_title': 'Phase 3: Empowerment (Wk 9-13)', 'phase3_desc': 'Understanding the attention economy, time mastery, and the impact project.',
-                'tools_support_header': 'Tools & Support', 'tool1': 'Sovereignty Workbook', 'tool2': 'Reality Scale', 'tool3': 'Support Community', 'tool4': 'Live Webinar',
-                'pricing_header': 'Invest In Yourself', 'plan1_title': 'Self-Paced', 'plan1_desc': 'Full material access, general community support.', 'plan2_title': 'Guided Version', 'plan2_desc': 'Includes 4 individual coaching sessions and assignment correction.', 'plan_btn': 'Choose Plan',
-                'faq_header': 'FAQ', 'footer_copy': '© 2025 Digital Anchor Academy. All Rights Reserved.', 'nav_tracks': 'Tracks',
-            },
-            // French and German translations would go here
-        };
-
-        const RATES = { 'SAR': { r: 1, s: 'SAR' }, 'USD': { r: 0.27, s: '$' }, 'EUR': { r: 0.25, s: '€' } };
-
-        function convertCurrency(curr) {
-            const rate = RATES[curr].r;
-            const symbol = RATES[curr].s;
-            document.querySelectorAll('.price-display').forEach(el => {
-                const base = el.getAttribute('data-base-price');
-                el.textContent = Math.round(base * rate);
-            });
-            document.querySelectorAll('.currency-symbol').forEach(el => {
-                el.textContent = symbol;
-            });
-            // Update currency selector in the script logic to reflect changes
-            document.querySelectorAll('#curr-select').forEach(select => { if(select) select.value = curr; });
-        }
-
-        function setLanguage(lang) {
-            const isRTL = lang === 'ar';
-            document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
-            document.documentElement.setAttribute('lang', lang);
-            
-            document.querySelectorAll('[data-key]').forEach(el => {
-                const key = el.getAttribute('data-key');
-                if (translations[lang] && translations[lang][key]) {
-                    el.innerHTML = translations[lang][key]; 
-                }
-            });
-
-            // Update selectors
-            document.querySelectorAll('#lang-select').forEach(select => { if(select) select.value = lang; });
-            
-            // Auto-switch currency based on language
-            const currencyMap = {'ar': 'SAR', 'en': 'USD', 'fr': 'EUR', 'de': 'EUR'};
-            const targetCurrency = currencyMap[lang] || 'USD';
-            convertCurrency(targetCurrency);
-            
-            localStorage.setItem('preferredLang', lang);
-        }
-
-        // Mobile Menu Logic (Simple version for subpages)
-        const menuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (menuBtn && mobileMenu) {
-            menuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const defaultLang = localStorage.getItem('preferredLang') || 'ar';
-            setLanguage(defaultLang);
-        });
-    </script>
-    </body>
+    <script src="js/main.js"></script> 
+</body>
 </html>
