@@ -2,11 +2,15 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>صفحة الحجز المسبق | المرساة الرقمية</title>
+    <title data-key="buy_title">صفحة الحجز المسبق | المرساة الرقمية</title>
     
+    <link rel="icon" type="image/png" href="img/logo.png">
+
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <script src="i18n.js"></script>
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -27,6 +31,9 @@
     <div id="root"></div>
     
     <script type="text/babel">
+        // 🚨 ** [إصلاح: 3. تهيئة اللغة قبل تصيير React] **
+        initializePage();
+        
         // ----------------------------------------------------
         // المكونات المشتركة
         // ----------------------------------------------------
@@ -35,15 +42,15 @@
                 <div className="max-w-7xl mx-auto flex justify-between items-center">
                     <a href="index.html" className="flex items-center gap-3">
                         <img src="img/logo.png" alt="Logo" className="h-10 w-auto" />
-                        <span className="font-bold text-lg hidden md:block">المرساة الرقمية</span>
+                        <span className="font-bold text-lg hidden md:block" data-key="site_name">المرساة الرقمية</span>
                     </a>
-                    <a href="index.html" className="text-sm hover:text-anchor-gold transition">العودة للرئيسية</a>
+                    <a href="index.html" className="text-sm hover:text-anchor-gold transition" data-key="nav_home">العودة للرئيسية</a>
                 </div>
             </nav>
         );
 
         const Footer = () => (
-            <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm">© 2025 المرساة الرقمية</footer>
+            <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm">© 2025 <span data-key="site_name">المرساة الرقمية</span></footer>
         );
 
         // ----------------------------------------------------
@@ -51,7 +58,10 @@
         // ----------------------------------------------------
         const BuyPage = () => {
             
+            // ⚠️ ملاحظة: يجب تحديث هذا الجزء ليقرأ البيانات من ملف الترجمة (i18n.js)
+            // لكن لتبسيط الإصلاح ولأنها بيانات هيكلية، تم تركها هنا مؤقتاً
             const plans = [
+                // المفاتيح هنا تحتاج إلى نقلها إلى i18n.js لاستكمال التعريب الكامل
                 { id: 1, title: 'النسخة الذاتية (الكتاب فقط)', price: 97, features: ['الكتاب الإلكتروني', 'دفتر التمارين الرقمي', 'وصول لمنتدى الدعم العام'], bestSeller: false, currency: 'SAR' },
                 { id: 2, title: 'الحزمة الموجهة (الأكثر شيوعاً)', price: 297, features: ['كل مميزات النسخة الذاتية', '4 جلسات توجيه فردية', 'تصحيح الواجبات الأسبوعية', 'شهادة إكمال'], bestSeller: true, currency: 'SAR' },
             ];
@@ -61,8 +71,8 @@
                     <Navbar />
                     <main className="flex-grow py-12 px-6">
                         <div className="max-w-4xl mx-auto text-center">
-                            <h1 className="text-4xl font-bold font-serif text-anchor-blue mb-4">اختر حزمتك للانطلاق</h1>
-                            <p className="text-lg text-gray-600 mb-12">استثمر في انتباهك وقيمك. كل حجز يتضمن هدية فورية.</p>
+                            <h1 className="text-4xl font-bold font-serif text-anchor-blue mb-4" data-key="package_title">اختر حزمتك للانطلاق</h1>
+                            <p className="text-lg text-gray-600 mb-12" data-key="buy_subtitle">استثمر في انتباهك وقيمك. كل حجز يتضمن هدية فورية.</p>
 
                             <div className="grid md:grid-cols-2 gap-8 items-center">
                                 {plans.map(plan => (
@@ -96,6 +106,7 @@
                                                     ? 'bg-anchor-gold text-anchor-blue hover:bg-yellow-300' 
                                                     : 'bg-anchor-blue text-white hover:bg-gray-800'
                                             }`}
+                                            data-key={plan.bestSeller ? 'cta_button' : 'btn_select_option'} 
                                         >
                                             {plan.bestSeller ? 'ابدأ رحلة السيادة' : 'اختر هذا الخيار'}
                                         </button>
@@ -104,7 +115,7 @@
                             </div>
                             
                             <div className="mt-12 p-6 bg-blue-50 rounded-xl border border-blue-100">
-                                <p className="text-sm font-bold text-anchor-blue">ضمان استرداد المال لمدة 30 يوماً بلا أسئلة.</p>
+                                <p className="text-sm font-bold text-anchor-blue" data-key="guarantee_note">ضمان استرداد المال لمدة 30 يوماً بلا أسئلة.</p>
                             </div>
                         </div>
                     </main>

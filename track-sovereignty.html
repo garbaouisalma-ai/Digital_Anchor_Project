@@ -5,15 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-key="page_title">مسار السيادة الرقمية | الأكاديمية الرقمية</title>
     
+    <link rel="icon" type="image/png" href="img/logo.png">
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJZHN8FQQ2"></script>
-    <script src="js/analytics.js"></script>
+    <script src="analytics.js"></script>
 
     <link href="css/styles.css" rel="stylesheet">
     
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
-    </head>
+    <script src="i18n.js"></script>
+    
+</head>
 <body class="flex flex-col min-h-screen">
 
     <nav class="bg-white shadow-lg sticky top-0 z-50">
@@ -32,8 +36,8 @@
             <h1 class="text-4xl md:text-6xl font-bold mb-6" data-key="track_title">مسار السيادة الرقمية 🛡️</h1>
             <p class="text-xl text-blue-100 max-w-2xl mx-auto mb-8" data-key="track_subtitle">استعد انتباهك ووقتك وقيمتك في رحلة موجهة لمدة 90 يوماً.</p>
             <div class="flex justify-center gap-4 text-sm font-bold text-blue-200">
-                <span class="bg-blue-800 px-3 py-1 rounded"><i class="fas fa-calendar-alt mr-2"></i> <span data-key="meta_weeks">13 أسبوعاً</span></span>
-                <span class="bg-blue-800 px-3 py-1 rounded"><i class="fas fa-clock mr-2"></i> <span data-key="meta_time">60 دقيقة/يوم</span></span>
+                <span class="bg-blue-800 px-3 py-1 rounded"><i class="fas fa-calendar-alt ml-2"></i> <span data-key="meta_weeks">13 أسبوعاً</span></span>
+                <span class="bg-blue-800 px-3 py-1 rounded"><i class="fas fa-clock ml-2"></i> <span data-key="meta_time">60 دقيقة/يوم</span></span>
             </div>
         </div>
     </header>
@@ -144,14 +148,14 @@
                 <details class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 group">
                     <summary class="font-bold text-slate-700 cursor-pointer flex justify-between items-center" data-key="faq1_q">
                         هل هذا المسار مناسب لي؟
-                        <i class="fas fa-chevron-down text-gray-400 group-open:rotate-180 transition"></i>
+                        <i class="fas fa-chevron-down text-gray-400 group-open:rotate-180 transition ml-2"></i>
                     </summary>
                     <p class="text-gray-600 mt-2 text-sm" data-key="faq1_a">نعم، إذا كنت تشعر أن التكنولوجيا تستهلك وقتك وتريد استعادة السيطرة. لا يناسبك إذا كنت تبحث عن حلول سحرية سريعة بدون جهد.</p>
                 </details>
                 <details class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 group">
                     <summary class="font-bold text-slate-700 cursor-pointer flex justify-between items-center" data-key="faq2_q">
                         ماذا لو فاتني أسبوع؟
-                        <i class="fas fa-chevron-down text-gray-400 group-open:rotate-180 transition"></i>
+                        <i class="fas fa-chevron-down text-gray-400 group-open:rotate-180 transition ml-2"></i>
                     </summary>
                     <p class="text-gray-600 mt-2 text-sm" data-key="faq2_a">المحتوى مسجل ومتاح لك مدى الحياة. يمكنك العودة وإكمال المسار بالسرعة التي تناسبك.</p>
                 </details>
@@ -161,10 +165,11 @@
     </main>
 
     <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-auto border-t border-slate-800">
-        <p class="text-sm">© 2025 Digital Anchor Academy.</p>
+        <p class="text-sm">© 2025 <span data-key="site_name">Digital Anchor Academy</span>.</p>
     </footer>
     
-    <script src="js/main.js"></script>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
 </body>
 </html>

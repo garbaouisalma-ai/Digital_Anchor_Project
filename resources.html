@@ -5,13 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-key="page_title">المكتبة المجانية | المرساة الرقمية</title>
     
+    <link rel="icon" type="image/png" href="img/logo.png">
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJZHN8FQQ2"></script>
-    <script src="js/analytics.js"></script>
+    <script src="analytics.js"></script>
 
     <link href="css/styles.css" rel="stylesheet"> 
 
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <script src="i18n.js"></script>
     
     </head>
 <body class="text-gray-900">
@@ -30,7 +34,7 @@
                     <option value="ar">عربي</option><option value="en">English</option><option value="fr">Français</option><option value="de">Deutsch</option>
                 </select>
 
-                <a href="buy.html" class="bg-yellow-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-yellow-600 transition text-sm" data-key="nav_book_now">احجز الكتاب</a>
+                <a href="buy.html" class="bg-yellow-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-yellow-600 transition text-sm" data-key="nav_join">احجز الكتاب</a>
             </div>
 
             <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-800"><i class="fas fa-bars text-xl"></i></button>
@@ -39,14 +43,14 @@
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-4 shadow-xl">
             <a href="index.html" class="block py-3 text-gray-900 font-bold border-b border-gray-100 hover:text-blue-800" data-key="nav_home">الرئيسية</a>
             
-            <select onchange="setLanguage(this.value)" class="w-full p-2 border rounded bg-gray-50 text-sm mt-2 mb-4"> 
-                <option value="ar">عربي</option> 
+            <select onchange="setLanguage(this.value)" class="w-full p-2 border rounded bg-gray-50 text-sm mt-2 mb-4"> 
+                <option value="ar">عربي</option> 
                 <option value="en">English</option>
                 <option value="fr">Français</option>
                 <option value="de">Deutsch</option>
             </select>
             
-            <a href="buy.html" class="w-full bg-yellow-500 text-white py-3 block text-center rounded-lg font-bold" data-key="nav_book_now">احجز الكتاب</a>
+            <a href="buy.html" class="w-full bg-yellow-500 text-white py-3 block text-center rounded-lg font-bold" data-key="nav_join">احجز الكتاب</a>
         </div>
     </nav>
 
@@ -151,7 +155,8 @@
         <p class="text-gray-400 text-sm">© 2025 Digital Anchor Project.</p>
     </footer>
     
-    <script src="js/main.js"></script>
-
+    <script>
+        document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
 </body>
 </html>

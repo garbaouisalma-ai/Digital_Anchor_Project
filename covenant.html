@@ -2,13 +2,17 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>عهد التحرر والقيادة</title>
+    <title data-key="covenant_title">عهد التحرر والقيادة</title>
     
+    <link rel="icon" type="image/png" href="img/logo.png">
+
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <script src="i18n.js"></script>
+
     <script>
         tailwind.config = { 
             theme: { 
@@ -27,22 +31,24 @@
     <div id="root"></div>
     
     <script type="text/babel">
+        // 🚨 ** [إصلاح: 4. تهيئة اللغة قبل تصيير React] **
+        initializePage();
         
         const Navbar = () => (
             <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-md no-print">
                 <div className="max-w-7xl mx-auto flex justify-between items-center">
                     <a href="index.html" className="flex items-center gap-3">
                         <img src="img/logo.png" alt="Logo" className="h-10 w-auto" /> 
-                        <span className="font-bold text-lg hidden md:block">المرساة الرقمية</span>
+                        <span className="font-bold text-lg hidden md:block" data-key="site_name">المرساة الرقمية</span>
                     </a>
-                    <a href="index.html" className="text-sm hover:text-anchor-gold transition">العودة للرئيسية</a>
+                    <a href="index.html" className="text-sm hover:text-anchor-gold transition" data-key="nav_home">العودة للرئيسية</a>
                 </div>
             </nav>
         );
 
         const Footer = () => (
             <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm no-print">
-                © 2025 المرساة الرقمية
+                © 2025 <span data-key="site_name">المرساة الرقمية</span>
             </footer>
         );
 
@@ -56,28 +62,28 @@
                             <div className="absolute top-0 right-0 w-24 h-24 bg-anchor-gold opacity-10 rounded-bl-full"></div>
                             
                             <header className="text-center mb-10">
-                                <h1 className="text-4xl font-bold font-serif text-anchor-blue mb-2">عهد التحرر والقيادة</h1>
-                                <p className="text-gray-500 text-sm">Digital Sovereignty Pledge</p>
+                                <h1 className="text-4xl font-bold font-serif text-anchor-blue mb-2" data-key="covenant_header">عهد التحرر والقيادة</h1>
+                                <p className="text-gray-500 text-sm" data-key="covenant_subtitle">Digital Sovereignty Pledge</p>
                             </header>
                             
                             <div className="space-y-6 text-lg leading-relaxed text-gray-800">
-                                <p className="font-bold">أنا الموقع أدناه، أقر وأتعهد أمام نفسي بالآتي:</p>
+                                <p className="font-bold" data-key="covenant_intro">أنا الموقع أدناه، أقر وأتعهد أمام نفسي بالآتي:</p>
                                 <ul className="list-disc pr-6 space-y-3 marker:text-anchor-gold">
-                                    <li>سأكون سيد أجهزتي، لا عبداً لها.</li>
-                                    <li>سأقيس نجاحي بإنجازاتي الواقعية، لا بعدد الإعجابات الرقمية.</li>
-                                    <li>سأحافظ على قيمي الإنسانية وأستخدم صوتي للخير دائماً.</li>
+                                    <li data-key="covenant_point1">سأكون سيد أجهزتي، لا عبداً لها.</li>
+                                    <li data-key="covenant_point2">سأقيس نجاحي بإنجازاتي الواقعية، لا بعدد الإعجابات الرقمية.</li>
+                                    <li data-key="covenant_point3">سأحافظ على قيمي الإنسانية وأستخدم صوتي للخير دائماً.</li>
                                 </ul>
                             </div>
                             
                             <div className="mt-16 pt-8 border-t border-gray-200 grid grid-cols-2 gap-12">
-                                <div><label className="block text-sm font-bold text-gray-500 mb-8">الاسم</label><div className="border-b-2 border-gray-300 h-8"></div></div>
-                                <div><label className="block text-sm font-bold text-gray-500 mb-8">التوقيع</label><div className="border-b-2 border-gray-300 h-8"></div></div>
+                                <div><label className="block text-sm font-bold text-gray-500 mb-8" data-key="label_name">الاسم</label><div className="border-b-2 border-gray-300 h-8"></div></div>
+                                <div><label className="block text-sm font-bold text-gray-500 mb-8" data-key="label_signature">التوقيع</label><div className="border-b-2 border-gray-300 h-8"></div></div>
                             </div>
                         </div>
                         
                         <div className="text-center mt-8 no-print space-x-4 space-x-reverse">
-                            <button onClick={() => window.print()} className="bg-anchor-blue text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-800 transition shadow-lg">🖨️ طباعة العهد</button>
-                            <a href="downloads/Pledge_Paper.pdf" download className="text-anchor-blue font-bold underline hover:text-anchor-gold">تحميل كملف PDF</a>
+                            <button onClick={() => window.print()} className="bg-anchor-blue text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-800 transition shadow-lg" data-key="btn_print_covenant">🖨️ طباعة العهد</button>
+                            <a href="downloads/Pledge_Paper.pdf" download className="text-anchor-blue font-bold underline hover:text-anchor-gold" data-key="btn_download_pdf">تحميل كملف PDF</a>
                         </div>
                     </main>
                     <Footer />

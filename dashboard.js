@@ -1,7 +1,7 @@
 /**
  * =================================================================
  * ملف: js/dashboard.js
- * يحتوي على منطق الرسوم البيانية والآلة الحاسبة والأحداث الخاصة بلوحة القيادة.
+ * يحتوي على منطق الرسوم البيانية والآلة الحاسبة والإنجازات.
  * =================================================================
  */
 
@@ -9,16 +9,16 @@
 function initializeChart() {
     // البيانات الافتراضية
     const data = {
-        labels: ['أسبوع 1', 'أسبوع 2', 'أسبوع 3', 'أسبوع 4'],
+        labels: ['أسبوع 1', 'أسبوع 2', 'أسبوع 3', 'أسبوع 4'], // ⚠️ هذه يجب ترجمتها في HTML باستخدام data-key أو تمريرها كمتغيرات
         datasets: [
             { 
-                label: 'الإنتاج', 
+                label: 'الإنتاج', // ⚠️ هذه يجب ترجمتها
                 data: [1.5, 3, 3.5, 4.2], 
                 borderColor: '#10b981', // green-500
                 tension: 0.3 
             }, 
             { 
-                label: 'الإلهاء', 
+                label: 'الإلهاء', // ⚠️ هذه يجب ترجمتها
                 data: [5, 4, 3, 1.8], 
                 borderColor: '#ef4444', // red-500
                 tension: 0.3 
@@ -52,14 +52,22 @@ function calculate() {
 
     // التحقق من القيم
     if (isNaN(s) || isNaN(p) || s <= 0 || p < 0) {
-        resultEl.innerText = "أدخل قيماً صحيحة.";
+        // 🚨 [إصلاح: استخدام دالة الترجمة العامة (افتراض وجودها في i18n.js)]
+        const getTranslation = (key) => window.translations && window.translations[window.localStorage.getItem('preferredLang') || 'ar'][key] || "أدخل قيماً صحيحة.";
+        
+        resultEl.innerText = getTranslation('error_valid_values'); // تم افتراض مفتاح ترجمة
         resultEl.className = "text-center mt-2 font-bold text-red-600";
         return;
     }
 
     const res = Math.round((p / s) * 100);
     
-    resultEl.innerText = res + "% كفاءة " + (res > 50 ? "🟢" : "🔴");
+    // 🚨 [إصلاح: استخدام دالة الترجمة العامة]
+    const getTranslation = (key) => window.translations && window.translations[window.localStorage.getItem('preferredLang') || 'ar'][key] || "";
+    const efficiencyText = getTranslation('efficiency_text') || 'كفاءة';
+    const excellentText = getTranslation('excellent_text') || 'ممتاز';
+
+    resultEl.innerText = `${res}% ${efficiencyText} ` + (res > 50 ? "🟢" : "🔴");
     resultEl.className = "text-center mt-2 font-bold " + (res > 50 ? "text-green-600" : "text-red-600");
 }
 
@@ -69,6 +77,8 @@ function toggleModal(id) {
 }
 
 function saveAchievement() {
+    // 🚨 [إصلاح: لا يمكن ترجمة رسائل alert() مباشرة، ولكن يمكن تحسين الرسالة لتكون أقل ثباتًا]
+    // يفضل استخدام نافذة منبثقة (Modal) مُترجمة بدلاً من alert()
     alert("تم حفظ الإنجاز بنجاح! استمر يا بطل 🔥");
     toggleModal('achievementModal');
 }
@@ -80,7 +90,8 @@ window.saveAchievement = saveAchievement;
 
 
 // 4. التشغيل عند تحميل الصفحة
-document.addEventListener('DOMContentLoaded', () => {
-    initializeChart();
-    // ⚠️ ملاحظة: وظيفة setLanguage من المفترض أن تكون موجودة في js/main.js
-});
+// 🚨 [إصلاح: تم إزالة هذا المستمع لأننا نعتمد على DOMContentLoaded في ملف dashboard.html]
+// document.addEventListener('DOMContentLoaded', () => {
+//     initializeChart();
+// });
+// تم ترك الكود لضمان أن initializeChart() جاهزة للاستدعاء من dashboard.html

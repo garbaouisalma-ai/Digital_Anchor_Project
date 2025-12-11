@@ -2,12 +2,16 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>دليل الاستخدام | المرساة الرقمية</title>
+    <title data-key="guide_title">دليل الاستخدام | المرساة الرقمية</title>
     
+    <link rel="icon" type="image/png" href="img/logo.png">
+
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     
+    <script src="i18n.js"></script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     
     <script>
@@ -27,6 +31,9 @@
 <body class="bg-slate-50 text-slate-900 font-sans">
     <div id="root"></div>
     <script type="text/babel">
+        // 🚨 ** [إصلاح: 4. تهيئة اللغة قبل تصيير React] **
+        initializePage();
+
         // ----------------------------------------------------
         // 1. مكون Navbar (موحد)
         // ----------------------------------------------------
@@ -34,11 +41,10 @@
             <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-md backdrop-blur-md bg-opacity-95">
                 <div className="max-w-7xl mx-auto flex justify-between items-center">
                     <a href="index.html" className="flex items-center gap-3 group">
-                        {/* ⚠️ تم توحيد المسار إلى img/logo.png */}
                         <img src="img/logo.png" alt="Logo" className="h-10 w-auto" />
-                        <span className="font-bold text-lg hidden md:block">المرساة الرقمية</span>
+                        <span className="font-bold text-lg hidden md:block" data-key="site_name">المرساة الرقمية</span>
                     </a>
-                    <a href="index.html" className="text-sm hover:text-anchor-gold transition">العودة للرئيسية</a>
+                    <a href="index.html" className="text-sm hover:text-anchor-gold transition" data-key="nav_home">العودة للرئيسية</a>
                 </div>
             </nav>
         );
@@ -47,7 +53,7 @@
         // 2. مكون Footer (موحد)
         // ----------------------------------------------------
         const Footer = () => (
-            <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm">© 2025 المرساة الرقمية</footer>
+            <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm">© 2025 <span data-key="site_name">المرساة الرقمية</span></footer>
         );
 
         // ----------------------------------------------------
@@ -58,23 +64,21 @@
                 <div className="min-h-screen flex flex-col">
                     <Navbar />
                     <main className="max-w-4xl mx-auto px-6 py-12 flex-grow">
-                        <h1 className="text-3xl font-bold font-serif text-anchor-blue mb-2">📚 دليل استخدام الحزمة</h1>
-                        <p className="text-gray-500 mb-8">كيف تحقق أقصى استفادة من أدوات المرساة الرقمية.</p>
+                        <h1 className="text-3xl font-bold font-serif text-anchor-blue mb-2" data-key="guide_header">📚 دليل استخدام الحزمة</h1>
+                        <p className="text-gray-500 mb-8" data-key="guide_subtitle">كيف تحقق أقصى استفادة من أدوات المرساة الرقمية.</p>
                         <div className="space-y-8">
                             <section className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                                <h2 className="text-xl font-bold text-anchor-blue mb-3">1. البداية السريعة (يوم 1)</h2>
+                                <h2 className="text-xl font-bold text-anchor-blue mb-3" data-key="step1_title">1. البداية السريعة (يوم 1)</h2>
                                 <ul className="list-disc pr-5 space-y-2 text-gray-700">
-                                    {/* ⚠️ تم توحيد مسار دليل الطوارئ */}
-                                    <li>قم بتحميل <a href="downloads/Emergency_Guide.pdf" className="text-blue-600 underline">دليل الطوارئ</a>.</li>
-                                    {/* ⚠️ تم توحيد مسار وثيقة العهد (افتراض أنها صفحة الطباعة) */}
-                                    <li>اطبع <a href="covenant.html" className="text-blue-600 underline">وثيقة العهد</a> وعلقها في غرفتك.</li>
+                                    <li><span data-key="step1_text1">قم بتحميل</span> <a href="downloads/Emergency_Guide.pdf" className="text-blue-600 underline" data-key="link_emergency">دليل الطوارئ</a>.</li>
+                                    <li><span data-key="step1_text2">اطبع</span> <a href="covenant.html" className="text-blue-600 underline" data-key="link_covenant">وثيقة العهد</a> <span data-key="step1_text3">وعلقها في غرفتك.</span></li>
                                 </ul>
                             </section>
                             <section className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-                                <h2 className="text-xl font-bold text-anchor-blue mb-3">2. الأسبوع الأول (التأسيس)</h2>
+                                <h2 className="text-xl font-bold text-anchor-blue mb-3" data-key="step2_title">2. الأسبوع الأول (التأسيس)</h2>
                                 <ul className="list-disc pr-5 space-y-2 text-gray-700">
-                                    <li>طبق قاعدة 40/40/20 في التعلم.</li>
-                                    <li>ابدأ بتعليق ملصق "منطقة السيادة" على باب غرفة النوم.</li>
+                                    <li data-key="step2_li1">طبق قاعدة 40/40/20 في التعلم.</li>
+                                    <li data-key="step2_li2">ابدأ بتعليق ملصق "منطقة السيادة" على باب غرفة النوم.</li>
                                 </ul>
                             </section>
                         </div>

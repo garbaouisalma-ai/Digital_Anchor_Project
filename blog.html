@@ -2,11 +2,15 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>5 استراتيجيات للتركيز العميق | المدونة</title>
+    <title data-key="blog_title">5 استراتيجيات للتركيز العميق | المدونة</title>
     
+    <link rel="icon" type="image/png" href="img/logo.png">
+
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <script src="i18n.js"></script>
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -26,6 +30,9 @@
 <body class="bg-slate-50 text-slate-900 font-sans">
     <div id="root"></div>
     <script type="text/babel">
+        // 🚨 ** [إصلاح: 3. تهيئة اللغة قبل تصيير React] **
+        initializePage();
+
         // ----------------------------------------------------
         // المكونات المشتركة
         // ----------------------------------------------------
@@ -34,18 +41,18 @@
                 <div className="max-w-7xl mx-auto flex justify-between items-center">
                     <a href="index.html" className="flex items-center gap-3">
                         <img src="img/logo.png" alt="Logo" className="h-10 w-auto" />
-                        <span className="font-bold text-lg hidden md:block">المرساة الرقمية</span>
+                        <span className="font-bold text-lg hidden md:block" data-key="site_name">المرساة الرقمية</span>
                     </a>
                     <div className="flex gap-4 text-sm font-medium items-center">
-                        <a href="index.html" className="hover:text-anchor-gold">الرئيسية</a>
-                        <a href="buy.html" className="bg-anchor-gold text-anchor-blue px-4 py-2 rounded-full font-bold">احجز نسختك</a>
+                        <a href="index.html" className="hover:text-anchor-gold" data-key="nav_home">الرئيسية</a>
+                        <a href="buy.html" className="bg-anchor-gold text-anchor-blue px-4 py-2 rounded-full font-bold" data-key="nav_join">احجز نسختك</a>
                     </div>
                 </div>
             </nav>
         );
 
         const Footer = () => (
-            <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm">© 2025 المرساة الرقمية</footer>
+            <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm">© 2025 <span data-key="site_name">المرساة الرقمية</span></footer>
         );
 
         // ----------------------------------------------------
@@ -58,42 +65,44 @@
                     <main className="max-w-5xl mx-auto px-6 py-12 grid lg:grid-cols-3 gap-12 flex-grow">
                         <article className="lg:col-span-2 bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
                             <header className="mb-8 border-b border-gray-100 pb-8">
-                                <div className="text-anchor-gold font-bold text-sm mb-2">استراتيجيات الإنتاجية</div>
-                                <h1 className="text-3xl font-bold text-anchor-blue font-serif mb-4">5 استراتيجيات للتركيز العميق وتجاوز الملهيات</h1>
-                                <div className="text-gray-500 text-sm">نُشر بتاريخ: 2025/01/15</div>
+                                <div className="text-anchor-gold font-bold text-sm mb-2" data-key="article_category">استراتيجيات الإنتاجية</div>
+                                <h1 className="text-3xl font-bold text-anchor-blue font-serif mb-4" data-key="article_title">5 استراتيجيات للتركيز العميق وتجاوز الملهيات</h1>
+                                <div className="text-gray-500 text-sm" data-key="article_date">نُشر بتاريخ: 2025/01/15</div>
                             </header>
                             <div className="prose text-gray-700 leading-relaxed space-y-6">
-                                <p className="text-lg">لطالما كان التركيز العميق هو العملة الأكثر قيمة في الاقتصاد الحديث. إليك 5 استراتيجيات عملية:</p>
+                                <p className="text-lg" data-key="article_intro">لطالما كان التركيز العميق هو العملة الأكثر قيمة في الاقتصاد الحديث. إليك 5 استراتيجيات عملية:</p>
                                 
-                                <h3 className="text-xl font-bold text-anchor-blue">1. تقنية "القفل الرقمي"</h3>
-                                <p>حدد فترة زمنية (60-90 دقيقة) تمنع فيها الوصول لأي تطبيق. اعتبر هذه الفترة "اجتماعاً مقدساً" مع نفسك. 
+                                <h3 className="text-xl font-bold text-anchor-blue" data-key="strategy_1_title">1. تقنية "القفل الرقمي"</h3>
+                                <p data-key="strategy_1_text">حدد فترة زمنية (60-90 دقيقة) تمنع فيها الوصول لأي تطبيق. اعتبر هذه الفترة "اجتماعاً مقدساً" مع نفسك. 
+                                    
 
 [Image of a digital lock icon]
-</p>
 
-                                <h3 className="text-xl font-bold text-anchor-blue">2. قاعدة الـ 20 دقيقة</h3>
-                                <p>قبل أن تفتح هاتفك "لتشيك سريع"، انتظر 20 دقيقة. في الغالب، ستختفي الرغبة الملحة. </p>
+                                </p>
 
-                                <h3 className="text-xl font-bold text-anchor-blue">3. صيام الإشعارات</h3>
-                                <p>أوقف جميع الإشعارات (ما عدا المكالمات) لمدة 24 ساعة ولاحظ الفرق في هدوئك الذهني. </p>
+                                <h3 className="text-xl font-bold text-anchor-blue" data-key="strategy_2_title">2. قاعدة الـ 20 دقيقة</h3>
+                                <p data-key="strategy_2_text">قبل أن تفتح هاتفك "لتشيك سريع"، انتظر 20 دقيقة. في الغالب، ستختفي الرغبة الملحة. </p>
+
+                                <h3 className="text-xl font-bold text-anchor-blue" data-key="strategy_3_title">3. صيام الإشعارات</h3>
+                                <p data-key="strategy_3_text">أوقف جميع الإشعارات (ما عدا المكالمات) لمدة 24 ساعة ولاحظ الفرق في هدوئك الذهني. </p>
                                 
-                                <h3 className="text-xl font-bold text-anchor-blue">4. الفصل المكاني</h3>
-                                <p>لا تشحن هاتفك بجوار سريرك. اجعل غرفة النوم منطقة محرمة على التكنولوجيا. </p>
+                                <h3 className="text-xl font-bold text-anchor-blue" data-key="strategy_4_title">4. الفصل المكاني</h3>
+                                <p data-key="strategy_4_text">لا تشحن هاتفك بجوار سريرك. اجعل غرفة النوم منطقة محرمة على التكنولوجيا. </p>
                                 
-                                <h3 className="text-xl font-bold text-anchor-blue">5. تقنية الإنهاء بالاحتفال</h3>
-                                <p>بمجرد الانتهاء من فترة التركيز، سجل إنجازك وقدم لنفسك مكافأة صغيرة غير رقمية.</p>
+                                <h3 className="text-xl font-bold text-anchor-blue" data-key="strategy_5_title">5. تقنية الإنهاء بالاحتفال</h3>
+                                <p data-key="strategy_5_text">بمجرد الانتهاء من فترة التركيز، سجل إنجازك وقدم لنفسك مكافأة صغيرة غير رقمية.</p>
                             </div>
                             <div className="mt-10 p-6 bg-blue-50 rounded-xl border border-blue-100 text-center">
-                                <p className="mb-4 font-bold text-anchor-blue">هذه مجرد بداية.. الكتاب الكامل يحتوي على نظام 8 أسابيع.</p>
-                                <a href="buy.html" className="inline-block bg-anchor-blue text-white px-6 py-2 rounded-lg font-bold hover:bg-gray-800 transition">احصل على الكتاب الآن</a>
+                                <p className="mb-4 font-bold text-anchor-blue" data-key="article_cta_text">هذه مجرد بداية.. الكتاب الكامل يحتوي على نظام 8 أسابيع.</p>
+                                <a href="buy.html" className="inline-block bg-anchor-blue text-white px-6 py-2 rounded-lg font-bold hover:bg-gray-800 transition" data-key="btn_get_book">احصل على الكتاب الآن</a>
                             </div>
                         </article>
                         <aside className="space-y-6">
                             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 sticky top-24">
-                                <h3 className="font-bold text-anchor-blue mb-4">أدوات مجانية</h3>
-                                <a href="downloads/Emergency_Guide.pdf" className="block text-gray-600 hover:text-anchor-gold mb-2 border-b pb-2">🚑 دليل الطوارئ (PDF)</a>
-                                <a href="downloads/Methodology_Guide.pdf" className="block text-gray-600 hover:text-anchor-gold mb-4">📚 دليل المنهجية</a>
-                                <a href="buy.html" className="block w-full bg-anchor-gold text-anchor-blue text-center py-3 rounded-lg font-bold">شراء الحزمة</a>
+                                <h3 className="font-bold text-anchor-blue mb-4" data-key="aside_title">أدوات مجانية</h3>
+                                <a href="downloads/Emergency_Guide.pdf" className="block text-gray-600 hover:text-anchor-gold mb-2 border-b pb-2" data-key="aside_guide_emergency">🚑 دليل الطوارئ (PDF)</a>
+                                <a href="downloads/Methodology_Guide.pdf" className="block text-gray-600 hover:text-anchor-gold mb-4" data-key="aside_guide_methodology">📚 دليل المنهجية</a>
+                                <a href="buy.html" className="block w-full bg-anchor-gold text-anchor-blue text-center py-3 rounded-lg font-bold" data-key="aside_buy_package">شراء الحزمة</a>
                             </div>
                         </aside>
                     </main>

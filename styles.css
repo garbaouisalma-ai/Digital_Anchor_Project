@@ -1,16 +1,25 @@
 /*
-   ====================================================================
-   ⚠️ يجب وضع كود Tailwind CSS المُصغَّر والمُنقَّى هنا أولاً
-   ====================================================================
+    ====================================================================
+    ⚠️ يجب وضع كود Tailwind CSS المُصغَّر والمُنقَّى هنا أولاً
+    (لم يتم إضافته هنا، ولكن يجب أن يتم في مشروعك النهائي)
+    ====================================================================
 */
 
 /* ------------------------------------------------------------------
- * 1. الستايلات الأساسية والمُخصَّصة (من index.html والصفحات الأخرى)
+ * 1. الستايلات الأساسية والمُخصَّصة (من index.html والصفحات الأخرى)
  * ------------------------------------------------------------------
  */
+:root { 
+    /* تعريف المتغيرات المستخدمة في index.html */
+    --primary: #1a365d; 
+    --secondary: #2d3748; 
+    --accent: #d69e2e; 
+}
+
 body { 
     font-family: 'Tajawal', sans-serif; 
-    background-color: #f7fafc; 
+    /* تم توحيد اللون الخلفي إلى f8fafc كما في ملفات React */
+    background-color: #f8fafc; 
     color: #1e293b; 
     scroll-behavior: smooth; 
 }
@@ -23,8 +32,8 @@ h1, h2, h3 {
  * ------------------------------------------------------------------
  */
 .btn-primary { 
-    /* ملاحظة: تم دمج الألوان المخصصة هنا مباشرة */
-    background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%); 
+    /* استخدام المتغيرات لسهولة التغيير */
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); 
     color: white; 
     transition: 0.3s; 
 }
@@ -32,18 +41,22 @@ h1, h2, h3 {
     transform: translateY(-3px); 
     box-shadow: 0 10px 20px rgba(0,0,0,0.2); 
 }
-.float-animation { 
-    animation: float 6s ease-in-out infinite; 
+
+/* ** [إضافة: نمط النبض الذهبي من index.html] ** */
+@keyframes pulse-gold { 
+    0% { box-shadow: 0 0 0 0 rgba(214, 158, 46, 0.7); } 
+    70% { box-shadow: 0 0 0 10px rgba(214, 158, 46, 0); } 
+    100% { box-shadow: 0 0 0 0 rgba(214, 158, 46, 0); } 
 }
-@keyframes float { 
-    0%, 100% { transform: translateY(0); } 
-    50% { transform: translateY(-10px); } 
+.pulse-animation { 
+    animation: pulse-gold 2s infinite; 
 }
 
 /* ------------------------------------------------------------------
  * 3. أنماط البطاقات والمكتبة (Card & Library Styles)
  * ------------------------------------------------------------------
  */
+/* نمط تحويل البطاقات من index.html */
 .card-hover:hover { 
     transform: translateY(-5px); 
     box-shadow: 0 15px 30px rgba(0,0,0,0.1); 
@@ -51,7 +64,7 @@ h1, h2, h3 {
 }
 
 .btn-download { 
-    /* اللون هنا مطابق لـ #1a365d (جزء من Anchor Blue) */
+    /* تم توحيد اللون إلى #1a365d ( Anchor Blue) */
     background-color: #1a365d; 
     color: white; 
     padding: 8px 20px; 
@@ -67,31 +80,24 @@ h1, h2, h3 {
 }
 
 /* ------------------------------------------------------------------
- * 4. أنماط الخط الزمني (Timeline Styles)
+ * 4. أنماط الخط الزمني (Timeline Styles - من tracks.html)
  * ------------------------------------------------------------------
  */
 .timeline-line { 
     position: absolute; 
-    right: 8px; 
+    right: 50%; /* تم التعديل ليناسب الخط الزمني المركزي في tracks.html */
     top: 0; 
     bottom: 0; 
     width: 4px; 
     background: #e2e8f0; 
+    /* تعويض لمركزية الخط */
+    transform: translateX(50%); 
 }
+/* تم استخدام timeline-line مباشرة في tracks.html لذا تم تعديل النمط أعلاه ليعمل */
 
-/* نمط الخط الزمني في صفحة program.html */
-.program-timeline-line { 
-    position: absolute; 
-    left: 50%; 
-    top: 0; 
-    bottom: 0; 
-    width: 4px; 
-    background: #e2e8f0; 
-    transform: translateX(-50%); 
-}
 
 /* ------------------------------------------------------------------
- * 5. أنماط الطباعة (Print Styles)
+ * 5. أنماط الطباعة (Print Styles - من covenant.html)
  * ------------------------------------------------------------------
  */
 @media print { 

@@ -2,166 +2,34 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-key="lab_page_title">مختبر التطبيق | المرساة الرقمية</title>
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJZHN8FQQ2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-HJZHN8FQQ2');
-    </script>
-
+    <title data-key="nav_lab">مختبر التطبيق | الأكاديمية الرقمية</title>
+    <link rel="icon" type="image/png" href="img/logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
-    <style>
-        body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; color: #1e293b; }
-        h1, h2, h3 { font-family: 'Amiri', serif; }
-        .feature-card { transition: all 0.3s ease; }
-        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .btn-action { background-color: #1a365d; color: white; }
-    </style>
+    <script src="i18n.js"></script>
+    <style>body { font-family: 'Tajawal', sans-serif; }</style>
 </head>
-<body class="flex flex-col min-h-screen">
-
+<body class="bg-gray-50 text-slate-900 min-h-screen flex flex-col">
     <nav class="bg-white shadow-lg sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="index.html" class="flex items-center space-x-3 space-x-reverse">
-                <img src="logo.png" width="45" class="rounded-lg shadow-sm">
-                <h1 class="text-xl font-bold text-gray-900" data-key="site_name">المرساة الرقمية</h1>
+                <img src="img/logo.png" width="50" class="rounded-lg shadow-sm">
+                <span class="text-xl font-bold text-gray-900" data-key="site_name">الأكاديمية الرقمية</span>
             </a>
-            
-            <div class="hidden md:flex items-center gap-5">
-                <a href="track-sovereignty.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key="nav_tracks">المسارات</a>
-                <a href="dashboard.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key="nav_dashboard">لوحة القيادة</a>
-                <a href="blog.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key="nav_blog">المدونة</a>
-
-                <select id="lang-select" onchange="setLanguage(this.value)" class="text-xs border border-gray-300 rounded p-1 bg-white focus:outline-none focus:border-blue-500">
-                    <option value="ar">عربي</option><option value="en">English</option><option value="fr">Français</option><option value="de">Deutsch</option>
-                </select>
-                <select id="curr-select" onchange="convertCurrency(this.value)" class="text-xs border border-gray-300 rounded p-1 bg-white font-bold text-blue-900 focus:outline-none focus:border-blue-500">
-                    <option value="SAR">SAR (ر.س)</option><option value="USD">USD ($)</option><option value="EUR">EUR (€)</option>
-                </select>
-                <a href="buy.html" class="btn-action bg-blue-900 px-6 py-2 rounded-lg text-sm font-bold shadow-md no-underline text-white" data-key="nav_join">
-                    <i class="fas fa-shopping-cart"></i> احجز الكتاب
-                </a>
-            </div>
-            
-            <button id="mobile-menu-btn" class="md:hidden text-gray-800 p-2"><i class="fas fa-bars text-xl"></i></button>
+            <a href="index.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key="nav_home">العودة للرئيسية</a>
         </div>
-        <div id="mobile-menu" class="hidden"></div> 
     </nav>
-    <main class="flex-grow container mx-auto p-8 md:p-12 max-w-6xl">
-        <header class="text-center mb-16">
-            <h1 class="text-4xl font-bold text-slate-800 mb-4" data-key="lab_header">مختبر التطبيق العملي 🧪</h1>
-            <p class="text-xl text-slate-600" data-key="lab_subtitle">لا تتوقف عند القراءة. طبق. حوّل الأفكار إلى واقع.</p>
-        </header>
 
-        <div class="grid md:grid-cols-3 gap-8">
-            
-            <div class="feature-card bg-white p-8 rounded-2xl shadow-lg border-t-8 border-blue-600">
-                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4 text-blue-600"><i class="fas fa-tools text-2xl"></i></div>
-                <h2 class="text-2xl font-bold mb-4" data-key="lab_skills_title">مختبر المهارات الرقمية</h2>
-                <ul class="space-y-3 text-gray-600 mb-8 text-sm">
-                    <li><i class="fas fa-check text-blue-500 ml-2"></i> <span data-key="skill_1">اختبار المهارة المناسبة لك</span></li>
-                    <li><i class="fas fa-check text-blue-500 ml-2"></i> <span data-key="skill_2">خطة الـ 90 يوماً للتعلم</span></li>
-                    <li><i class="fas fa-check text-blue-500 ml-2"></i> <span data-key="skill_3">مكتبة المصادر المُرشحة</span></li>
-                </ul>
-                <button class="w-full btn-action py-3 rounded-lg font-bold text-sm">استكشف</button>
-            </div>
-
-            <div class="feature-card bg-white p-8 rounded-2xl shadow-lg border-t-8 border-red-500">
-                <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-4 text-red-600"><i class="fas fa-heart text-2xl"></i></div>
-                <h2 class="text-2xl font-bold mb-4" data-key="lab_relation_title">ورشة العلاقات الحقيقية</h2>
-                <ul class="space-y-3 text-gray-600 mb-8 text-sm">
-                    <li><i class="fas fa-check text-red-500 ml-2"></i> <span data-key="relation_1">تمرين تدقيق العلاقات (A, B, C)</span></li>
-                    <li><i class="fas fa-check text-red-500 ml-2"></i> <span data-key="relation_2">نموذج المحادثة العميقة</span></li>
-                    <li><i class="fas fa-check text-red-500 ml-2"></i> <span data-key="relation_3">ميثاق الأسرة الرقمية (قالب جاهز)</span></li>
-                </ul>
-                <button class="w-full btn-action bg-red-600 hover:bg-red-700 py-3 rounded-lg font-bold text-sm">دخول الورشة</button>
-            </div>
-
-            <div class="feature-card bg-white p-8 rounded-2xl shadow-lg border-t-8 border-purple-500">
-                <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4 text-purple-600"><i class="fas fa-brain text-2xl"></i></div>
-                <h2 class="text-2xl font-bold mb-4" data-key="lab_programs_title">برامج متخصصة متعمقة</h2>
-                <ul class="space-y-3 text-gray-600 mb-8 text-sm">
-                    <li><i class="fas fa-check text-purple-500 ml-2"></i> <span data-key="program_1">برنامج الصيانة الرقمية الدورية</span></li>
-                    <li><i class="fas fa-check text-purple-500 ml-2"></i> <span data-key="program_2">تحدي المواطنة الرقمية (مسابقة)</span></li>
-                    <li><i class="fas fa-check text-purple-500 ml-2"></i> <span data-key="program_3">مشروع التخرج: إطلاق المبادرة</span></li>
-                </ul>
-                <a href="buy.html" class="w-full btn-action bg-purple-600 hover:bg-purple-700 py-3 rounded-lg font-bold text-sm block text-center no-underline text-white">الترقية للعضوية المميزة</a>
-            </div>
-
-        </div>
-
+    <main class="flex-grow container mx-auto px-4 py-16 text-center">
+        <h1 class="text-4xl font-bold text-blue-900 font-serif mb-4" data-key="lab_header">مختبر التطبيق (المكتبة)</h1>
+        <p class="text-lg text-gray-600 mb-8" data-key="lab_placeholder">هنا ستجد جميع الأدوات والتمارين القابلة للطباعة. يرجى العودة لاحقاً.</p>
+        <a href="buy.html" class="bg-blue-900 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-800 transition no-underline" data-key="nav_join">انضم للمختبر</a>
     </main>
 
-    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-auto"><p class="text-sm" data-key="footer_copy">© 2025 Digital Anchor Project. جميع الحقوق محفوظة.</p></footer>
+    <footer class="bg-gray-800 text-white py-6 text-center text-sm">© 2025 <span data-key="site_name">المرساة الرقمية</span></footer>
 
     <script>
-        // قاموس الترجمة الكامل (يمكنك تعديل هذه القيم لتناسب محتوى الصفحة)
-        const translations = {
-            'ar': {
-                'site_name': 'المرساة الرقمية', 'nav_tracks': 'المسارات', 'nav_dashboard': 'لوحة القيادة', 'nav_blog': 'المدونة', 'nav_join': 'احجز الكتاب',
-                'lab_page_title': 'مختبر التطبيق | المرساة الرقمية', 'lab_header': 'مختبر التطبيق العملي 🧪', 'lab_subtitle': 'لا تتوقف عند القراءة. طبق. حوّل الأفكار إلى واقع.',
-                'lab_skills_title': 'مختبر المهارات الرقمية', 'skill_1': 'اختبار المهارة المناسبة لك', 'skill_2': 'خطة الـ 90 يوماً للتعلم', 'skill_3': 'مكتبة المصادر المُرشحة',
-                'lab_relation_title': 'ورشة العلاقات الحقيقية', 'relation_1': 'تمرين تدقيق العلاقات (A, B, C)', 'relation_2': 'نموذج المحادثة العميقة', 'relation_3': 'ميثاق الأسرة الرقمية (قالب جاهز)',
-                'lab_programs_title': 'برامج متخصصة متعمقة', 'program_1': 'برنامج الصيانة الرقمية الدورية', 'program_2': 'تحدي المواطنة الرقمية (مسابقة)', 'program_3': 'مشروع التخرج: إطلاق المبادرة',
-                'footer_copy': '© 2025 Digital Anchor Project. جميع الحقوق محفوظة.'
-            },
-            'en': {
-                'site_name': 'Digital Anchor', 'nav_tracks': 'Tracks', 'nav_dashboard': 'Dashboard', 'nav_blog': 'Blog', 'nav_join': 'Order Book',
-                'lab_page_title': 'Application Lab | Digital Anchor', 'lab_header': 'Practical Application Lab 🧪', 'lab_subtitle': 'Don\'t just read. Apply. Convert ideas into reality.',
-                'lab_skills_title': 'Digital Skills Lab', 'skill_1': 'Suitable Skill Test', 'skill_2': '90-Day Learning Plan', 'skill_3': 'Curated Resource Library',
-                'lab_relation_title': 'Real Relationships Workshop', 'relation_1': 'Relationship Audit Exercise (A, B, C)', 'relation_2': 'Deep Conversation Model', 'relation_3': 'Digital Family Pact (Template)',
-                'lab_programs_title': 'In-Depth Specialized Programs', 'program_1': 'Periodic Digital Maintenance Program', 'program_2': 'Digital Citizenship Challenge', 'program_3': 'Graduation Project: Launch Initiative',
-                'footer_copy': '© 2025 Digital Anchor Project. All Rights Reserved.'
-            },
-            // يمكنك إضافة الترجمة الفرنسية والألمانية هنا بناءً على القالب الموحد
-        };
-
-        const RATES = { 'SAR': { r: 1, s: 'SAR' }, 'USD': { r: 0.27, s: '$' }, 'EUR': { r: 0.25, s: '€' } };
-
-        function setLanguage(lang) {
-            const isRTL = lang === 'ar';
-            document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
-            document.documentElement.setAttribute('lang', lang);
-            
-            document.querySelectorAll('[data-key]').forEach(el => {
-                const key = el.getAttribute('data-key');
-                if (translations[lang] && translations[lang][key]) {
-                    el.innerHTML = translations[lang][key]; 
-                }
-            });
-            
-            document.querySelectorAll('#lang-select').forEach(select => { if(select) select.value = lang; });
-            
-            const currencyMap = {'ar': 'SAR', 'en': 'USD', 'fr': 'EUR', 'de': 'EUR'};
-            const targetCurrency = currencyMap[lang] || 'USD';
-            document.querySelectorAll('#curr-select').forEach(select => { 
-                if(select) {
-                    select.value = targetCurrency;
-                    // Note: convertCurrency is not defined here but is expected in buy.html
-                }
-            });
-            localStorage.setItem('preferredLang', lang);
-        }
-        
-        const menuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (menuBtn && mobileMenu) {
-            menuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const defaultLang = localStorage.getItem('preferredLang') || 'ar';
-            setLanguage(defaultLang);
-        });
+        document.addEventListener('DOMContentLoaded', initializePage);
     </script>
-    </body>
+</body>
 </html>
