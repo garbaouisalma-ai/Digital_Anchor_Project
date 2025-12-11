@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-key="buy_header">اختر حزمتك للانطلاق | المرساة الرقمية</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; }
+        .btn-primary { background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%); color: white; transition: 0.3s; }
+        .premium-badge { position: absolute; top: 0; left: 0; padding: 4px 15px; background-color: #f59e0b; color: #1e293b; font-weight: bold; font-size: 0.75rem; border-bottom-right-radius: 10px; }
+    </style>
+</head>
+<body>
+    
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-3 space-x-reverse">
+                <img src="logo.png" width="45" class="rounded-lg shadow-sm">
+                <h1 class="text-xl font-bold text-gray-900" data-key="site_name">المرساة الرقمية</h1>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-5">
+                <a href="index.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key="nav_home">الرئيسية</a>
+                <a href="track-sovereignty.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key="nav_tracks">المسارات</a>
+
+                <select id="lang-select" onchange="setLanguage(this.value)" class="text-xs border border-gray-300 rounded p-1 bg-white">
+                    <option value="ar">عربي</option><option value="en">English</option><option value="fr">Français</option><option value="de">Deutsch</option>
+                </select>
+                <select id="curr-select" onchange="convertCurrency(this.value)" class="text-xs border border-gray-300 rounded p-1 bg-white font-bold text-blue-900">
+                    <option value="SAR">SAR (ر.س)</option><option value="USD">USD ($)</option><option value="EUR">EUR (€)</option>
+                </select>
+            </div>
+            
+            <button id="mobile-menu-btn" class="md:hidden text-gray-800 p-2"><i class="fas fa-bars text-xl"></i></button>
+        </div>
+    </nav>
+    <main class="flex-grow container mx-auto px-4 py-12">
+        <div class="text-center mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4" data-key="buy_header">اختر حزمتك للانطلاق</h1>
+            <p class="text-gray-600 text-lg" data-key="buy_subtitle">ابدأ رحلتك للقيادة الرقمية بحزمة تلائم احتياجاتك.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            
+            <div class="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-gray-400 relative overflow-hidden">
+                <h2 class="text-2xl font-bold text-gray-700 mb-2" data-key="plan_basic_title">الحزمة الأساسية</h2>
+                <p class="text-gray-500 mb-6 text-sm" data-key="plan_basic_desc">الوصول إلى الأدوات الأساسية وإرشادات التحرر.</p>
+                
+                <div class="text-center mb-8">
+                    <span class="text-5xl font-extrabold text-gray-800 price-display" data-base-price="39">39</span>
+                    <span class="text-2xl font-medium text-gray-500 currency-symbol">SAR</span>
+                </div>
+
+                <ul class="space-y-4 mb-8 text-sm">
+                    <li class="flex items-center"><i class="fas fa-check text-green-500 ml-3"></i> <span data-key="feat_basic_1">دليل الطوارئ (PDF)</span></li>
+                    <li class="flex items-center"><i class="fas fa-check text-green-500 ml-3"></i> <span data-key="feat_basic_2">أداة تحديد القيم</span></li>
+                    <li class="flex items-center"><i class="fas fa-check text-green-500 ml-3"></i> <span data-key="feat_basic_3">نسخة من عهد التحرر</span></li>
+                </ul>
+
+                <a href="#" target="_blank" class="block text-center w-full bg-gray-800 text-white py-3 rounded-lg font-bold hover:bg-gray-700 transition no-underline" data-key="btn_buy">
+                    اشترِ الآن
+                </a>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-yellow-500 relative overflow-hidden transform md:-translate-y-4">
+                <div class="premium-badge" data-key="badge_popular">الأكثر طلباً</div>
+                
+                <h2 class="text-2xl font-bold text-blue-900 mb-2" data-key="plan_premium_title">الحزمة الكاملة</h2>
+                <p class="text-gray-500 mb-6 text-sm" data-key="plan_premium_desc">الكتاب + جميع الموارد + دعم المجتمع.</p>
+                
+                <div class="text-center mb-8">
+                    <span class="text-6xl font-extrabold text-blue-900 price-display" data-base-price="199">199</span>
+                    <span class="text-3xl font-medium text-gray-500 currency-symbol">SAR</span>
+                </div>
+
+                <ul class="space-y-4 mb-8 text-sm font-medium">
+                    <li class="flex items-center"><i class="fas fa-check-circle text-yellow-500 ml-3"></i> <span data-key="feat_prem_1">كتاب "من أنت حين تنطفئ الشاشة؟"</span></li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-yellow-500 ml-3"></i> <span data-key="feat_prem_2">دفتر التمارين (90 يوماً)</span></li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-yellow-500 ml-3"></i> <span data-key="feat_prem_3">شهادة السيادة الرقمية</span></li>
+                    <li class="flex items-center"><i class="fas fa-check-circle text-yellow-500 ml-3"></i> <span data-key="feat_prem_4">عضوية المجتمع الحصرية</span></li>
+                </ul>
+
+                <a href="#" target="_blank" class="w-full btn-primary py-4 rounded-lg font-bold shadow-lg flex justify-center items-center gap-2 no-underline text-white" data-key="btn_buy_premium">
+                    <i class="fas fa-crown"></i> احصل على الحزمة الكاملة
+                </a>
+                
+                <p class="text-center text-xs text-gray-400 mt-3" data-key="guarantee">ضمان استرداد الأموال لمدة 30 يوماً</p>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-8 text-center mt-auto">
+        <p class="text-gray-400 text-sm">© 2025 Digital Anchor Project.</p>
+    </footer>
+
+    <script>
+        const translations = {
+            'ar': {
+                'site_name': 'المرساة الرقمية', 'home': 'الرئيسية', 'nav_tracks': 'المسارات', 'buy_header': 'اختر حزمتك للانطلاق', 'buy_subtitle': 'ابدأ رحلتك للقيادة الرقمية بحزمة تلائم احتياجاتك.',
+                'plan_basic_title': 'الحزمة الأساسية', 'plan_basic_desc': 'الوصول إلى الأدوات الأساسية وإرشادات التحرر.', 'feat_basic_1': 'دليل الطوارئ (PDF)', 'feat_basic_2': 'أداة تحديد القيم', 'feat_basic_3': 'نسخة من عهد التحرر',
+                'btn_buy': 'اشترِ الآن', 'plan_premium_title': 'الحزمة الكاملة', 'plan_premium_desc': 'الكتاب + جميع الموارد + دعم المجتمع.',
+                'feat_prem_1': 'كتاب "من أنت حين تنطفئ الشاشة؟"', 'feat_prem_2': 'دفتر التمارين (90 يوماً)', 'feat_prem_3': 'شهادة السيادة الرقمية', 'feat_prem_4': 'عضوية المجتمع الحصرية',
+                'btn_buy_premium': 'احصل على الحزمة الكاملة', 'guarantee': 'ضمان استرداد الأموال لمدة 30 يوماً', 'badge_popular': 'الأكثر طلباً'
+            },
+            'en': {
+                'site_name': 'Digital Anchor', 'home': 'Home', 'nav_tracks': 'Tracks', 'buy_header': 'Choose Your Package', 'buy_subtitle': 'Start your journey to digital sovereignty.',
+                'plan_basic_title': 'Basic Package', 'plan_basic_desc': 'Essential tools and guidance.', 'feat_basic_1': 'Emergency Guide (PDF)', 'feat_basic_2': 'Values Tool', 'feat_basic_3': 'The Pledge',
+                'btn_buy': 'Buy Now', 'plan_premium_title': 'Full Package', 'plan_premium_desc': 'The Book + All Resources + Community.',
+                'feat_prem_1': 'The Book (PDF)', 'feat_prem_2': '90-Day Workbook', 'feat_prem_3': 'Sovereignty Certificate', 'feat_prem_4': 'Community Access',
+                'btn_buy_premium': 'Get Full Package', 'guarantee': '30-Day Money Back Guarantee', 'badge_popular': 'Best Value'
+            },
+            'fr': { 'site_name': 'L\'Ancre Numérique', 'home': 'Accueil', 'nav_tracks': 'Parcours', 'buy_header': 'Choisissez votre forfait', 'buy_subtitle': 'Commencez votre voyage de souveraineté numérique.', 'plan_basic_title': 'Forfait de Base', 'plan_basic_desc': 'Outils essentiels.', 'feat_basic_1': 'Guide d\'urgence', 'feat_basic_2': 'Outil des valeurs', 'feat_basic_3': 'L\'Engagement', 'btn_buy': 'Acheter', 'plan_premium_title': 'Forfait Complet', 'plan_premium_desc': 'Livre + Ressources + Communauté.', 'feat_prem_1': 'Le Livre (PDF)', 'feat_prem_2': 'Cahier d\'exercices', 'feat_prem_3': 'Certificat', 'feat_prem_4': 'Accès Communauté', 'btn_buy_premium': 'Pack Complet', 'guarantee': 'Garantie de 30 jours', 'badge_popular': 'Populaire' },
+            'de': { 'site_name': 'Der Digitale Anker', 'home': 'Startseite', 'nav_tracks': 'Pfade', 'buy_header': 'Wählen Sie Ihr Paket', 'buy_subtitle': 'Beginnen Sie Ihre Reise zur digitalen Souveränität.', 'plan_basic_title': 'Basispaket', 'plan_basic_desc': 'Wichtige Werkzeuge und Anleitung.', 'feat_basic_1': 'Notfallleitfaden', 'feat_basic_2': 'Werte-Tool', 'feat_basic_3': 'Die Verpflichtung', 'btn_buy': 'Kaufen', 'plan_premium_title': 'Komplettpaket', 'plan_premium_desc': 'Buch + Alle Ressourcen + Community.', 'feat_prem_1': 'Das Buch (PDF)', 'feat_prem_2': '90-Tage-Arbeitsbuch', 'feat_prem_3': 'Zertifikat', 'feat_prem_4': 'Community-Zugang', 'btn_buy_premium': 'Vollpaket holen', 'guarantee': '30 Tage Geld-zurück-Garantie', 'badge_popular': 'Bester Wert' }
+        };
+
+        const RATES = { 'SAR': { r: 1, s: 'SAR' }, 'USD': { r: 0.27, s: '$' }, 'EUR': { r: 0.25, s: '€' } };
+
+        function convertCurrency(curr) {
+            const rate = RATES[curr] ? RATES[curr].r : 1;
+            const symbol = RATES[curr] ? RATES[curr].s : 'SAR';
+            document.querySelectorAll('.price-display').forEach(el => {
+                const base = el.getAttribute('data-base-price'); 
+                if (base) el.textContent = Math.round(parseFloat(base) * rate);
+            });
+            document.querySelectorAll('.currency-symbol').forEach(el => {
+                el.textContent = symbol;
+            });
+            document.querySelectorAll('#curr-select').forEach(select => { if(select) select.value = curr; });
+        }
+
+        function setLanguage(lang) {
+            const isRTL = lang === 'ar';
+            document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+            document.documentElement.setAttribute('lang', lang);
+            
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key]; 
+                }
+            });
+
+            document.querySelectorAll('#lang-select').forEach(select => { if(select) select.value = lang; });
+            
+            const currencyMap = {'ar': 'SAR', 'en': 'USD', 'fr': 'EUR', 'de': 'EUR'};
+            const targetCurrency = currencyMap[lang] || 'USD';
+            convertCurrency(targetCurrency);
+            
+            // Adjust badge position for RTL/LTR
+            const badge = document.querySelector('.premium-badge');
+            if(badge) {
+                if(lang === 'ar') { badge.style.left = '0'; badge.style.right = 'auto'; badge.style.borderBottomRightRadius = '10px'; badge.style.borderBottomLeftRadius = '0'; } 
+                else { badge.style.right = '0'; badge.style.left = 'auto'; badge.style.borderBottomLeftRadius = '10px'; badge.style.borderBottomRightRadius = '0'; }
+            }
+
+            localStorage.setItem('preferredLang', lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const defaultLang = localStorage.getItem('preferredLang') || 'ar';
+            setLanguage(defaultLang);
+        });
+    </script>
+</body>
+</html>
