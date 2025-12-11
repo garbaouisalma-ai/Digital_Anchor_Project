@@ -3,21 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-key="page_title">من أنت حين تنطفئ الشاشة؟ | المرساة الرقمية</title>
+    <title>من أنت حين تنطفئ الشاشة؟ | المرساة الرقمية</title>
     
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJZHN8FQQ2"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-HJZHN8FQQ2');
-    </script>
-    
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Tajawal', sans-serif; background-color: #f7fafc; color: #1e293b; scroll-behavior: smooth; }
         h1, h2, h3 { font-family: 'Amiri', serif; }
@@ -27,209 +21,160 @@
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     </style>
 </head>
-<body class="flex flex-col min-h-screen">
-    
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="index.html" class="flex items-center space-x-3 space-x-reverse">
-                <img src="img/logo.png" width="45" class="rounded-lg shadow-sm">
-                <h1 class="text-xl font-bold text-gray-900" data-key="site_name">المرساة الرقمية</h1>
-            </a>
+<body className="flex flex-col min-h-screen">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        
+        // هنا يجب لصق أكواد مكونات Navbar و Footer المشتركة من الخطوة 1
+        // (تم حذفه هنا للاختصار، لكن يجب تضمينه في ملفك)
+        
+        // بيانات الروابط (ثابتة)
+        const NAV_LINKS = [
+            { key: 'nav_tracks', label: 'المسارات', href: 'track-sovereignty.html' },
+            { key: 'nav_dashboard', label: 'لوحة القيادة', href: 'dashboard.html' },
+            { key: 'nav_blog', label: 'المدونة', href: 'blog.html' },
+        ];
+        
+        // البيانات اللغات والعملات (يفترض أن يتم نقلها من js/main.js)
+        const LANG_OPTIONS = [ { value: 'ar', label: 'عربي' }, { value: 'en', label: 'English' }, { value: 'fr', label: 'Français' }, { value: 'de', label: 'Deutsch' }];
+        const CURR_OPTIONS = [ { value: 'SAR', label: 'SAR (ر.س)' }, { value: 'USD', label: 'USD ($)' }, { value: 'EUR', label: 'EUR (€)' }];
+
+        // ----------------------------------------------------
+        // المكون الرئيسي للصفحة (محتوى index.html)
+        // ----------------------------------------------------
+        const HomePage = () => {
+            // (في مشروع حقيقي، سيتم إدارة حالة اللغة والعملة هنا باستخدام Hooks)
+            const [lang, setLang] = useState('ar');
+            const [curr, setCurr] = useState('SAR');
             
-            <div class="hidden md:flex items-center gap-5">
-                <a href="track-sovereignty.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key="nav_tracks">المسارات</a>
-                <a href="dashboard.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key="nav_dashboard">لوحة القيادة</a>
-                <a href="blog.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key="nav_blog">المدونة</a>
+            // محاكاة عمل setLanguage و convertCurrency
+            const handleLangChange = (newLang) => {
+                setLang(newLang);
+                // منطق تغيير الـ dir و الترجمة (سيتم استخدامه في مشروع حقيقي)
+            };
+            const handleCurrChange = (newCurr) => { setCurr(newCurr); };
 
-                <select id="lang-select" onchange="setLanguage(this.value)" class="text-xs border border-gray-300 rounded p-1 bg-white focus:outline-none focus:border-blue-500">
-                    <option value="ar">عربي</option>
-                    <option value="en">English</option>
-                    <option value="fr">Français</option>
-                    <option value="de">Deutsch</option>
-                </select>
-
-                <select id="curr-select" onchange="convertCurrency(this.value)" class="text-xs border border-gray-300 rounded p-1 bg-white font-bold text-blue-900 focus:outline-none focus:border-blue-500">
-                    <option value="SAR">SAR (ر.س)</option>
-                    <option value="USD">USD ($)</option>
-                    <option value="EUR">EUR (€)</option>
-                </select>
-
-                <a href="buy.html" class="btn-primary px-6 py-2 rounded-lg text-sm font-bold shadow-md flex items-center gap-2 no-underline text-white" data-key="nav_join">
-                    <i class="fas fa-shopping-cart"></i> احجز الكتاب
-                </a>
-            </div>
-            
-            <button id="mobile-menu-btn" class="md:hidden text-gray-800 p-2"><i class="fas fa-bars text-xl"></i></button>
-        </div>
-
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-4 shadow-xl">
-            <a href="track-sovereignty.html" class="block py-2 font-bold border-b border-gray-100" data-key="nav_tracks">المسارات</a>
-            <a href="dashboard.html" class="block py-2 font-bold border-b border-gray-100" data-key="nav_dashboard">لوحة القيادة</a>
-            <a href="blog.html" class="block py-2 font-bold border-b border-gray-100" data-key="nav_blog">المدونة</a>
-            
-            <div class="flex gap-4 py-4">
-                <select onchange="setLanguage(this.value)" class="w-1/2 p-2 border rounded bg-gray-50 text-sm"> 
-                    <option value="ar">عربي</option> 
-                    <option value="en">English</option>
-                    <option value="fr">Français</option>
-                    <option value="de">Deutsch</option>
-                </select>
-                <select onchange="convertCurrency(this.value)" class="w-1/2 p-2 border rounded bg-gray-50 text-sm"> 
-                    <option value="SAR">SAR</option> 
-                    <option value="USD">USD</option> 
-                    <option value="EUR">EUR</option> 
-                </select>
-            </div>
-            <a href="buy.html" class="block w-full py-3 mt-2 text-center bg-blue-900 text-white rounded-lg font-bold" data-key="nav_join">احجز الكتاب</a>
-        </div>
-    </nav>
-
-    <header class="bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white py-16 md:py-24 relative overflow-hidden">
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="flex flex-col lg:flex-row items-center">
-                <div class="lg:w-1/2 text-center lg:text-right mb-12 lg:mb-0">
-                    <span class="inline-block bg-yellow-400 text-blue-900 px-4 py-2 rounded-full text-sm font-bold mb-6 shadow-lg" data-key="hero_badge">✨ الإصدار الجديد 2025</span>
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6" data-key="hero_title">من أنت حين <span class="text-yellow-300">تنطفئ الشاشة</span>؟</h1>
-                    <p class="text-xl opacity-90 mb-8 leading-relaxed font-medium" data-key="hero_subtitle">دليل الشباب للقيم والتركيز والهدف في اقتصاد الانتباه.</p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-end">
-                        <a href="buy.html" class="btn-primary text-lg flex items-center justify-center gap-2 no-underline text-white" data-key="hero_btn_start">
-                            <i class="fas fa-play-circle ml-2"></i> احجز الكتاب والرحلة الآن
-                        </a>
-                        <a href="downloads/Emergency_Guide.pdf" target="_blank" rel="noopener noreferrer" class="bg-white text-blue-900 hover:bg-gray-100 font-bold py-3 px-8 rounded-lg transition text-center flex items-center justify-center gap-2 no-underline">
-                            <i class="fas fa-exclamation-triangle"></i> <span data-key="hero_btn_emergency">دليل الطوارئ</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="lg:w-1/2 flex justify-center">
-                    <div class="relative float-animation w-full max-w-lg">
-                        <img src="img/hero.png" alt="كتاب المرساة الرقمية" width="500" height="600" loading="eager" class="w-full h-auto drop-shadow-2xl rounded-xl">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <main>
-        <section id="roadmap" class="py-20 bg-white">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-key="roadmap_title">برنامج الـ 90 يوماً</h2>
-                    <p class="text-gray-700 text-lg font-medium" data-key="roadmap_desc">خطة عملية لتحويل الوعي الرقمي إلى ممارسة يومية.</p>
-                </div>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <article class="bg-blue-50 rounded-2xl p-8 border-t-4 border-blue-600 card-hover shadow-lg">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2" data-key="month1_title">الشهر 1: الصحوة الرقمية</h3>
-                        <p class="text-sm text-gray-700 mb-4 font-bold" data-key="month1_goal">الهدف: خفض الإلهاء بنسبة 30%</p>
-                        <a href="program.html" class="text-blue-600 font-bold text-sm hover:underline">تفاصيل البرنامج &larr;</a>
-                    </article>
-                    <article class="bg-green-50 rounded-2xl p-8 border-t-4 border-green-600 card-hover shadow-lg">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2" data-key="month2_title">الشهر 2: بناء النظام</h3>
-                        <p class="text-sm text-gray-700 mb-4 font-bold" data-key="month2_goal">الهدف: إنشاء نظام إنتاجية مستدام</p>
-                        <a href="program.html" class="text-green-600 font-bold text-sm hover:underline">تفاصيل البرنامج &larr;</a>
-                    </article>
-                    <article class="bg-yellow-50 rounded-2xl p-8 border-t-4 border-yellow-500 card-hover shadow-lg">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2" data-key="month3_title">الشهر 3: التأثير</h3>
-                        <p class="text-sm text-gray-700 mb-4 font-bold" data-key="month3_goal">الهدف: مساعدة شخص واحد</p>
-                        <a href="program.html" class="text-yellow-600 font-bold text-sm hover:underline">تفاصيل البرنامج &larr;</a>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="resources" class="py-16 bg-gray-900 text-white">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl font-bold mb-8" data-key="tools_title">أدوات مجانية لتبدأ الآن</h2>
-                <a href="resources.html" class="inline-block border border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-gray-900 transition font-bold" data-key="btn_free_tools">
-                    اكتشف المكتبة المجانية
-                </a>
-            </div>
-        </section>
-
-        <section id="author" class="py-20 bg-gray-50">
-            <div class="container mx-auto px-4">
-                <div class="flex flex-col md:flex-row items-center gap-12 max-w-6xl mx-auto">
-                    <div class="w-full md:w-1/3 flex justify-center">
-                        <div class="relative w-64 h-64 md:w-80 md:h-80">
-                            <div class="absolute -inset-4 bg-yellow-400 rounded-full opacity-20 animate-pulse"></div>
-                            <img src="img/author.png" alt="Nawal Gharbawi" class="relative rounded-full shadow-2xl w-full h-full object-cover border-4 border-white">
+            return (
+                <div className="flex flex-col min-h-screen">
+                    <Navbar 
+                        links={NAV_LINKS} 
+                        currencyOptions={CURR_OPTIONS} 
+                        langOptions={LANG_OPTIONS} 
+                        activeLang={lang} 
+                        activeCurr={curr} 
+                        onLangChange={handleLangChange} 
+                        onCurrChange={handleCurrChange}
+                    />
+                    
+                    <header className="bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 text-white py-16 md:py-24 relative overflow-hidden">
+                        <div className="container mx-auto px-4 relative z-10">
+                            <div className="flex flex-col lg:flex-row items-center">
+                                <div className="lg:w-1/2 text-center lg:text-right mb-12 lg:mb-0">
+                                    <span className="inline-block bg-yellow-400 text-blue-900 px-4 py-2 rounded-full text-sm font-bold mb-6 shadow-lg" data-key="hero_badge">✨ الإصدار الجديد 2025</span>
+                                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6" data-key="hero_title">من أنت حين <span className="text-yellow-300">تنطفئ الشاشة</span>؟</h1>
+                                    <p className="text-xl opacity-90 mb-8 leading-relaxed font-medium" data-key="hero_subtitle">دليل الشباب للقيم والتركيز والهدف في اقتصاد الانتباه.</p>
+                                    <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-end">
+                                        <a href="buy.html" className="btn-primary text-lg flex items-center justify-center gap-2 no-underline text-white" data-key="hero_btn_start">
+                                            <i className="fas fa-play-circle ml-2"></i> احجز الكتاب والرحلة الآن
+                                        </a>
+                                        <a href="downloads/Emergency_Guide.pdf" target="_blank" rel="noopener noreferrer" className="bg-white text-blue-900 hover:bg-gray-100 font-bold py-3 px-8 rounded-lg transition text-center flex items-center justify-center gap-2 no-underline">
+                                            <i className="fas fa-exclamation-triangle"></i> <span data-key="hero_btn_emergency">دليل الطوارئ</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div className="lg:w-1/2 flex justify-center">
+                                    <div className="relative float-animation w-full max-w-lg">
+                                        <img src="img/hero.png" alt="كتاب المرساة الرقمية" width="500" height="600" loading="eager" className="w-full h-auto drop-shadow-2xl rounded-xl" />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="w-full md:w-2/3 text-center md:text-right">
-                        <h2 class="text-blue-900 text-sm font-bold uppercase tracking-wide mb-2" data-key="author_label">عن المؤلفة</h2>
-                        <h3 class="text-4xl font-bold text-gray-900 mb-6 font-serif" data-key="author_name">نوال غرباوي</h3>
-                        <p class="text-lg text-gray-700 leading-relaxed mb-6 font-medium" data-key="author_bio">
-                            رائدة في مجال التحول الرقمي الواعي، وخبيرة في مواجهة تحديات التشتت الرقمي. هذا الكتاب لم ينبع من دراسات أكاديمية فحسب، بل من تجربة شخصية عميقة في استعادة السيطرة على الوقت والقيم.
-                        </p>
-                    </div>
+                    </header>
+                    
+                    <main>
+                        {/* قسم خارطة الطريق */}
+                        <section id="roadmap" className="py-20 bg-white">
+                            <div className="container mx-auto px-4">
+                                <div className="text-center mb-16">
+                                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-key="roadmap_title">برنامج الـ 90 يوماً</h2>
+                                    <p className="text-gray-700 text-lg font-medium" data-key="roadmap_desc">خطة عملية لتحويل الوعي الرقمي إلى ممارسة يومية.</p>
+                                </div>
+                                <div className="grid md:grid-cols-3 gap-8">
+                                    <article className="bg-blue-50 rounded-2xl p-8 border-t-4 border-blue-600 card-hover shadow-lg">
+                                        <h3 className="text-2xl font-bold text-gray-900 mb-2" data-key="month1_title">الشهر 1: الصحوة الرقمية</h3>
+                                        <p className="text-sm text-gray-700 mb-4 font-bold" data-key="month1_goal">الهدف: خفض الإلهاء بنسبة 30%</p>
+                                        <a href="program.html" className="text-blue-600 font-bold text-sm hover:underline">تفاصيل البرنامج &larr;</a>
+                                    </article>
+                                    <article className="bg-green-50 rounded-2xl p-8 border-t-4 border-green-600 card-hover shadow-lg">
+                                        <h3 className="text-2xl font-bold text-gray-900 mb-2" data-key="month2_title">الشهر 2: بناء النظام</h3>
+                                        <p className="text-sm text-gray-700 mb-4 font-bold" data-key="month2_goal">الهدف: إنشاء نظام إنتاجية مستدام</p>
+                                        <a href="program.html" className="text-green-600 font-bold text-sm hover:underline">تفاصيل البرنامج &larr;</a>
+                                    </article>
+                                    <article className="bg-yellow-50 rounded-2xl p-8 border-t-4 border-yellow-500 card-hover shadow-lg">
+                                        <h3 className="text-2xl font-bold text-gray-900 mb-2" data-key="month3_title">الشهر 3: التأثير</h3>
+                                        <p className="text-sm text-gray-700 mb-4 font-bold" data-key="month3_goal">الهدف: مساعدة شخص واحد</p>
+                                        <a href="program.html" className="text-yellow-600 font-bold text-sm hover:underline">تفاصيل البرنامج &larr;</a>
+                                    </article>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        {/* قسم الموارد المجانية */}
+                        <section id="resources" className="py-16 bg-gray-900 text-white">
+                            <div className="container mx-auto px-4 text-center">
+                                <h2 className="text-3xl font-bold mb-8" data-key="tools_title">أدوات مجانية لتبدأ الآن</h2>
+                                <a href="resources.html" className="inline-block border border-white text-white px-8 py-3 rounded-full hover:bg-white hover:text-gray-900 transition font-bold" data-key="btn_free_tools">
+                                    اكتشف المكتبة المجانية
+                                </a>
+                            </div>
+                        </section>
+                        
+                        {/* قسم المؤلفة */}
+                        <section id="author" className="py-20 bg-gray-50">
+                            <div className="container mx-auto px-4">
+                                <div className="flex flex-col md:flex-row items-center gap-12 max-w-6xl mx-auto">
+                                    <div className="w-full md:w-1/3 flex justify-center">
+                                        <div className="relative w-64 h-64 md:w-80 md:h-80">
+                                            <div className="absolute -inset-4 bg-yellow-400 rounded-full opacity-20 animate-pulse"></div>
+                                            <img src="img/author.png" alt="Nawal Gharbawi" className="relative rounded-full shadow-2xl w-full h-full object-cover border-4 border-white" />
+                                        </div>
+                                    </div>
+                                    <div className="w-full md:w-2/3 text-center lg:text-right">
+                                        <h2 className="text-blue-900 text-sm font-bold uppercase tracking-wide mb-2" data-key="author_label">عن المؤلفة</h2>
+                                        <h3 className="text-4xl font-bold text-gray-900 mb-6 font-serif" data-key="author_name">نوال غرباوي</h3>
+                                        <p className="text-lg text-gray-700 leading-relaxed mb-6 font-medium" data-key="author_bio">
+                                            رائدة في مجال التحول الرقمي الواعي، وخبيرة في مواجهة تحديات التشتت الرقمي. هذا الكتاب لم ينبع من دراسات أكاديمية فحسب، بل من تجربة شخصية عميقة في استعادة السيطرة على الوقت والقيم.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        
+                        {/* قسم التعهد */}
+                        <section className="py-20 bg-blue-50">
+                            <div className="container mx-auto px-4 max-w-4xl">
+                                <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-blue-100 p-8 text-center">
+                                    <h2 className="text-2xl font-bold text-blue-900 mb-4" data-key="pledge_title">تعهد السيادة الرقمية</h2>
+                                    <p className="text-lg text-gray-800 leading-relaxed font-amiri mb-8" data-key="pledge_text">
+                                        "أتعهد أمام نفسي بأن تكون القيم الخمس التي أؤمن بها هي الفلتر الأساسي لجميع قراراتي اليومية، خاصة في العالم الرقمي."
+                                    </p>
+                                    <form className="space-y-4 max-w-md mx-auto" onSubmit={(e) => { e.preventDefault(); alert('تم توقيع العهد بنجاح! أنت الآن قبطان سفينتك.'); }}>
+                                        <input id="pledge-name" type="text" placeholder="الاسم الكامل" className="w-full p-3 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500" required />
+                                        <button type="submit" className="w-full btn-primary py-3 text-lg" data-key="pledge_btn">أوقع العهد الآن ✍️</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </section>
+                    </main>
+                    <Footer />
                 </div>
-            </div>
-        </section>
-
-        <section class="py-20 bg-blue-50">
-            <div class="container mx-auto px-4 max-w-4xl">
-                <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-blue-100 p-8 text-center">
-                    <h2 class="text-2xl font-bold text-blue-900 mb-4" data-key="pledge_title">تعهد السيادة الرقمية</h2>
-                    <p class="text-lg text-gray-800 leading-relaxed font-amiri mb-8" data-key="pledge_text">
-                        "أتعهد أمام نفسي بأن تكون القيم الخمس التي أؤمن بها هي الفلتر الأساسي لجميع قراراتي اليومية، خاصة في العالم الرقمي."
-                    </p>
-                    <form class="space-y-4 max-w-md mx-auto" onsubmit="alert('تم توقيع العهد بنجاح! أنت الآن قبطان سفينتك.'); return false;">
-                        <input id="pledge-name" type="text" placeholder="الاسم الكامل" class="w-full p-3 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                        <button type="submit" class="w-full btn-primary py-3 text-lg" data-key="pledge_btn">أوقع العهد الآن ✍️</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="bg-gray-900 text-white py-12 text-center border-t border-gray-800">
-        <div class="container mx-auto px-4">
-            <h3 class="text-xl font-bold mb-4" data-key="site_name">المرساة الرقمية</h3>
-            <p class="text-gray-400 text-sm">© 2025 Digital Anchor Project. جميع الحقوق محفوظة.</p>
-        </div>
-    </footer>
-
-    <script>
-        const translations = {
-            'ar': { /* ... قاموس الترجمة ... */ },
-            'en': { /* ... قاموس الترجمة ... */ },
-            'fr': { /* ... قاموس الترجمة ... */ },
-            'de': { /* ... قاموس الترجمة ... */ }
+            );
         };
 
-        function setLanguage(lang) {
-            const isRTL = lang === 'ar';
-            document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
-            document.documentElement.setAttribute('lang', lang);
-            
-            document.querySelectorAll('[data-key]').forEach(el => {
-                const key = el.getAttribute('data-key');
-                if (translations[lang] && translations[lang][key]) {
-                    el.innerHTML = translations[lang][key]; 
-                }
-            });
-            // تحديث حالة الأزرار والقوائم المنسدلة للغة... (منطق مفصل)
-            document.querySelectorAll('#lang-select').forEach(select => { if(select) select.value = lang; });
-            // ... (منطق تحديث العملة والمحاذاة)
-            document.body.style.textAlign = isRTL ? 'right' : 'left';
-            localStorage.setItem('preferredLang', lang);
-        }
-
-        const menuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        if (menuBtn && mobileMenu) {
-            menuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const defaultLang = localStorage.getItem('preferredLang') || 'ar';
-            setLanguage(defaultLang);
-            // يجب استدعاء دالة convertCurrency هنا إذا كانت prices موجودة
-        });
-        
-        // الدوال convertCurrency و setLanguage (مع المنطق الكامل) يجب أن تكون موجودة في ملف js/main.js
-        // بما أن الكود الذي أرسلته كان يحوي هذا المنطق هنا، فقد أعدته لضمان العمل الفوري.
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<HomePage />);
     </script>
 </body>
 </html>
