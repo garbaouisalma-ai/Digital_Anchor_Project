@@ -1,130 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-key="members_title">منطقة الأعضاء | المرساة الرقمية</title>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJZHN8FQQ2"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-HJZHN8FQQ2');</script>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; }</style>
-</head>
-<body class="text-slate-900 flex flex-col min-h-screen">
-
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="index.html" class="flex items-center gap-3">
-                <img src="logo.png" width="40" class="rounded-lg">
-                <span class="text-xl font-bold" data-key="site_name">المرساة الرقمية</span>
-            </a>
-            <div class="flex items-center gap-4">
-                <select id="lang-select" onchange="setLanguage(this.value)" class="text-xs border border-gray-300 rounded p-1 bg-white">
-                    <option value="ar">عربي</option>
-                    <option value="en">English</option>
-                    <option value="fr">Français</option>
-                    <option value="de">Deutsch</option>
-                </select>
-                <a href="buy.html" class="bg-yellow-500 text-slate-900 px-4 py-2 rounded-lg font-bold hover:bg-yellow-400 text-sm" data-key="nav_book_now">احجز نسختك</a>
-            </div>
-        </div>
-    </nav>
-
-    <main class="flex-grow container mx-auto px-4 py-12 max-w-5xl">
-        <header class="text-center mb-12">
-            <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4" data-key="members_header">محتوى حصري للأعضاء</h1>
-            <p class="text-lg text-slate-600" data-key="members_subtitle">ابدأ رحلتك للقيادة الرقمية واكتشف الأدوات والدروس الحصرية.</p>
-        </header>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-white p-6 rounded-2xl shadow-xl border-t-4 border-yellow-500 hover:-translate-y-2 transition duration-300">
-                <i class="fas fa-graduation-cap text-4xl text-yellow-500 mb-4"></i>
-                <h3 class="text-xl font-bold mb-2" data-key="course_title">دورة السيادة الرقمية</h3>
-                <p class="text-sm text-slate-500 mb-4" data-key="course_desc">أكثر من 10 ساعات من محتوى الفيديو والدليل العملي.</p>
-                <span class="bg-slate-100 text-slate-600 px-3 py-1 rounded text-xs font-bold" data-key="locked_badge">🔒 مغلق - للأعضاء فقط</span>
-            </div>
-            <div class="bg-white p-6 rounded-2xl shadow-xl border-t-4 border-yellow-500 hover:-translate-y-2 transition duration-300">
-                <i class="fas fa-chart-line text-4xl text-yellow-500 mb-4"></i>
-                <h3 class="text-xl font-bold mb-2" data-key="tool_title">أداة تتبع التقدم</h3>
-                <p class="text-sm text-slate-500 mb-4" data-key="tool_desc">راقب تحررّك من الإدمان وقياس الإنتاجية.</p>
-                <span class="bg-slate-100 text-slate-600 px-3 py-1 rounded text-xs font-bold" data-key="locked_badge">🔒 مغلق - للأعضاء فقط</span>
-            </div>
-            <div class="bg-white p-6 rounded-2xl shadow-xl border-t-4 border-yellow-500 hover:-translate-y-2 transition duration-300">
-                <i class="fas fa-users text-4xl text-yellow-500 mb-4"></i>
-                <h3 class="text-xl font-bold mb-2" data-key="community_title">المجتمع السري</h3>
-                <p class="text-sm text-slate-500 mb-4" data-key="community_desc">انضم إلى مجموعة النخبة للحصول على دعم متواصل.</p>
-                <span class="bg-slate-100 text-slate-600 px-3 py-1 rounded text-xs font-bold" data-key="locked_badge">🔒 مغلق - للأعضاء فقط</span>
-            </div>
-        </div>
-
-        <div class="mt-12 text-center p-8 bg-slate-100 rounded-2xl border border-slate-200">
-            <h2 class="text-2xl font-bold mb-2 text-slate-800" data-key="cta_title">هل أنت مستعد للانطلاق؟</h2>
-            <p class="text-slate-600 mb-6" data-key="cta_text">ابدأ الآن بالحجز المسبق للكتاب وانضم إلى منطقتنا الحصرية.</p>
-            <a href="buy.html" class="inline-block bg-slate-900 text-white px-8 py-3 rounded-lg font-bold hover:bg-slate-800 transition shadow-lg" data-key="cta_btn">احجز نسختك الآن</a>
-        </div>
-    </main>
-
-    <footer class="bg-slate-900 text-slate-400 py-8 text-center mt-auto">
-        <p class="text-sm">© 2025 Digital Anchor Project.</p>
-    </footer>
-
-    <script>
-        const translations = {
-            'ar': {
-                'site_name': 'المرساة الرقمية', 'members_title': 'منطقة الأعضاء', 'nav_book_now': 'احجز نسختك',
-                'members_header': 'محتوى حصري للأعضاء', 'members_subtitle': 'ابدأ رحلتك للقيادة الرقمية واكتشف الأدوات والدروس الحصرية.',
-                'course_title': 'دورة السيادة الرقمية', 'course_desc': 'أكثر من 10 ساعات من محتوى الفيديو والدليل العملي.',
-                'tool_title': 'أداة تتبع التقدم', 'tool_desc': 'راقب تحررّك من الإدمان وقياس الإنتاجية.',
-                'community_title': 'المجتمع السري', 'community_desc': 'انضم إلى مجموعة النخبة للحصول على دعم متواصل.',
-                'locked_badge': '🔒 مغلق - للأعضاء فقط',
-                'cta_title': 'هل أنت مستعد للانطلاق؟', 'cta_text': 'ابدأ الآن بالحجز المسبق للكتاب وانضم إلى منطقتنا الحصرية.', 'cta_btn': 'احجز نسختك الآن'
-            },
-            'en': {
-                'site_name': 'Digital Anchor', 'members_title': 'Members Area', 'nav_book_now': 'Order Now',
-                'members_header': 'Exclusive Members Content', 'members_subtitle': 'Unlock exclusive tools and lessons.',
-                'course_title': 'Digital Sovereignty Course', 'course_desc': '10+ hours of video content and guides.',
-                'tool_title': 'Progress Tracker', 'tool_desc': 'Monitor your liberation and productivity.',
-                'community_title': 'Secret Community', 'community_desc': 'Join the elite group for support.',
-                'locked_badge': '🔒 Locked - Members Only',
-                'cta_title': 'Ready to start?', 'cta_text': 'Pre-order now to join the exclusive area.', 'cta_btn': 'Order Now'
-            },
-            'fr': {
-                'site_name': 'L\'Ancre Numérique', 'members_title': 'Espace Membres', 'nav_book_now': 'Commander',
-                'members_header': 'Contenu Exclusif', 'members_subtitle': 'Débloquez des outils et leçons exclusifs.',
-                'course_title': 'Cours de Souveraineté', 'course_desc': 'Plus de 10h de contenu vidéo.',
-                'tool_title': 'Suivi de Progrès', 'tool_desc': 'Surveillez votre productivité.',
-                'community_title': 'Communauté Secrète', 'community_desc': 'Rejoignez l\'élite pour du soutien.',
-                'locked_badge': '🔒 Verrouillé - Membres',
-                'cta_title': 'Prêt à commencer ?', 'cta_text': 'Précommandez pour rejoindre l\'espace.', 'cta_btn': 'Commander'
-            },
-            'de': {
-                'site_name': 'Der Digitale Anker', 'members_title': 'Mitgliederbereich', 'nav_book_now': 'Bestellen',
-                'members_header': 'Exklusive Inhalte', 'members_subtitle': 'Schalten Sie exklusive Tools frei.',
-                'course_title': 'Souveränitätskurs', 'course_desc': 'Über 10 Stunden Videoinhalt.',
-                'tool_title': 'Fortschritts-Tracker', 'tool_desc': 'Überwachen Sie Ihre Produktivität.',
-                'community_title': 'Geheime Community', 'community_desc': 'Treten Sie der Elite bei.',
-                'locked_badge': '🔒 Gesperrt - Nur Mitglieder',
-                'cta_title': 'Bereit?', 'cta_text': 'Bestellen Sie jetzt vor.', 'cta_btn': 'Bestellen'
-            }
-        };
-
-        function setLanguage(lang) {
-            document.documentElement.lang = lang;
-            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-            document.querySelectorAll('[data-key]').forEach(el => {
-                const key = el.getAttribute('data-key');
-                if (translations[lang][key]) el.textContent = translations[lang][key];
-            });
-            localStorage.setItem('preferredLang', lang);
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const defaultLang = localStorage.getItem('preferredLang') || 'ar';
-            document.getElementById('lang-select').value = defaultLang;
-            setLanguage(defaultLang);
-        });
-    </script>
-</body>
-</html>
