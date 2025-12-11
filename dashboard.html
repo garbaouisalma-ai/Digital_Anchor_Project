@@ -1,102 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-key="page_title">لوحة التحكم | الأكاديمية</title>
-    
-    <link rel="icon" type="image/png" href="img/logo.png">
-    
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="css/styles.css" rel="stylesheet"> 
-    
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
-    <script src="i18n.js"></script>
-    
-</head>
-<body class="text-slate-900">
-    
-    <nav class="bg-white shadow-sm p-4 flex justify-between items-center sticky top-0 z-50">
-        <div class="flex items-center gap-4">
-            <a href="index.html" class="flex items-center gap-2 text-slate-500 hover:text-blue-900 font-bold text-sm">
-                <i class="fas fa-arrow-right"></i> <span data-key="nav_home">الرئيسية</span>
-            </a>
-            <span class="font-bold text-xl text-slate-800" data-key="dashboard_title">لوحة القيادة</span>
-        </div>
-        <div class="flex items-center gap-2">
-            <a href="buy.html" class="text-sm font-bold text-blue-600 hover:text-blue-800" data-key="nav_upgrade">ترقية</a>
-            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center font-bold text-blue-600">ع</div>
-        </div>
-    </nav>
-
-    <main class="container mx-auto p-6 grid lg:grid-cols-3 gap-6">
-        <div class="lg:col-span-3 grid md:grid-cols-4 gap-4">
-            <div class="bg-white p-4 rounded-xl shadow-sm border-r-4 border-blue-500">
-                <p class="text-xs text-gray-400" data-key="card1_title">هدفك الحالي</p>
-                <p class="font-bold" data-key="card1_value">إطلاق المشروع</p>
-            </div>
-            <div class="bg-white p-4 rounded-xl shadow-sm border-r-4 border-yellow-500">
-                <p class="text-xs text-gray-400" data-key="card2_title">سلسلة الحماس</p>
-                <p class="font-bold text-yellow-600" data-key="card2_value">🔥 6 أيام</p>
-            </div>
-            <div class="bg-white p-4 rounded-xl shadow-sm border-r-4 border-purple-500">
-                <p class="text-xs text-gray-400" data-key="card3_title">التقدم</p>
-                <p class="font-bold" data-key="card3_value">28 / 90 يوماً</p>
-            </div>
-            <div class="bg-white p-4 rounded-xl shadow-sm border-r-4 border-green-500">
-                <p class="text-xs text-gray-400" data-key="card4_title">مؤشر السيادة</p>
-                <p class="font-bold text-green-600" data-key="card4_value">71% (ممتاز)</p>
-            </div>
-        </div>
-        
-        <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-sm">
-            <h3 class="font-bold mb-4" data-key="chart_title">تقدمك الأسبوعي</h3>
-            <canvas id="mainChart"></canvas>
-        </div>
-
-        <div class="bg-white p-6 rounded-xl shadow-sm space-y-4">
-            <h3 class="font-bold mb-2" data-key="tools_title">أدوات سريعة</h3>
-            
-            <button onclick="toggleModal('achievementModal')" class="w-full bg-blue-50 text-blue-700 py-3 rounded-lg font-bold hover:bg-blue-100 text-sm flex items-center justify-center gap-2 transition" data-key="btn_add_achievement">
-                <i class="fas fa-plus-circle"></i> إضافة إنجاز يومي
-            </button>
-            
-            <a href="downloads/Full_Workbook.pdf" target="_blank" class="w-full bg-green-50 text-green-700 py-3 rounded-lg font-bold hover:bg-green-100 text-sm flex items-center justify-center gap-2 transition no-underline block text-center" data-key="btn_open_workbook">
-                <i class="fas fa-book-open"></i> فتح دفتر السيادة
-            </a>
-
-            <div class="mt-4 pt-4 border-t">
-                <p class="text-xs text-gray-400 mb-2" data-key="calculator_title">حاسبة السيادة</p>
-                <input type="number" id="screenTime" placeholder="وقت الشاشة (س)" class="w-full mb-2 p-2 border rounded text-sm text-center">
-                <input type="number" id="prodTime" placeholder="وقت الإنتاج (س)" class="w-full mb-2 p-2 border rounded text-sm text-center">
-                <button onclick="calculate()" class="w-full bg-slate-800 text-white py-2 rounded text-sm font-bold hover:bg-slate-700" data-key="btn_calculate">احسب الكفاءة</button>
-                <p id="result" class="text-center mt-2 font-bold text-green-600 h-6"></p>
-            </div>
-        </div>
-    </main>
-
-    <div id="achievementModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl shadow-2xl p-6 max-w-md w-full transform transition-all scale-100">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-bold text-slate-800" data-key="modal_title">سجل انتصارك اليوم! 🏆</h3>
-                <button onclick="toggleModal('achievementModal')" class="text-gray-400 hover:text-gray-600"><i class="fas fa-times"></i></button>
-            </div>
-            <textarea placeholder="ماذا أنجزت اليوم؟ (مثال: قرأت 10 صفحات، لم أفتح الهاتف صباحاً...)" class="w-full p-3 border border-slate-300 rounded-lg mb-4 h-32 focus:ring-2 focus:ring-blue-500 focus:outline-none" data-key="modal_placeholder"></textarea>
-            <div class="flex gap-2">
-                <button onclick="saveAchievement()" class="flex-1 bg-blue-600 text-white py-2 rounded-lg font-bold hover:bg-blue-700" data-key="btn_save">حفظ الإنجاز</button>
-                <button onclick="toggleModal('achievementModal')" class="flex-1 bg-slate-200 text-slate-600 py-2 rounded-lg font-bold hover:bg-slate-300" data-key="btn_cancel">إلغاء</button>
-            </div>
-        </div>
-    </div>
-    
-    <footer class="bg-slate-900 text-slate-400 py-8 text-center"><p class="text-sm">© 2025 Digital Anchor Academy.</p></footer>
-
-    <script src="js/dashboard.js"></script> 
-    <script>
-        // 🚨 ** [إصلاح: 4. استدعاء initializePage لتفعيل اللغة عند التحميل] **
-        document.addEventListener('DOMContentLoaded', initializePage);
-    </script>
-</body>
-</html>
