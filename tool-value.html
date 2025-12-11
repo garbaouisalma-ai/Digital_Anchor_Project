@@ -1,178 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <title data-key="tool_value_title">أداة تحديد القيم | المرساة الرقمية</title>
-    
-    <link rel="icon" type="image/png" href="img/logo.png">
-
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
-    <script src="i18n.js"></script>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: { 
-                    colors: { 
-                        'anchor-blue': '#0f172a', 
-                        'anchor-gold': '#d4af37',
-                        'value-btn-bg': '#fef3c7', 
-                        'value-btn-border': '#fbbf24'
-                    }, 
-                    fontFamily: { 
-                        sans: ['Tajawal', 'sans-serif'] 
-                    } 
-                }
-            }
-        }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <style>body { background-color: #f8fafc; }</style>
-</head>
-<body class="text-slate-900 font-sans">
-    <div id="root"></div>
-    
-    <script type="text/babel">
-        const { useState } = React;
-        
-        // 🚨 ** [إصلاح: 3. تهيئة اللغة قبل تصيير React] **
-        initializePage();
-
-        // ⚠️ ملاحظة: يجب نقل قائمة القيم هذه إلى i18n.js لترجمتها بالكامل، 
-        // ولكن تم تركها هنا مؤقتاً لغرض الإصلاح الهيكلي.
-        const VALUES_LIST = [
-            { name: "التركيز والعمل العميق", icon: "fas fa-bullseye", key: "value_focus" }, 
-            { name: "النزاهة الرقمية", icon: "fas fa-shield-alt", key: "value_integrity" },
-            { name: "الإنجاز العملي", icon: "fas fa-trophy", key: "value_achievement" },
-            { name: "التأمل والوعي الذاتي", icon: "fas fa-spa", key: "value_self_awareness" },
-            { name: "الصحة والاهتمام بالذات", icon: "fas fa-heartbeat", key: "value_health" },
-            { name: "العلاقات والتواصل الفعال", icon: "fas fa-comments", key: "value_relationships" },
-            { name: "الإبداع", icon: "fas fa-lightbulb", key: "value_creativity" }, 
-            { name: "الهدوء النفسي", icon: "fas fa-moon", key: "value_calmness" }, 
-            { name: "التعلم المستمر", icon: "fas fa-book-open", key: "value_learning" }
-        ];
-
-        const Navbar = () => (
-            <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-md">
-                <div className="max-w-7xl mx-auto flex justify-between items-center">
-                    <a href="index.html" className="flex items-center gap-3">
-                        <img src="img/logo.png" alt="Logo" className="h-10 w-auto" /> 
-                        <span className="font-bold text-lg hidden md:block" data-key="site_name">المرساة الرقمية</span>
-                    </a>
-                    <a href="buy.html" className="bg-anchor-gold text-anchor-blue px-4 py-2 rounded-full font-bold" data-key="nav_join">احجز نسختك</a>
-                </div>
-            </nav>
-        );
-
-        const Footer = () => (
-            <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm mt-auto">© 2025 <span data-key="site_name">المرساة الرقمية</span></footer>
-        );
-
-        const ValueTool = () => {
-            const [selectedValues, setSelectedValues] = useState([]);
-            const [showResult, setShowResult] = useState(false);
-
-            const toggleValue = (value) => {
-                const valueName = value.name;
-                if (selectedValues.includes(valueName)) {
-                    setSelectedValues(selectedValues.filter(v => v !== valueName));
-                } else {
-                    if (selectedValues.length < 3) setSelectedValues([...selectedValues, valueName]);
-                }
-            };
-            
-            const isSelectDisabled = (valueName) => {
-                return selectedValues.length >= 3 && !selectedValues.includes(valueName);
-            };
-
-            const handleShowResult = () => {
-                if (selectedValues.length === 3) {
-                    setShowResult(true);
-                    setTimeout(() => {
-                        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-                    }, 100);
-                }
-            };
-
-            return (
-                <div className="min-h-screen flex flex-col">
-                    <Navbar />
-                    <main className="max-w-3xl mx-auto px-6 py-12 flex-grow w-full">
-                        <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-                            <header className="text-center mb-10">
-                                <h1 className="text-3xl font-bold text-anchor-blue mb-3" data-key="tool_header">💎 بوصلة القيم الشخصية</h1>
-                                <p className="text-gray-600" data-key="tool_subtitle">اختر أهم 3 قيم تعبر عنك لتبني عليها خطتك الرقمية.</p>
-                            </header>
-
-                            {!showResult ? (
-                                <div className="space-y-8">
-                                    <div className="grid md:grid-cols-2 gap-4">
-                                        {VALUES_LIST.map((val, idx) => {
-                                            const isSelected = selectedValues.includes(val.name);
-                                            const isDisabled = isSelectDisabled(val.name);
-                                            
-                                            return (
-                                                <button 
-                                                    key={idx} 
-                                                    onClick={() => toggleValue(val)} 
-                                                    disabled={isDisabled}
-                                                    className={`p-4 rounded-xl border-2 text-right transition-all flex justify-between items-center text-lg ${
-                                                        isSelected 
-                                                            ? 'border-anchor-blue bg-value-btn-bg text-anchor-blue font-bold shadow-md' 
-                                                            : (isDisabled 
-                                                                ? 'border-gray-100 bg-gray-50 text-gray-400 opacity-70 cursor-not-allowed' 
-                                                                : 'border-gray-100 hover:border-value-btn-border hover:bg-gray-100 text-gray-600'
-                                                            )
-                                                    }`}
-                                                >
-                                                    <span className="flex items-center gap-3">
-                                                        <i className={`${val.icon} ${isSelected ? 'text-anchor-blue' : 'text-gray-400'}`}></i>
-                                                        {val.name}
-                                                    </span>
-                                                    {isSelected && <span className="text-green-600 text-xl font-extrabold">✓</span>}
-                                                </button>
-                                            )
-                                        })}
-                                    </div>
-                                    <div className="text-center pt-4">
-                                        <p className={`text-sm mb-4 font-bold ${selectedValues.length === 3 ? 'text-green-600' : 'text-gray-500'}`} data-key="selection_count">تم اختيار {selectedValues.length} من 3</p>
-                                        <button onClick={handleShowResult} disabled={selectedValues.length !== 3} className={`px-10 py-3 rounded-xl font-bold text-lg transition-all ${selectedValues.length === 3 ? 'bg-anchor-blue text-white hover:bg-gray-800 shadow-lg' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`} data-key="btn_analyze">تحليل قيمي</button>
-                                    </div>
-                                </div>
-                            ) : (
-                                <div className="text-center animate-fade-in">
-                                    <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">🎯</div>
-                                    <h2 className="text-2xl font-bold text-anchor-blue mb-6" data-key="result_header">قيمك الجوهرية هي:</h2>
-                                    <div className="flex flex-wrap justify-center gap-3 mb-8">
-                                        {selectedValues.map((val, idx) => (
-                                            <span key={idx} className="bg-anchor-gold text-anchor-blue px-6 py-2 rounded-full font-bold shadow-sm text-lg">{val}</span>
-                                        ))}
-                                    </div>
-                                    <div className="bg-blue-50 p-6 rounded-xl border border-blue-100 mb-8">
-                                        <p className="text-gray-700 leading-relaxed" data-key="result_desc">رائع! هذه القيم هي بوصلتك. الخطوة التالية هي حماية هذه القيم في عالمك الرقمي.</p>
-                                    </div>
-                                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                        <a href="downloads/Pledge_Paper.pdf" target="_blank" className="bg-anchor-blue text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-800 transition" data-key="btn_sign_covenant">توقيع العهد</a>
-                                        <button onClick={() => setShowResult(false)} className="text-gray-500 hover:text-anchor-blue underline" data-key="btn_reselect">إعادة الاختيار</button>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                    </main>
-                    <Footer />
-                </div>
-            );
-        };
-
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<ValueTool />);
-    </script>
-</body>
-</html>
