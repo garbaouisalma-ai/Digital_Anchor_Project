@@ -9,4 +9,5 @@ gtag('js', new Date());
 gtag('config', 'G-HJZHN8FQQ2'); 
 
 // يمكن إضافة أي وظائف تتبع أخرى هنا لاحقاً
+
 console.log("Google Analytics 4 initialized.");
