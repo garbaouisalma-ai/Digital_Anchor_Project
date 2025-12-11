@@ -1,131 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <title data-key="buy_title">صفحة الحجز المسبق | المرساة الرقمية</title>
-    
-    <link rel="icon" type="image/png" href="img/logo.png">
-
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
-    <script src="i18n.js"></script>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <script>
-        tailwind.config = { 
-            theme: { 
-                extend: { 
-                    colors: { 'anchor-blue': '#0f172a', 'anchor-gold': '#d4af37' }, 
-                    fontFamily: { 'sans': ['Tajawal', 'sans-serif'], 'serif': ['Amiri', 'serif'] } 
-                } 
-            } 
-        }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-    <style>body { background-color: #f8fafc; }</style>
-</head>
-<body class="bg-slate-50 text-slate-900 font-sans">
-    <div id="root"></div>
-    
-    <script type="text/babel">
-        // 🚨 ** [إصلاح: 3. تهيئة اللغة قبل تصيير React] **
-        initializePage();
-        
-        // ----------------------------------------------------
-        // المكونات المشتركة
-        // ----------------------------------------------------
-        const Navbar = () => (
-            <nav className="bg-anchor-blue text-white py-4 px-6 sticky top-0 z-50 shadow-md">
-                <div className="max-w-7xl mx-auto flex justify-between items-center">
-                    <a href="index.html" className="flex items-center gap-3">
-                        <img src="img/logo.png" alt="Logo" className="h-10 w-auto" />
-                        <span className="font-bold text-lg hidden md:block" data-key="site_name">المرساة الرقمية</span>
-                    </a>
-                    <a href="index.html" className="text-sm hover:text-anchor-gold transition" data-key="nav_home">العودة للرئيسية</a>
-                </div>
-            </nav>
-        );
-
-        const Footer = () => (
-            <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm">© 2025 <span data-key="site_name">المرساة الرقمية</span></footer>
-        );
-
-        // ----------------------------------------------------
-        // المكون الرئيسي للصفحة
-        // ----------------------------------------------------
-        const BuyPage = () => {
-            
-            // ⚠️ ملاحظة: يجب تحديث هذا الجزء ليقرأ البيانات من ملف الترجمة (i18n.js)
-            // لكن لتبسيط الإصلاح ولأنها بيانات هيكلية، تم تركها هنا مؤقتاً
-            const plans = [
-                // المفاتيح هنا تحتاج إلى نقلها إلى i18n.js لاستكمال التعريب الكامل
-                { id: 1, title: 'النسخة الذاتية (الكتاب فقط)', price: 97, features: ['الكتاب الإلكتروني', 'دفتر التمارين الرقمي', 'وصول لمنتدى الدعم العام'], bestSeller: false, currency: 'SAR' },
-                { id: 2, title: 'الحزمة الموجهة (الأكثر شيوعاً)', price: 297, features: ['كل مميزات النسخة الذاتية', '4 جلسات توجيه فردية', 'تصحيح الواجبات الأسبوعية', 'شهادة إكمال'], bestSeller: true, currency: 'SAR' },
-            ];
-
-            return (
-                <div className="min-h-screen flex flex-col">
-                    <Navbar />
-                    <main className="flex-grow py-12 px-6">
-                        <div className="max-w-4xl mx-auto text-center">
-                            <h1 className="text-4xl font-bold font-serif text-anchor-blue mb-4" data-key="package_title">اختر حزمتك للانطلاق</h1>
-                            <p className="text-lg text-gray-600 mb-12" data-key="buy_subtitle">استثمر في انتباهك وقيمك. كل حجز يتضمن هدية فورية.</p>
-
-                            <div className="grid md:grid-cols-2 gap-8 items-center">
-                                {plans.map(plan => (
-                                    <div 
-                                        key={plan.id} 
-                                        className={`p-8 rounded-2xl shadow-xl transition-all ${
-                                            plan.bestSeller 
-                                                ? 'bg-anchor-blue text-white border-4 border-anchor-gold transform scale-105' 
-                                                : 'bg-white border-2 border-gray-100'
-                                        }`}
-                                    >
-                                        {plan.bestSeller && (
-                                            <span className="inline-block bg-anchor-gold text-anchor-blue px-4 py-1 rounded-full text-xs font-bold mb-4">الأكثر شيوعاً</span>
-                                        )}
-                                        <h2 className="text-3xl font-bold mb-2">{plan.title}</h2>
-                                        <p className={`text-5xl font-extrabold my-6 ${plan.bestSeller ? 'text-anchor-gold' : 'text-anchor-blue'}`}>
-                                            {plan.price} {plan.currency}
-                                        </p>
-                                        <ul className="text-sm space-y-3 mb-8 text-right pr-4">
-                                            {plan.features.map((feature, index) => (
-                                                <li key={index} className="flex items-start gap-3">
-                                                    <span className={`text-sm ${plan.bestSeller ? 'text-green-400' : 'text-green-500'}`}>✓</span>
-                                                    {feature}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                        <button 
-                                            onClick={() => alert(`جاري الانتقال للدفع لـ ${plan.title}`)} 
-                                            className={`w-full py-3 rounded-lg font-bold text-lg transition-all shadow-md ${
-                                                plan.bestSeller 
-                                                    ? 'bg-anchor-gold text-anchor-blue hover:bg-yellow-300' 
-                                                    : 'bg-anchor-blue text-white hover:bg-gray-800'
-                                            }`}
-                                            data-key={plan.bestSeller ? 'cta_button' : 'btn_select_option'} 
-                                        >
-                                            {plan.bestSeller ? 'ابدأ رحلة السيادة' : 'اختر هذا الخيار'}
-                                        </button>
-                                    </div>
-                                ))}
-                            </div>
-                            
-                            <div className="mt-12 p-6 bg-blue-50 rounded-xl border border-blue-100">
-                                <p className="text-sm font-bold text-anchor-blue" data-key="guarantee_note">ضمان استرداد المال لمدة 30 يوماً بلا أسئلة.</p>
-                            </div>
-                        </div>
-                    </main>
-                    <Footer />
-                </div>
-            );
-        };
-        
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<BuyPage />);
-    </script>
-</body>
-</html>
