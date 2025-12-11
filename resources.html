@@ -1,162 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-key="page_title">المكتبة المجانية | المرساة الرقمية</title>
-    
-    <link rel="icon" type="image/png" href="img/logo.png">
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HJZHN8FQQ2"></script>
-    <script src="analytics.js"></script>
-
-    <link href="css/styles.css" rel="stylesheet"> 
-
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
-    <script src="i18n.js"></script>
-    
-    </head>
-<body class="text-gray-900">
-
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="index.html" class="flex items-center space-x-3 space-x-reverse">
-                <img src="img/logo.png" width="40" class="rounded-lg">
-                <h1 class="text-xl font-bold" data-key="site_name">المرساة الرقمية</h1>
-            </a>
-            
-            <div class="hidden md:flex items-center gap-4">
-                <a href="index.html" class="text-sm font-bold text-gray-600 hover:text-blue-900" data-key="nav_home">الرئيسية</a>
-                
-                <select id="lang-select" onchange="setLanguage(this.value)" class="text-xs border border-gray-300 rounded p-1 bg-white focus:outline-none focus:border-blue-500">
-                    <option value="ar">عربي</option><option value="en">English</option><option value="fr">Français</option><option value="de">Deutsch</option>
-                </select>
-
-                <a href="buy.html" class="bg-yellow-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-yellow-600 transition text-sm" data-key="nav_join">احجز الكتاب</a>
-            </div>
-
-            <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-800"><i class="fas fa-bars text-xl"></i></button>
-        </div>
-        
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-4 shadow-xl">
-            <a href="index.html" class="block py-3 text-gray-900 font-bold border-b border-gray-100 hover:text-blue-800" data-key="nav_home">الرئيسية</a>
-            
-            <select onchange="setLanguage(this.value)" class="w-full p-2 border rounded bg-gray-50 text-sm mt-2 mb-4"> 
-                <option value="ar">عربي</option> 
-                <option value="en">English</option>
-                <option value="fr">Français</option>
-                <option value="de">Deutsch</option>
-            </select>
-            
-            <a href="buy.html" class="w-full bg-yellow-500 text-white py-3 block text-center rounded-lg font-bold" data-key="nav_join">احجز الكتاب</a>
-        </div>
-    </nav>
-
-    <header class="bg-blue-900 text-white py-16 text-center">
-        <div class="container mx-auto px-4">
-            <h1 class="text-4xl font-bold mb-4" data-key="header_title">المكتبة المجانية</h1>
-            <p class="text-xl text-blue-200" data-key="header_subtitle">أدوات، معلقات، وملصقات لتذكيرك بقيمك الرقمية يومياً.</p>
-        </div>
-    </header>
-
-    <section class="py-16">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4 border-b-4 border-yellow-400 inline-block pb-2" data-key="posters_title">🖼️ المعلقات الجدارية</h2>
-                <p class="text-gray-600" data-key="posters_desc">صممت للطباعة وتعليقها في غرفتك أو مكتبك.</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-4 rounded-2xl shadow-lg card-hover border border-gray-100">
-                    <div class="h-64 bg-red-50 rounded-xl flex items-center justify-center mb-4 relative">
-                        <i class="fas fa-ban text-6xl text-red-500"></i>
-                        <span class="absolute bottom-4 text-red-800 font-bold" data-key="p1_img_text">منطقة محظورة</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2" data-key="p1_title">منطقة السيادة الشخصية</h3>
-                    <p class="text-sm text-gray-500 mb-4" data-key="p1_desc">ملصق لتذكيرك بالمناطق الخالية من الهاتف.</p>
-                    <a href="downloads/Poster_Zone.pdf" download class="btn-download">
-                        <i class="fas fa-download ml-2"></i> <span data-key="btn_download">تحميل (PDF)</span>
-                    </a>
-                </div>
-                <div class="bg-white p-4 rounded-2xl shadow-lg card-hover border border-gray-100">
-                    <div class="h-64 bg-green-50 rounded-xl flex items-center justify-center mb-4 relative">
-                        <i class="fas fa-users text-6xl text-green-500"></i>
-                        <span class="absolute bottom-4 text-green-800 font-bold" data-key="p2_img_text">افصل.. لتتصل</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2" data-key="p2_title">افصل لتتصل</h3>
-                    <p class="text-sm text-gray-500 mb-4" data-key="p2_desc">تذكير بأن الحياة الحقيقية تحدث بعيداً عن الشاشة.</p>
-                    <a href="downloads/Poster_Connection.pdf" download class="btn-download">
-                        <i class="fas fa-download ml-2"></i> <span data-key="btn_download">تحميل (PDF)</span>
-                    </a>
-                </div>
-                <div class="bg-white p-4 rounded-2xl shadow-lg card-hover border border-gray-100">
-                    <div class="h-64 bg-blue-50 rounded-xl flex items-center justify-center mb-4 relative">
-                        <i class="fas fa-compass text-6xl text-blue-500"></i>
-                        <span class="absolute bottom-4 text-blue-800 font-bold" data-key="p3_img_text">أين انتباهك؟</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2" data-key="p3_title">بوصلة الانتباه</h3>
-                    <p class="text-sm text-gray-500 mb-4" data-key="p3_desc">هل ما تفعله الآن يخدم هدف الـ 5 سنوات؟</p>
-                    <a href="downloads/Poster_Compass.pdf" download class="btn-download">
-                        <i class="fas fa-download ml-2"></i> <span data-key="btn_download">تحميل (PDF)</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4 border-b-4 border-blue-900 inline-block pb-2" data-key="tools_title">📚 الكتيبات والأدوات</h2>
-            </div>
-            <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                <div class="bg-white p-6 rounded-xl shadow-md flex items-center gap-4">
-                    <div class="bg-red-100 p-4 rounded-full text-red-600"><i class="fas fa-exclamation-triangle text-2xl"></i></div>
-                    <div class="flex-1">
-                        <h3 class="font-bold text-lg" data-key="tool1_title">دليل الطوارئ الرقمي</h3>
-                        <p class="text-xs text-gray-500" data-key="tool1_desc">للحظات الضعف والعودة للإدمان.</p>
-                    </div>
-                    <a href="downloads/Emergency_Guide.pdf" download class="text-blue-900 hover:text-blue-700"><i class="fas fa-download text-xl"></i></a>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-md flex items-center gap-4">
-                    <div class="bg-purple-100 p-4 rounded-full text-purple-600"><i class="fas fa-brain text-2xl"></i></div>
-                    <div class="flex-1">
-                        <h3 class="font-bold text-lg" data-key="tool2_title">دليل المنهجية (40/40/20)</h3>
-                        <p class="text-xs text-gray-500" data-key="tool2_desc">كيف تتعلم بذكاء وتطبق ما تتعلمه.</p>
-                    </div>
-                    <a href="downloads/Methodology_Guide.pdf" download class="text-blue-900 hover:text-blue-700"><i class="fas fa-download text-xl"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-16">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold text-gray-800 mb-8" data-key="stickers_title">✨ ملصقات اللابتوب والهاتف</h2>
-            <div class="flex justify-center gap-8 flex-wrap">
-                <div class="w-32 h-32 bg-blue-900 rounded-full flex items-center justify-center shadow-xl border-4 border-yellow-400 transform hover:rotate-12 transition">
-                    <i class="fas fa-anchor text-5xl text-white"></i>
-                </div>
-                <div class="w-32 h-32 bg-white rounded-full flex items-center justify-center shadow-xl border-4 border-blue-900 transform hover:-rotate-12 transition">
-                    <span class="font-bold text-blue-900 text-xl" data-key="sticker_text">أنا القبطان</span>
-                </div>
-            </div>
-            <div class="mt-10">
-                <button onclick="window.print()" class="bg-gray-800 text-white px-8 py-3 rounded-full font-bold hover:bg-gray-900 transition shadow-lg">
-                    <i class="fas fa-print ml-2"></i> <span data-key="btn_print">طباعة الملصقات</span>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-gray-900 text-white py-8 text-center mt-8">
-        <p class="text-gray-400 text-sm">© 2025 Digital Anchor Project.</p>
-    </footer>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', initializePage);
-    </script>
-</body>
-</html>
