@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-key="members_page_title">منطقة الأعضاء | المرساة الرقمية</title>
+    
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { 
+            theme: { 
+                extend: { 
+                    colors: { 'anchor-blue': '#1a365d', 'anchor-gold': '#d69e2e' }, 
+                    fontFamily: { sans: ['Tajawal', 'sans-serif'] } 
+                } 
+            } 
+        }
+    </script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        body { background-color: #f8fafc; }
+        .anchor-blue { background-color: #1a365d; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React; 
+
+        // Navbar Component (معدل لاستقبال الترجمة)
+        const Navbar = ({ translations, setLanguage, convertCurrency }) => (
+            <nav className="bg-white shadow-lg sticky top-0 z-50">
+                <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+                    <a href="index.html" className="flex items-center space-x-3 space-x-reverse">
+                        <img src="logo.png" width="45" className="rounded-lg shadow-sm" alt="Logo" />
+                        <h1 className="text-xl font-bold text-gray-900" data-key="site_name">{translations.ar.site_name}</h1>
+                    </a>
+                    
+                    <div className="hidden md:flex items-center gap-5">
+                        <a href="dashboard.html" className="font-bold text-gray-600 hover:text-anchor-blue text-sm" data-key="nav_dashboard">{translations.ar.nav_dashboard}</a>
+
+                        <select id="lang-select" onChange={(e) => setLanguage(e.target.value)} className="text-xs border border-gray-300 rounded p-1 bg-white focus:outline-none focus:border-anchor-blue">
+                            <option value="ar">عربي</option><option value="en">English</option><option value="fr">Français</option><option value="de">Deutsch</option>
+                        </select>
+                        <select id="curr-select" onChange={(e) => convertCurrency(e.target.value)} className="text-xs border border-gray-300 rounded p-1 bg-white font-bold text-anchor-blue focus:outline-none focus:border-anchor-blue">
+                            <option value="SAR">SAR (ر.س)</option><option value="USD">USD ($)</option><option value="EUR">EUR (€)</option>
+                        </select>
+                        
+                        <a href="buy.html" className="bg-anchor-blue text-white px-6 py-2 rounded-lg text-sm font-bold shadow-md flex items-center gap-2 no-underline" data-key="nav_join">
+                            <i className="fas fa-crown"></i> {translations.ar.nav_join}
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        );
+
+        const MembersPage = ({ translations }) => {
+            
+            const exclusiveContent = [
+                { title: "أدوات التخطيط", desc: "قوالب Excel مالية وشخصية.", icon: "fas fa-file-excel" },
+                { title: "ورش عمل مسجلة", desc: "فيديوهات تطبيقية للفصول.", icon: "fas fa-video" },
+                { title: "فصل إضافي سري", desc: "استراتيجيات صيانة الالتزام.", icon: "fas fa-lock" }
+            ];
+
+            return (
+                <div className="min-h-screen flex flex-col">
+                    <Navbar translations={translations} />
+                    
+                    <main className="max-w-4xl mx-auto px-6 py-12 flex-grow w-full">
+                        <header className="text-center bg-anchor-blue text-white p-8 rounded-2xl mb-8 shadow-lg">
+                            <h1 className="text-3xl font-bold mb-2" data-key="members_header">مرحباً بك في منطقة الأعضاء الخاصة!</h1>
+                            <p className="text-gray-300" data-key="members_subtitle">هنا تجد المحتوى الحصري وورش العمل.</p>
+                        </header>
+                        
+                        <div className="grid md:grid-cols-3 gap-6">
+                            {exclusiveContent.map((item, index) => (
+                                <div key={index} className="bg-white p-6 rounded-xl shadow border-2 border-gray-100 opacity-75 text-center">
+                                    <i className={`${item.icon} text-4xl text-gray-400 mb-4`}></i>
+                                    <h3 className="font-bold mb-2">{item.title}</h3>
+                                    <p className="text-sm text-gray-500 mb-4">{item.desc}</p>
+                                    <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded text-xs font-bold">🔒 للمشتركين</span>
+                                </div>
+                            ))}
+                        </div>
+                        
+                        <div className="mt-12 text-center p-8 bg-gray-100 rounded-xl">
+                            <h2 className="text-xl font-bold mb-2" data-key="upgrade_cta_header">كيف أصل لهذا المحتوى؟</h2>
+                            <p className="text-gray-600 mb-4" data-key="upgrade_cta_desc">هذا المحتوى متاح حصرياً لملاك الحزمة الكاملة.</p>
+                            <a href="buy.html" className="inline-block bg-anchor-gold text-anchor-blue px-8 py-3 rounded-lg font-bold hover:bg-yellow-400 transition" data-key="upgrade_btn">ترقية اشتراكي الآن</a>
+                        </div>
+                    </main>
+                    
+                    <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm">© 2025 <span data-key="site_name">المرساة الرقمية</span></footer>
+                </div>
+            );
+        };
+
+        const RootComponent = () => {
+             // 1. قاموس الترجمة (مختصر للعرض، يجب أن يكون كاملاً في ملفك)
+            const translations = {
+                'ar': { 
+                    'site_name': 'المرساة الرقمية', 'nav_home': 'الرئيسية', 'nav_join': 'ترقية الآن', 'nav_dashboard': 'لوحة القيادة',
+                    'members_header': 'مرحباً بك في منطقة الأعضاء الخاصة!', 'members_subtitle': 'هنا تجد المحتوى الحصري وورش العمل.',
+                    'upgrade_cta_header': 'كيف أصل لهذا المحتوى؟', 'upgrade_cta_desc': 'هذا المحتوى متاح حصرياً لملاك الحزمة الكاملة.', 'upgrade_btn': 'ترقية اشتراكي الآن',
+                },
+                'en': { 
+                    'site_name': 'Digital Anchor', 'nav_home': 'Home', 'nav_join': 'Upgrade Now', 'nav_dashboard': 'Dashboard',
+                    'members_header': 'Welcome to the Exclusive Members Area!', 'members_subtitle': 'Here you find exclusive content and workshops.',
+                    'upgrade_cta_header': 'How to access this content?', 'upgrade_cta_desc': 'This content is exclusively available for Full Package owners.', 'upgrade_btn': 'Upgrade My Subscription',
+                }
+                // ... (بقية اللغات للتوحيد)
+            };
+            const RATES = { 'SAR': { r: 1, s: 'SAR' }, 'USD': { r: 0.27, s: '$' }, 'EUR': { r: 0.25, s: '€' } };
+            
+            // 2. دوال العملة واللغة (الضرورية)
+            const convertCurrency = (curr) => { /* Logic is in the full script */ };
+            const setLanguage = (lang) => { /* Logic is in the full script */ };
+
+            useEffect(() => {
+                 const defaultLang = 'ar';
+                 setLanguage(defaultLang);
+            }, []);
+
+            return <MembersPage translations={translations} setLanguage={setLanguage} convertCurrency={convertCurrency} />;
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<RootComponent />);
+        
+        // **ملاحظة:** يجب لصق السكريبت الموحد كاملاً (الذي يحتوي على دوال setLanguage و convertCurrency) هنا بعد هذا الوسم.
+    </script>
+</body>
+</html>
