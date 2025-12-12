@@ -1,175 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <title>عهد التحرر والقيادة</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config = { theme: { extend: { colors: { 'anchor-blue': '#0f172a', 'anchor-gold': '#d4af37' }, fontFamily: { sans: ['Tajawal', 'sans-serif'], serif: ['Amiri', 'serif'] } } } }</script>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <style>@media print { .no-print { display: none !important; } body { background: white; } }</style>
-</head>
-<body class="bg-slate-50 text-slate-900 font-sans">
-    <div id="root"></div>
-    <script type="text/babel">
-
-        // ----------------------------------------------------
-        // الكود المشترك للغة والعملة (Language/Currency Logic)
-        // ----------------------------------------------------
-        
-        const translations = {
-            ar: {
-                'lang_ar': 'العربية', 'lang_en': 'English', 'lang_fr': 'Français',
-                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
-                'home': 'الرئيسية',
-                'stories_title': 'قصص النجاح الملهمة', 
-                'covenant_title': 'عهد التحرر والقيادة', 
-                'app_name': 'المرساة الرقمية',
-                'guide': 'الدليل',
-                'buy_book': 'الشراء',
-                'footer-copy': '© 2025 المرساة الرقمية - "من أنت حين تنطفئ الشاشة؟". جميع الحقوق محفوظة.',
-            },
-            en: {
-                'lang_ar': 'Arabic', 'lang_en': 'English', 'lang_fr': 'French',
-                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
-                'home': 'Home',
-                'stories_title': 'Inspiring Success Stories',
-                'covenant_title': 'Pledge of Liberation and Leadership',
-                'app_name': 'Digital Anchor',
-                'guide': 'Guide',
-                'buy_book': 'Purchase',
-                'footer-copy': '© 2025 Digital Anchor - "Who are you when the screen turns off?". All rights reserved.',
-            },
-            fr: {
-                'lang_ar': 'Arabe', 'lang_en': 'Anglais', 'lang_fr': 'Français',
-                'curr_usd': 'USD', 'curr_eur': 'EUR', 'curr_sar': 'SAR',
-                'home': 'Accueil',
-                'stories_title': 'Histoires de Succès Inspirantes',
-                'covenant_title': 'Engagement de Libération et de Leadership',
-                'app_name': 'Ancre Numérique',
-                'guide': 'Guide',
-                'buy_book': 'Acheter',
-                'footer-copy': '© 2025 Ancre Numérique - "Qui êtes-vous lorsque l\'écran s\'éteint?". Tous droits réservés.',
-            },
-        };
-
-        const LanguageContext = React.createContext();
-
-        const LanguageProvider = ({ children }) => {
-            const [language, setLanguage] = React.useState('ar');
-            const [currency, setCurrency] = React.useState('USD');
-            const t = (key) => translations[language]?.[key] || key;
-
-            React.useEffect(() => {
-                document.documentElement.lang = language;
-                document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
-            }, [language]);
-
-            return (
-                <LanguageContext.Provider value={{ language, setLanguage, currency, setCurrency, t }}>
-                    {children}
-                </LanguageContext.Provider>
-            );
-        };
-
-        const useTranslation = () => React.useContext(LanguageContext);
-
-        const LanguageCurrencySwitcher = () => {
-            const { language, setLanguage, currency, setCurrency, t } = useTranslation();
-
-            const handleLanguageChange = (e) => setLanguage(e.target.value);
-            const handleCurrencyChange = (e) => setCurrency(e.target.value);
-
-            return (
-                <div className="flex items-center gap-3">
-                    <div className="relative text-anchor-blue"> 
-                        <select 
-                            value={language} 
-                            onChange={handleLanguageChange} 
-                            className="appearance-none bg-white border border-gray-300 rounded-lg py-1 pl-6 pr-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-anchor-gold cursor-pointer"
-                        >
-                            <option value="ar">{t('lang_ar')}</option>
-                            <option value="en">{t('lang_en')}</option>
-                            <option value="fr">{t('lang_fr')}</option>
-                        </select>
-                        <i className="fas fa-caret-down absolute top-1/2 right-2 transform -translate-y-1/2 pointer-events-none text-gray-500"></i>
-                    </div>
-                    
-                    <div className="relative text-anchor-blue">
-                        <select 
-                            value={currency} 
-                            onChange={handleCurrencyChange} 
-                            className="appearance-none bg-white border border-gray-300 rounded-lg py-1 pl-6 pr-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-anchor-gold cursor-pointer"
-                        >
-                            <option value="USD">{t('curr_usd')}</option>
-                            <option value="EUR">{t('curr_eur')}</option>
-                            <option value="SAR">{t('curr_sar')}</option>
-                        </select>
-                        <i className="fas fa-caret-down absolute top-1/2 right-2 transform -translate-y-1/2 pointer-events-none text-gray-500"></i>
-                    </div>
-                </div>
-            );
-        };
-
-        // ----------------------------------------------------
-        // مكونات الصفحة
-        // ----------------------------------------------------
-        
-        const CovenantPage = () => {
-            const { t } = useTranslation(); 
-            return (
-                <div className="min-h-screen flex flex-col items-center p-4 bg-slate-50 font-sans">
-                    <header className="py-8 text-center max-w-4xl w-full no-print">
-                        <div className="flex justify-between items-start mb-4">
-                            <h1 className="text-4xl font-serif font-bold text-anchor-blue text-right">{t('covenant_title')}</h1>
-                            
-                            <LanguageCurrencySwitcher />
-                        </div>
-                        <p className="text-gray-500 text-right">وثيقة شخصية للسيادة الرقمية</p>
-                    </header>
-                    
-                    <main className="flex-grow max-w-4xl w-full bg-white p-10 rounded-2xl shadow-2xl border-2 border-anchor-gold print-area">
-                        <div className="text-center mb-10">
-                            <h2 className="text-3xl md:text-4xl font-serif font-bold text-anchor-blue mb-2">{t('covenant_title')}</h2>
-                            <p className="text-gray-500">وثيقة شخصية للسيادة الرقمية</p>
-                        </div>
-
-                        <div className="text-lg text-right leading-loose text-gray-700">
-                            <p className="mb-6 font-serif font-bold text-anchor-blue">أنا الموقع أدناه، أُعلن بوعي كامل التزامي بما يلي:</p>
-                            
-                            <ul className="list-decimal pr-8 space-y-3">
-                                <li>أتعهد بوضع القيمة الجوهرية لحياتي (العائلة، الإبداع، التركيز) فوق الإغراءات الرقمية المشتتة.</li>
-                                <li>ألتزم بتخصيص وقت محدد يومياً لـ **إطفاء الشاشة** والتواصل الحقيقي مع عالمي غير الرقمي.</li>
-                                <li>أُقر بسيادتي على جهازي، وأقوم بتعديل الإشعارات والتطبيقات لخدمة أهدافي، لا لخدمة خوارزميات الاستهلاك.</li>
-                                <li>أوافق على استخدام التكنولوجيا كأداة لتحقيق أهدافي، وليس كملاذ للهروب من الواقع أو الشعور بالوحدة.</li>
-                                <li>ألتزم بدعم مجتمع التحرر الرقمي، وأتبادل المعرفة والإلهام لتعزيز الوعي والقيادة الرقمية.</li>
-                                <li>أعمل على تحويل انشغالي إلى إنجاز، وإهمالي إلى تركيز، وإعادة توجيه طاقتي الإبداعية نحو ما يخدم الإنسانية وأستخدم صوتي للخير دائماً.</li>
-                            </ul>
-                        </div>
-                        
-                        <div className="mt-16 pt-8 border-t border-gray-200 grid grid-cols-2 gap-12">
-                            <div><label className="block text-sm font-bold text-gray-500 mb-8">الاسم</label><div className="border-b-2 border-gray-300 h-8"></div></div>
-                            <div><label className="block text-sm font-bold text-gray-500 mb-8">التوقيع</label><div className="border-b-2 border-gray-300 h-8"></div></div>
-                        </div>
-                    </main>
-                    
-                    <div className="text-center mt-8 no-print space-x-4 space-x-reverse">
-                        <button onClick={() => window.print()} className="bg-anchor-blue text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-800 transition shadow-lg">🖨️ طباعة العهد</button>
-                        <a href="downloads/Pledge_Paper.pdf" download className="text-anchor-blue font-bold underline hover:text-anchor-gold">تحميل كملف PDF</a>
-                    </div>
-
-                    <footer className="bg-anchor-blue text-slate-400 py-6 text-center text-sm no-print">
-                        {t('footer-copy')}
-                    </footer>
-                </div>
-            );
-        };
-        
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<LanguageProvider><CovenantPage /></LanguageProvider>);
-    </script>
-</body>
-</html>
