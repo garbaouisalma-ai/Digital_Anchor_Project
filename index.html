@@ -1,499 +1,1876 @@
 <!doctype html>
 <html lang="ar" dir="rtl" class="h-full">
-<head>
-    <!-- 🚀 تحسينات التحليل الفوقي والأداء -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="description" content="دليلك العملي للحياة الحقيقية في العصر الرقمي مع 48 تجربة تفاعلية">
-    <meta name="keywords" content="كتاب, تحول رقمي, تجارب تفاعلية, تطوير شخصي, عربي">
-    <meta name="author" content="من أنت حين تنطفئ الشاشة">
-    <meta name="theme-color" content="#0f172a">
-    
-    <!-- 🎯 SEO المحسن -->
-    <title>من أنت حين تنطفئ الشاشة؟ - دليلك العملي للحياة الحقيقية</title>
-    
-    <!-- 🌐 Open Graph لوسائل التواصل الاجتماعي -->
-    <meta property="og:title" content="من أنت حين تنطفئ الشاشة؟">
-    <meta property="og:description" content="دليلك العملي للحياة الحقيقية في العصر الرقمي">
-    <meta property="og:image" content="https://i.imgur.com/6RCFJtY.png">
-    <meta property="og:url" content="https://your-website.com">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="ar_SA">
-    
-    <!-- 🐦 Twitter Cards -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="من أنت حين تنطفئ الشاشة؟">
-    <meta name="twitter:description" content="48 تجربة تفاعلية لتحويل حياتك الرقمية">
-    <meta name="twitter:image" content="https://i.imgur.com/6RCFJtY.png">
-    
-    <!-- 📱 PWA Manifest -->
-    <link rel="manifest" href="/manifest.json">
-    
-    <!-- 🍎 Apple Touch Icon -->
-    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
-    
-    <!-- 🔗 Preconnect للموارد الخارجية -->
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://i.imgur.com">
-    
-    <!-- 🎨 CSS مع التحميل الأولي -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" as="style">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" media="print" onload="this.media='all'">
-    
-    <!-- 🎯 Tailwind CSS مع تحسين الأداء -->
-    <script>
-        // تحميل Tailwind بشكل غير متزامن
-        (function() {
-            const script = document.createElement('script');
-            script.src = 'https://cdn.tailwindcss.com';
-            script.async = true;
-            script.onload = () => {
-                // تخصيص Tailwind بعد التحميل
-                tailwind.config = {
-                    theme: {
-                        extend: {
-                            fontFamily: {
-                                'cairo': ['Cairo', 'sans-serif']
-                            }
-                        }
-                    }
-                };
-            };
-            document.head.appendChild(script);
-        })();
-    </script>
-    
-    <!-- 🎨 Font Awesome مع التحميل المتأخر -->
-    <script>
-        (function() {
-            const link = document.createElement('link');
-            link.rel = 'stylesheet';
-            link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
-            link.media = 'print';
-            link.onload = function() { this.media = 'all'; };
-            document.head.appendChild(link);
-        })();
-    </script>
-    
-    <!-- 🎨 الأنماط المحسنة -->
-    <style>
-        /* 🎯 CSS الحرجة - يتم تحميلها أولاً */
-        :root {
-            --primary-color: #3b82f6;
-            --accent-color: #f97316;
-            --success-color: #22c55e;
-            --bg-color: #0f172a;
-            --text-color: #ffffff;
-        }
-        
-        /* 🚀 تحسينات الأداء */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        
-        html, body {
-            width: 100%;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-        
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>من أنت حين تنطفئ الشاشة؟</title>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
         body {
-            font-family: 'Cairo', system-ui, -apple-system, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
+            box-sizing: border-box;
         }
         
-        /* 🎨 الأنماط المحسنة مع تقليل الـ CLS */
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap');
+        
+        * {
+            font-family: 'Cairo', sans-serif;
+        }
+        
         .hero-gradient {
-            background: linear-gradient(135deg, 
-                color-mix(in srgb, var(--primary-color) 20%, transparent) 0%,
-                var(--primary-color) 50%,
-                color-mix(in srgb, var(--primary-color) 80%, black) 100%
-            );
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #1e40af 100%);
         }
         
-        /* 🎯 التحسينات لـ SEO وإمكانية الوصول */
-        .sr-only {
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .experiment-card {
+            transition: all 0.3s ease;
+            border-right: 4px solid transparent;
+        }
+        
+        .experiment-card:hover {
+            border-right-color: #f97316;
+            background: rgba(249, 115, 22, 0.05);
+        }
+        
+        .experiment-card.completed {
+            background: rgba(34, 197, 94, 0.05);
+            border-right-color: #22c55e;
+        }
+        
+        .progress-ring {
+            transition: stroke-dashoffset 0.5s ease;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .screen-off {
+            animation: screenOff 2s ease-in-out;
+        }
+        
+        @keyframes screenOff {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+        
+        .pulse-button {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
             position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
+            bottom: -4px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            transition: width 0.3s ease;
         }
-        
-        /* 🚀 تحسينات الصور */
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
         }
-        
-        /* 🎨 تحسينات التحميل البطيء */
-        .lazy-load {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+
+        .experiment-number {
+            background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
         }
-        
-        .lazy-load.loaded {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* 🎯 تحسينات إمكانية الوصول */
-        :focus-visible {
-            outline: 3px solid var(--accent-color);
-            outline-offset: 2px;
-        }
-        
-        /* 🚀 تحسينات الطباعة */
-        @media print {
-            .no-print {
-                display: none !important;
-            }
-        }
-        
-        /* 🎨 التحميل البطيء للـ Web Fonts */
-        .wf-loading {
-            visibility: hidden;
-        }
-        
-        .wf-active {
-            visibility: visible;
-            animation: fadeIn 0.3s ease-in;
+
+        .stats-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
         }
     </style>
-    
-    <!-- 📊 Structured Data للـ SEO -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Book",
-        "name": "من أنت حين تنطفئ الشاشة؟",
-        "description": "دليلك العملي للحياة الحقيقية في العصر الرقمي",
-        "author": {
-            "@type": "Person",
-            "name": "المؤلف"
-        },
-        "numberOfPages": "240",
-        "inLanguage": "ar",
-        "bookFormat": "https://schema.org/Hardcover",
-        "offers": {
-            "@type": "Offer",
-            "price": "79",
-            "priceCurrency": "SAR",
-            "availability": "https://schema.org/InStock"
-        }
-    }
-    </script>
-    
-    <!-- 🎯 View Transitions -->
-    <style>@view-transition { navigation: auto; }</style>
-</head>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="h-full">
+  <div id="app" class="h-full w-full overflow-auto"></div>
+  <script>
+        // Configuration
+        const defaultConfig = {
+            book_title: "من أنت حين تنطفئ الشاشة؟",
+            book_subtitle: "دليلك العملي للحياة الحقيقية في العصر الر  مي",
+            author_name: "المؤلف",
+            primary_button_text: "ابدأ رحلتك الآن",
+            secondary_button_text: "تعرّف على الكتاب",
+            book_price: "99",
+            discount_price: "79",
+            background_color: "#0f172a",
+            primary_color: "#3b82f6",
+            accent_color: "#f97316",
+            success_color: "#22c55e",
+            text_color: "#ffffff",
+            font_family: "Cairo"
+        };
 
-<body class="h-full" itemscope itemtype="https://schema.org/WebPage">
-    <!-- 🎯 Content for Screen Readers -->
-    <div class="sr-only" aria-live="polite" id="sr-announcer"></div>
-    
-    <!-- 🎯 ARIA Live Region للتنبيهات -->
-    <div id="aria-live-region" aria-live="assertive" aria-atomic="true" class="sr-only"></div>
-    
-    <!-- 🚀 تطبيق SPA -->
-    <div id="app" class="h-full w-full overflow-auto" role="main" aria-label="المحتوى الرئيسي">
-        <!-- سيتم تحميل المحتوى هنا ديناميكياً -->
-    </div>
-    
-    <!-- 🎯 نموذج حجز محسن للـ SEO -->
-    <template id="booking-template">
-        <div role="form" aria-labelledby="booking-title">
-            <h2 id="booking-title" class="sr-only">نموذج حجز الكتاب</h2>
-            <!-- نموذج HTML حقيقي -->
-        </div>
-    </template>
-    
-    <!-- 🚀 JavaScript المحسن -->
-    <script>
-        // 🎯 تحسينات الأداء
-        (function() {
-            // منع FOUC (Flash of Unstyled Content)
-            document.documentElement.className = 'wf-loading';
-            
-            // تحميل الصور بكسل واحد مسبقاً
-            const preloadImages = ['https://i.imgur.com/6RCFJtY.png'];
-            preloadImages.forEach(src => {
-                const img = new Image();
-                img.src = src;
-                img.decode().catch(() => {});
-            });
-            
-            // تفعيل الأنماط عند التحميل
-            window.addEventListener('load', () => {
-                document.documentElement.className = 'wf-active';
-                
-                // التحميل البطيء للصور
-                const lazyImages = document.querySelectorAll('img[data-src]');
-                const imageObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const img = entry.target;
-                            img.src = img.dataset.src;
-                            img.classList.add('loaded');
-                            imageObserver.unobserve(img);
-                        }
-                    });
-                });
-                
-                lazyImages.forEach(img => imageObserver.observe(img));
-            });
-            
-            // تحسين لمسة الشاشة
-            document.addEventListener('touchstart', () => {}, { passive: true });
-        })();
-    </script>
-    
-    <!-- 🎯 SDKs مع التحميل المتأخر -->
-    <script>
-        // تحميل SDKs بشكل غير متزامن
-        function loadScript(src, callback) {
-            const script = document.createElement('script');
-            script.src = src;
-            script.async = true;
-            script.defer = true;
-            if (callback) script.onload = callback;
-            document.head.appendChild(script);
+        // Language and Currency Management
+        let currentLanguage = 'ar';
+        let currentCurrency = 'SAR';
+
+        const translations = {
+            ar: {
+                home: 'الرئيسية',
+                lab: 'المختبر التفاعلي',
+                about: 'عن الكتاب',
+                dashboard: 'لوحة التحكم',
+                pricing: 'الأسعار',
+                booking: 'احجز نسختك',
+                images: 'صور قابلة للتخصيص',
+                bookNow: 'احجز الآن',
+                learnMore: 'تعرف على المزيد',
+                currency: 'العملة',
+                language: 'اللغة',
+                digitalAnchor: 'المرساة الرقمية',
+                practicalGuide: 'دليلك العملي للحياة الحقيقية   ي العصر الرقمي',
+                readyToTransform: 'هل أنت مستعد للتحول؟',
+                startJourney: 'ابدأ رحلتك اليوم مع 48 تجربة تفاعلية',
+                bookYourCopy: 'احجز نسختك الآن',
+                completedExperiments: 'تجربة مكتملة',
+                totalProgress: 'تقدمك',
+                whoAreYou: 'من أنت حين تنطفئ الشاشة؟',
+                interactiveLab: '🧪 المختبر التفاعلي',
+                practicalExperiments: 'تجربة عملية لتحويل حيا  ك الرقمية',
+                yourProgress: 'تقدمك',
+                completed: 'مكتمل',
+                parts: 'أجزاء متكاملة',
+                chapters: 'فصلاً عملياً',
+                experiences: 'تجربة تفاعلية',
+                investInTransformation: '💎 است  مر في تحولك الرقمي',
+                getFullBook: 'احصل على الكتاب الكامل مع جميع التجارب التفاعلية',
+                digitalEdition: 'النسخة الرقمية',
+                premiumEdition: 'النسخة المميزة',
+                printEdition: 'النسخة الورقية',
+                mostPopular: 'الأكثر شعبية 🔥',
+                moneyBackGuarantee: '🛡️ ضمان استرجاع المال لمدة 30 يوماً',
+                notSatisfied: 'إذا لم تشعر بالتحول خلال 30 يوماً، سنعيد لك أموالك بالكامل - بدون أسئلة!',
+                bookNowTitle: '📝 احجز نسختك الآن',
+                bookingInfo: 'معلو  ات الحجز',
+                fullName: 'الاسم الكامل',
+                email: 'البريد الإلكتروني',
+                phone: 'رقم الهاتف',
+                country: 'الدولة',
+                selectCountry: 'اختر الدولة',
+                address: 'العنوان الكامل',
+                selectedPlan: 'الباقة المختارة',
+                completeBooking: 'إتمام الحجز 🚀',
+                orderSummary: 'ملخص الطلب',
+                basePrice: 'ال  عر الأساسي:',
+                discount: 'الخصم:',
+                total: 'المجموع:',
+                securePayment: '🔒 الدفع الآمن',
+                securePaymentDesc: 'جميع المعاملات محمية بت  فير SSL. نحن لا نخزن معلومات بطاقتك الائتمانية.',
+                dayGuarantee: '✓ ضمان 30 يوماً',
+                guaranteeDesc: 'إذا لم تكن راضياً بنسبة 100%، سنعيد لك أموالك كاملة.',
+                customizableImages: '🎨 صور قابلة للتخصيص',
+                designYourImage: 'صمم صورتك الخاصة مع رسالتك الملهمة',
+                customizeDownload: 'تخصيص وتحميل 📥',
+                createCustomImage: '✨ إنشاء صورة مخصصة',
+                writeYourText: 'اكتب نصك الخاص وصمم صورتك الفريدة',
+                startDesign: 'ابدأ التصميم 🎨',
+                aboutBook: 'عن الكتاب',
+                whyThisBook: '💎 لماذا هذا الكتاب؟',
+                notTheoretical: 'ليس كتاباً نظرياً',
+                practicalApplications: 'تطبيقات عملية فورية',
+                interactiveExperiences: '48 تجربة تفاعلية',
+                learnByDoing: 'تعلّم بالممارسة',
+                completeJourney: 'رحلة تحول كاملة',
+                fromValuesToApplication: 'من القيم للتطبيق للاستمرارية',
+                suitableDigitalAge: 'مناسب للعصر الرقمي',
+                realisticSolutions: 'حلول واقعية لتحديات حقيقية',
+                readyToStart: 'هل أنت مستعد للبدء؟',
+                joinTransformation: 'انضم إلى رحلة التحول   ليوم',
+                personalDashboard: '📊 لوحة التحكم الشخصية',
+                totalExperiments: 'إجمالي التجارب',
+                completionRate: 'نسبة الإنجاز',
+                achievements: 'الإنجازات',
+                progressByParts: 'التقدم حسب الأجزاء',
+                part: 'الجزء',
+                experiment: 'تجربة'
+            },
+            en: {
+                home: 'Home',
+                lab: 'Interactive Lab',
+                about: 'About',
+                dashboard: 'Dashboard',
+                pricing: 'Pricing',
+                booking: 'Book Now',
+                images: 'Custom Images',
+                bookNow: 'Book Now',
+                learnMore: 'Learn More',
+                currency: 'Currency',
+                language: 'Language',
+                digitalAnchor: 'The Digital Anchor',
+                practicalGuide: 'Your practical guide to real life in the digital age',
+                readyToTransform: 'Ready to Transform?',
+                startJourney: 'Start your journey today with 48 interactive experiences',
+                bookYourCopy: 'Book Your Copy Now',
+                completedExperiments: 'Completed Experiments',
+                totalProgress: 'Your Progress',
+                whoAreYou: 'Who Are You When The Screen Goes Off?',
+                interactiveLab: '🧪 Interactive Lab',
+                practicalExperiments: 'practical experiments to transform your digital life',
+                yourProgress: 'Your Progress',
+                completed: 'Completed',
+                part: 'Part',
+                experiment: 'Experiment',
+                parts: 'Integrated Parts',
+                chapters: 'Practical Chapters',
+                experiences: 'Interactive Experiences',
+                investInTransformation: '💎 Invest In Your Digital Transformation',
+                getFullBook: 'Get the complete book with all interactive experiences',
+                digitalEdition: 'Digital Edition',
+                premiumEdition: 'Premium Edition',
+                printEdition: 'Print Edition',
+                mostPopular: 'Most Popular 🔥',
+                moneyBackGuarantee: '🛡️ 30-Day Money Back Guarantee',
+                notSatisfied: 'If you don\'t feel transformed within 30 days, we\'ll refund your money in full - no questions asked!',
+                bookNowTitle: '📝 Book Your Copy Now',
+                bookingInfo: 'Booking Information',
+                fullName: 'Full Name',
+                email: 'Email Address',
+                phone: 'Phone Number',
+                country: 'Country',
+                selectCountry: 'Select Country',
+                address: 'Full Address',
+                selectedPlan: 'Selected Plan',
+                completeBooking: 'Complete Booking 🚀',
+                orderSummary: 'Order Summary',
+                basePrice: 'Base Price:',
+                discount: 'Discount:',
+                total: 'Total:',
+                securePayment: '🔒 Secure Payment',
+                securePaymentDesc: 'All transactions are protected with SSL encryption. We do not store your credit card information.',
+                dayGuarantee: '✓ 30-Day Guarantee',
+                guaranteeDesc: 'If you\'re not 100% satisfied, we\'ll refund your money in full.',
+                customizableImages: '🎨 Customizable Images',
+                designYourImage: 'Design your own image with your inspiring message',
+                customizeDownload: 'Customize & Download 📥',
+                createCustomImage: '✨ Create Custom Image',
+                writeYourText: 'Write your own text and design your unique image',
+                startDesign: 'Start Designing 🎨',
+                aboutBook: 'About The Book',
+                whyThisBook: '💎 Why This Book?',
+                notTheoretical: 'Not A Theoretical Book',
+                practicalApplications: 'Immediate practical applications',
+                interactiveExperiences: '48 Interactive Experiences',
+                learnByDoing: 'Learn by doing',
+                completeJourney: 'Complete Transformation Journey',
+                fromValuesToApplication: 'From values to application to sustainability',
+                suitableDigitalAge: 'Suitable For The Digital Age',
+                realisticSolutions: 'Realistic solutions to real challenges',
+                readyToStart: 'Ready To Start?',
+                joinTransformation: 'Join the transformation journey today',
+                personalDashboard: '📊 Personal Dashboard',
+                totalExperiments: 'Total Experiments',
+                completionRate: 'Completion Rate',
+                achievements: 'Achievements',
+                progressByParts: 'Progress By Parts'
+            },
+            fr: {
+                home: 'Accueil',
+                lab: 'Laboratoire',
+                about: 'À propos',
+                dashboard: 'Tableau de bord',
+                pricing: 'Tarifs',
+                booking: 'Réserver',
+                images: 'Images personnalisées',
+                bookNow: 'Réserver maintenant',
+                learnMore: 'En savoir plus',
+                currency: 'Devise',
+                language: 'Langue',
+                digitalAnchor: 'L\'ancre numérique',
+                practicalGuide: 'Votre guide pratique pour la vraie vie à l\'ère numérique',
+                readyToTransform: 'Prêt à vous transformer?',
+                startJourney: 'Commencez votre voyage aujourd\'hui avec 48 expériences interactives',
+                bookYourCopy: 'Réservez votre exemplaire',
+                completedExperiments: 'Expériences terminées',
+                totalProgress: 'Votre progrès',
+                whoAreYou: 'Qui Êtes-Vous Quand L\'Écran S\'Éteint?',
+                interactiveLab: '🧪 Laboratoire Interactif',
+                practicalExperiments: 'expériences pratiques pour transformer votre vie numérique',
+                yourProgress: 'Votre Progrès',
+                completed: 'Terminé',
+                part: 'Partie',
+                experiment: 'Expérience',
+                parts: 'Parties Intégrées',
+                chapters: 'Chapitres Pratiques',
+                experiences: 'Expériences Interactives',
+                investInTransformation: '💎 Investissez Dans Votre Transformation Numérique',
+                getFullBook: 'Obtenez le livre complet avec toutes les expériences interactives',
+                digitalEdition: 'Édition Numérique',
+                premiumEdition: 'Édition Premium',
+                printEdition: 'Édition Imprimée',
+                mostPopular: 'Plus Populaire 🔥',
+                moneyBackGuarantee: '🛡️ Garantie de Remboursement de 30 Jours',
+                notSatisfied: 'Si vous ne vous sentez pas transformé dans les 30 jours, nous vous remboursons intégralement - sans poser de questions!',
+                bookNowTitle: '📝 Réservez Votre Exemplaire Maintenant',
+                bookingInfo: 'Informations de Réservation',
+                fullName: 'Nom Complet',
+                email: 'Adresse E-mail',
+                phone: 'Numéro de Téléphone',
+                country: 'Pays',
+                selectCountry: 'Sélectionnez le Pays',
+                address: 'Adresse Complète',
+                selectedPlan: 'Forfait Sélectionné',
+                completeBooking: 'Finaliser la Réservation 🚀',
+                orderSummary: 'Résumé de la Commande',
+                basePrice: 'Prix de Base:',
+                discount: 'Remise:',
+                total: 'Total:',
+                securePayment: '🔒 Paiement Sécurisé',
+                securePaymentDesc: 'Toutes les transactions sont protégées par cryptage SSL. Nous ne stockons pas vos informations de carte de crédit.',
+                dayGuarantee: '✓ Garantie de 30 Jours',
+                guaranteeDesc: 'Si vous n\'êtes pas satisfait à 100%, nous vous rembourserons intégralement.',
+                customizableImages: '🎨 Images Personnalisables',
+                designYourImage: 'Concevez votre propre image avec votre message inspirant',
+                customizeDownload: 'Personnaliser et Télécharger 📥',
+                createCustomImage: '✨ Créer une Image Personnalisée',
+                writeYourText: 'Écrivez votre propre texte et concevez votre image unique',
+                startDesign: 'Commencer la Conception 🎨',
+                aboutBook: 'À Propos du Livre',
+                whyThisBook: '💎 Pourquoi Ce Livre?',
+                notTheoretical: 'Pas Un Livre Théorique',
+                practicalApplications: 'Applications pratiques immédiates',
+                interactiveExperiences: '48 Expériences Interactives',
+                learnByDoing: 'Apprendre en faisant',
+                completeJourney: 'Voyage de Transformation Complet',
+                fromValuesToApplication: 'Des valeurs à l\'application à la durabilité',
+                suitableDigitalAge: 'Adapté à L\'Ère Numérique',
+                realisticSolutions: 'Solutions réalistes aux défis réels',
+                readyToStart: 'Prêt à Commencer?',
+                joinTransformation: 'Rejoignez le voyage de transformation aujourd\'hui',
+                personalDashboard: '📊 Tableau de Bord Personnel',
+                totalExperiments: 'Total des Expériences',
+                completionRate: 'Taux de Réussite',
+                achievements: 'Réalisations',
+                progressByParts: 'Progrès par Parties'
+            },
+            de: {
+                home: 'Startseite',
+                lab: 'Interaktives Labor',
+                about: '  ber',
+                dashboard: 'Dashboard',
+                pricing: 'Preise',
+                booking: 'Jetzt Buchen',
+                images: 'Anpassbare Bilder',
+                bookNow: 'Jetzt Buchen',
+                learnMore: 'Mehr Erfahren',
+                currency: 'Währung',
+                language: 'Sprache',
+                digitalAnchor: 'Der Digitale Anker',
+                practicalGuide: 'Ihr praktischer Leitfaden für das echte Leben im digitalen Zeitalter',
+                readyToTransform: 'Bereit zur Transformation?',
+                startJourney: 'Beginnen Sie heute Ihre Reise mit 48 interaktiven Erfahrungen',
+                bookYourCopy: 'Buchen Sie Ihr Exemplar Jetzt',
+                completedExperiments: 'Abgeschlossene Experimente',
+                totalProgress: 'Ihr Fortschritt',
+                whoAreYou: 'Wer Bist Du, Wenn Der Bildschirm Ausgeht?',
+                interactiveLab: '🧪 Interaktives Labor',
+                practicalExperiments: 'praktische Experimente zur Transformation Ihres digitalen Lebens',
+                yourProgress: 'Ihr Fortschritt',
+                completed: 'Abgeschlossen',
+                part: 'Teil',
+                experiment: 'Experiment',
+                parts: 'Integrierte Teile',
+                chapters: 'Praktische Kapitel',
+                experiences: 'Interaktive Erfahrungen',
+                investInTransformation: '💎 Investieren Sie in Ihre Digitale Transformation',
+                getFullBook: 'Erhalten Sie das vollständige Buch mit allen interaktiven Erfahrungen',
+                digitalEdition: 'Digitale Ausgabe',
+                premiumEdition: 'Premium-Ausgabe',
+                printEdition: 'Druckausgabe',
+                mostPopular: 'Am Beliebtesten 🔥',
+                moneyBackGuarantee: '🛡️ 30-Tage Geld-zurück-Garantie',
+                notSatisfied: 'Wenn Sie sich innerhalb von 30 Tagen nicht transformiert fühlen, erstatten wir Ihr Geld vollständig zurück - keine Fragen gestellt!',
+                bookNowTitle: '📝 Buchen Sie Ihr Exemplar Jetzt',
+                bookingInfo: 'Buchungsinformationen',
+                fullName: 'Vollständiger Name',
+                email: 'E-Mail-Adresse',
+                phone: 'Telefonnummer',
+                country: 'Land',
+                selectCountry: 'Land Auswählen',
+                address: 'Vollständige Adresse',
+                selectedPlan: 'Ausgewählter Plan',
+                completeBooking: 'Buchung Abschließen 🚀',
+                orderSummary: 'Bestellübersicht',
+                basePrice: 'Grundpreis:',
+                discount: 'Rabatt:',
+                total: 'Gesamt:',
+                securePayment: '🔒 Sichere Zahlung',
+                securePaymentDesc: 'Alle Transaktionen sind durch SSL-Verschlüsselung geschützt. Wir speichern Ihre Kreditkarteninformationen nicht.',
+                dayGuarantee: '✓ 30-Tage-Garantie',
+                guaranteeDesc: 'Wenn Sie nicht zu 100% zufrieden sind, erstatten wir Ihr Geld vollständig zurück.',
+                customizableImages: '🎨 Anpassbare Bilder',
+                designYourImage: 'Gestalten Sie Ihr eigenes Bild mit Ihrer inspirierenden Botschaft',
+                customizeDownload: 'Anpassen & Herunterladen 📥',
+                createCustomImage: '✨ Benutzerdefiniertes Bild Erstellen',
+                writeYourText: 'Schreiben Sie Ihren eigenen Text und gestalten Sie Ihr einzigartiges Bild',
+                startDesign: 'Design Starten 🎨',
+                aboutBook: 'Über Das Buch',
+                whyThisBook: '💎 Warum Dieses Buch?',
+                notTheoretical: 'Kein Theoretisches Buch',
+                practicalApplications: 'Sofortige praktische Anwendungen',
+                interactiveExperiences: '48 Interaktive Erfahrungen',
+                learnByDoing: 'Lernen durch Tun',
+                completeJourney: 'Vollständige Transformationsreise',
+                fromValuesToApplication: 'Von Werten zur Anwendung zur Nachhaltigkeit',
+                suitableDigitalAge: 'Geeignet für das Digitale Zeitalter',
+                realisticSolutions: 'Realistische Lösungen für echte Herausforderungen',
+                readyToStart: 'Bereit zu Beginnen?',
+                joinTransformation: 'Treten Sie heute der Transformationsreise bei',
+                personalDashboard: '📊 Persönliches Dashboard',
+                totalExperiments: 'Gesamte Experimente',
+                completionRate: 'Abschlussrate',
+                achievements: 'Erfolge',
+                progressByParts: 'Fortschritt Nach Teilen'
+            }
+        };
+
+        const currencies = {
+            SAR: { symbol: 'ر.س', rate: 1, name: 'ريال سعودي' },
+            USD: { symbol: '$', rate: 0.27, name: 'US Dollar' },
+            EUR: { symbol: '€', rate: 0.24, name: 'Euro' },
+            GBP: { symbol: '£', rate: 0.21, name: 'British Pound' },
+            AED: { symbol: 'د.إ', rate: 0.98, name: 'درهم إماراتي' },
+            EGP: { symbol: 'ج.م', rate: 8.25, name: 'جنيه مصري' }
+        };
+
+        function t(key) {
+            return translations[currentLanguage][key] || key;
         }
-        
-        // تحميل SDKs بعد تحميل الصفحة
-        window.addEventListener('load', () => {
-            loadScript('/_sdk/data_sdk.js');
-            loadScript('/_sdk/element_sdk.js');
-        });
-    </script>
-    
-    <!-- 📊 Google Analytics مع تحسين الخصوصية -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXX"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-XXXXXX', {
-            'anonymize_ip': true,
-            'allow_ad_personalization_signals': false
-        });
-    </script>
-    
-    <!-- 🎯 تحسينات إمكانية الوصول -->
-    <script>
-        // إدارة التركيز للقارئات الشاشة
-        document.addEventListener('DOMContentLoaded', () => {
-            const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
-            const firstFocusableElement = document.querySelectorAll(focusableElements)[0];
-            if (firstFocusableElement) firstFocusableElement.focus();
-            
-            // تحسين التنقل باللوحة
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    const modals = document.querySelectorAll('[role="dialog"]');
-                    if (modals.length > 0) {
-                        modals[modals.length - 1].style.display = 'none';
-                    }
+
+        function formatPrice(price) {
+            const currency = currencies[currentCurrency];
+            const convertedPrice = Math.round(parseFloat(price) * currency.rate);
+            return `${convertedPrice} ${currency.symbol}`;
+        }
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            if (lang === 'ar') {
+                document.documentElement.setAttribute('dir', 'rtl');
+                document.documentElement.setAttribute('lang', 'ar');
+            } else {
+                document.documentElement.setAttribute('dir', 'ltr');
+                document.documentElement.setAttribute('lang', lang);
+            }
+            render();
+        }
+
+        function changeCurrency(curr) {
+            currentCurrency = curr;
+            render();
+        }
+
+        // Book structure
+        const bookStructure = {
+            parts: [
+                {
+                    id: 1,
+                    title: "مرساة ال  يم",
+                    icon: "🎯",
+                    experiments: [
+                        { id: 1, name: "اكتشف قيمك الخمس الأساسية", type: "interactive" },
+                        { id: 2, name: "اختبار القيم الشخصية", type: "quiz" },
+                        { id: 3, name: "مصفوفة القرارات", type: "tool" },
+                        { id: 4, name: "تمرين يوم بدون قناع", type: "challenge" },
+                        { id: 5, name: "مخطط الشجاعة الرقمية", type: "planner" },
+                        { id: 6, name: "اختبار: هل أنت تابع أم قائد؟", type: "quiz" },
+                        { id: 7, name: "حاسبة ضغط المجتمع", type: "calculator" },
+                        { id: 8, name: "مفكرة ال  يم", type: "journal" }
+                    ]
+                },
+                {
+                    id: 2,
+                    title: "سهم الأهداف",
+                    icon: "🏹",
+                    experiments: [
+                        { id: 9, name: "بئر التمني vs خريطة الهدف", type: "comparison" },
+                        { id: 10, name: "اختبار SMART للأهداف", type: "quiz" },
+                        { id: 11, name: "مخطط الأهداف 90 يوماً", type: "planner" },
+                        { id: 12, name: "سجل الفشل", type: "journal" },
+                        { id: 13, name: "لعبة: النجاح من الفشل", type: "game" },
+                        { id: 14, name: "حاسبة الصبر الاستراتيجي", type: "calculator" }
+                    ]
+                },
+                {
+                    id: 3,
+                    title: "التوازن في عصر الإله  ء",
+                    icon: "⚖️",
+                    experiments: [
+                        { id: 15, name: "اختبار اقتصاد الانتبا    ", type: "quiz" },
+                        { id: 16, name: "حاسبة التكلفة الحقيقية", type: "calculator" },
+                        { id: 17, name: "مخطط 7 أيام بدون سوشيال ميديا", type: "challenge" },
+                        { id: 18, name: "اختبار FOMO", type: "quiz" },
+                        { id: 19, name: "لعبة: الفرص المفقودة", type: "game" },
+                        { id: 20, name: "مقياس الوهم الرقمي", type: "assessment" },
+                        { id: 21, name: "حاسبة الوقت الضائع", type: "calculator" },
+                        { id: 22, name: "مخطط الإيقاع اليومي", type: "planner" },
+                        { id: 23, name: "اختبار الحياة الحقيقية", type: "quiz" }
+                    ]
+                },
+                {
+                    id: 4,
+                    title: "التطبيق العملي المتقدم",
+                    icon: "💻",
+                    experiments: [
+                        { id: 24, name: "اختبار العقلية الرقمية", type: "quiz" },
+                        { id: 25, name: "مخطط التخلص الرقمي", type: "planner" },
+                        { id: 26, name: "سجل العادات 21 يوماً", type: "tracker" },
+                        { id: 27, name: "اختبار المهارات الرقمية", type: "quiz" },
+                        { id: 28, name: "مصفوفة المهارات", type: "tool" },
+                        { id: 29, name: "مخطط التعلم 6 أشهر", type: "planner" },
+                        { id: 30, name: "اختبار العلاقات الرقمية", type: "quiz" },
+                        { id: 31, name: "حاسبة جودة التوا  ل", type: "calculator" },
+                        { id: 32, name: "مخطط ال  دود الرقمية للعائلة", type: "planner" },
+                        { id: 33, name: "اختبار الصحة الرقمية", type: "quiz" },
+                        { id: 34, name: "مخطط التوازن الرقمي", type: "planner" },
+                        { id: 35, name: "حاسبة المساهمة الإيجابية", type: "calculator" }
+                    ]
+                },
+                {
+                    id: 5,
+                    title: "عمق التحول الشخصي",
+                    icon: "🧠",
+                    experiments: [
+                        { id: 36, name: "اختبار نوع المستخدم", type: "quiz" },
+                        { id: 37, name: "تمرين: يوميا   الاستخدام", type: "journal" },
+                        { id: 38, name: "لعبة المعضلات الأخلاقية", type: "game" },
+                        { id: 39, name: "حاسبة الخصوصية", type: "calculator" },
+                        { id: 40, name: "مخطط البحث الشخصي", type: "planner" },
+                        { id: 41, name: "سجل القراءة", type: "tracker" },
+                        { id: 42, name: "لعبة: التحدي الإبداعي", type: "game" },
+                        { id: 43, name: "مخطط الصيانة الدورية", type: "planner" },
+                        { id: 44, name: "حاسبة نظام العمل الصحي", type: "calculator" },
+                        { id: 45, name: "لوحة مؤشرات الأداء", type: "dashboard" },
+                        { id: 46, name: "مخطط 12 شهراً", type: "planner" },
+                        { id: 47, name: "حاسبة مؤشر الجودة الرقمية", type: "calculator" },
+                        { id: 48, name: "السؤال الأخير: من أنت؟", type: "reflection" }
+                    ]
                 }
-            });
-        });
-    </script>
-    
-    <!-- 🚀 كود التطبيق الرئيسي مع التحسينات -->
-    <script>
-        // 🎯 تحسينات الأداء للكود الرئيسي
-        const App = (function() {
-            'use strict';
-            
-            // 🎯 التهيئة المحسنة
-            const init = async () => {
-                // قياس وقت التحميل
-                const startTime = performance.now();
-                
-                try {
-                    await Promise.all([
-                        loadConfig(),
-                        loadTranslations(),
-                        initSDKs()
-                    ]);
-                    
-                    render();
-                    setupEventListeners();
-                    initLazyLoading();
-                    
-                    // تسجيل أداء التحميل
-                    const loadTime = performance.now() - startTime;
-                    console.log(`🔄 التطبيق محمل في ${loadTime.toFixed(2)}ms`);
-                    
-                    // إرسال بيانات الأداء
-                    if (window.gtag) {
-                        gtag('event', 'page_load', {
-                            'load_time': Math.round(loadTime)
-                        });
-                    }
-                } catch (error) {
-                    console.error('❌ فشل التهيئة:', error);
-                    showErrorToUser();
-                }
-            };
-            
-            // 🎯 تحسينات الترجمة واللغات
-            const translations = {
-                ar: { /* الترجمة العربية */ },
-                en: { /* الترجمة الإنجليزية */ }
-            };
-            
-            // 🎯 إدارة الحالة المحسنة
-            const state = new Proxy({
-                currentPage: 'home',
-                language: 'ar',
-                currency: 'SAR',
-                userProgress: {},
-                completedExperiments: []
-            }, {
-                set(target, property, value) {
-                    target[property] = value;
-                    if (property === 'language' || property === 'currentPage') {
-                        updatePageMetadata();
-                    }
-                    return true;
-                }
-            });
-            
-            // 🎯 تحسينات عرض الصفحات
-            const renderPage = (page) => {
-                // استخدام DocumentFragment لتحسين الأداء
-                const fragment = document.createDocumentFragment();
-                const container = document.createElement('div');
-                
-                switch(page) {
-                    case 'home':
-                        container.innerHTML = renderHomePage();
-                        break;
-                    case 'lab':
-                        container.innerHTML = renderLabPage();
-                        break;
-                    // ... صفحات أخرى
-                }
-                
-                // تحسين الـ DOM Manipulation
-                while (container.firstChild) {
-                    fragment.appendChild(container.firstChild);
-                }
-                
-                const app = document.getElementById('app');
-                app.innerHTML = '';
-                app.appendChild(fragment);
-                
-                // تفعيل التحميل البطيء للعناصر
-                initLazyLoading();
-            };
-            
-            // 🎯 تحسينات إمكانية الوصول
-            const announceToScreenReader = (message) => {
-                const announcer = document.getElementById('aria-live-region');
-                if (announcer) {
-                    announcer.textContent = '';
-                    setTimeout(() => {
-                        announcer.textContent = message;
-                    }, 100);
-                }
-            };
-            
-            // 🎯 تحسينات الصور
-            const optimizeImages = () => {
-                const images = document.querySelectorAll('img:not([data-optimized])');
-                images.forEach(img => {
-                    // إضافة loading lazy
-                    if (!img.loading) {
-                        img.loading = 'lazy';
-                    }
-                    
-                    // إضافة decoding async
-                    if (!img.decoding) {
-                        img.decoding = 'async';
-                    }
-                    
-                    img.dataset.optimized = 'true';
+            ]
+        };
+
+        // State management
+        let currentPage = 'home';
+        let completedExperiments = [];
+        let userProgress = {};
+
+        // Data SDK implementation
+        const dataHandler = {
+            onDataChanged(data) {
+                completedExperiments = data.filter(item => item.completed);
+                updateProgressDisplay();
+            }
+        };
+
+        // Initialize SDKs
+        async function initApp() {
+            // Initialize Data SDK
+            const dataResult = await window.dataSdk.init(dataHandler);
+            if (!dataResult.isOk) {
+                console.error("Failed to initialize data SDK");
+            }
+
+            // Initialize Element SDK
+            if (window.elementSdk) {
+                window.elementSdk.init({
+                    defaultConfig,
+                    onConfigChange: async (config) => {
+                        document.documentElement.style.setProperty('--bg-color', config.background_color || defaultConfig.background_color);
+                        document.documentElement.style.setProperty('--primary-color', config.primary_color || defaultConfig.primary_color);
+                        document.documentElement.style.setProperty('--accent-color', config.accent_color || defaultConfig.accent_color);
+                        
+                        const fontFamily = config.font_family || defaultConfig.font_family;
+                        document.body.style.fontFamily = `${fontFamily}, sans-serif`;
+                        
+                        render();
+                    },
+                    mapToCapabilities: (config) => ({
+                        recolorables: [
+                            {
+                                get: () => config.background_color || defaultConfig.background_color,
+                                set: (value) => {
+                                    if (window.elementSdk) {
+                                        window.elementSdk.setConfig({ background_color: value });
+                                    }
+                                }
+                            },
+                            {
+                                get: () => config.primary_color || defaultConfig.primary_color,
+                                set: (value) => {
+                                    if (window.elementSdk) {
+                                        window.elementSdk.setConfig({ primary_color: value });
+                                    }
+                                }
+                            },
+                            {
+                                get: () => config.accent_color || defaultConfig.accent_color,
+                                set: (value) => {
+                                    if (window.elementSdk) {
+                                        window.elementSdk.setConfig({ accent_color: value });
+                                    }
+                                }
+                            },
+                            {
+                                get: () => config.success_color || defaultConfig.success_color,
+                                set: (value) => {
+                                    if (window.elementSdk) {
+                                        window.elementSdk.setConfig({ success_color: value });
+                                    }
+                                }
+                            },
+                            {
+                                get: () => config.text_color || defaultConfig.text_color,
+                                set: (value) => {
+                                    if (window.elementSdk) {
+                                        window.elementSdk.setConfig({ text_color: value });
+                                    }
+                                }
+                            }
+                        ],
+                        borderables: [],
+                        fontEditable: {
+                            get: () => config.font_family || defaultConfig.font_family,
+                            set: (value) => {
+                                if (window.elementSdk) {
+                                    window.elementSdk.setConfig({ font_family: value });
+                                }
+                            }
+                        },
+                        fontSizeable: undefined
+                    }),
+                    mapToEditPanelValues: (config) => new Map([
+                        ["book_title", config.book_title || defaultConfig.book_title],
+                        ["book_subtitle", config.book_subtitle || defaultConfig.book_subtitle],
+                        ["author_name", config.author_name || defaultConfig.author_name],
+                        ["book_price", config.book_price || defaultConfig.book_price],
+                        ["discount_price", config.discount_price || defaultConfig.discount_price],
+                        ["primary_button_text", config.primary_button_text || defaultConfig.primary_button_text],
+                        ["secondary_button_text", config.secondary_button_text || defaultConfig.secondary_button_text]
+                    ])
                 });
-            };
+            }
+
+            render();
+        }
+
+        function getConfig() {
+            return window.elementSdk?.config || defaultConfig;
+        }
+
+        function updateProgressDisplay() {
+            const totalExperiments = 48;
+            const completed = completedExperiments.length;
+            const percentage = Math.round((completed / totalExperiments) * 100);
             
-            // 🎯 تحسينات الأداء للرسوم المتحركة
-            const animateElement = (element, animation) => {
-                // استخدام requestAnimationFrame
-                requestAnimationFrame(() => {
-                    element.classList.add(animation);
-                    element.addEventListener('animationend', () => {
-                        element.classList.remove(animation);
-                    }, { once: true });
-                });
-            };
+            const progressElements = document.querySelectorAll('.progress-percentage');
+            progressElements.forEach(el => {
+                el.textContent = `${percentage}%`;
+            });
             
-            // 🎯 إرجاع الواجهة العامة
-            return {
-                init,
-                state,
-                renderPage,
-                announceToScreenReader
-            };
-        })();
-        
-        // 🚀 بدء التطبيق
-        document.addEventListener('DOMContentLoaded', App.init);
-    </script>
-    
-    <!-- 🎯 Service Worker للـ PWA -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js')
-                    .then(registration => {
-                        console.log('✅ Service Worker registered:', registration);
-                    })
-                    .catch(error => {
-                        console.log('❌ Service Worker registration failed:', error);
-                    });
+            const progressBars = document.querySelectorAll('.progress-bar-fill');
+            progressBars.forEach(bar => {
+                bar.style.width = `${percentage}%`;
             });
         }
-    </script>
-    
-    <!-- 📊 Web Vitals Monitoring -->
-    <script type="module">
-        import { getCLS, getFID, getLCP, getFCP, getTTFB } from 'https://unpkg.com/web-vitals@3/dist/web-vitals.attribution.iife.js?module';
-        
-        function sendToAnalytics(metric) {
-            const body = {
-                name: metric.name,
-                value: Math.round(metric.value),
-                rating: metric.rating,
-                delta: Math.round(metric.delta),
-                id: metric.id
+
+        function renderNavbar() {
+            const config = getConfig();
+            return `
+                <nav class="bg-gray-900 bg-opacity-95 backdrop-blur-sm border-b border-gray-800 sticky top-0 z-50">
+                    <div class="container mx-auto px-4 py-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3 cursor-pointer" onclick="navigateTo('home')">
+                                <div class="flex items-center justify-center">
+                                    <svg width="40" height="40" viewBox="0 0 100 100" class="text-orange-500">
+                                        <circle cx="50" cy="25" r="10" fill="none" stroke="currentColor" stroke-width="3"/>
+                                        <line x1="50" y1="35" x2="50" y2="70" stroke="currentColor" stroke-width="3"/>
+                                        <line x1="30" y1="50" x2="70" y2="50" stroke="currentColor" stroke-width="3"/>
+                                        <circle cx="30" cy="50" r="4" fill="currentColor"/>
+                                        <circle cx="70" cy="50" r="4" fill="currentColor"/>
+                                        <path d="M 35 60 Q 35 80, 50 80 Q 65 80, 65 60" fill="none" stroke="currentColor" stroke-width="3"/>
+                                        <line x1="50" y1="70" x2="35" y2="60" stroke="currentColor" stroke-width="3"/>
+                                        <line x1="50" y1="70" x2="65" y2="60" stroke="currentColor" stroke-width="3"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h1 class="text-white font-bold text-base leading-tight">${t('digitalAnchor')}</h1>
+                                </div>
+                            </div>
+                            <div class="hidden lg:flex items-center gap-6">
+                                <a onclick="navigateTo('home')" class="nav-link text-gray-300 hover:text-white cursor-pointer ${currentPage === 'home' ? 'active text-white' : ''}">${t('home')}</a>
+                                <a onclick="navigateTo('lab')" class="nav-link text-gray-300 hover:text-white cursor-pointer ${currentPage === 'lab' ? 'active text-white' : ''}">${t('lab')}</a>
+                                <a onclick="navigateTo('pricing')" class="nav-link text-gray-300 hover:text-white cursor-pointer ${currentPage === 'pricing' ? 'active text-white' : ''}">${t('pricing')}</a>
+                                <a onclick="navigateTo('booking')" class="nav-link text-gray-300 hover:text-white cursor-pointer ${currentPage === 'booking' ? 'active text-white' : ''}">${t('booking')}</a>
+                                <a onclick="navigateTo('images')" class="nav-link text-gray-300 hover:text-white cursor-pointer ${currentPage === 'images' ? 'active text-white' : ''}">${t('images')}</a>
+                                <a onclick="navigateTo('dashboard')" class="nav-link text-gray-300 hover:text-white cursor-pointer ${currentPage === 'dashboard' ? 'active text-white' : ''}">${t('dashboard')}</a>
+                                
+                                <div class="flex items-center gap-3 ${currentLanguage === 'ar' ? 'border-l' : 'border-r'} border-gray-700 ${currentLanguage === 'ar' ? 'pl-6 ml-3' : 'pr-6 mr-3'}">
+                                    <select onchange="changeCurrency(this.value)" class="bg-gray-800 text-white px-3 py-1 rounded-lg text-sm border border-gray-700">
+                                        ${Object.keys(currencies).map(curr => `
+                                            <option value="${curr}" ${currentCurrency === curr ? 'selected' : ''}>${curr}</option>
+                                        `).join('')}
+                                    </select>
+                                    <select onchange="changeLanguage(this.value)" class="bg-gray-800 text-white px-3 py-1 rounded-lg text-sm border border-gray-700">
+                                        <option value="ar" ${currentLanguage === 'ar' ? 'selected' : ''}>العربية</option>
+                                        <option value="en" ${currentLanguage === 'en' ? 'selected' : ''}>English</option>
+                                        <option value="fr" ${currentLanguage === 'fr' ? 'selected' : ''}>Français</option>
+                                        <option value="de" ${currentLanguage === 'de' ? 'selected' : ''}>Deutsch</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button onclick="toggleMobileMenu()" class="lg:hidden text-white">
+                                <i class="fas fa-bars text-xl"></i>
+                            </button>
+                        </div>
+                        <div id="mobile-menu" class="hidden lg:hidden mt-4 pb-4 border-t border-gray-800 pt-4">
+                            <div class="flex flex-col gap-3">
+                                <a onclick="navigateTo('home')" class="text-gray-300 hover:text-white cursor-pointer">${t('home')}</a>
+                                <a onclick="navigateTo('lab')" class="text-gray-300 hover:text-white cursor-pointer">${t('lab')}</a>
+                                <a onclick="navigateTo('pricing')" class="text-gray-300 hover:text-white cursor-pointer">${t('pricing')}</a>
+                                <a onclick="navigateTo('booking')" class="text-gray-300 hover:text-white cursor-pointer">${t('booking')}</a>
+                                <a onclick="navigateTo('images')" class="text-gray-300 hover:text-white cursor-pointer">${t('images')}</a>
+                                <a onclick="navigateTo('dashboard')" class="text-gray-300 hover:text-white cursor-pointer">${t('dashboard')}</a>
+                                <div class="flex gap-2 pt-2 border-t border-gray-700">
+                                    <select onchange="changeCurrency(this.value)" class="flex-1 bg-gray-800 text-white px-3 py-2 rounded-lg text-sm">
+                                        ${Object.keys(currencies).map(curr => `<option value="${curr}" ${currentCurrency === curr ? 'selected' : ''}>${curr}</option>`).join('')}
+                                    </select>
+                                    <select onchange="changeLanguage(this.value)" class="flex-1 bg-gray-800 text-white px-3 py-2 rounded-lg text-sm">
+                                        <option value="ar" ${currentLanguage === 'ar' ? 'selected' : ''}>العربية</option>
+                                        <option value="en" ${currentLanguage === 'en' ? 'selected' : ''}>English</option>
+                                        <option value="fr" ${currentLanguage === 'fr' ? 'selected' : ''}>Français</option>
+                                        <option value="de" ${currentLanguage === 'de' ? 'selected' : ''}>Deutsch</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            `;
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function renderHomePage() {
+            const config = getConfig();
+            const totalExperiments = 48;
+            const completed = completedExperiments.length;
+            const percentage = Math.round((completed / totalExperiments) * 100);
+
+            return `
+                <div class="fade-in">
+                    <!-- Hero Section -->
+                    <section class="hero-gradient text-white py-20 px-4">
+                        <div class="container mx-auto max-w-6xl">
+                            <div class="grid md:grid-cols-2 gap-12 items-center">
+                                <div>
+                                    <div class="inline-block bg-orange-500 text-white px-4 py-2 rounded-full text-sm font-bold mb-6">
+                                        ✨ ${currentLanguage === 'ar' ? 'دليلك العملي للحياة الحقيقية في العصر الرقمي' : currentLanguage === 'de' ? 'Ihr praktischer Leitfaden für das echte Leben im digitalen Zeitalter' : currentLanguage === 'fr' ? 'Votre guide pratique pour la vraie vie à l\'ère numérique' : 'Your practical guide to real life in the digital age'}
+                                    </div>
+                                    <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                                        ${t('whoAreYou')}
+                                    </h1>
+                                    <p class="text-xl text-blue-100 mb-8 leading-relaxed">
+                                        ${config.book_subtitle || defaultConfig.book_subtitle}
+                                    </p>
+                                    <div class="flex flex-col sm:flex-row gap-4">
+                                        <button onclick="navigateTo('pricing')" class="pulse-button bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-lg hover:shadow-xl">
+                                            ${currentLanguage === 'ar' ? 'ابدأ رحلتك الآن' : currentLanguage === 'de' ? 'Beginnen Sie jetzt Ihre Reise' : currentLanguage === 'fr' ? 'Commencez votre voyage maintenant' : 'Start Your Journey Now'} 🚀
+                                        </button>
+                                        <button onclick="navigateTo('lab')" class="bg-white bg-opacity-10 hover:bg-opacity-20 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all border-2 border-white border-opacity-30">
+                                            ${currentLanguage === 'ar' ? 'تعرّف على الكتاب' : currentLanguage === 'de' ? 'Lernen Sie das Buch kennen' : currentLanguage === 'fr' ? 'Découvrez le livre' : 'Learn About the Book'}
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="relative flex justify-center">
+                                    <img src="https://i.imgur.com/6RCFJtY.png" alt="${t('digitalAnchor')}" class="max-w-full h-auto rounded-2xl shadow-2xl" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                    <div class="hidden screen-off bg-gradient-to-br from-blue-900 via-purple-900 to-gray-900 p-8 rounded-3xl shadow-2xl border-4 border-gray-700 relative overflow-hidden">
+                                        <div class="bg-black rounded-3xl p-6 relative" style="aspect-ratio: 9/16; max-width: 350px; margin: 0 auto;">
+                                            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-7 bg-black rounded-b-3xl z-10"></div>
+                                            <div class="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black h-full rounded-2xl overflow-hidden flex flex-col items-center justify-center p-8">
+                                                <div class="absolute inset-0 bg-black opacity-60"></div>
+                                                <div class="absolute top-8 left-1/2 transform -translate-x-1/2 w-full px-8">
+                                                    <div class="grid grid-cols-4 gap-3 opacity-30">
+                                                        <div class="bg-blue-600 rounded-2xl aspect-square flex items-center justify-center">
+                                                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                                            </svg>
+                                                        </div>
+                                                        <div class="bg-gradient-to-br from-purple-600 via-pink-600 to-orange-500 rounded-2xl aspect-square flex items-center justify-center">
+                                                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                                            </svg>
+                                                        </div>
+                                                        <div class="bg-blue-400 rounded-2xl aspect-square flex items-center justify-center">
+                                                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                                                            </svg>
+                                                        </div>
+                                                        <div class="bg-red-600 rounded-2xl aspect-square flex items-center justify-center">
+                                                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="relative z-10 flex flex-col items-center justify-center space-y-6">
+                                                    <div class="relative">
+                                                        <svg width="100" height="100" viewBox="0 0 100 100" class="text-orange-500 drop-shadow-2xl">
+                                                            <circle cx="50" cy="25" r="10" fill="none" stroke="currentColor" stroke-width="3"/>
+                                                            <line x1="50" y1="35" x2="50" y2="70" stroke="currentColor" stroke-width="3"/>
+                                                            <line x1="30" y1="50" x2="70" y2="50" stroke="currentColor" stroke-width="3"/>
+                                                            <circle cx="30" cy="50" r="4" fill="currentColor"/>
+                                                            <circle cx="70" cy="50" r="4" fill="currentColor"/>
+                                                            <path d="M 35 60 Q 35 80, 50 80 Q 65 80, 65 60" fill="none" stroke="currentColor" stroke-width="3"/>
+                                                            <line x1="50" y1="70" x2="35" y2="60" stroke="currentColor" stroke-width="3"/>
+                                                            <line x1="50" y1="70" x2="65" y2="60" stroke="currentColor" stroke-width="3"/>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="text-center space-y-3 px-4">
+                                                        <h3 class="text-white text-2xl font-bold leading-tight">
+                                                            ${t('whoAreYou').split('؟')[0]}؟
+                                                        </h3>
+                                                        <p class="text-gray-400 text-sm font-medium">
+                                                            ${t('digitalAnchor')}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2">
+                                                    <div class="w-12 h-12 rounded-full bg-gray-800 border-2 border-gray-600 flex items-center justify-center opacity-40">
+                                                        <div class="w-6 h-6 rounded-full bg-gray-700"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Stats Section -->
+                    <section class="bg-gray-900 py-16 px-4">
+                        <div class="container mx-auto max-w-6xl">
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                                <div class="stats-card text-center p-6 rounded-xl">
+                                    <div class="text-4xl md:text-5xl font-bold text-blue-400 mb-2">5</div>
+                                    <div class="text-gray-300 font-semibold">${t('parts')}</div>
+                                </div>
+                                <div class="stats-card text-center p-6 rounded-xl">
+                                    <div class="text-4xl md:text-5xl font-bold text-orange-400 mb-2">24</div>
+                                    <div class="text-gray-300 font-semibold">${t('chapters')}</div>
+                                </div>
+                                <div class="stats-card text-center p-6 rounded-xl">
+                                    <div class="text-4xl md:text-5xl font-bold text-green-400 mb-2">48</div>
+                                    <div class="text-gray-300 font-semibold">${t('experiences')}</div>
+                                </div>
+                                <div class="stats-card text-center p-6 rounded-xl">
+                                    <div class="text-4xl md:text-5xl font-bold text-purple-400 mb-2">${percentage}%</div>
+                                    <div class="text-gray-300 font-semibold">${t('totalProgress')}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- CTA Section -->
+                    <section class="bg-gradient-to-r from-blue-600 to-orange-600 py-20 px-4">
+                        <div class="container mx-auto max-w-4xl text-center">
+                            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">${t('readyToTransform')}</h2>
+                            <p class="text-xl text-blue-50 mb-8">${t('startJourney')}</p>
+                            <button onclick="navigateTo('pricing')" class="bg-white text-blue-600 px-12 py-5 rounded-full font-bold text-xl hover:scale-105 transition-transform shadow-2xl">
+                                ${t('bookYourCopy')} 🎯
+                            </button>
+                        </div>
+                    </section>
+                </div>
+            `;
+        }
+
+        function renderLabPage(selectedPartId = null) {
+            const config = getConfig();
+            return `
+                <div class="bg-gray-900 min-h-screen py-12 px-4 fade-in">
+                    <div class="container mx-auto max-w-6xl">
+                        <div class="text-center mb-12">
+                            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">${t('interactiveLab')}</h1>
+                            <p class="text-xl text-gray-300">48 ${t('practicalExperiments')}</p>
+                            <div class="mt-6 inline-block bg-gray-800 rounded-full px-6 py-3">
+                                <span class="text-gray-400">${t('yourProgress')}: </span>
+                                <span class="text-orange-400 font-bold progress-percentage">${Math.round((completedExperiments.length / 48) * 100)}%</span>
+                                <span class="text-gray-400"> (${completedExperiments.length}/48)</span>
+                            </div>
+                        </div>
+
+                        ${bookStructure.parts.map(part => `
+                            <div class="mb-12 fade-in">
+                                <div class="bg-gradient-to-r from-blue-600 to-orange-600 rounded-2xl p-6 mb-6">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-4">
+                                            <span class="text-5xl">${part.icon}</span>
+                                            <div>
+                                                <div class="text-sm text-blue-100 font-bold">${t('part')} ${part.id}</div>
+                                                <h2 class="text-3xl font-bold text-white">${part.title}</h2>
+                                            </div>
+                                        </div>
+                                        <div class="text-${currentLanguage === 'ar' ? 'left' : 'right'}">
+                                            <div class="text-2xl font-bold text-white">${completedExperiments.filter(e => part.experiments.some(exp => exp.id === e.experiment_id)).length}/${part.experiments.length}</div>
+                                            <div class="text-sm text-blue-100">${t('completed')}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="grid gap-4">
+                                    ${part.experiments.map(exp => {
+                                        const isCompleted = completedExperiments.some(e => e.experiment_id === exp.id);
+                                        const typeIcons = {
+                                            quiz: '📝',
+                                            calculator: '🧮',
+                                            planner: '📅',
+                                            journal: '📔',
+                                            game: '🎮',
+                                            tool: '🔧',
+                                            tracker: '📊',
+                                            challenge: '⚡',
+                                            interactive: '✨',
+                                            comparison: '⚖️',
+                                            assessment: '📈',
+                                            dashboard: '📊',
+                                            reflection: '🤔'
+                                        };
+                                        return `
+                                            <div class="experiment-card ${isCompleted ? 'completed' : ''} bg-gray-800 rounded-xl p-6 cursor-pointer" onclick="openExperiment(${exp.id})">
+                                                <div class="flex items-center justify-between">
+                                                    <div class="flex items-center gap-4 flex-1">
+                                                        <div class="experiment-number w-12 h-12 rounded-lg flex items-center justify-center text-white font-bold text-lg flex-shrink-0">
+                                                            ${exp.id}
+                                                        </div>
+                                                        <div class="flex-1">
+                                                            <h3 class="text-lg font-bold text-white mb-1">${exp.name}</h3>
+                                                            <div class="flex items-center gap-2 text-sm text-gray-400">
+                                                                <span>${typeIcons[exp.type] || '✨'}</span>
+                                                                <span>${getTypeLabel(exp.type)}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex items-center gap-3">
+                                                        ${isCompleted ? '<span class="text-green-400 text-2xl">✓</span>' : `<i class="fas fa-arrow-${currentLanguage === 'ar' ? 'left' : 'right'} text-gray-500"></i>`}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        `;
+                                    }).join('')}
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderPricingPage() {
+            const config = getConfig();
+            return `
+                <div class="bg-gray-900 min-h-screen py-12 px-4 fade-in">
+                    <div class="container mx-auto max-w-6xl">
+                        <div class="text-center mb-16">
+                            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">${t('investInTransformation')}</h1>
+                            <p class="text-xl text-gray-300">${t('getFullBook')}</p>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-8 mb-12">
+                            <!-- Digital Edition -->
+                            <div class="bg-gray-800 rounded-2xl p-8 border-2 border-gray-700 hover:border-blue-500 transition-all">
+                                <div class="text-4xl mb-4">📱</div>
+                                <h3 class="text-2xl font-bold text-white mb-2">${t('digitalEdition')}</h3>
+                                <p class="text-gray-400 mb-6">PDF + ePub + Mobi</p>
+                                <div class="mb-6">
+                                    <div class="text-3xl font-bold text-white">${formatPrice(config.discount_price || defaultConfig.discount_price)}</div>
+                                    <div class="text-gray-400 line-through">${formatPrice(config.book_price || defaultConfig.book_price)}</div>
+                                </div>
+                                <ul class="space-y-3 mb-8 text-gray-300">
+                                    <li class="flex items-center gap-2"><span class="text-green-400">✓</span> ${currentLanguage === 'ar' ? 'الك  اب الكامل (24   صل)' : currentLanguage === 'de' ? 'Vollständiges Buch (24 Kapitel)' : currentLanguage === 'fr' ? 'Livre complet (24 chapitres)' : 'Complete Book (24 Chapters)'}</li>
+                                    <li class="flex items-center gap-2"><span class="text-green-400">✓</span> 48 ${t('experiences')}</li>
+                                    <li class="flex items-center gap-2"><span class="text-green-400">✓</span> ${currentLanguage === 'ar' ? 'تحديثات مجانية' : currentLanguage === 'de' ? 'Kostenlose Updates' : currentLanguage === 'fr' ? 'Mises à jour gratuites' : 'Free Updates'}</li>
+                                    <li class="flex items-center gap-2"><span class="text-green-400">✓</span> ${currentLanguage === 'ar' ? 'دعم فني' : currentLanguage === 'de' ? 'Technischer Support' : currentLanguage === 'fr' ? 'Support technique' : 'Technical Support'}</li>
+                                </ul>
+                                <button onclick="navigateTo('booking', 'digital')" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-bold">
+                                    ${t('bookNow')}
+                                </button>
+                            </div>
+
+                            <!-- Premium Edition -->
+                            <div class="bg-gradient-to-br from-orange-600 to-orange-700 rounded-2xl p-8 border-4 border-orange-400 relative transform scale-105 shadow-2xl">
+                                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                                    <span class="bg-yellow-400 text-gray-900 px-4 py-1 rounded-full text-sm font-bold">${t('mostPopular')}</span>
+                                </div>
+                                <div class="text-4xl mb-4">🎁</div>
+                                <h3 class="text-2xl font-bold text-white mb-2">${t('premiumEdition')}</h3>
+                                <p class="text-orange-100 mb-6">${currentLanguage === 'ar' ? 'رقمية + ورقية + هدايا' : currentLanguage === 'de' ? 'Digital + Druck + Geschenke' : currentLanguage === 'fr' ? 'Numérique + Imprimé + Cadeaux' : 'Digital + Print + Gifts'}</p>
+                                <div class="mb-6">
+                                    <div class="text-3xl font-bold text-white">${formatPrice(Math.round(parseFloat(config.discount_price || defaultConfig.discount_price) * 1.8))}</div>
+                                    <div class="text-orange-200 line-through">${formatPrice(Math.round(parseFloat(config.book_price || defaultConfig.book_price) * 2))}</div>
+                                </div>
+                                <ul class="space-y-3 mb-8 text-white">
+                                    <li class="flex items-center gap-2"><span class="text-yellow-300">✓</span> ${currentLanguage === 'ar' ? 'كل ما في النسخة الرقمية' : currentLanguage === 'de' ? 'Alles aus der digitalen Ausgabe' : currentLanguage === 'fr' ? 'Tout de l\'édition numérique' : 'Everything from Digital Edition'}</li>
+                                    <li class="flex items-center gap-2"><span class="text-yellow-300">✓</span> ${currentLanguage === 'ar' ? 'نسخة ورقية فاخرة' : currentLanguage === 'de' ? 'Luxus-Druckausgabe' : currentLanguage === 'fr' ? 'Édition imprimée de luxe' : 'Luxury Print Edition'}</li>
+                                    <li class="flex items-center gap-2"><span class="text-yellow-300">✓</span> ${currentLanguage === 'ar' ? 'دفتر التحول الشخصي' : currentLanguage === 'de' ? 'Persönliches Transformationstagebuch' : currentLanguage === 'fr' ? 'Journal de transformation personnel' : 'Personal Transformation Journal'}</li>
+                                    <li class="flex items-center gap-2"><span class="text-yellow-300">✓</span> ${currentLanguage === 'ar' ? '10 صور قابلة للطباعة' : currentLanguage === 'de' ? '10 druckbare Bilder' : currentLanguage === 'fr' ? '10 images imprimables' : '10 Printable Images'}</li>
+                                    <li class="flex items-center gap-2"><span class="text-yellow-300">✓</span> ${currentLanguage === 'ar' ? 'جلسة استشارية (30 دقيقة)' : currentLanguage === 'de' ? 'Beratungssitzung (30 Min)' : currentLanguage === 'fr' ? 'Session de consultation (30 min)' : 'Consultation Session (30 min)'}</li>
+                                </ul>
+                                <button onclick="navigateTo('booking', 'premium')" class="w-full bg-white text-orange-600 py-3 rounded-lg font-bold hover:bg-orange-50">
+                                    ${t('bookNow')} 🚀
+                                </button>
+                            </div>
+
+                            <!-- Print Edition -->
+                            <div class="bg-gray-800 rounded-2xl p-8 border-2 border-gray-700 hover:border-blue-500 transition-all">
+                                <div class="text-4xl mb-4">📚</div>
+                                <h3 class="text-2xl font-bold text-white mb-2">${t('printEdition')}</h3>
+                                <p class="text-gray-400 mb-6">${currentLanguage === 'ar' ? 'كتاب مطبوع فاخر' : currentLanguage === 'de' ? 'Luxus-Druckbuch' : currentLanguage === 'fr' ? 'Livre imprimé de luxe' : 'Luxury Printed Book'}</p>
+                                <div class="mb-6">
+                                    <div class="text-3xl font-bold text-white">${formatPrice(Math.round(parseFloat(config.discount_price || defaultConfig.discount_price) * 1.5))}</div>
+                                    <div class="text-gray-400 line-through">${formatPrice(Math.round(parseFloat(config.book_price || defaultConfig.book_price) * 1.6))}</div>
+                                </div>
+                                <ul class="space-y-3 mb-8 text-gray-300">
+                                    <li class="flex items-center gap-2"><span class="text-green-400">✓</span> ${currentLanguage === 'ar' ? 'نسخة ورقية عالية الجودة' : currentLanguage === 'de' ? 'Hochwertige Druckausgabe' : currentLanguage === 'fr' ? 'Édition imprimée de haute qualité' : 'High-Quality Print Edition'}</li>
+                                    <li class="flex items-center gap-2"><span class="text-green-400">✓</span> ${currentLanguage === 'ar' ? 'غلاف فاخر' : currentLanguage === 'de' ? 'Luxus-Einband' : currentLanguage === 'fr' ? 'Couverture de luxe' : 'Luxury Cover'}</li>
+                                    <li class="flex items-center gap-2"><span class="text-green-400">✓</span> ${currentLanguage === 'ar' ? 'شحن مجاني' : currentLanguage === 'de' ? 'Kostenloser Versand' : currentLanguage === 'fr' ? 'Livraison gratuite' : 'Free Shipping'}</li>
+                                    <li class="flex items-center gap-2"><span class="text-green-400">✓</span> ${currentLanguage === 'ar' ? 'النسخة الرقمية مجاناً' : currentLanguage === 'de' ? 'Digitale Ausgabe gratis' : currentLanguage === 'fr' ? 'Édition numérique gratuite' : 'Digital Edition Free'}</li>
+                                </ul>
+                                <button onclick="navigateTo('booking', 'print')" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-bold">
+                                    ${t('bookNow')}
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Guarantee -->
+                        <div class="bg-gradient-to-r from-green-600 to-green-700 rounded-2xl p-8 text-center">
+                            <h3 class="text-3xl font-bold text-white mb-4">${t('moneyBackGuarantee')}</h3>
+                            <p class="text-green-50 text-lg">${t('notSatisfied')}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderBookingPage(selectedPlan = 'digital') {
+            const config = getConfig();
+            const plans = {
+                digital: { 
+                    name: t('digitalEdition'), 
+                    price: config.discount_price || defaultConfig.discount_price,
+                    icon: '📱'
+                },
+                premium: { 
+                    name: t('premiumEdition'), 
+                    price: Math.round(parseFloat(config.discount_price || defaultConfig.discount_price) * 1.8),
+                    icon: '🎁'
+                },
+                print: { 
+                    name: t('printEdition'), 
+                    price: Math.round(parseFloat(config.discount_price || defaultConfig.discount_price) * 1.5),
+                    icon: '📚'
+                }
+            };
+            const selected = plans[selectedPlan] || plans.digital;
+
+            return `
+                <div class="bg-gray-900 min-h-screen py-12 px-4 fade-in">
+                    <div class="container mx-auto max-w-4xl">
+                        <h1 class="text-4xl md:text-5xl font-bold text-white mb-8 text-center">${t('bookNowTitle')}</h1>
+                        
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <!-- Booking Form -->
+                            <div class="bg-gray-800 rounded-2xl p-8">
+                                <h2 class="text-2xl font-bold text-white mb-6">${t('bookingInfo')}</h2>
+                                <form id="booking-form" class="space-y-4">
+                                    <div>
+                                        <label class="block text-gray-300 mb-2 font-semibold" for="full-name">${t('fullName')} *</label>
+                                        <input type="text" id="full-name" required class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg border border-gray-600 focus:border-blue-500 focus:outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-gray-300 mb-2 font-semibold" for="email">${t('email')} *</label>
+                                        <input type="email" id="email" required class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg border border-gray-600 focus:border-blue-500 focus:outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-gray-300 mb-2 font-semibold" for="phone">${t('phone')} *</label>
+                                        <input type="tel" id="phone" required class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg border border-gray-600 focus:border-blue-500 focus:outline-none">
+                                    </div>
+                                    <div>
+                                        <label class="block text-gray-300 mb-2 font-semibold" for="country">${t('country')} *</label>
+                                        <select id="country" required class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg border border-gray-600 focus:border-blue-500 focus:outline-none">
+                                            <option value="">${t('selectCountry')}</option>
+                                            <option value="SA">${currentLanguage === 'ar' ? 'السعودية' : currentLanguage === 'de' ? 'Saudi-Arabien' : currentLanguage === 'fr' ? 'Arabie Saoudite' : 'Saudi Arabia'}</option>
+                                            <option value="AE">${currentLanguage === 'ar' ? 'الإمارات' : currentLanguage === 'de' ? 'VAE' : currentLanguage === 'fr' ? 'Émirats Arabes Unis' : 'UAE'}</option>
+                                            <option value="EG">${currentLanguage === 'ar' ? 'مصر' : currentLanguage === 'de' ? 'Ägypten' : currentLanguage === 'fr' ? 'Égypte' : 'Egypt'}</option>
+                                            <option value="JO">${currentLanguage === 'ar' ? 'الأردن' : currentLanguage === 'de' ? 'Jordanien' : currentLanguage === 'fr' ? 'Jordanie' : 'Jordan'}</option>
+                                            <option value="KW">${currentLanguage === 'ar' ? 'الكويت' : currentLanguage === 'de' ? 'Kuwait' : currentLanguage === 'fr' ? 'Koweït' : 'Kuwait'}</option>
+                                            <option value="QA">${currentLanguage === 'ar' ? 'قطر' : currentLanguage === 'de' ? 'Katar' : currentLanguage === 'fr' ? 'Qatar' : 'Qatar'}</option>
+                                            <option value="BH">${currentLanguage === 'ar' ? 'البحرين' : currentLanguage === 'de' ? 'Bahrain' : currentLanguage === 'fr' ? 'Bahreïn' : 'Bahrain'}</option>
+                                            <option value="OM">${currentLanguage === 'ar' ? 'عمان' : currentLanguage === 'de' ? 'Oman' : currentLanguage === 'fr' ? 'Oman' : 'Oman'}</option>
+                                            <option value="other">${currentLanguage === 'ar' ? 'دولة أخرى' : currentLanguage === 'de' ? 'Anderes Land' : currentLanguage === 'fr' ? 'Autre pays' : 'Other Country'}</option>
+                                        </select>
+                                    </div>
+                                    ${selectedPlan === 'print' || selectedPlan === 'premium' ? `
+                                    <div>
+                                        <label class="block text-gray-300 mb-2 font-semibold" for="address">${t('address')} *</label>
+                                        <textarea id="address" required rows="3" class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg border border-gray-600 focus:border-blue-500 focus:outline-none"></textarea>
+                                    </div>
+                                    ` : ''}
+                                    <div>
+                                        <label class="block text-gray-300 mb-2 font-semibold" for="plan">${t('selectedPlan')}</label>
+                                        <select id="plan" onchange="navigateTo('booking', this.value)" class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg border border-gray-600 focus:border-blue-500 focus:outline-none">
+                                            <option value="digital" ${selectedPlan === 'digital' ? 'selected' : ''}>📱 ${t('digitalEdition')}</option>
+                                            <option value="premium" ${selectedPlan === 'premium' ? 'selected' : ''}>🎁 ${t('premiumEdition')}</option>
+                                            <option value="print" ${selectedPlan === 'print' ? 'selected' : ''}>📚 ${t('printEdition')}</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white py-4 rounded-lg font-bold text-lg transition-all">
+                                        ${t('completeBooking')}
+                                    </button>
+                                </form>
+                            </div>
+
+                            <!-- Order Summary -->
+                            <div class="space-y-6">
+                                <div class="bg-gray-800 rounded-2xl p-8">
+                                    <h2 class="text-2xl font-bold text-white mb-6">${t('orderSummary')}</h2>
+                                    <div class="space-y-4">
+                                        <div class="flex items-center gap-4 pb-4 border-b border-gray-700">
+                                            <div class="text-4xl">${selected.icon}</div>
+                                            <div class="flex-1">
+                                                <div class="text-white font-bold">${selected.name}</div>
+                                                <div class="text-gray-400 text-sm">${t('whoAreYou')}</div>
+                                            </div>
+                                        </div>
+                                        <div class="flex justify-between text-gray-300">
+                                            <span>${t('basePrice')}</span>
+                                            <span>${formatPrice(selected.price)}</span>
+                                        </div>
+                                        <div class="flex justify-between text-green-400">
+                                            <span>${t('discount')}</span>
+                                            <span>-20%</span>
+                                        </div>
+                                        <div class="flex justify-between text-xl font-bold text-white pt-4 border-t border-gray-700">
+                                            <span>${t('total')}</span>
+                                            <span>${formatPrice(selected.price)}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-blue-900 bg-opacity-30 border-2 border-blue-500 rounded-2xl p-6">
+                                    <h3 class="text-white font-bold mb-3 flex items-center gap-2">
+                                        <span>${t('securePayment')}</span>
+                                    </h3>
+                                    <p class="text-blue-200 text-sm">${t('securePaymentDesc')}</p>
+                                </div>
+
+                                <div class="bg-green-900 bg-opacity-30 border-2 border-green-500 rounded-2xl p-6">
+                                    <h3 class="text-white font-bold mb-3 flex items-center gap-2">
+                                        <span>${t('dayGuarantee')}</span>
+                                    </h3>
+                                    <p class="text-green-200 text-sm">${t('guaranteeDesc')}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderImagesPage() {
+            const customizableImages = [
+                { id: 1, text: currentLanguage === 'ar' ? 'من أنت حين\nتنطفئ الشاشة  ' : currentLanguage === 'de' ? 'Wer bist du, wenn\nder Bildschirm ausgeht?' : currentLanguage === 'fr' ? 'Qui êtes-vous quand\nl\'écran s\'éteint?' : 'Who are you when\nthe screen goes off?', style: 'modern' },
+                { id: 2, text: currentLanguage === 'ar' ? 'الحياة الحقيقية\nتبدأ هنا' : currentLanguage === 'de' ? 'Das echte Leben\nbeginnt hier' : currentLanguage === 'fr' ? 'La vraie vie\ncommence ici' : 'Real life\nstarts here', style: 'minimal' },
+                { id: 3, text: currentLanguage === 'ar' ? 'توقف\nتأمل\nعش' : currentLanguage === 'de' ? 'Stopp\nDenk nach\nLebe' : currentLanguage === 'fr' ? 'Arrête\nRéfléchis\nVis' : 'Stop\nReflect\nLive', style: 'bold' },
+                { id: 4, text: currentLanguage === 'ar' ? 'أنت أكثر من\nمجرد شاشة' : currentLanguage === 'de' ? 'Du bist mehr als\nnur ein Bildschirm' : currentLanguage === 'fr' ? 'Vous êtes plus qu\'un\nsimple écran' : 'You are more than\njust a screen', style: 'elegant' },
+                { id: 5, text: currentLanguage === 'ar' ? 'العالم ينتظرك\nخارج الشاشة' : currentLanguage === 'de' ? 'Die Welt wartet auf dich\naußerhalb des Bildschirms' : currentLanguage === 'fr' ? 'Le monde vous attend\nhors de l\'écran' : 'The world awaits you\noutside the screen', style: 'vibrant' },
+                { id: 6, text: currentLanguage === 'ar' ? 'اختر ال  اقع\nليس الوهم' : currentLanguage === 'de' ? 'Wähle die Realität\nnicht die Illusion' : currentLanguage === 'fr' ? 'Choisissez la réalité\npas l\'illusion' : 'Choose reality\nnot illusion', style: 'contrast' }
+            ];
+
+            return `
+                <div class="bg-gray-900 min-h-screen py-12 px-4 fade-in">
+                    <div class="container mx-auto max-w-6xl">
+                        <div class="text-center mb-12">
+                            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">${t('customizableImages')}</h1>
+                            <p class="text-xl text-gray-300">${t('designYourImage')}</p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            ${customizableImages.map(img => `
+                                <div class="card-hover bg-gray-800 rounded-2xl p-6 cursor-pointer" onclick="customizeImage(${img.id})">
+                                    ${generateImagePreview(img)}
+                                    <div class="mt-4 text-center">
+                                        <button class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-bold">
+                                            ${t('customizeDownload')}
+                                        </button>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+
+                        <div class="mt-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-center">
+                            <h3 class="text-3xl font-bold text-white mb-4">${t('createCustomImage')}</h3>
+                            <p class="text-blue-50 text-lg mb-6">${t('writeYourText')}</p>
+                            <button onclick="openCustomImageCreator()" class="bg-white text-blue-600 px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform">
+                                ${t('startDesign')}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function generateImagePreview(img) {
+            const styles = {
+                modern: 'bg-gradient-to-br from-blue-600 to-purple-600',
+                minimal: 'bg-gray-700',
+                bold: 'bg-gradient-to-r from-orange-500 to-red-500',
+                elegant: 'bg-gradient-to-br from-gray-800 to-gray-900 border-4 border-orange-500',
+                vibrant: 'bg-gradient-to-br from-pink-500 via-purple-500 to-blue-500',
+                contrast: 'bg-black border-4 border-white'
+            };
+
+            return `
+                <div class="${styles[img.style]} aspect-square rounded-xl flex items-center justify-center p-8 relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-10">
+                        <div class="absolute top-0 ${currentLanguage === 'ar' ? 'right' : 'left'}-0 w-32 h-32 bg-white rounded-full blur-3xl"></div>
+                        <div class="absolute bottom-0 ${currentLanguage === 'ar' ? 'left' : 'right'}-0 w-40 h-40 bg-white rounded-full blur-3xl"></div>
+                    </div>
+                    <div class="relative z-10 text-center">
+                        <div class="text-3xl mb-4">📱</div>
+                        <div class="text-white font-bold text-2xl leading-tight whitespace-pre-line">
+                            ${img.text}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function customizeImage(imageId) {
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4';
+            modal.innerHTML = `
+                <div class="bg-gray-800 rounded-2xl p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-3xl font-bold text-white">${currentLanguage === 'ar' ? 'تخصيص الصورة' : currentLanguage === 'de' ? 'Bild Anpassen' : currentLanguage === 'fr' ? 'Personnaliser l\'Image' : 'Customize Image'}</h2>
+                        <button onclick="this.closest('.fixed').remove()" class="text-gray-400 hover:text-white text-3xl">×</button>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <div id="image-preview" class="bg-gradient-to-br from-blue-600 to-purple-600 aspect-square rounded-xl flex items-center justify-center p-8 mb-4">
+                                <div class="text-center">
+                                    <div class="text-4xl mb-4">📱</div>
+                                    <div id="preview-text" class="text-white font-bold text-3xl leading-tight">
+                                        ${t('whoAreYou')}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-gray-300 mb-2 font-semibold">${currentLanguage === 'ar' ? 'النص الخاص بك' : currentLanguage === 'de' ? 'Ihr Text' : currentLanguage === 'fr' ? 'Votre Texte' : 'Your Text'}</label>
+                                <textarea id="custom-text" rows="4" class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg border border-gray-600 focus:border-blue-500 focus:outline-none" placeholder="${currentLanguage === 'ar' ? 'اكتب نصك هنا...' : currentLanguage === 'de' ? 'Schreiben Sie Ihren Text hier...' : currentLanguage === 'fr' ? 'Écrivez votre texte ici...' : 'Write your text here...'}">${t('whoAreYou')}</textarea>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-300 mb-2 font-semibold">${currentLanguage === 'ar' ? 'النمط' : currentLanguage === 'de' ? 'Stil' : currentLanguage === 'fr' ? 'Style' : 'Style'}</label>
+                                <select id="image-style" class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg border border-gray-600">
+                                    <option value="modern">${currentLanguage === 'ar' ? 'حديث (أزرق-بنفسجي)' : currentLanguage === 'de' ? 'Modern (Blau-Lila)' : currentLanguage === 'fr' ? 'Moderne (Bleu-Violet)' : 'Modern (Blue-Purple)'}</option>
+                                    <option value="minimal">${currentLanguage === 'ar' ? 'ب  يط (رمادي)' : currentLanguage === 'de' ? 'Minimal (Grau)' : currentLanguage === 'fr' ? 'Minimal (Gris)' : 'Minimal (Gray)'}</option>
+                                    <option value="bold">${currentLanguage === 'ar' ? 'جريء (برتقالي-أحمر)' : currentLanguage === 'de' ? 'Fett (Orange-Rot)' : currentLanguage === 'fr' ? 'Audacieux (Orange-Rouge)' : 'Bold (Orange-Red)'}</option>
+                                    <option value="elegant">${currentLanguage === 'ar' ? 'أنيق (أسود-برتقالي)' : currentLanguage === 'de' ? 'Elegant (Schwarz-Orange)' : currentLanguage === 'fr' ? 'Élégant (Noir-Orange)' : 'Elegant (Black-Orange)'}</option>
+                                    <option value="vibrant">${currentLanguage === 'ar' ? 'نابض (وردي-ب  فسجي)' : currentLanguage === 'de' ? 'Lebendig (Pink-Lila)' : currentLanguage === 'fr' ? 'Vibrant (Rose-Violet)' : 'Vibrant (Pink-Purple)'}</option>
+                                    <option value="contrast">${currentLanguage === 'ar' ? 'تباين (أسود-أبيض)' : currentLanguage === 'de' ? 'Kontrast (Schwarz-Weiß)' : currentLanguage === 'fr' ? 'Contraste (Noir-Blanc)' : 'Contrast (Black-White)'}</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-300 mb-2 font-semibold">${currentLanguage === 'ar' ? 'حجم الخ  ' : currentLanguage === 'de' ? 'Schriftgröße' : currentLanguage === 'fr' ? 'Taille de Police' : 'Font Size'}</label>
+                                <input type="range" id="font-size" min="20" max="50" value="30" class="w-full">
+                            </div>
+                            
+                            <button onclick="updateImagePreview()" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-bold mb-2">
+                                ${currentLanguage === 'ar' ? 'تحديث المعاينة 🔄' : currentLanguage === 'de' ? 'Vorschau Aktualisieren 🔄' : currentLanguage === 'fr' ? 'Mettre à Jour l\'Aperçu 🔄' : 'Update Preview 🔄'}
+                            </button>
+                            
+                            <button onclick="downloadCustomImage()" class="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white py-3 rounded-lg font-bold">
+                                ${currentLanguage === 'ar' ? 'تحميل الصورة 📥' : currentLanguage === 'de' ? 'Bild Herunterladen 📥' : currentLanguage === 'fr' ? 'Télécharger l\'Image 📥' : 'Download Image 📥'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        function openCustomImageCreator() {
+            customizeImage(0);
+        }
+
+        function updateImagePreview() {
+            const text = document.getElementById('custom-text').value;
+            const style = document.getElementById('image-style').value;
+            const fontSize = document.getElementById('font-size').value;
+            
+            const preview = document.getElementById('image-preview');
+            const previewText = document.getElementById('preview-text');
+            
+            const styles = {
+                modern: 'bg-gradient-to-br from-blue-600 to-purple-600',
+                minimal: 'bg-gray-700',
+                bold: 'bg-gradient-to-r from-orange-500 to-red-500',
+                elegant: 'bg-gradient-to-br from-gray-800 to-gray-900 border-4 border-orange-500',
+                vibrant: 'bg-gradient-to-br from-pink-500 via-purple-500 to-blue-500',
+                contrast: 'bg-black border-4 border-white'
             };
             
-            if (window.gtag) {
-                gtag('event', 'web_vitals', body);
+            preview.className = `${styles[style]} aspect-square rounded-xl flex items-center justify-center p-8`;
+            previewText.style.fontSize = `${fontSize}px`;
+            previewText.innerHTML = text.replace(/\n/g, '<br>');
+        }
+
+        function downloadCustomImage() {
+            showNotification(currentLanguage === 'ar' ? '🎉 سيتم تحميل الصورة قريباً! (ميزة قيد التطوير)' : currentLanguage === 'de' ? '🎉 Bild wird bald heruntergeladen! (Funktion in Entwicklung)' : currentLanguage === 'fr' ? '🎉 Image bientôt téléchargée! (Fonctionnalité en développement)' : '🎉 Image will be downloaded soon! (Feature in development)');
+        }
+
+        function renderAboutPage() {
+            const config = getConfig();
+            return `
+                <div class="bg-gray-900 min-h-screen py-12 px-4 fade-in">
+                    <div class="container mx-auto max-w-4xl">
+                        <h1 class="text-4xl md:text-5xl font-bold text-white mb-8 text-center">${t('aboutBook')}</h1>
+                        
+                        <div class="bg-gray-800 rounded-2xl p-8 mb-8">
+                            <h2 class="text-3xl font-bold text-white mb-6">${t('whyThisBook')}</h2>
+                            <div class="space-y-4 text-gray-300 text-lg">
+                                <div class="flex items-start gap-3">
+                                    <span class="text-green-400 text-2xl">✓</span>
+                                    <div>
+                                        <strong class="text-white">${t('notTheoretical')}</strong> - ${t('practicalApplications')}
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <span class="text-green-400 text-2xl">✓</span>
+                                    <div>
+                                        <strong class="text-white">${t('interactiveExperiences')}</strong> - ${t('learnByDoing')}
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <span class="text-green-400 text-2xl">✓</span>
+                                    <div>
+                                        <strong class="text-white">${t('completeJourney')}</strong> - ${t('fromValuesToApplication')}
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <span class="text-green-400 text-2xl">✓</span>
+                                    <div>
+                                        <strong class="text-white">${t('suitableDigitalAge')}</strong> - ${t('realisticSolutions')}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-r from-blue-600 to-orange-600 rounded-2xl p-8 text-center">
+                            <h2 class="text-3xl font-bold text-white mb-4">${t('readyToStart')}</h2>
+                            <p class="text-blue-50 text-lg mb-6">${t('joinTransformation')}</p>
+                            <button onclick="navigateTo('pricing')" class="bg-white text-blue-600 px-10 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform">
+                                ${t('bookYourCopy')}      
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderDashboardPage() {
+            const totalExperiments = 48;
+            const completed = completedExperiments.length;
+            const percentage = Math.round((completed / totalExperiments) * 100);
+
+            return `
+                <div class="bg-gray-900 min-h-screen py-12 px-4 fade-in">
+                    <div class="container mx-auto max-w-6xl">
+                        <h1 class="text-4xl md:text-5xl font-bold text-white mb-8 text-center">${t('personalDashboard')}</h1>
+                        
+                        <div class="grid md:grid-cols-3 gap-6 mb-12">
+                            <div class="bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl p-6 text-white">
+                                <div class="text-5xl mb-3">🎯</div>
+                                <div class="text-blue-100 text-sm mb-1">${t('totalExperiments')}</div>
+                                <div class="text-4xl font-bold">${completed}/${totalExperiments}</div>
+                            </div>
+                            <div class="bg-gradient-to-br from-orange-600 to-orange-700 rounded-2xl p-6 text-white">
+                                <div class="text-5xl mb-3">📈</div>
+                                <div class="text-orange-100 text-sm mb-1">${t('completionRate')}</div>
+                                <div class="text-4xl font-bold progress-percentage">${percentage}%</div>
+                            </div>
+                            <div class="bg-gradient-to-br from-green-600 to-green-700 rounded-2xl p-6 text-white">
+                                <div class="text-5xl mb-3">🏆</div>
+                                <div class="text-green-100 text-sm mb-1">${t('achievements')}</div>
+                                <div class="text-4xl font-bold">${Math.floor(percentage / 20)}/5</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-800 rounded-2xl p-8 mb-8">
+                            <h2 class="text-2xl font-bold text-white mb-6">${t('progressByParts')}</h2>
+                            <div class="space-y-6">
+                                ${bookStructure.parts.map(part => {
+                                    const partCompleted = completedExperiments.filter(e => part.experiments.some(exp => exp.id === e.experiment_id)).length;
+                                    const partPercentage = Math.round((partCompleted / part.experiments.length) * 100);
+                                    return `
+                                        <div>
+                                            <div class="flex items-center justify-between mb-2">
+                                                <div class="flex items-center gap-3">
+                                                    <span class="text-3xl">${part.icon}</span>
+                                                    <span class="text-white font-semibold">${part.title}</span>
+                                                </div>
+                                                <span class="text-gray-400">${partCompleted}/${part.experiments.length}</span>
+                                            </div>
+                                            <div class="bg-gray-700 rounded-full h-3 overflow-hidden">
+                                                <div class="bg-gradient-to-${currentLanguage === 'ar' ? 'r' : 'l'} from-orange-500 to-blue-500 h-full transition-all" style="width: ${partPercentage}%"></div>
+                                            </div>
+                                        </div>
+                                    `;
+                                }).join('')}
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-800 rounded-2xl p-8">
+                            <h2 class="text-2xl font-bold text-white mb-6">${t('achievements')} 🏆</h2>
+                            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                                ${[
+                                    { icon: '🌟', title: currentLanguage === 'ar' ? 'البداية' : currentLanguage === 'de' ? 'Start' : currentLanguage === 'fr' ? 'Début' : 'Start', requirement: 5, achieved: completed >= 5 },
+                                    { icon: '💪', title: currentLanguage === 'ar' ? 'الملتزم' : currentLanguage === 'de' ? 'Engagiert' : currentLanguage === 'fr' ? 'Engagé' : 'Committed', requirement: 12, achieved: completed >= 12 },
+                                    { icon: '🔥', title: currentLanguage === 'ar' ? 'المثابر' : currentLanguage === 'de' ? 'Beharrlich' : currentLanguage === 'fr' ? 'Persévérant' : 'Persistent', requirement: 24, achieved: completed >= 24 },
+                                    { icon: '🚀', title: currentLanguage === 'ar' ? 'المتقدم' : currentLanguage === 'de' ? 'Fortgeschritten' : currentLanguage === 'fr' ? 'Avancé' : 'Advanced', requirement: 36, achieved: completed >= 36 },
+                                    { icon: '👑', title: currentLanguage === 'ar' ? 'المتمكن' : currentLanguage === 'de' ? 'Meister' : currentLanguage === 'fr' ? 'Maître' : 'Master', requirement: 48, achieved: completed >= 48 }
+                                ].map(achievement => `
+                                    <div class="bg-gray-900 rounded-xl p-6 text-center ${achievement.achieved ? 'border-2 border-orange-500' : 'opacity-50'}">
+                                        <div class="text-4xl mb-2">${achievement.icon}</div>
+                                        <div class="text-white font-bold text-sm mb-1">${achievement.title}</div>
+                                        <div class="text-gray-400 text-xs">${achievement.requirement} ${currentLanguage === 'ar' ? 'تجربة' : currentLanguage === 'de' ? 'Experimente' : currentLanguage === 'fr' ? 'expériences' : 'experiments'}</div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function getTypeLabel(type) {
+            const labels = {
+                ar: {
+                    quiz: 'اختبار',
+                    calculator: 'حاسبة',
+                    planner: 'مخطط',
+                    journal: 'سجل',
+                    game: 'لعبة',
+                    tool: 'أداة',
+                    tracker: 'متتبع',
+                    challenge: 'تحدي',
+                    interactive: 'تفاعلي',
+                    comparison: 'مقارنة',
+                    assessment: 'تقي   م',
+                    dashboard: 'لوحة',
+                    reflection: 'تأمل'
+                },
+                en: {
+                    quiz: 'Quiz',
+                    calculator: 'Calculator',
+                    planner: 'Planner',
+                    journal: 'Journal',
+                    game: 'Game',
+                    tool: 'Tool',
+                    tracker: 'Tracker',
+                    challenge: 'Challenge',
+                    interactive: 'Interactive',
+                    comparison: 'Comparison',
+                    assessment: 'Assessment',
+                    dashboard: 'Dashboard',
+                    reflection: 'Reflection'
+                },
+                fr: {
+                    quiz: 'Quiz',
+                    calculator: 'Calculatrice',
+                    planner: 'Planificateur',
+                    journal: 'Journal',
+                    game: 'Jeu',
+                    tool: 'Outil',
+                    tracker: 'Suivi',
+                    challenge: 'Défi',
+                    interactive: 'Interactif',
+                    comparison: 'Comparaison',
+                    assessment: 'Évaluation',
+                    dashboard: 'Tableau de bord',
+                    reflection: 'Réflexion'
+                },
+                de: {
+                    quiz: 'Quiz',
+                    calculator: 'Rechner',
+                    planner: 'Planer',
+                    journal: 'Tagebuch',
+                    game: 'Spiel',
+                    tool: 'Werkzeug',
+                    tracker: 'Tracker',
+                    challenge: 'Herausforderung',
+                    interactive: 'Interaktiv',
+                    comparison: 'Vergleich',
+                    assessment: 'Bewertung',
+                    dashboard: 'Dashboard',
+                    reflection: 'Reflexion'
+                }
+            };
+            return labels[currentLanguage][type] || labels['en'][type] || 'Experience';
+        }
+
+        function navigateTo(page, param = null) {
+            currentPage = page;
+            if (page === 'booking') {
+                window.selectedPlan = param || 'digital';
+            }
+            render();
+            window.scrollTo(0, 0);
+        }
+
+        async function openExperiment(experimentId) {
+            let experiment = null;
+            for (const part of bookStructure.parts) {
+                const found = part.experiments.find(e => e.id === experimentId);
+                if (found) {
+                    experiment = found;
+                    break;
+                }
+            }
+
+            if (!experiment) return;
+
+            const isCompleted = completedExperiments.some(e => e.experiment_id === experimentId);
+            
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50 p-4';
+            modal.innerHTML = `
+                <div class="bg-gray-800 rounded-2xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-3xl font-bold text-white">${t('experiment')} ${experimentId}: ${experiment.name}</h2>
+                        <button onclick="this.closest('.fixed').remove()" class="text-gray-400 hover:text-white text-2xl">×</button>
+                    </div>
+                    
+                    <div class="bg-gray-900 rounded-xl p-6 mb-6">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-3xl">${getTypeIcon(experiment.type)}</span>
+                            <div>
+                                <div class="text-orange-400 text-sm font-bold">${getTypeLabel(experiment.type)}</div>
+                                <p class="text-gray-300 text-lg">${experiment.name}</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-800 rounded-lg p-4 mb-4">
+                            <h3 class="text-white font-bold mb-3 flex items-center gap-2">
+                                <span>📋</span> ${currentLanguage === 'ar' ? 'وصف التجربة' : currentLanguage === 'de' ? 'Experiment-Beschreibung' : currentLanguage === 'fr' ? 'Description de l\'Expérience' : 'Experiment Description'}
+                            </h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                ${getExperimentDescription(experimentId)}
+                            </p>
+                        </div>
+
+                        <div class="bg-gray-800 rounded-lg p-4 mb-4">
+                            <h3 class="text-white font-bold mb-3 flex items-center gap-2">
+                                <span>🎯</span> ${currentLanguage === 'ar' ? 'الهدف     ن التجربة' : currentLanguage === 'de' ? 'Experiment-Ziel' : currentLanguage === 'fr' ? 'Objectif de l\'Expérience' : 'Experiment Goal'}
+                            </h3>
+                            <p class="text-gray-300 leading-relaxed">
+                                ${getExperimentGoal(experimentId)}
+                            </p>
+                        </div>
+
+                        <div class="bg-gray-800 rounded-lg p-4 mb-4">
+                            <h3 class="text-white font-bold mb-3 flex items-center gap-2">
+                                <span>⏱️</span> ${currentLanguage === 'ar' ? 'الوقت المتوقع' : currentLanguage === 'de' ? 'Erwartete Zeit' : currentLanguage === 'fr' ? 'Temps Estimé' : 'Expected Time'}
+                            </h3>
+                            <p class="text-gray-300">
+                                ${getExperimentDuration(experiment.type)}
+                            </p>
+                        </div>
+
+                        <div class="bg-blue-900 bg-opacity-30 border border-blue-500 rounded-lg p-4">
+                            <p class="text-blue-200 text-sm">
+                                💡 <strong>${currentLanguage === 'ar' ? 'نصيحة:' : currentLanguage === 'de' ? 'Tipp:' : currentLanguage === 'fr' ? 'Conseil:' : 'Tip:'}</strong> ${currentLanguage === 'ar' ? 'خصص وقتاً هادئاً لإكمال هذه التجربة بتركيز كامل للحصول على أفضل النتائج.' : currentLanguage === 'de' ? 'Nehmen Sie sich ruhige Zeit, um dieses Experiment mit voller Konzentration abzuschließen, um die besten Ergebnisse zu erzielen.' : currentLanguage === 'fr' ? 'Prenez le temps calme pour terminer cette expérience avec une concentration totale pour obtenir les meilleurs résultats.' : 'Take quiet time to complete this experiment with full focus for best results.'}
+                            </p>
+                        </div>
+                    </div>
+
+                    ${!isCompleted ? `
+                        <button onclick="completeExperiment(${experimentId})" class="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white py-4 rounded-xl font-bold text-lg transition-all">
+                            ${currentLanguage === 'ar' ? 'إتمام التجربة ✓' : currentLanguage === 'de' ? 'Experiment Abschließen ✓' : currentLanguage === 'fr' ? 'Terminer l\'Expérience ✓' : 'Complete Experiment ✓'}
+                        </button>
+                    ` : `
+                        <div class="bg-green-900 bg-opacity-30 border-2 border-green-500 rounded-xl p-4 text-center">
+                            <span class="text-green-400 text-xl font-bold">✓ ${currentLanguage === 'ar' ? 'تم إكما   هذه التجربة' : currentLanguage === 'de' ? 'Dieses Experiment wurde abgeschlossen' : currentLanguage === 'fr' ? 'Cette expérience a été terminée' : 'This experiment has been completed'}</span>
+                        </div>
+                    `}
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+
+        async function completeExperiment(experimentId) {
+            if (completedExperiments.length >= 999) {
+                showNotification(currentLanguage === 'ar' ? '⚠️ تم الوصول للحد الأقصى (999 تجربة)' : currentLanguage === 'de' ? '⚠️ Maximallimit erreicht (999 Experimente)' : currentLanguage === 'fr' ? '⚠️ Limite maximale atteinte (999 expériences)' : '⚠️ Maximum limit reached (999 experiments)', 'error');
+                return;
+            }
+
+            const experimentData = {
+                id: `exp_${experimentId}_${Date.now()}`,
+                type: 'experiment_completion',
+                experiment_id: experimentId,
+                experiment_name: getExperimentName(experimentId),
+                completed: true,
+                data: JSON.stringify({ completed_at: new Date().toISOString() }),
+                created_at: new Date().toISOString()
+            };
+
+            const result = await window.dataSdk.create(experimentData);
+            
+            if (result.isOk) {
+                const modal = document.querySelector('.fixed');
+                if (modal) modal.remove();
+                showNotification(currentLanguage === 'ar' ? '🎉 رائع! تم إكمال التجربة بنجاح' : currentLanguage === 'de' ? '🎉 Großartig! Experiment erfolgreich abgeschlossen' : currentLanguage === 'fr' ? '🎉 Génial! Expérience terminée avec succès' : '🎉 Great! Experiment completed successfully');
+            } else {
+                showNotification(currentLanguage === 'ar' ? '❌ حدث خطأ، حاول مرة أخرى' : currentLanguage === 'de' ? '❌ Ein Fehler ist aufgetreten, versuchen Sie es erneut' : currentLanguage === 'fr' ? '❌ Une erreur s\'est produite, réessayez' : '❌ An error occurred, try again', 'error');
             }
         }
-        
-        getCLS(sendToAnalytics);
-        getFID(sendToAnalytics);
-        getLCP(sendToAnalytics);
-        getFCP(sendToAnalytics);
-        getTTFB(sendToAnalytics);
+
+        function getExperimentName(experimentId) {
+            for (const part of bookStructure.parts) {
+                const exp = part.experiments.find(e => e.id === experimentId);
+                if (exp) return exp.name;
+            }
+            return `${currentLanguage === 'ar' ? 'تجربة' : currentLanguage === 'de' ? 'Experiment' : currentLanguage === 'fr' ? 'Expérience' : 'Experiment'} ${experimentId}`;
+        }
+
+        function getTypeIcon(type) {
+            const icons = {
+                quiz: '📝',
+                calculator: '🧮',
+                planner: '📅',
+                journal: '📔',
+                game: '🎮',
+                tool: '🔧',
+                tracker: '📊',
+                challenge: '⚡',
+                interactive: '✨',
+                comparison: '   ️',
+                assessment: '📈',
+                dashboard: '📊',
+                reflection: '🤔'
+            };
+            return icons[type] || '✨';
+        }
+
+        function getExperimentDescription(experimentId) {
+            const descriptions = {
+                1: currentLanguage === 'ar' ? "تجربة تفاعلية عميقة لاكتشاف القيم الخمس الأساسية التي تحدد هويتك الحقيقية وتوجه قراراتك في الحياة." : currentLanguage === 'de' ? "Ein tiefgreifendes interaktives Experiment zur Entdeckung der fünf Grundwerte, die Ihre wahre Identität definieren und Ihre Lebensentscheidungen leiten." : currentLanguage === 'fr' ? "Une expérience interactive approfondie pour découvrir les cinq valeurs fondamentales qui définissent votre véritable identité et guident vos décisions de vie." : "A deep interactive experiment to discover the five core values that define your true identity and guide your life decisions."
+            };
+            return descriptions[experimentId] || (currentLanguage === 'ar' ? "تجربة تفاعلية مصممة لمساع  تك في رحلة التحول الرقمي." : currentLanguage === 'de' ? "Ein interaktives Experiment, das Ihnen auf Ihrer digitalen Transformationsreise hilft." : currentLanguage === 'fr' ? "Une expérience interactive conçue pour vous aider dans votre parcours de transformation numérique." : "An interactive experiment designed to help you on your digital transformation journey.");
+        }
+
+        function getExperimentGoal(experimentId) {
+            if (experimentId <= 8) return currentLanguage === 'ar' ? "بناء أساس قوي من القيم الشخصية التي توجه حياتك." : currentLanguage === 'de' ? "Aufbau einer starken Grundlage persönlicher Werte, die Ihr Leben leiten." : currentLanguage === 'fr' ? "Construire une base solide de valeurs personnelles qui guident votre vie." : "Build a strong foundation of personal values that guide your life.";
+            if (experimentId <= 14) return currentLanguage === 'ar' ? "تحويل أحلامك إلى أهداف واضحة وقابلة للتحقيق." : currentLanguage === 'de' ? "Verwandeln Sie Ihre Träume in klare und erreichbare Ziele." : currentLanguage === 'fr' ? "Transformez vos rêves en objectifs clairs et réalisables." : "Transform your dreams into clear and achievable goals.";
+            if (experimentId <= 23) return currentLanguage === 'ar' ? "تحقيق التوازن ا  صحي بين الحياة الرقمية والواقعية." : currentLanguage === 'de' ? "Erreichen Sie ein gesundes Gleichgewicht zwischen digitalem und realem Leben." : currentLanguage === 'fr' ? "Atteindre un équilibre sain entre vie numérique et vie réelle." : "Achieve a healthy balance between digital and real life.";
+            if (experimentId <= 35) return currentLanguage === 'ar' ? "تطبيق المبادئ عملياً في حياتك اليومية الرقمية." : currentLanguage === 'de' ? "Wenden Sie Prinzipien praktisch in Ihrem digitalen Alltag an." : currentLanguage === 'fr' ? "Appliquez les principes pratiquement dans votre vie numérique quotidienne." : "Apply principles practically in your digital daily life.";
+            return currentLanguage === 'ar' ? "تحقيق التحول الشامل والاستدامة في حياتك الرقمية." : currentLanguage === 'de' ? "Erreichen Sie umfassende Transformation und Nachhaltigkeit in Ihrem digitalen Leben." : currentLanguage === 'fr' ? "Atteignez une transformation complète et la durabilité dans votre vie numérique." : "Achieve comprehensive transformation and sustainability in your digital life.";
+        }
+
+        function getExperimentDuration(type) {
+            const durations = {
+                ar: {
+                    quiz: "10-15 دقيقة",
+                    calculator: "5-10 دقائق",
+                    planner: "20-30 دقيقة",
+                    journal: "15-20 دقيقة يومياً",
+                    game: "15-25 دقيقة",
+                    tool: "10-20 دقيقة",
+                    tracker: "5 دقائق يومياً",
+                    challenge: "1-7 أيام",
+                    interactive: "15-30 دقيقة",
+                    comparison: "10-15 دقيقة",
+                    assessment: "10-20 دقيقة",
+                    dashboard: "5-10 دقائق",
+                    reflection: "20-40 دقيقة"
+                },
+                en: {
+                    quiz: "10-15 minutes",
+                    calculator: "5-10 minutes",
+                    planner: "20-30 minutes",
+                    journal: "15-20 minutes daily",
+                    game: "15-25 minutes",
+                    tool: "10-20 minutes",
+                    tracker: "5 minutes daily",
+                    challenge: "1-7 days",
+                    interactive: "15-30 minutes",
+                    comparison: "10-15 minutes",
+                    assessment: "10-20 minutes",
+                    dashboard: "5-10 minutes",
+                    reflection: "20-40 minutes"
+                },
+                fr: {
+                    quiz: "10-15 minutes",
+                    calculator: "5-10 minutes",
+                    planner: "20-30 minutes",
+                    journal: "15-20 minutes par jour",
+                    game: "15-25 minutes",
+                    tool: "10-20 minutes",
+                    tracker: "5 minutes par jour",
+                    challenge: "1-7 jours",
+                    interactive: "15-30 minutes",
+                    comparison: "10-15 minutes",
+                    assessment: "10-20 minutes",
+                    dashboard: "5-10 minutes",
+                    reflection: "20-40 minutes"
+                },
+                de: {
+                    quiz: "10-15 Minuten",
+                    calculator: "5-10 Minuten",
+                    planner: "20-30 Minuten",
+                    journal: "15-20 Minuten täglich",
+                    game: "15-25 Minuten",
+                    tool: "10-20 Minuten",
+                    tracker: "5 Minuten täglich",
+                    challenge: "1-7 Tage",
+                    interactive: "15-30 Minuten",
+                    comparison: "10-15 Minuten",
+                    assessment: "10-20 Minuten",
+                    dashboard: "5-10 Minuten",
+                    reflection: "20-40 Minuten"
+                }
+            };
+            return durations[currentLanguage][type] || durations['en'][type] || "15-20 minutes";
+        }
+
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-24 left-1/2 transform -translate-x-1/2 ${type === 'success' ? 'bg-green-500' : 'bg-red-500'} text-white px-8 py-4 rounded-full shadow-2xl z-50 font-bold text-lg`;
+            notification.textContent = message;
+            notification.style.animation = 'fadeIn 0.3s ease-in';
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'fadeOut 0.3s ease-out';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        function render() {
+            const app = document.getElementById('app');
+            let content = '';
+
+            switch(currentPage) {
+                case 'home':
+                    content = renderHomePage();
+                    break;
+                case 'lab':
+                    content = renderLabPage();
+                    break;
+                case 'about':
+                    content = renderAboutPage();
+                    break;
+                case 'dashboard':
+                    content = renderDashboardPage();
+                    break;
+                case 'pricing':
+                    content = renderPricingPage();
+                    break;
+                case 'booking':
+                    content = renderBookingPage(window.selectedPlan);
+                    break;
+                case 'images':
+                    content = renderImagesPage();
+                    break;
+                default:
+                    content = renderHomePage();
+            }
+
+            app.innerHTML = renderNavbar() + content;
+            
+            const bookingForm = document.getElementById('booking-form');
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    await handleBookingSubmit(e);
+                });
+            }
+        }
+
+        async function handleBookingSubmit(e) {
+            const bookingData = {
+                id: `booking_${Date.now()}`,
+                type: 'booking',
+                full_name: document.getElementById('full-name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                country: document.getElementById('country').value,
+                plan: document.getElementById('plan').value,
+                address: document.getElementById('address')?.value || '',
+                currency: currentCurrency,
+                created_at: new Date().toISOString()
+            };
+
+            const submitButton = e.target.querySelector('button[type="submit"]');
+            submitButton.disabled = true;
+            submitButton.textContent = currentLanguage === 'ar' ? 'جاري المعالجة...' : currentLanguage === 'de' ? 'Wird verarbeitet...' : currentLanguage === 'fr' ? 'Traitement en cours...' : 'Processing...';
+
+            const result = await window.dataSdk.create(bookingData);
+            
+            if (result.isOk) {
+                showNotification(currentLanguage === 'ar' ? '🎉 تم إرسال طلبك بنجاح! سنتواصل معك قريباً' : currentLanguage === 'de' ? '🎉 Ihre Anfrage wurde erfolgreich gesendet! Wir werden uns bald bei Ihnen melden' : currentLanguage === 'fr' ? '🎉 Votre demande a été envoyée avec succès! Nous vous contacterons bientôt' : '🎉 Your request has been sent successfully! We will contact you soon');
+                e.target.reset();
+                setTimeout(() => {
+                    navigateTo('dashboard');
+                }, 2000);
+            } else {
+                showNotification(currentLanguage === 'ar' ? '❌ حدث خطأ، حاول مرة أخرى' : currentLanguage === 'de' ? '❌ Ein Fehler ist aufgetreten, versuchen Sie es erneut' : currentLanguage === 'fr' ? '❌ Une erreur s\'est produite, réessayez' : '❌ An error occurred, try again', 'error');
+                submitButton.disabled = false;
+                submitButton.textContent = t('completeBooking');
+            }
+        }
+
+        initApp();
     </script>
-</body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ad0e29f2294dc59',t:'MTc2NTU4MDkyMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
