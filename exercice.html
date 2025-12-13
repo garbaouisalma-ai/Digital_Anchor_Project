@@ -1,707 +1,0 @@
-<!doctype html>
-<html lang="ar" dir="rtl" class="h-full">
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>دفتر الإتقان والمسارات المتخصصة</title>
-  <script src="/_sdk/data_sdk.js"></script>
-  <script src="/_sdk/element_sdk.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
-  <style>
-        body {
-            box-sizing: border-box;
-            font-family: 'Tajawal', sans-serif;
-        }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #60a5fa 100%);
-        }
-        
-        .card-shadow {
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
-            transition: all 0.3s ease;
-        }
-        
-        .card-shadow:hover {
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15), 0 4px 6px rgba(0, 0, 0, 0.1);
-            transform: translateY(-2px);
-        }
-        
-        .checkbox-large {
-            width: 28px;
-            height: 28px;
-            cursor: pointer;
-            accent-color: #1e3a8a;
-        }
-        
-        .section-header {
-            background: linear-gradient(90deg, #1e3a8a, #3b82f6);
-            color: white;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            font-weight: bold;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .question-card {
-            background: white;
-            border-right: 4px solid #3b82f6;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .table-header {
-            background: #1e3a8a;
-            color: white;
-            font-weight: bold;
-        }
-        
-        .table-row-even {
-            background: #f8fafc;
-        }
-        
-        .table-row-odd {
-            background: white;
-        }
-    </style>
-  <style>@view-transition { navigation: auto; }</style>
- </head>
- <body class="h-full">
-  <div id="app" class="h-full w-full overflow-auto bg-gray-50"><!-- Header -->
-   <header class="gradient-bg text-white py-16 px-6 shadow-xl">
-    <div class="max-w-5xl mx-auto text-center">
-     <h1 id="mainTitle" class="text-5xl md:text-6xl font-black mb-4 drop-shadow-lg">الإتقان والمسارات المتخصصة</h1>
-     <p id="subtitle" class="text-2xl md:text-3xl mb-4 font-bold opacity-95">الجزء الثالث: المهارات، الألعاب، والمشاريع</p>
-     <p id="tagline" class="text-xl opacity-90 italic font-medium">من أنت حين تنطفئ الشاشة؟</p>
-    </div>
-   </header><!-- Table of Contents -->
-   <nav class="max-w-5xl mx-auto px-6 py-8">
-    <div class="bg-white rounded-lg shadow-lg p-8">
-     <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">📑 فهرس المحتويات</h2>
-     <div class="grid md:grid-cols-2 gap-4"><a href="#chapter10" class="block p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition"> <span class="font-bold text-blue-900">الفصل 10:</span> العقلية الرقمية </a> <a href="#chapter11" class="block p-4 bg-green-50 rounded-lg hover:bg-green-100 transition"> <span class="font-bold text-green-900">الفصل 11:</span> المهارات والألعاب </a> <a href="#chapter12" class="block p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition"> <span class="font-bold text-purple-900">الفصل 12:</span> المشاريع النهائية </a> <a href="#chapter13" class="block p-4 bg-orange-50 rounded-lg hover:bg-orange-100 transition"> <span class="font-bold text-orange-900">الفصل 13:</span> الشهادة والتخرج </a>
-     </div>
-    </div>
-   </nav><!-- Main Content -->
-   <main class="max-w-5xl mx-auto px-6 py-10"><!-- الفصل 10: العقلية الرقمية -->
-    <section id="chapter10" class="mb-16">
-     <div class="section-header">
-      🧠 الفصل 10: العقلية الرقمية (Digital Mindset)
-     </div><!-- مقدمة -->
-     <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 mb-8 card-shadow">
-      <h3 class="text-2xl font-bold text-blue-900 mb-4">💡 لماذا العقلية أولاً؟</h3>
-      <p class="text-lg text-gray-700 leading-relaxed mb-4">قبل أن تتقن أي أداة أو تقنية، يجب أن تفهم <strong>كيف يفكر المحترفون</strong>. العقلية الصحيحة هي الفرق بين:</p>
-      <ul class="space-y-2 text-gray-700 mr-6">
-       <li>✅ من يتعلم أداة ويستخدمها لسنوات</li>
-       <li>✅ من يحفظ معلومات ويطبقها فوراً</li>
-       <li>✅ من يستسلم للصعوبات ومن يتجاوزها</li>
-      </ul>
-     </div><!-- تمرين 1: التفكير كالمحترفين -->
-     <div class="question-card card-shadow mb-8">
-      <h3 class="text-xl font-bold text-gray-800 mb-4">🎯 تمرين 1: كيف يفكر المحترفون؟</h3>
-      <p class="text-gray-700 mb-4">عندما يواجه المحترف مشكلة تقنية معقدة، ما هي أول 3 خطوات يقوم بها؟</p>
-      <div class="space-y-3 mb-4">
-       <div><label class="block text-gray-700 font-semibold mb-2">الخطوة الأولى:</label> <input type="text" id="ch10Q1Step1" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none" placeholder="مثال: قراءة رسالة الخطأ بعناية...">
-       </div>
-       <div><label class="block text-gray-700 font-semibold mb-2">الخطوة الثانية:</label> <input type="text" id="ch10Q1Step2" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none" placeholder="مثال: البحث في المستندات الرسمية...">
-       </div>
-       <div><label class="block text-gray-700 font-semibold mb-2">الخطوة الثالثة:</label> <input type="text" id="ch10Q1Step3" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none" placeholder="مثال: تجربة حل بسيط أولاً...">
-       </div>
-      </div><button id="saveCh10Q1Btn" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-semibold"> حفظ الإجابة </button> <span id="saveCh10Q1Status" class="mr-3 text-green-600 font-semibold hidden">✓ تم الحفظ</span>
-     </div><!-- تمرين 2: الصبر التقني -->
-     <div class="question-card card-shadow mb-8">
-      <h3 class="text-xl font-bold text-gray-800 mb-4">⏱️ تمرين 2: الصبر التقني (Technical Patience)</h3>
-      <p class="text-gray-700 mb-4">صف موقفاً واجهت فيه مشكلة تقنية استغرقت وقتاً طويلاً لحلها. ماذا تعلمت من هذه التجربة؟</p><textarea id="ch10Q2Answer" class="w-full p-4 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none min-h-32 resize-vertical" placeholder="اكتب تجربتك هنا..."></textarea> <button id="saveCh10Q2Btn" class="mt-4 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-semibold"> حفظ التجربة </button> <span id="saveCh10Q2Status" class="mr-3 text-green-600 font-semibold hidden">✓ تم الحفظ</span>
-     </div><!-- جدول العادات الرقمية -->
-     <div class="bg-white rounded-lg p-6 shadow-lg mb-8">
-      <h3 class="text-2xl font-bold text-gray-800 mb-6">📋 جدول العادات الرقمية الإيجابية</h3>
-      <p class="text-gray-700 mb-4 italic">ضع علامة (✓) أمام العادات التي تمارسها حالياً:</p>
-      <div class="space-y-3">
-       <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition"><input type="checkbox" id="habit1" class="checkbox-large mt-1"> <label for="habit1" class="flex-1 cursor-pointer text-gray-800"> <strong>القراءة قبل المشاهدة:</strong> أقرأ المستندات الرسمية قبل مشاهدة الشروحات </label>
-       </div>
-       <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition"><input type="checkbox" id="habit2" class="checkbox-large mt-1"> <label for="habit2" class="flex-1 cursor-pointer text-gray-800"> <strong>التجربة الفورية:</strong> أطبق كل مفهوم جديد فوراً في مشروع صغير </label>
-       </div>
-       <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition"><input type="checkbox" id="habit3" class="checkbox-large mt-1"> <label for="habit3" class="flex-1 cursor-pointer text-gray-800"> <strong>التوثيق الذاتي:</strong> أكتب ملاحظاتي الخاصة بدلاً من نسخ الكود فقط </label>
-       </div>
-       <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition"><input type="checkbox" id="habit4" class="checkbox-large mt-1"> <label for="habit4" class="flex-1 cursor-pointer text-gray-800"> <strong>البحث العميق:</strong> أبحث عن "لماذا" وليس فقط "كيف" </label>
-       </div>
-       <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition"><input type="checkbox" id="habit5" class="checkbox-large mt-1"> <label for="habit5" class="flex-1 cursor-pointer text-gray-800"> <strong>المشاركة والتعليم:</strong> أشارك ما تعلمته مع الآخرين لتعزيز الفهم </label>
-       </div>
-       <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition"><input type="checkbox" id="habit6" class="checkbox-large mt-1"> <label for="habit6" class="flex-1 cursor-pointer text-gray-800"> <strong>الاستراحات المنتظمة:</strong> آخذ فترات راحة لتجنب الإرهاق الذهني </label>
-       </div>
-      </div>
-     </div><!-- نصيحة ختامية -->
-     <div class="bg-gradient-to-r from-yellow-50 to-orange-50 border-r-4 border-yellow-500 rounded-lg p-6 card-shadow">
-      <h3 class="text-2xl font-bold text-yellow-700 mb-3">💎 نصيحة ذهبية</h3>
-      <p class="text-gray-800 text-lg leading-relaxed">"المهارة التقنية تُنسى، لكن العقلية الصحيحة تبقى. استثمر في بناء عادات التفكير قبل استثمار الوقت في تعلم الأدوات."</p>
-     </div>
-    </section><!-- الفصل 11: المهارات والألعاب -->
-    <section id="chapter11" class="mb-16">
-     <div class="section-header">
-      🎮 الفصل 11: المهارات الأساسية والألعاب التفاعلية
-     </div><!-- مقدمة -->
-     <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-6 mb-8 card-shadow">
-      <h3 class="text-2xl font-bold text-green-900 mb-4">🎯 التعلم باللعب</h3>
-      <p class="text-lg text-gray-700 leading-relaxed">هذا الفصل يحول المهارات التقنية إلى تحديات ممتعة. كل مهارة مصحوبة بـ "لعبة" أو تحدٍ يمكنك إنجازه لإثبات إتقانك.</p>
-     </div><!-- جدول المهارات -->
-     <div class="bg-white rounded-lg shadow-lg overflow-x-auto mb-8">
-      <table class="w-full border-collapse">
-       <thead>
-        <tr class="table-header">
-         <th class="border border-gray-300 p-4 text-right">المهارة</th>
-         <th class="border border-gray-300 p-4 text-center">المستوى</th>
-         <th class="border border-gray-300 p-4 text-center">التحدي</th>
-         <th class="border border-gray-300 p-4 text-center">مكتمل ✓</th>
-        </tr>
-       </thead>
-       <tbody>
-        <tr class="table-row-odd">
-         <td class="border border-gray-300 p-4 font-bold">البحث المتقدم في Google</td>
-         <td class="border border-gray-300 p-3 text-center"><select id="skill1Level" class="w-full p-2 border border-gray-300 rounded focus:border-green-500 focus:outline-none"> <option value="">اختر...</option> <option value="beginner">مبتدئ</option> <option value="intermediate">متوسط</option> <option value="advanced">متقدم</option> </select></td>
-         <td class="border border-gray-300 p-3"><input type="text" id="skill1Challenge" class="w-full p-2 border border-gray-300 rounded focus:border-green-500 focus:outline-none" placeholder="مثال: البحث عن حل لمشكلة تقنية..."></td>
-         <td class="border border-gray-300 p-3 text-center"><input type="checkbox" id="skill1Done" class="checkbox-large"></td>
-        </tr>
-        <tr class="table-row-even">
-         <td class="border border-gray-300 p-4 font-bold">استخدام GitHub</td>
-         <td class="border border-gray-300 p-3 text-center"><select id="skill2Level" class="w-full p-2 border border-gray-300 rounded focus:border-green-500 focus:outline-none"> <option value="">اختر...</option> <option value="beginner">مبتدئ</option> <option value="intermediate">متوسط</option> <option value="advanced">متقدم</option> </select></td>
-         <td class="border border-gray-300 p-3"><input type="text" id="skill2Challenge" class="w-full p-2 border border-gray-300 rounded focus:border-green-500 focus:outline-none" placeholder="مثال: إنشاء أول repository..."></td>
-         <td class="border border-gray-300 p-3 text-center"><input type="checkbox" id="skill2Done" class="checkbox-large"></td>
-        </tr>
-        <tr class="table-row-odd">
-         <td class="border border-gray-300 p-4 font-bold">التصحيح (Debugging)</td>
-         <td class="border border-gray-300 p-3 text-center"><select id="skill3Level" class="w-full p-2 border border-gray-300 rounded focus:border-green-500 focus:outline-none"> <option value="">اختر...</option> <option value="beginner">مبتدئ</option> <option value="intermediate">متوسط</option> <option value="advanced">متقدم</option> </select></td>
-         <td class="border border-gray-300 p-3"><input type="text" id="skill3Challenge" class="w-full p-2 border border-gray-300 rounded focus:border-green-500 focus:outline-none" placeholder="مثال: حل 5 أخطاء برمجية مختلفة..."></td>
-         <td class="border border-gray-300 p-3 text-center"><input type="checkbox" id="skill3Done" class="checkbox-large"></td>
-        </tr>
-        <tr class="table-row-even">
-         <td class="border border-gray-300 p-4 font-bold">قراءة الكود (Code Reading)</td>
-         <td class="border border-gray-300 p-3 text-center"><select id="skill4Level" class="w-full p-2 border border-gray-300 rounded focus:border-green-500 focus:outline-none"> <option value="">اختر...</option> <option value="beginner">مبتدئ</option> <option value="intermediate">متوسط</option> <option value="advanced">متقدم</option> </select></td>
-         <td class="border border-gray-300 p-3"><input type="text" id="skill4Challenge" class="w-full p-2 border border-gray-300 rounded focus:border-green-500 focus:outline-none" placeholder="مثال: فهم مشروع مفتوح المصدر..."></td>
-         <td class="border border-gray-300 p-3 text-center"><input type="checkbox" id="skill4Done" class="checkbox-large"></td>
-        </tr>
-        <tr class="table-row-odd">
-         <td class="border border-gray-300 p-4 font-bold">اختبار الكود (Testing)</td>
-         <td class="border border-gray-300 p-3 text-center"><select id="skill5Level" class="w-full p-2 border border-gray-300 rounded focus:border-green-500 focus:outline-none"> <option value="">اختر...</option> <option value="beginner">مبتدئ</option> <option value="intermediate">متوسط</option> <option value="advanced">متقدم</option> </select></td>
-         <td class="border border-gray-300 p-3"><input type="text" id="skill5Challenge" class="w-full p-2 border border-gray-300 rounded focus:border-green-500 focus:outline-none" placeholder="مثال: كتابة اختبارات لمشروع صغير..."></td>
-         <td class="border border-gray-300 p-3 text-center"><input type="checkbox" id="skill5Done" class="checkbox-large"></td>
-        </tr>
-       </tbody>
-      </table>
-      <div class="p-6"><button id="saveSkillsBtn" class="bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 transition font-semibold w-full md:w-auto"> حفظ جدول المهارات </button> <span id="saveSkillsStatus" class="mr-3 text-green-600 font-semibold hidden">✓ تم الحفظ</span>
-      </div>
-     </div><!-- تمرين اللعبة -->
-     <div class="question-card card-shadow">
-      <h3 class="text-xl font-bold text-gray-800 mb-4">🏆 تحدي الأسبوع</h3>
-      <p class="text-gray-700 mb-4">اختر مهارة واحدة من الجدول أعلاه وأكمل تحديها هذا الأسبوع. صف ما قمت به:</p><textarea id="weeklyChallenge" class="w-full p-4 border-2 border-gray-300 rounded-lg focus:border-green-500 focus:outline-none min-h-32 resize-vertical" placeholder="مثال: اخترت مهارة GitHub وقمت بإنشاء أول repository وإضافة ملف README..."></textarea> <button id="saveWeeklyChallengeBtn" class="mt-4 bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition font-semibold"> حفظ التحدي </button> <span id="saveWeeklyChallengeStatus" class="mr-3 text-green-600 font-semibold hidden">✓ تم الحفظ</span>
-     </div>
-    </section><!-- الفصل 12: المشاريع النهائية -->
-    <section id="chapter12" class="mb-16">
-     <div class="section-header">
-      🚀 الفصل 12: المشاريع النهائية (Capstone Projects)
-     </div><!-- مقدمة -->
-     <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-6 mb-8 card-shadow">
-      <h3 class="text-2xl font-bold text-purple-900 mb-4">✨ اصنع شيئاً حقيقياً</h3>
-      <p class="text-lg text-gray-700 leading-relaxed mb-4">المشروع النهائي هو دليلك العملي على الإتقان. اختر مشروعاً يجمع كل ما تعلمته ويحل مشكلة حقيقية.</p>
-      <p class="text-gray-700 font-bold">📌 المشروع المثالي يجب أن يكون: مفيد، قابل للمشاركة، ويُظهر مهاراتك</p>
-     </div><!-- قسم تخطيط المشروع -->
-     <div class="bg-white rounded-lg p-6 shadow-lg mb-8">
-      <h3 class="text-2xl font-bold text-gray-800 mb-6">📝 مخطط المشروع النهائي</h3>
-      <div class="space-y-6">
-       <div><label class="block text-gray-700 font-bold mb-2 text-lg">1️⃣ اسم المشروع:</label> <input type="text" id="projectName" class="w-full p-4 border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none text-lg" placeholder="مثال: تطبيق إدارة المهام الذكي">
-       </div>
-       <div><label class="block text-gray-700 font-bold mb-2 text-lg">2️⃣ المشكلة التي يحلها:</label> <textarea id="projectProblem" class="w-full p-4 border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none min-h-24 resize-vertical" placeholder="صف المشكلة الحقيقية التي سيحلها مشروعك..."></textarea>
-       </div>
-       <div><label class="block text-gray-700 font-bold mb-2 text-lg">3️⃣ المهارات المستخدمة:</label> <textarea id="projectSkills" class="w-full p-4 border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none min-h-24 resize-vertical" placeholder="مثال: HTML, CSS, JavaScript, Git, Testing..."></textarea>
-       </div>
-       <div><label class="block text-gray-700 font-bold mb-2 text-lg">4️⃣ الجدول الزمني (Timeline):</label>
-        <div class="grid md:grid-cols-3 gap-4">
-         <div><label class="block text-gray-600 mb-2">تاريخ البداية:</label> <input type="date" id="projectStartDate" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none">
-         </div>
-         <div><label class="block text-gray-600 mb-2">تاريخ الانتهاء المتوقع:</label> <input type="date" id="projectEndDate" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none">
-         </div>
-         <div><label class="block text-gray-600 mb-2">الحالة:</label> <select id="projectStatus" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none"> <option value="planning">تخطيط</option> <option value="inProgress">قيد التنفيذ</option> <option value="testing">اختبار</option> <option value="completed">مكتمل</option> </select>
-         </div>
-        </div>
-       </div>
-       <div><label class="block text-gray-700 font-bold mb-2 text-lg">5️⃣ الخطوات الرئيسية:</label>
-        <div class="space-y-3"><input type="text" id="projectStep1" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none" placeholder="الخطوة 1: مثال - تصميم الواجهة الأساسية"> <input type="text" id="projectStep2" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none" placeholder="الخطوة 2: مثال - بناء الوظائف الأساسية"> <input type="text" id="projectStep3" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none" placeholder="الخطوة 3: مثال - اختبار وتحسين الأداء"> <input type="text" id="projectStep4" class="w-full p-3 border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none" placeholder="الخطوة 4: مثال - النشر والتوثيق">
-        </div>
-       </div>
-       <div><label class="block text-gray-700 font-bold mb-2 text-lg">6️⃣ رابط المشروع (GitHub/Portfolio):</label> <input type="url" id="projectUrl" class="w-full p-4 border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none" placeholder="https://github.com/username/project">
-       </div>
-      </div><button id="saveProjectBtn" class="mt-6 bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-700 transition font-semibold w-full md:w-auto text-lg"> 💾 حفظ مخطط المشروع </button> <span id="saveProjectStatus" class="mr-3 text-green-600 font-semibold hidden">✓ تم الحفظ</span>
-     </div><!-- نصائح للمشاريع -->
-     <div class="bg-gradient-to-r from-blue-50 to-cyan-50 border-r-4 border-blue-500 rounded-lg p-6 card-shadow">
-      <h3 class="text-2xl font-bold text-blue-700 mb-4">💡 نصائح لمشروع ناجح</h3>
-      <ul class="space-y-3 text-gray-700">
-       <li class="flex items-start gap-3"><span class="text-2xl">✅</span> <span><strong>ابدأ صغيراً:</strong> مشروع صغير مكتمل أفضل من مشروع ضخم لم ينته</span></li>
-       <li class="flex items-start gap-3"><span class="text-2xl">✅</span> <span><strong>وثّق كل شيء:</strong> اكتب ملف README واضح يشرح مشروعك</span></li>
-       <li class="flex items-start gap-3"><span class="text-2xl">✅</span> <span><strong>اختبر باستمرار:</strong> لا تنتظر حتى النهاية لتختبر مشروعك</span></li>
-       <li class="flex items-start gap-3"><span class="text-2xl">✅</span> <span><strong>اطلب التغذية الراجعة:</strong> شارك مشروعك واستمع للآراء</span></li>
-      </ul>
-     </div>
-    </section><!-- الفصل 13: الشهادة والتخرج -->
-    <section id="chapter13" class="mb-16">
-     <div class="section-header">
-      🎓 الفصل 13: شهادة الإتقان والتخرج
-     </div><!-- مقدمة -->
-     <div class="bg-gradient-to-r from-orange-50 to-red-50 rounded-lg p-6 mb-8 card-shadow">
-      <h3 class="text-2xl font-bold text-orange-900 mb-4">🏅 أنت الآن جاهز!</h3>
-      <p class="text-lg text-gray-700 leading-relaxed">إذا أكملت جميع الفصول السابقة، وطبقت المنهجية، وأنجزت مشروعك النهائي، فأنت مستحق لشهادة الإتقان.</p>
-     </div><!-- قائمة التحقق النهائية -->
-     <div class="bg-white rounded-lg p-6 shadow-lg mb-8">
-      <h3 class="text-2xl font-bold text-gray-800 mb-6">✔️ قائمة التحقق النهائية</h3>
-      <p class="text-gray-700 mb-4 italic">تأكد من إكمال جميع المتطلبات التالية:</p>
-      <div class="space-y-3">
-       <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition"><input type="checkbox" id="final1" class="checkbox-large mt-1"> <label for="final1" class="flex-1 cursor-pointer text-gray-800"> أكملت جميع تمارين العقلية الرقمية (الفصل 10) </label>
-       </div>
-       <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition"><input type="checkbox" id="final2" class="checkbox-large mt-1"> <label for="final2" class="flex-1 cursor-pointer text-gray-800"> أتقنت 3 مهارات على الأقل من جدول المهارات (الفصل 11) </label>
-       </div>
-       <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition"><input type="checkbox" id="final3" class="checkbox-large mt-1"> <label for="final3" class="flex-1 cursor-pointer text-gray-800"> أكملت وثّقت مشروعي النهائي (الفصل 12) </label>
-       </div>
-       <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition"><input type="checkbox" id="final4" class="checkbox-large mt-1"> <label for="final4" class="flex-1 cursor-pointer text-gray-800"> نشرت مشروعي على GitHub أو منصة مشابهة </label>
-       </div>
-       <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition"><input type="checkbox" id="final5" class="checkbox-large mt-1"> <label for="final5" class="flex-1 cursor-pointer text-gray-800"> شاركت تجربتي ومشروعي مع الآخرين </label>
-       </div>
-      </div>
-     </div><!-- شهادة الإتقان -->
-     <div class="bg-gradient-to-br from-yellow-100 via-white to-yellow-100 border-4 border-yellow-600 rounded-2xl p-8 shadow-2xl">
-      <div class="text-center mb-8">
-       <div class="text-6xl mb-4">
-        🏆
-       </div>
-       <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4">شهادة الإتقان</h2>
-       <p class="text-2xl text-gray-700 italic">في الرحلة الرقمية المتوازنة</p>
-      </div>
-      <div class="bg-white rounded-lg p-6 mb-6 shadow-md">
-       <p class="text-xl text-gray-800 mb-6 leading-relaxed text-center">تُمنح هذه الشهادة لـ <strong>المتعلم الملتزم</strong> الذي أكمل رحلة الإتقان، وطبق المنهجية، وأثبت قدرته على تحويل المعرفة إلى مشاريع حقيقية.</p>
-       <div class="space-y-6">
-        <div><label class="block text-xl font-bold text-gray-800 mb-3">الاسم الكامل:</label> <input type="text" id="certName" class="w-full p-4 text-lg border-2 border-gray-800 rounded-lg focus:border-yellow-600 focus:outline-none" placeholder="اكتب اسمك الكامل...">
-        </div>
-        <div><label class="block text-xl font-bold text-gray-800 mb-3">التخصص أو المسار:</label> <input type="text" id="certSpecialization" class="w-full p-4 text-lg border-2 border-gray-800 rounded-lg focus:border-yellow-600 focus:outline-none" placeholder="مثال: تطوير الويب، تصميم الجرافيك، علوم البيانات...">
-        </div>
-        <div><label class="block text-xl font-bold text-gray-800 mb-3">عنوان المشروع النهائي:</label> <input type="text" id="certProject" class="w-full p-4 text-lg border-2 border-gray-800 rounded-lg focus:border-yellow-600 focus:outline-none" placeholder="اسم مشروعك النهائي...">
-        </div>
-        <div><label class="block text-xl font-bold text-gray-800 mb-3">تاريخ الإنجاز:</label> <input type="date" id="certDate" class="w-full p-4 text-lg border-2 border-gray-800 rounded-lg focus:border-yellow-600 focus:outline-none">
-        </div>
-        <div><label class="block text-xl font-bold text-gray-800 mb-3">التوقيع الرقمي:</label> <input type="text" id="certSignature" class="w-full p-4 text-lg border-2 border-gray-800 rounded-lg focus:border-yellow-600 focus:outline-none font-bold italic" placeholder="توقيعك..." style="font-family: 'Brush Script MT', cursive, 'Tajawal', sans-serif;">
-        </div>
-       </div><button id="saveCertBtn" class="mt-6 w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-xl font-bold px-8 py-4 rounded-lg hover:from-yellow-600 hover:to-orange-600 transition shadow-lg transform hover:scale-105"> 🎉 إصدار الشهادة </button> <span id="saveCertStatus" class="block text-center mt-4 text-green-600 font-bold text-lg hidden">✓ تم إصدار الشهادة بنجاح!</span>
-      </div>
-      <div class="text-center p-6 bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg">
-       <p class="text-2xl text-gray-800 italic font-bold">"النهاية هي البداية الحقيقية"</p>
-       <p class="text-lg text-gray-700 mt-2">الآن، ابدأ رحلتك الخاصة وكن مصدر إلهام للآخرين 🚀</p>
-      </div>
-     </div>
-    </section><!-- Footer -->
-    <footer class="text-center py-8 border-t-2 border-gray-300 mt-12">
-     <p class="text-gray-600 text-lg mb-2">🌟 مبارك على إتمام الرحلة!</p>
-     <p class="text-gray-500">جميع بياناتك محفوظة تلقائياً في Canva Sheet</p>
-     <p class="text-gray-600 font-bold mt-4 text-xl">من أنت حين تنطفئ الشاشة؟ 💡</p>
-    </footer>
-   </main>
-  </div>
-  <script>
-        const defaultConfig = {
-            main_title: 'الإتقان والمسارات المتخصصة',
-            subtitle: 'الجزء الثالث: المهارات، الألعاب، والمشاريع',
-            tagline: 'من أنت حين تنطفئ الشاشة؟',
-            background_color: '#f9fafb',
-            surface_color: '#ffffff',
-            text_color: '#1f2937',
-            primary_color: '#1e3a8a',
-            secondary_color: '#3b82f6'
-        };
-
-        let currentData = [];
-
-        const dataHandler = {
-            onDataChanged(data) {
-                currentData = data;
-                loadAllSavedData();
-            }
-        };
-
-        async function initApp() {
-            if (window.dataSdk) {
-                const initResult = await window.dataSdk.init(dataHandler);
-                if (!initResult.isOk) {
-                    console.error('فشل تهيئة Data SDK');
-                }
-            }
-
-            if (window.elementSdk) {
-                await window.elementSdk.init({
-                    defaultConfig,
-                    onConfigChange: async (config) => {
-                        const mainTitle = document.getElementById('mainTitle');
-                        const subtitle = document.getElementById('subtitle');
-                        const tagline = document.getElementById('tagline');
-                        const app = document.getElementById('app');
-                        
-                        if (mainTitle) mainTitle.textContent = config.main_title || defaultConfig.main_title;
-                        if (subtitle) subtitle.textContent = config.subtitle || defaultConfig.subtitle;
-                        if (tagline) tagline.textContent = config.tagline || defaultConfig.tagline;
-                        if (app) app.style.backgroundColor = config.background_color || defaultConfig.background_color;
-                    },
-                    mapToCapabilities: (config) => ({
-                        recolorables: [
-                            {
-                                get: () => config.background_color || defaultConfig.background_color,
-                                set: (value) => {
-                                    if (window.elementSdk) {
-                                        window.elementSdk.setConfig({ background_color: value });
-                                    }
-                                }
-                            },
-                            {
-                                get: () => config.surface_color || defaultConfig.surface_color,
-                                set: (value) => {
-                                    if (window.elementSdk) {
-                                        window.elementSdk.setConfig({ surface_color: value });
-                                    }
-                                }
-                            },
-                            {
-                                get: () => config.text_color || defaultConfig.text_color,
-                                set: (value) => {
-                                    if (window.elementSdk) {
-                                        window.elementSdk.setConfig({ text_color: value });
-                                    }
-                                }
-                            },
-                            {
-                                get: () => config.primary_color || defaultConfig.primary_color,
-                                set: (value) => {
-                                    if (window.elementSdk) {
-                                        window.elementSdk.setConfig({ primary_color: value });
-                                    }
-                                }
-                            },
-                            {
-                                get: () => config.secondary_color || defaultConfig.secondary_color,
-                                set: (value) => {
-                                    if (window.elementSdk) {
-                                        window.elementSdk.setConfig({ secondary_color: value });
-                                    }
-                                }
-                            }
-                        ],
-                        borderables: [],
-                        fontEditable: undefined,
-                        fontSizeable: undefined
-                    }),
-                    mapToEditPanelValues: (config) => new Map([
-                        ['main_title', config.main_title || defaultConfig.main_title],
-                        ['subtitle', config.subtitle || defaultConfig.subtitle],
-                        ['tagline', config.tagline || defaultConfig.tagline]
-                    ])
-                });
-            }
-
-            setupEventListeners();
-        }
-
-        function setupEventListeners() {
-            // الفصل 10 - حفظ تمرين 1
-            const saveCh10Q1Btn = document.getElementById('saveCh10Q1Btn');
-            if (saveCh10Q1Btn) {
-                saveCh10Q1Btn.addEventListener('click', async () => {
-                    const step1 = document.getElementById('ch10Q1Step1').value;
-                    const step2 = document.getElementById('ch10Q1Step2').value;
-                    const step3 = document.getElementById('ch10Q1Step3').value;
-                    const status = document.getElementById('saveCh10Q1Status');
-
-                    if (!step1 && !step2 && !step3) return;
-
-                    saveCh10Q1Btn.disabled = true;
-                    saveCh10Q1Btn.textContent = 'جاري الحفظ...';
-
-                    const steps = [
-                        { id: 'ch10Q1Step1', value: step1 },
-                        { id: 'ch10Q1Step2', value: step2 },
-                        { id: 'ch10Q1Step3', value: step3 }
-                    ];
-
-                    for (const step of steps) {
-                        if (!step.value) continue;
-                        await saveOrUpdate('chapter10', step.id, step.value, false);
-                    }
-
-                    showMessage(status, '✓ تم الحفظ', 'text-green-600');
-                    saveCh10Q1Btn.disabled = false;
-                    saveCh10Q1Btn.textContent = 'حفظ الإجابة';
-                });
-            }
-
-            // الفصل 10 - حفظ تمرين 2
-            const saveCh10Q2Btn = document.getElementById('saveCh10Q2Btn');
-            if (saveCh10Q2Btn) {
-                saveCh10Q2Btn.addEventListener('click', async () => {
-                    const answer = document.getElementById('ch10Q2Answer').value;
-                    const status = document.getElementById('saveCh10Q2Status');
-
-                    if (!answer) return;
-
-                    saveCh10Q2Btn.disabled = true;
-                    saveCh10Q2Btn.textContent = 'جاري الحفظ...';
-
-                    await saveOrUpdate('chapter10', 'ch10Q2Answer', answer, false);
-
-                    showMessage(status, '✓ تم الحفظ', 'text-green-600');
-                    saveCh10Q2Btn.disabled = false;
-                    saveCh10Q2Btn.textContent = 'حفظ التجربة';
-                });
-            }
-
-            // حفظ checkboxes العادات
-            ['habit1', 'habit2', 'habit3', 'habit4', 'habit5', 'habit6'].forEach(habitId => {
-                const checkbox = document.getElementById(habitId);
-                if (checkbox) {
-                    checkbox.addEventListener('change', async (e) => {
-                        await saveOrUpdate('chapter10', habitId, '', e.target.checked);
-                    });
-                }
-            });
-
-            // الفصل 11 - حفظ جدول المهارات
-            const saveSkillsBtn = document.getElementById('saveSkillsBtn');
-            if (saveSkillsBtn) {
-                saveSkillsBtn.addEventListener('click', async () => {
-                    const status = document.getElementById('saveSkillsStatus');
-                    saveSkillsBtn.disabled = true;
-                    saveSkillsBtn.textContent = 'جاري الحفظ...';
-
-                    for (let i = 1; i <= 5; i++) {
-                        const level = document.getElementById(`skill${i}Level`).value;
-                        const challenge = document.getElementById(`skill${i}Challenge`).value;
-                        const done = document.getElementById(`skill${i}Done`).checked;
-
-                        if (level) await saveOrUpdate('chapter11', `skill${i}Level`, level, false);
-                        if (challenge) await saveOrUpdate('chapter11', `skill${i}Challenge`, challenge, false);
-                        await saveOrUpdate('chapter11', `skill${i}Done`, '', done);
-                    }
-
-                    showMessage(status, '✓ تم الحفظ', 'text-green-600');
-                    saveSkillsBtn.disabled = false;
-                    saveSkillsBtn.textContent = 'حفظ جدول المهارات';
-                });
-            }
-
-            // حفظ تحدي الأسبوع
-            const saveWeeklyChallengeBtn = document.getElementById('saveWeeklyChallengeBtn');
-            if (saveWeeklyChallengeBtn) {
-                saveWeeklyChallengeBtn.addEventListener('click', async () => {
-                    const answer = document.getElementById('weeklyChallenge').value;
-                    const status = document.getElementById('saveWeeklyChallengeStatus');
-
-                    if (!answer) return;
-
-                    saveWeeklyChallengeBtn.disabled = true;
-                    saveWeeklyChallengeBtn.textContent = 'جاري الحفظ...';
-
-                    await saveOrUpdate('chapter11', 'weeklyChallenge', answer, false);
-
-                    showMessage(status, '✓ تم الحفظ', 'text-green-600');
-                    saveWeeklyChallengeBtn.disabled = false;
-                    saveWeeklyChallengeBtn.textContent = 'حفظ التحدي';
-                });
-            }
-
-            // الفصل 12 - حفظ المشروع
-            const saveProjectBtn = document.getElementById('saveProjectBtn');
-            if (saveProjectBtn) {
-                saveProjectBtn.addEventListener('click', async () => {
-                    const status = document.getElementById('saveProjectStatus');
-                    saveProjectBtn.disabled = true;
-                    saveProjectBtn.textContent = 'جاري الحفظ...';
-
-                    const projectFields = [
-                        'projectName', 'projectProblem', 'projectSkills',
-                        'projectStartDate', 'projectEndDate', 'projectStatus',
-                        'projectStep1', 'projectStep2', 'projectStep3', 'projectStep4',
-                        'projectUrl'
-                    ];
-
-                    for (const fieldId of projectFields) {
-                        const value = document.getElementById(fieldId).value;
-                        if (value) await saveOrUpdate('chapter12', fieldId, value, false);
-                    }
-
-                    showMessage(status, '✓ تم الحفظ', 'text-green-600');
-                    saveProjectBtn.disabled = false;
-                    saveProjectBtn.textContent = '💾 حفظ مخطط المشروع';
-                });
-            }
-
-            // الفصل 13 - حفظ checkboxes النهائية
-            ['final1', 'final2', 'final3', 'final4', 'final5'].forEach(finalId => {
-                const checkbox = document.getElementById(finalId);
-                if (checkbox) {
-                    checkbox.addEventListener('change', async (e) => {
-                        await saveOrUpdate('chapter13', finalId, '', e.target.checked);
-                    });
-                }
-            });
-
-            // حفظ الشهادة
-            const saveCertBtn = document.getElementById('saveCertBtn');
-            if (saveCertBtn) {
-                saveCertBtn.addEventListener('click', async () => {
-                    const name = document.getElementById('certName').value;
-                    const spec = document.getElementById('certSpecialization').value;
-                    const project = document.getElementById('certProject').value;
-                    const date = document.getElementById('certDate').value;
-                    const signature = document.getElementById('certSignature').value;
-                    const status = document.getElementById('saveCertStatus');
-
-                    if (!name || !spec || !project || !date || !signature) {
-                        showTempMessage('يرجى ملء جميع الحقول', 'bg-orange-500');
-                        return;
-                    }
-
-                    saveCertBtn.disabled = true;
-                    saveCertBtn.textContent = 'جاري الإصدار...';
-
-                    await saveOrUpdate('chapter13', 'certName', name, false);
-                    await saveOrUpdate('chapter13', 'certSpecialization', spec, false);
-                    await saveOrUpdate('chapter13', 'certProject', project, false);
-                    await saveOrUpdate('chapter13', 'certDate', date, false);
-                    await saveOrUpdate('chapter13', 'certSignature', signature, false);
-
-                    showMessage(status, '✓ تم إصدار الشهادة بنجاح!', 'text-green-600');
-                    saveCertBtn.disabled = false;
-                    saveCertBtn.textContent = '🎉 إصدار الشهادة';
-
-                    // رسالة احتفالية
-                    const celebDiv = document.createElement('div');
-                    celebDiv.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-12 py-8 rounded-2xl shadow-2xl z-50 text-center';
-                    celebDiv.innerHTML = '<div class="text-6xl mb-4">🎉🏆🎉</div><div class="text-3xl font-bold mb-2">مبارك!</div><div class="text-xl">لقد أكملت رحلة الإتقان بنجاح</div>';
-                    document.body.appendChild(celebDiv);
-                    setTimeout(() => celebDiv.remove(), 5000);
-                });
-            }
-        }
-
-        async function saveOrUpdate(section, questionId, answerText, isChecked) {
-            if (currentData.length >= 999) {
-                showTempMessage('تم الوصول للحد الأقصى من العناصر (999)', 'bg-red-500');
-                return;
-            }
-
-            const existing = currentData.find(item => item.question_id === questionId);
-
-            if (existing) {
-                existing.answer_text = answerText;
-                existing.is_checked = isChecked;
-                await window.dataSdk.update(existing);
-            } else {
-                await window.dataSdk.create({
-                    id: `${questionId}_${Date.now()}`,
-                    section: section,
-                    question_id: questionId,
-                    answer_text: answerText,
-                    is_checked: isChecked,
-                    created_at: new Date().toISOString()
-                });
-            }
-        }
-
-        function loadAllSavedData() {
-            // تحميل الفصل 10
-            ['ch10Q1Step1', 'ch10Q1Step2', 'ch10Q1Step3', 'ch10Q2Answer'].forEach(id => {
-                const saved = currentData.find(item => item.question_id === id);
-                if (saved) {
-                    const element = document.getElementById(id);
-                    if (element) element.value = saved.answer_text;
-                }
-            });
-
-            ['habit1', 'habit2', 'habit3', 'habit4', 'habit5', 'habit6'].forEach(id => {
-                const saved = currentData.find(item => item.question_id === id);
-                if (saved) {
-                    const element = document.getElementById(id);
-                    if (element) element.checked = saved.is_checked;
-                }
-            });
-
-            // تحميل الفصل 11
-            for (let i = 1; i <= 5; i++) {
-                ['Level', 'Challenge', 'Done'].forEach(suffix => {
-                    const id = `skill${i}${suffix}`;
-                    const saved = currentData.find(item => item.question_id === id);
-                    if (saved) {
-                        const element = document.getElementById(id);
-                        if (element) {
-                            if (suffix === 'Done') {
-                                element.checked = saved.is_checked;
-                            } else {
-                                element.value = saved.answer_text;
-                            }
-                        }
-                    }
-                });
-            }
-
-            const weeklyChallengeSaved = currentData.find(item => item.question_id === 'weeklyChallenge');
-            if (weeklyChallengeSaved) {
-                const element = document.getElementById('weeklyChallenge');
-                if (element) element.value = weeklyChallengeSaved.answer_text;
-            }
-
-            // تحميل الفصل 12
-            const projectFields = [
-                'projectName', 'projectProblem', 'projectSkills',
-                'projectStartDate', 'projectEndDate', 'projectStatus',
-                'projectStep1', 'projectStep2', 'projectStep3', 'projectStep4',
-                'projectUrl'
-            ];
-
-            projectFields.forEach(id => {
-                const saved = currentData.find(item => item.question_id === id);
-                if (saved) {
-                    const element = document.getElementById(id);
-                    if (element) element.value = saved.answer_text;
-                }
-            });
-
-            // تحميل الفصل 13
-            ['final1', 'final2', 'final3', 'final4', 'final5'].forEach(id => {
-                const saved = currentData.find(item => item.question_id === id);
-                if (saved) {
-                    const element = document.getElementById(id);
-                    if (element) element.checked = saved.is_checked;
-                }
-            });
-
-            ['certName', 'certSpecialization', 'certProject', 'certDate', 'certSignature'].forEach(id => {
-                const saved = currentData.find(item => item.question_id === id);
-                if (saved) {
-                    const element = document.getElementById(id);
-                    if (element) element.value = saved.answer_text;
-                }
-            });
-        }
-
-        function showMessage(element, message, colorClass) {
-            if (!element) return;
-            element.textContent = message;
-            element.className = `mr-3 font-semibold ${colorClass}`;
-            element.classList.remove('hidden');
-            setTimeout(() => element.classList.add('hidden'), 3000);
-        }
-
-        function showTempMessage(message, bgColor) {
-            const div = document.createElement('div');
-            div.className = `fixed top-4 left-1/2 transform -translate-x-1/2 ${bgColor} text-white px-6 py-3 rounded-lg shadow-lg z-50`;
-            div.textContent = message;
-            document.body.appendChild(div);
-            setTimeout(() => div.remove(), 3000);
-        }
-
-        initApp();
-    </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ad88a4a25209250',t:'MTc2NTY2MTE5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
-</html>
