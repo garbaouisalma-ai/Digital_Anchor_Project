@@ -12,37 +12,14 @@
         body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; color: #1e293b; }
         h1, h2, h3 { font-family: 'Amiri', serif; }
         .btn-primary { background-color: #1a365d; color: white; transition: 0.3s; }
+        .timeline-card { transition: transform 0.3s, box-shadow 0.3s; }
+        .timeline-card:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
 
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="index.html" class="flex items-center space-x-3 space-x-reverse">
-                <img src="logo.png" width="45" height="45" class="rounded-lg shadow-sm" alt="شعار المرساة الرقمية">
-                <h1 class="text-xl font-bold text-gray-900" data-key="site_name">المرساة الرقمية</h1>
-            </a>
-            
-            <div class="hidden md:flex items-center gap-5">
-                <a href="index.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key="nav_home">الرئيسية</a>
-                <a href="dashboard.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key="nav_dashboard">لوحة القيادة</a>
-                <a href="blog.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key="nav_blog">المدونة</a>
+    <div id="navbar-placeholder"></div>
 
-                <select id="lang-select" onchange="setLanguage(this.value)" class="text-xs border border-gray-300 rounded p-1 bg-white focus:outline-none focus:border-blue-500" aria-label="اختر اللغة">
-                    <option value="ar">عربي</option><option value="en">English</option><option value="fr">Français</option><option value="de">Deutsch</option>
-                </select>
-                <select id="curr-select" onchange="convertCurrency(this.value)" class="text-xs border border-gray-300 rounded p-1 bg-white font-bold text-blue-900 focus:outline-none focus:border-blue-500" aria-label="اختر العملة">
-                    <option value="SAR">SAR (ر.س)</option><option value="USD">USD ($)</option><option value="EUR">EUR (€)</option>
-                </select>
-
-                <a href="#pricing" class="btn-primary px-6 py-2 rounded-lg text-sm font-bold shadow-md flex items-center gap-2 no-underline text-white" data-key="nav_join">
-                    <i class="fas fa-shopping-cart"></i> اشترك الآن
-                </a>
-            </div>
-            
-            <button id="mobile-menu-btn" class="md:hidden text-gray-800 p-2" aria-label="قائمة التنقل"><i class="fas fa-bars text-xl"></i></button>
-        </div>
-    </nav>
     <header class="bg-blue-900 text-white py-20 text-center relative overflow-hidden">
         <div class="container mx-auto px-4 relative z-10">
             <span class="bg-blue-800 text-blue-200 px-3 py-1 rounded-full text-xs font-bold mb-4 inline-block" data-key="track_badge">المسار الأول: الأساس</span>
@@ -66,20 +43,47 @@
 
         <section class="mb-16">
             <h2 class="text-3xl font-bold text-center mb-10 text-slate-800" data-key="roadmap_header">خريطة الرحلة التفصيلية</h2>
-            <div class="space-y-8 relative">
-                <div class="absolute right-8 top-0 bottom-0 w-1 bg-slate-200 md:right-1/2 md:-mr-0.5 hidden md:block"></div>
+            <div class="space-y-12 relative">
+                <div class="absolute right-8 top-0 bottom-0 w-1 bg-blue-200 md:right-1/2 md:-mr-0.5 hidden md:block"></div>
 
                 <div class="flex flex-col md:flex-row gap-8 items-center relative">
-                    <div class="md:w-1/2 bg-white p-6 rounded-2xl shadow-md border-r-4 border-blue-500 relative z-10 md:text-left md:order-1">
+                    <div class="md:w-1/2 bg-white p-6 rounded-2xl shadow-lg border-r-4 border-blue-500 relative z-10 md:text-left timeline-card md:order-1">
                         <h3 class="text-xl font-bold text-blue-900 mb-2" data-key="phase1_title">المرحلة 1: الصحوة (أسابيع 1-4)</h3>
                         <p class="text-sm text-gray-600 mb-4" data-key="phase1_desc">تشخيص الواقع، اكتشاف "المرساة" (القيم)، وبناء الحصانة الداخلية.</p>
-                        <a href="week1.html" class="inline-block bg-blue-50 text-blue-700 px-4 py-2 rounded-lg font-bold text-sm hover:bg-blue-100" data-key="phase1_btn">ابدأ الأسبوع الأول &larr;</a>
+                        <a href="#" class="inline-block bg-blue-50 text-blue-700 px-4 py-2 rounded-lg font-bold text-sm hover:bg-blue-100 no-underline" data-key="phase1_btn">ابدأ الأسبوع الأول &larr;</a>
                     </div>
-                    <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold z-10 border-4 border-white shadow">1</div>
-                    <div class="md:w-1/2 md:order-3"></div>
+                    <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold z-10 border-4 border-white shadow-xl flex-shrink-0">1</div>
+                    <div class="md:w-1/2 md:order-3 hidden md:block"></div>
                 </div>
                 
-                <div class="text-center text-slate-400 font-bold">... (الأسابيع المتبقية) ...</div>
+                <div class="flex flex-col md:flex-row gap-8 items-center relative md:flex-row-reverse">
+                    <div class="md:w-1/2 md:order-1 hidden md:block"></div>
+                    <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold z-10 border-4 border-white shadow-xl flex-shrink-0">2</div>
+                    <div class="md:w-1/2 bg-white p-6 rounded-2xl shadow-lg border-l-4 border-blue-500 relative z-10 md:text-right timeline-card md:order-3">
+                        <h3 class="text-xl font-bold text-blue-900 mb-2" data-key="phase2_title">المرحلة 2: بناء النظام (أسابيع 5-8)</h3>
+                        <p class="text-sm text-gray-600 mb-4" data-key="phase2_desc">إنشاء نظام إنتاجية رقمي وشخصي مستدام. إدارة الانتباه، واستغلال الوقت بعمق.</p>
+                        <a href="#" class="inline-block bg-blue-50 text-blue-700 px-4 py-2 rounded-lg font-bold text-sm hover:bg-blue-100 no-underline" data-key="phase2_btn">اكتشف الأسبوع الخامس &larr;</a>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-8 items-center relative">
+                    <div class="md:w-1/2 bg-white p-6 rounded-2xl shadow-lg border-r-4 border-blue-500 relative z-10 md:text-left timeline-card md:order-1">
+                        <h3 class="text-xl font-bold text-blue-900 mb-2" data-key="phase3_title">المرحلة 3: القيادة (أسابيع 9-12)</h3>
+                        <p class="text-sm text-gray-600 mb-4" data-key="phase3_desc">تحويل الإنجاز الشخصي إلى تأثير مجتمعي. بناء الإرث الرقمي الواعي.</p>
+                        <a href="#" class="inline-block bg-blue-50 text-blue-700 px-4 py-2 rounded-lg font-bold text-sm hover:bg-blue-100 no-underline" data-key="phase3_btn">انطلق نحو الأسبوع التاسع &larr;</a>
+                    </div>
+                    <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold z-10 border-4 border-white shadow-xl flex-shrink-0">3</div>
+                    <div class="md:w-1/2 md:order-3 hidden md:block"></div>
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-8 items-center relative md:flex-row-reverse">
+                    <div class="md:w-1/2 md:order-1 hidden md:block"></div>
+                    <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white font-bold z-10 border-4 border-white shadow-xl flex-shrink-0"><i class="fas fa-check"></i></div>
+                    <div class="md:w-1/2 bg-green-50 p-6 rounded-2xl shadow-lg border-l-4 border-green-500 relative z-10 md:text-right timeline-card md:order-3">
+                        <h3 class="text-xl font-bold text-green-700 mb-2" data-key="phase_end_title">إتقان السيادة</h3>
+                        <p class="text-sm text-gray-600" data-key="phase_end_desc">الوصول إلى مستوى السيادة الرقمية والاحتفال بالرحلة!</p>
+                    </div>
+                </div>
 
             </div>
         </section>
@@ -91,26 +95,20 @@
                     <h3 class="text-xl font-bold text-slate-700 mb-2" data-key="plan1_title">النسخة الذاتية</h3>
                     <div class="text-4xl font-bold text-slate-900 my-4"><span class="price-display" data-base-price="97">97</span><span class="currency-symbol">SAR</span></div>
                     <p class="text-sm text-gray-600 mb-6" data-key="plan1_desc">وصول كامل للمواد، دعم المجتمع العام.</p>
-                    <a href="buy.html" class="block w-full border border-blue-600 text-blue-600 py-3 rounded-lg font-bold hover:bg-blue-50" data-key="plan_btn">اختر الخطة</a>
+                    <a href="buy.html?plan=basic" class="block w-full border border-blue-600 text-blue-600 py-3 rounded-lg font-bold hover:bg-blue-50 no-underline" data-key="plan_btn">اختر الخطة</a>
                 </div>
                 <div class="bg-slate-900 text-white rounded-2xl p-8 text-center shadow-2xl relative">
                     <h3 class="text-xl font-bold mb-2" data-key="plan2_title">النسخة الموجهة</h3>
                     <div class="text-4xl font-bold text-yellow-400 my-4"><span class="price-display" data-base-price="297">297</span><span class="currency-symbol">SAR</span></div>
                     <p class="text-sm text-gray-300 mb-6" data-key="plan2_desc">بالإضافة إلى 4 جلسات توجيه فردية وتصحيح الواجبات.</p>
-                    <a href="buy.html" class="block w-full bg-yellow-500 text-slate-900 py-3 rounded-lg font-bold hover:bg-yellow-400" data-key="plan_btn">ابدأ الآن</a>
+                    <a href="buy.html?plan=premium" class="block w-full bg-yellow-500 text-slate-900 py-3 rounded-lg font-bold hover:bg-yellow-400 no-underline" data-key="plan_btn_premium">ابدأ الآن</a>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-gray-900 text-white py-8 text-center mt-auto border-t border-gray-800">
-        <div class="container mx-auto px-4">
-            <p class="text-gray-400 text-sm" data-key="footer_copy">© 2025 Digital Anchor Academy. جميع الحقوق محفوظة.</p>
-        </div>
-    </footer>
+    <div id="footer-placeholder"></div>
 
-    <script>
-        // (لصق الكود الموحد من الخطوة 1 هنا)
-    </script>
+    <script src="js/global.js"></script>
 </body>
 </html>

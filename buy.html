@@ -3,105 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-key="buy_header">اختر حزمتك للانطلاق | المرساة الرقمية</title>
+    <title data-key="nav_join">احجز الكتاب والرحلة | المرساة الرقمية</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
     <style>
-        body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; }
-        .btn-primary { background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%); color: white; transition: 0.3s; }
-        .premium-badge { position: absolute; top: 0; left: 0; padding: 4px 15px; background-color: #f59e0b; color: #1e293b; font-weight: bold; font-size: 0.75rem; border-bottom-right-radius: 10px; }
+        body { font-family: 'Tajawal', sans-serif; background-color: #f8fafc; color: #1e293b; }
+        h1, h2, h3 { font-family: 'Amiri', serif; }
+        .feature-list li { margin-bottom: 0.75rem; display: flex; align-items: flex-start; }
     </style>
 </head>
-<body>
-    
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="index.html" class="flex items-center space-x-3 space-x-reverse">
-                <img src="logo.png" width="45" height="45" class="rounded-lg shadow-sm" alt="شعار المرساة الرقمية">
-                <h1 class="text-xl font-bold text-gray-900" data-key="site_name">المرساة الرقمية</h1>
-            </a>
-            
-            <div class="hidden md:flex items-center gap-5">
-                <a href="index.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key="nav_home">الرئيسية</a>
-                <a href="track-sovereignty.html" class="font-bold text-gray-600 hover:text-blue-900 text-sm" data-key="nav_tracks">المسارات</a>
+<body class="flex flex-col min-h-screen">
 
-                <select id="lang-select" onchange="setLanguage(this.value)" class="text-xs border border-gray-300 rounded p-1 bg-white focus:outline-none focus:border-blue-500" aria-label="اختر اللغة">
-                    <option value="ar">عربي</option><option value="en">English</option><option value="fr">Français</option><option value="de">Deutsch</option>
-                </select>
-                <select id="curr-select" onchange="convertCurrency(this.value)" class="text-xs border border-gray-300 rounded p-1 bg-white font-bold text-blue-900 focus:outline-none focus:border-blue-500" aria-label="اختر العملة">
-                    <option value="SAR">SAR (ر.س)</option><option value="USD">USD ($)</option><option value="EUR">EUR (€)</option>
-                </select>
-            </div>
-            
-            <button id="mobile-menu-btn" class="md:hidden text-gray-800 p-2" aria-label="قائمة التنقل">
-                <i class="fas fa-bars text-xl" aria-hidden="true"></i>
-            </button>
-        </div>
-    </nav>
-    <main class="flex-grow container mx-auto px-4 py-12">
-        <div class="text-center mb-12">
-            <h1 class="text-3xl md:text-4xl font-bold text-blue-900 mb-4" data-key="buy_header">اختر حزمتك للانطلاق</h1>
-            <p class="text-gray-600 text-lg" data-key="buy_subtitle">ابدأ رحلتك للقيادة الرقمية بحزمة تلائم احتياجاتك.</p>
-        </div>
+    <div id="navbar-placeholder"></div>
 
-        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+    <header class="bg-blue-900 text-white py-16 text-center">
+        <h1 class="text-4xl font-bold mb-3" data-key="pricing_header">اختر استثمارك في نفسك</h1>
+        <p class="text-xl text-blue-200 max-w-3xl mx-auto">ابدأ مسار السيادة الرقمية اليوم، واختر الخطة التي تناسب رحلتك.</p>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-12 max-w-5xl">
+        <section id="pricing-plans" class="grid md:grid-cols-2 gap-10 items-stretch">
             
-            <div class="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-gray-400 relative overflow-hidden">
-                <h2 class="text-2xl font-bold text-gray-700 mb-2" data-key="plan_basic_title">الحزمة الأساسية</h2>
-                <p class="text-gray-500 mb-6 text-sm" data-key="plan_basic_desc">الوصول إلى الأدوات الأساسية وإرشادات التحرر.</p>
+            <div class="border border-gray-200 rounded-2xl p-8 flex flex-col hover:shadow-xl transition bg-white">
+                <h3 class="text-2xl font-bold text-slate-800 mb-2" data-key="plan1_title">النسخة الذاتية</h3>
+                <p class="text-gray-600 mb-4" data-key="plan1_desc">وصول كامل للمواد، دعم المجتمع العام.</p>
                 
-                <div class="text-center mb-8">
-                    <span class="text-5xl font-extrabold text-gray-800 price-display" data-base-price="39">39</span>
-                    <span class="text-2xl font-medium text-gray-500 currency-symbol">SAR</span>
+                <div class="text-5xl font-extrabold text-blue-900 my-4">
+                    <span class="currency-symbol">SAR</span><span class="price-display" data-base-price="97">97</span>
                 </div>
-
-                <ul class="space-y-4 mb-8 text-sm">
-                    <li class="flex items-center"><i class="fas fa-check text-green-500 ml-3" aria-hidden="true"></i> <span data-key="feat_basic_1">دليل الطوارئ (PDF)</span></li>
-                    <li class="flex items-center"><i class="fas fa-check text-green-500 ml-3" aria-hidden="true"></i> <span data-key="feat_basic_2">أداة تحديد القيم</span></li>
-                    <li class="flex items-center"><i class="fas fa-check text-green-500 ml-3" aria-hidden="true"></i> <span data-key="feat_basic_3">نسخة من عهد التحرر</span></li>
+                
+                <ul class="text-gray-700 text-sm mt-4 feature-list flex-grow">
+                    <li><i class="fas fa-check text-green-500 ml-2 mt-1"></i> الكتاب الإلكتروني (الإصدار الجديد)</li>
+                    <li><i class="fas fa-check text-green-500 ml-2 mt-1"></i> الوصول لمحتوى الـ 90 يوماً</li>
+                    <li><i class="fas fa-check text-green-500 ml-2 mt-1"></i> وثيقة العهد وأداة القيم</li>
+                    <li><i class="fas fa-check text-green-500 ml-2 mt-1"></i> مجتمع الدعم العام عبر ديسكورد</li>
+                    <li><i class="fas fa-times text-red-500 ml-2 mt-1"></i> <span class="text-gray-500">جلسات توجيه فردية (غير مشمولة)</span></li>
                 </ul>
 
-                <a href="#" target="_blank" class="block text-center w-full bg-gray-800 text-white py-3 rounded-lg font-bold hover:bg-gray-700 transition no-underline" data-key="btn_buy">
-                    اشترِ الآن
-                </a>
+                <a href="#" class="mt-8 block w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 no-underline text-center" data-key="plan_btn">اختر الخطة</a>
             </div>
 
-            <div class="bg-white rounded-2xl shadow-xl p-8 border-t-4 border-yellow-500 relative overflow-hidden transform md:-translate-y-4">
-                <div class="premium-badge" data-key="badge_popular">الأكثر طلباً</div>
+            <div class="bg-slate-900 text-white rounded-2xl p-8 flex flex-col shadow-2xl relative border-t-8 border-yellow-400">
+                <div class="absolute top-0 left-0 bg-red-600 text-white text-xs px-3 py-1 rounded-bl-lg rounded-tr-lg font-bold">الأكثر شعبية</div>
+                <h3 class="text-2xl font-bold text-yellow-400 mb-2 mt-6" data-key="plan2_title">النسخة الموجهة</h3>
+                <p class="text-gray-300 mb-4" data-key="plan2_desc">بالإضافة إلى 4 جلسات توجيه فردية وتصحيح الواجبات.</p>
                 
-                <h2 class="text-2xl font-bold text-blue-900 mb-2" data-key="plan_premium_title">الحزمة الكاملة</h2>
-                <p class="text-gray-500 mb-6 text-sm" data-key="plan_premium_desc">الكتاب + جميع الموارد + دعم المجتمع.</p>
-                
-                <div class="text-center mb-8">
-                    <span class="text-6xl font-extrabold text-blue-900 price-display" data-base-price="199">199</span>
-                    <span class="text-3xl font-medium text-gray-500 currency-symbol">SAR</span>
+                <div class="text-5xl font-extrabold text-yellow-400 my-4">
+                    <span class="currency-symbol">SAR</span><span class="price-display" data-base-price="297">297</span>
                 </div>
-
-                <ul class="space-y-4 mb-8 text-sm font-medium">
-                    <li class="flex items-center"><i class="fas fa-check-circle text-yellow-500 ml-3" aria-hidden="true"></i> <span data-key="feat_prem_1">كتاب "من أنت حين تنطفئ الشاشة؟"</span></li>
-                    <li class="flex items-center"><i class="fas fa-check-circle text-yellow-500 ml-3" aria-hidden="true"></i> <span data-key="feat_prem_2">دفتر التمارين (90 يوماً)</span></li>
-                    <li class="flex items-center"><i class="fas fa-check-circle text-yellow-500 ml-3" aria-hidden="true"></i> <span data-key="feat_prem_3">شهادة السيادة الرقمية</span></li>
-                    <li class="flex items-center"><i class="fas fa-check-circle text-yellow-500 ml-3" aria-hidden="true"></i> <span data-key="feat_prem_4">عضوية المجتمع الحصرية</span></li>
+                
+                <ul class="text-gray-300 text-sm mt-4 feature-list flex-grow">
+                    <li><i class="fas fa-check text-yellow-400 ml-2 mt-1"></i> **كل شيء في الخطة الذاتية**</li>
+                    <li><i class="fas fa-check text-yellow-400 ml-2 mt-1"></i> 4 جلسات توجيه فردية (زوم/جوجل ميت)</li>
+                    <li><i class="fas fa-check text-yellow-400 ml-2 mt-1"></i> تصحيح وتقييم الواجبات والتمارين</li>
+                    <li><i class="fas fa-check text-yellow-400 ml-2 mt-1"></i> وصول للمواد الحصرية المتقدمة</li>
+                    <li><i class="fas fa-check text-yellow-400 ml-2 mt-1"></i> أولوية الدعم الفني والشخصي</li>
                 </ul>
 
-                <a href="#" target="_blank" class="w-full btn-primary py-4 rounded-lg font-bold shadow-lg flex justify-center items-center gap-2 no-underline text-white" data-key="btn_buy_premium">
-                    <i class="fas fa-crown" aria-hidden="true"></i> احصل على الحزمة الكاملة
-                </a>
-                
-                <p class="text-center text-xs text-gray-400 mt-3" data-key="guarantee">ضمان استرداد الأموال لمدة 30 يوماً</p>
+                <a href="#" class="mt-8 block w-full bg-yellow-500 text-slate-900 py-3 rounded-lg font-bold hover:bg-yellow-400 no-underline text-center" data-key="plan_btn_premium">ابدأ الآن</a>
             </div>
 
-        </div>
+        </section>
     </main>
 
-    <footer class="bg-gray-900 text-white py-8 text-center mt-auto">
-        <p class="text-gray-400 text-sm">© 2025 Digital Anchor Project.</p>
-    </footer>
+    <div id="footer-placeholder"></div>
 
-    <script>
-        // (لصق الكود الموحد من الخطوة 1 هنا)
-    </script>
+    <script src="js/global.js"></script>
 </body>
 </html>
